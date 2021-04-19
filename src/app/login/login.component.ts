@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-import { UserService } from '../services/user.service';
+// import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private authenticationService: AuthenticationService,
-    private userService: UserService,
+    // private userService: UserService,
     private fb: FormBuilder
   ) {
     this.redirectUrl = this.activatedRoute.snapshot.queryParams.redirectTo;
@@ -36,19 +36,21 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.userService.logout();
+    // this.userService.logout();
   }
 
-  login() {
+  login(): void {
     const credentials = new LoginRequest();
     credentials.username = this.loginForm.get('username').value;
     credentials.password = this.loginForm.get('password').value;
     const login$ = this.authenticationService.login(credentials).subscribe(
       (result) => {
+        debugger;
         this.loading = false;
         if (result) {
-          this.userService.login(result);
+          // this.userService.login(result);
           this.navigateAfterSuccess();
+          this.authenticationService.token = result.token;
         }
       },
       (error: HttpErrorResponse) => {

@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { LoginRequest } from '../models/login-request';
-import { AuthResponse } from '../models/auth-response';
+import { LoginResponse } from '../models/ligin-response';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthenticationService {
   private authURL = environment.baseUrl + 'int/login';
+  private tokenValue: string;
 
   constructor(private http: HttpClient) {}
 
   login(loginRequest: LoginRequest) {
-    return this.http.post<AuthResponse>(this.authURL, loginRequest);
+    return this.http.post<LoginResponse>(this.authURL, loginRequest);
+  }
+
+  get token(): string {
+    return this.tokenValue;
+  }
+
+  set token(value: string) {
+    this.tokenValue = value;
   }
 }

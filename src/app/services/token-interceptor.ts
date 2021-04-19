@@ -7,22 +7,28 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { UserService } from './user.service';
+// import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(public auth: UserService, private router: Router) {}
+  constructor(
+    // public auth: UserService,
+    private router: Router,
+    private authenticationService: AuthenticationService
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.log(this.authenticationService.token);
     request = request.clone({
       setHeaders: {
-        Authorization: 'Bearer ' + this.auth.getToken(),
+        Authorization: 'Bearer ' + this.authenticationService.token,
       },
     });
 
