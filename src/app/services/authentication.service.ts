@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { LoginRequest } from '../models/login-request';
-import { LoginResponse } from '../models/ligin-response';
+import { LoginResponse } from '../models/login-response';
 import { environment } from '../../environments/environment';
 
 @Injectable({
