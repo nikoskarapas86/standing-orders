@@ -1,0 +1,37 @@
+export class CreateResponse {
+  'id': number;
+  'startDate': number[];
+  'endDate': number[];
+  'lineOfBusiness': string;
+  'policyNo': number;
+  'checkDigit': number;
+  'agent': number;
+  'endorsement': string;
+  'newCollectionAgency': number;
+  'oldCollectionAgency': number;
+  'paymentType': string;
+  'iban': string;
+  'bankAccount': string;
+  'organizationDescription': string;
+  'cardNumber': string;
+  'cardExpiryMonth': string;
+  'cardExpiryYear': string;
+  'lastName': string;
+  'firstName': string;
+  'street': string;
+  'city': string;
+  'postalCode': string;
+  'phoneNumber': number;
+  'email': string;
+  'vatNumber': string;
+  'recordStatus': string;
+  'recordStatusDate': number[];
+  'customerStatus': string;
+  'customerStatusDate': number[];
+  'policyStatus': string;
+  'policyStatusDate': number[];
+  'cardStatus': string;
+  'cardStatusDate': number[];
+  'standingOrderStatus': string;
+  'standingOrderStatusDate': number[];
+}

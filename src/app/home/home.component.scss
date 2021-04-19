@@ -1,0 +1,56 @@
+@import "/src/css/variables.scss";
+@import "/src/css/mixins.scss";
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.wrapper {
+  @include _flex(row-reverse, center);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mat-card {
+  min-width: unset !important;
+  max-width: fit-content;
+  margin: 2% !important;
+  border-radius: 4px !important;
+
+  .mat-card-content {
+    @include _flex(column, unset);
+    padding: 1rem;
+
+    img {
+      padding: 1rem 3rem 1rem 3rem;
+    }
+
+    span {
+      @include _font-conf(0.42px, unset, center, $blue-primary-main);
+      font-weight: $bold;
+      padding: 2rem 0 1rem 0;
+      text-transform: uppercase;
+      width: 300px;
+
+      .mat-icon {
+        vertical-align: middle;
+        transition: 0.2s ease-in;
+      }
+    }
+  }
+}
+
+.mat-card:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 12px 10px #00000029 !important;
+
+  .mat-icon {
+    transform: translateX(60%);
+  }
+}
+
+.bottom-distance {
+  margin-bottom: 20px;
+}

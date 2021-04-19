@@ -1,1 +1,83 @@
-<p>login works!</p>
+<div class="limiter">
+  <div class="logoninsa">
+    <img src="./assets/images/ethniki.jpg" class="imglogonins" />
+  </div>
+  <div
+    class="container-login"
+    style="background-image: url(./assets/images/bg-nins.jpg)"
+  >
+    <div class="login-section">
+      <div class="form-bottom">
+        <mat-card-content>
+          <form
+            id="login-form"
+            name="form"
+            class="signup-form"
+            (ngSubmit)="login()"
+            [formGroup]="loginForm"
+            autocomplete="off"
+            novalidate
+            style="background-image: url(./assets/images/LogoQuartile2.png)"
+          >
+            <h4 class="head-login">ΕΙΣΟΔΟΣ</h4>
+            <div class="example-container">
+              <div class="form-top">
+                <div class="form-top-login">
+                  <mat-icon>lock</mat-icon>
+                </div>
+                <h4>Πάγιες</h4>
+              </div>
+
+              <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  formControlName="username"
+                  placeholder="Συμπληρώστε το username σας."
+                />
+                <mat-icon>person</mat-icon>
+                <mat-error *ngIf="hasRequiredError('username')">
+                  Το πεδίο είναι υποχρεωτικό.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  [type]="hide ? 'password' : 'text'"
+                  name="password"
+                  formControlName="password"
+                  placeholder="Συμπληρώστε το password σας."
+                />
+                <mat-icon
+                  matSuffix
+                  class="material-icon show-password"
+                  (click)="hide = !hide"
+                  >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
+                >
+                <mat-error *ngIf="hasRequiredError('password')">
+                  Το πεδίο είναι υποχρεωτικό.
+                </mat-error>
+              </mat-form-field>
+              <div class="form-group">
+                <button
+                  mat-raised-button
+                  class="center-btn"
+                  type="submit"
+                  [disabled]="!loginForm.valid"
+                >
+                  Σύνδεση
+                </button>
+                     
+                <!-- <span *ngIf="errorMsg" class="error-msg">
+                    <p>{{ errorMsg }}</p> </span
+                  >  -->
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+</div>

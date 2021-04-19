@@ -1,0 +1,75 @@
+// Custom Theming for Angular Material
+// For more webpay-webpay-modal-information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-material-app-primary: mat-palette($mat-indigo);
+$angular-material-app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-material-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$angular-material-app-theme: mat-light-theme(
+  $angular-material-app-primary,
+  $angular-material-app-accent,
+  $angular-material-app-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// Create a theme.
+// This list with angular material modules must match with material.module.ts, unused angular material components are
+// comment out for performance improvement to avoid send unnecessary styles over the network. If you will used another
+// component from angular material library, the component module should be included in material.module.ts and its
+// corresponding style mixin here, just remove // for the desired style.
+@mixin angular-material-theme($theme) {
+  @include mat-core-theme($theme);
+  @include mat-input-theme($theme);
+  @include mat-button-theme($theme);
+  @include mat-select-theme($theme);
+  @include mat-icon-theme($theme);
+  @include mat-toolbar-theme($theme);
+  @include mat-table-theme($theme);
+  @include mat-paginator-theme($theme);
+  @include mat-card-theme($theme);
+  @include mat-progress-spinner-theme($theme);
+  @include mat-form-field-theme($theme);
+  @include mat-dialog-theme($theme);
+  @include mat-datepicker-theme($theme);
+  @include mat-expansion-panel-theme($theme);
+  @include mat-button-toggle-theme($theme);
+  // @include mat-progress-bar-theme($theme);
+  @include mat-radio-theme($theme);
+  @include mat-stepper-theme($theme);
+  //@include mat-tabs-theme($theme);
+  //@include mat-list-theme($theme);
+  //@include mat-sidenav-theme($theme);
+  //@include mat-menu-theme($theme);
+  //@include mat-autocomplete-theme($theme);
+  //@include mat-checkbox-theme($theme);
+  //@include mat-sort-theme($theme);
+  //@include mat-tree-theme($theme);
+  //@include mat-tooltip-theme($theme);
+  @include mat-snack-bar-theme($theme);
+  //@include mat-grid-list-theme($theme);
+  //@include mat-badge-theme($theme);
+  //@include mat-bottom-sheet-theme($theme)
+  //@include mat-chips-theme($theme);
+  //@include mat-divider-theme($theme);
+  //@include mat-slide-toggle-theme($theme);
+  //@include mat-slider-theme($theme);
+}
+
+@include angular-material-theme($angular-material-app-theme);
+
+/* You can add global styles to this file, and also import other style files */

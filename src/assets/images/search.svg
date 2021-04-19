@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="202" height="200" viewBox="0 0 202 200">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="gray" stop-opacity="0.251"/>
+      <stop offset="0.535" stop-color="gray" stop-opacity="0.122"/>
+      <stop offset="1" stop-color="gray" stop-opacity="0.102"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b3b3b3" stop-opacity="0.251"/>
+      <stop offset="0.535" stop-color="#b3b3b3" stop-opacity="0.102"/>
+      <stop offset="1" stop-color="#b3b3b3" stop-opacity="0.051"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-opacity="0.122"/>
+      <stop offset="0.551" stop-opacity="0.09"/>
+      <stop offset="1" stop-opacity="0.02"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="0.5" y1="1" x2="0.5" y2="0" xlink:href="#linear-gradient-3"/>
+  </defs>
+  <g id="Group_248" data-name="Group 248" transform="translate(7022 164)">
+    <circle id="Ellipse_353" data-name="Ellipse 353" cx="100" cy="100" r="100" transform="translate(-7022 -164)" fill="#034ea1" opacity="0.036"/>
+    <g id="Group_247" data-name="Group 247" transform="translate(-7020.142 -140)">
+      <rect id="Rectangle_1669" data-name="Rectangle 1669" width="200.141" height="37.009" fill="url(#linear-gradient)"/>
+      <rect id="Rectangle_1670" data-name="Rectangle 1670" width="197.512" height="33.83" transform="translate(1.169 1.211)" fill="#fff"/>
+      <rect id="Rectangle_1671" data-name="Rectangle 1671" width="114.817" height="20.134" transform="translate(13.3 8.118)" fill="#f5f5f5"/>
+      <path id="Path_31944" data-name="Path 31944" d="M854.795,181.7a10.632,10.632,0,1,0-1.74,16.2l7.686,7.995a.517.517,0,0,0,.732.014l1.915-1.841a.517.517,0,0,0,.014-.732l-7.686-7.995A10.633,10.633,0,0,0,854.795,181.7ZM852.4,194.555a7.605,7.605,0,1,1,.212-10.753,7.6,7.6,0,0,1-.212,10.753Z" transform="translate(-682.139 -172.301)" fill="url(#linear-gradient-2)"/>
+      <path id="Path_31945" data-name="Path 31945" d="M856.128,215.554a.665.665,0,0,0,0,1.329A.665.665,0,0,0,856.128,215.554Z" transform="translate(-696.77 -200.896)" fill="url(#linear-gradient-3)"/>
+      <path id="Path_31946" data-name="Path 31946" d="M865.5,197a6.388,6.388,0,0,0-5.51,2.846c-.363.569.668,1.071,1.03.506a5.268,5.268,0,0,1,4.568-2.312,5.821,5.821,0,0,1,4.75,2.763c.363.6,1.314.054.954-.54A7.058,7.058,0,0,0,865.5,197Z" transform="translate(-700.184 -186.596)" fill="url(#linear-gradient-4)"/>
+      <path id="Path_31947" data-name="Path 31947" d="M854.795,176.612a10.632,10.632,0,1,0-1.74,16.2l7.686,7.995a.517.517,0,0,0,.732.014l1.915-1.841a.517.517,0,0,0,.014-.732l-7.686-7.995A10.633,10.633,0,0,0,854.795,176.612ZM852.4,189.463a7.605,7.605,0,1,1,.212-10.753A7.6,7.6,0,0,1,852.4,189.463Z" transform="translate(-682.139 -168.379)" fill="#034ea1"/>
+      <path id="Path_31948" data-name="Path 31948" d="M856.128,210.462a.665.665,0,0,0,0,1.329A.665.665,0,0,0,856.128,210.462Z" transform="translate(-696.77 -196.974)" fill="#034ea1"/>
+      <path id="Path_31949" data-name="Path 31949" d="M865.5,191.9a6.388,6.388,0,0,0-5.51,2.846c-.363.569.668,1.071,1.03.506a5.268,5.268,0,0,1,4.568-2.312,5.821,5.821,0,0,1,4.75,2.763c.363.6,1.314.054.954-.54A7.058,7.058,0,0,0,865.5,191.9Z" transform="translate(-700.184 -182.673)" fill="#034ea1"/>
+      <rect id="Rectangle_1672" data-name="Rectangle 1672" width="199.015" height="13.543" transform="translate(1.127 55.228)" fill="#e0e0e0"/>
+      <rect id="Rectangle_1673" data-name="Rectangle 1673" width="199.015" height="13.543" transform="translate(1.127 77.953)" fill="#e0e0e0"/>
+      <rect id="Rectangle_1674" data-name="Rectangle 1674" width="199.015" height="13.543" transform="translate(1.127 100.678)" fill="#e0e0e0"/>
+      <rect id="Rectangle_1675" data-name="Rectangle 1675" width="199.015" height="13.543" transform="translate(1.127 123.403)" fill="#e0e0e0"/>
+    </g>
+  </g>
+</svg>

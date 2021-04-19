@@ -1,0 +1,18 @@
+@import "/src/css/variables.scss";
+
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $blue-primary-main;
+  width: 100%;
+  .mat-toolbar-row,
+  .mat-toolbar-single-row {
+    justify-content: inherit;
+  }
+  margin-bottom: 30px;
+}
+
+a {
+  color: $white-text-primary;
+}

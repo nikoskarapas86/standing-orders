@@ -1,0 +1,12 @@
+@mixin _flex($direction, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $align;
+  }
+  
+  @mixin _font-conf($letter-spacing, $line-height, $text-align, $color) {
+    letter-spacing: $letter-spacing;
+    line-height: $line-height;
+    text-align: $text-align;
+    color: $color;
+  }

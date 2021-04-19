@@ -1,1 +1,23 @@
-<p>nav works!</p>
+<!-- <div *ngIf="userService.isLoggedIn$ | async"> -->
+<div>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <div>
+        <img src="./assets/images/logo.png" />
+      </div>
+
+      <div>
+        <!-- <a *ngIf="isVisible" mat-button routerLink="/a">---</a>
+          <a mat-button routerLink="/b">---</a> -->
+      </div>
+
+      <div>
+        <button class="mat-icon-btn" (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<router-outlet></router-outlet>
