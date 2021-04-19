@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "standingOrders-frontend"
+    }
+  },
+  "defaultProject": "standingOrders-frontend",
+  "cli": {
+    "analytics": false
+  }
 }

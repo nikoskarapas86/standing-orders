@@ -1,3 +1,6 @@
+@import './variables.scss';
+@import './_mixins.scss';
+
 html{
     box-sizing: border-box;
 
@@ -7,8 +10,6 @@ html{
 *::before,
 *::after,
 *{
-margin:0;
-padding:0;
 box-sizing: inherit;
 
 }

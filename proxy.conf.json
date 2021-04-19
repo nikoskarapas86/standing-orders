@@ -1,0 +1,10 @@
+{
+    "/standingorders/backend/*": {
+    "target": "http://a99jdev03",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+    }
+ }
+ 
+ 
