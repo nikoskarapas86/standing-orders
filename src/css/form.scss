@@ -1,40 +1,95 @@
+#date-input {
+  width: 60%;
+}
+
+.has-error {
+  color: #f44e42;
+}
+
+.alert-messages {
+  color: #f44e42;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.field-wrapper {
+  margin-left: 2%;
+  margin-right: 2%;
+  flex: 1 1 46%;
+  max-width: 46%;
+}
+
+mat-form-field.mat-form-field {
+  width: 424px;
+  min-height: auto;
+  min-height: 56px;
+  background-color: #ffffff;
+  border-radius: 4px 4px 0px 0px;
+  margin-bottom: 1rem;
+
+
+}
+
+.field-wrapper-row {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .mat-form-field {
+    width: 267px;
+
+   
+  }
+
+  .mat-form-field:last-child {
+    margin-left: 25px;
+    width: 133px;
+
+    
+  }
+
+ 
+}
+
+.mat-input-element {
+  font-size: 16px !important;
+}
+
 form {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 17px;
-  }
-  
-  .field-wrapper {
-    margin-left: 2%;
-    margin-right: 2%;
-    flex: 1 1 46%;
-    max-width: 46%;
-  }
-  
-  mat-form-field.mat-form-field {
-    width: 424px;
-    min-height: auto;
-    min-height: 56px;
-    background-color: #ffffff;
-    border-radius: 4px 4px 0px 0px;
-    margin-bottom: 1rem;
-  }
-  
-  .field-wrapper-row {
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 17px;
+
+  p {
+    padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: flex-start;
-    .mat-form-field {
-      width: 267px;
-    }
-  
-    .mat-form-field:last-child {
-      margin-left: 25px;
-      width: 133px;
-    }
-  
-    .mat-input-element {
-      font-size: 16px !important;
-    }
   }
-  
+}
+
+#product-dialog {
+  .mat-form-field-flex {
+    padding: 0.75rem 0.75rem 0 0.75rem;
+  }
+
+  .mat-hint,
+  .mat-error {
+    padding-left: 0.75rem;
+  }
+
+  .has-value .mat-form-field-flex {
+    padding: 0.75rem 0.75rem 0 0.75rem;
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: rgb(0, 0, 0);
+  }
+
+  .mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+    background-color: rgb(0, 0, 0, 0.15);
+    background-image: unset;
+  }
+}
