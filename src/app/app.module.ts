@@ -12,6 +12,7 @@ import { TokenInterceptor } from './services/token-interceptor';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,7 @@ import { SearchStandingOrderComponent } from './search-standing-order/search-sta
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    // UserService,
-    // AuthenticationService,
+    AuthGuardService,
   ],
   bootstrap: [AppComponent],
 })
