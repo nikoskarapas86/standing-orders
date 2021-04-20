@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 })
 export class AuthenticationService {
   private authURL = environment.baseUrl + 'int/login';
-  private tokenValue: string;
 
   constructor(private http: HttpClient) {}
 
@@ -18,11 +17,15 @@ export class AuthenticationService {
     return this.http.post<LoginResponse>(this.authURL, loginRequest);
   }
 
+  logout(): void {
+    localStorage.removeItem('STANDING_ORDERS_TOKEN');
+  }
+
   get token(): string {
-    return this.tokenValue;
+    return localStorage.getItem('STANDING_ORDERS_TOKEN');
   }
 
   set token(value: string) {
-    this.tokenValue = value;
+    localStorage.setItem('STANDING_ORDERS_TOKEN', value);
   }
 }
