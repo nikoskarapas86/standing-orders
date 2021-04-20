@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 // import { UserService } from '../services/user.service';
@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loading = false;
   public errorMsg = '';
   redirectUrl: string;
@@ -39,13 +39,22 @@ export class LoginComponent implements OnInit {
     // this.userService.logout();
   }
 
+  ngOnDestroy(): void {
+    if (this.subscriptions$.length > 0) {
+      this.subscriptions$.forEach((subscription) => {
+        if (subscription) {
+          subscription.unsubscribe();
+        }
+      });
+    }
+  }
+
   login(): void {
     const credentials = new LoginRequest();
     credentials.username = this.loginForm.get('username').value;
     credentials.password = this.loginForm.get('password').value;
     const login$ = this.authenticationService.login(credentials).subscribe(
       (result) => {
-        debugger;
         this.loading = false;
         if (result) {
           // this.userService.login(result);
@@ -63,7 +72,7 @@ export class LoginComponent implements OnInit {
     this.subscriptions$.push(login$);
   }
 
-  private navigateAfterSuccess() {
+  private navigateAfterSuccess(): void {
     this.router.navigate(['/home']);
     // if (this.redirectUrl) {
     //   this.router.navigateByUrl(this.redirectUrl);
@@ -76,20 +85,10 @@ export class LoginComponent implements OnInit {
     // }
   }
 
-  hasRequiredError(key: string) {
+  hasRequiredError(key: string): boolean {
     return (
       this.loginForm.get(key).touched &&
       this.loginForm.get(key).hasError('required')
     );
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscriptions$.length > 0) {
-      this.subscriptions$.forEach((subscription) => {
-        if (subscription) {
-          subscription.unsubscribe();
-        }
-      });
-    }
   }
 }

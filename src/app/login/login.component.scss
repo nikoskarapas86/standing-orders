@@ -1,9 +1,6 @@
-@import "/src/css/variables.scss";
 
-#login-form {
-  display: flex;
-  flex-direction: column;
-}
+@import '/src/css/variables.scss';
+
 
 .form-top h4 {
   text-align: center;
@@ -20,6 +17,9 @@
   display: -moz-box;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,7 +29,7 @@
 }
 
 .container-login::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   z-index: -1;
@@ -37,7 +37,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  // animation: f17imgfade 0.5s 0s 1 cubic-bezier(0, 0, 0.2, 1) forwards;
+  animation: f17imgfade 0.5s 0s 1 cubic-bezier(0, 0, 0.2, 1) forwards;
 }
 
 .limiter {
@@ -52,17 +52,19 @@
 .form-bottom {
   padding: 25px;
   margin-top: 2rem;
+
+ 
 }
 
-.head-login {
+.headlogin {
   color: #1e3c72;
   text-align: center;
   font-size: 1.5rem;
-  // font-weight: $medium;
+  font-weight: $medium;
   margin-top: 0px;
 }
 
-.login-section {
+.LoginSection {
   width: 100%;
   height: 100%;
   position: initial;
@@ -71,7 +73,7 @@
   position: relative;
 }
 
-.signup-form {
+.signupForm {
   width: 100%;
   padding: 30px 0;
   background: #fff;
@@ -84,8 +86,8 @@
   background-repeat: no-repeat;
 }
 
-.signup-form h2 {
-  font-weight: 300;
+.signupForm h2 {
+  font-weight: $light;
 }
 
 .example-container {
@@ -103,9 +105,8 @@
   vertical-align: middle;
   background: #1e3c72;
   border: 0;
-  font-family: "Roboto", sans-serif;
-  font-size: 19px !important;
-  font-weight: 300;
+  font-size: 18px !important;
+  font-weight: 600;
   line-height: 50px;
   color: #fff !important;
   -moz-border-radius: 4px;
@@ -175,41 +176,25 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
 
-.imglogonins {
-  height: 4rem;
-  padding: 0 50px;
+ 
+
+  .environment {
+    display: flex;
+   
+  }
+
+  .imglogonins {
+    height: 4rem;
+    padding: 0 50px;
+
+    
+  }
 }
 
 .alert {
   margin-top: -15px;
   font-size: 12px;
-}
-
-label {
-  margin-top: 0px !important;
-}
-
-@media (max-width: 768px) {
-  .imglogonins {
-    /*mobile*/
-    padding: 0 50px;
-    width: auto;
-    display: block;
-    margin: auto;
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    left: 0;
-    top: 0;
-    height: 60px;
-  }
-  .logoninsa {
-    position: inherit;
-    top: 0;
-    z-index: 9999;
-  }
 }
 
 label {
@@ -225,7 +210,7 @@ label {
 .form-top-login-header {
   color: #1e3c72;
   margin-bottom: 30px;
-  // font-weight: $medium;
+  font-weight: $medium;
 }
 
 .material-icon {

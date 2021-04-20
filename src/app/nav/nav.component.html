@@ -1,6 +1,4 @@
-<div
- *ngIf="userService.isLoggedIn$ | async">
-<!-- <div> -->
+<div *ngIf="authenticationService.token">
   <mat-toolbar>
     <mat-toolbar-row>
       <div>
