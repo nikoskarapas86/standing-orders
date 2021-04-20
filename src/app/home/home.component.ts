@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'ΑΝΑΖΗΤΗΣΗ ΠΑΓΙΑΣ',
       imgSrc: './assets/images/search.svg',
-      onClick: () => this.router.navigate(['/*']),
+      onClick: () => this.router.navigate(['/search']),
     },
   ];
 

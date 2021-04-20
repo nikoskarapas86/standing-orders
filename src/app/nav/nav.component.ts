@@ -6,7 +6,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
 } from '@angular/core';
-import { UserService } from '../services/user.service';
+// import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class NavComponent
   isLoggedIn$: Observable<boolean>;
 
   constructor(
-    public userService: UserService,
+    // public userService: UserService,
     private router: Router,
     private changeDetectorRef: ChangeDetectorRef
   ) {}
