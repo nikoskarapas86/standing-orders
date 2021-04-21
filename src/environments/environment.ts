@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'standingorders/backend/',
+  baseUrl: 'standingorders/backend',
 };
 
 /*
