@@ -12,6 +12,7 @@ import { TokenInterceptor } from './services/token-interceptor';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
+import { CreateStandingOrderComponent } from './create-standing-order/create-standing-order.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchStandingOrderComponent } from './search-standing-order/search-sta
     NavComponent,
     HomeComponent,
     SearchStandingOrderComponent,
+    CreateStandingOrderComponent,
   ],
   imports: [
     BrowserModule,

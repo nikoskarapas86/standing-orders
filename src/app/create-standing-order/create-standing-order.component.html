@@ -1,0 +1,66 @@
+<div class="container-card">
+    <mat-card class="mat-card-outer">
+        <mat-card-header>
+            <div class="card-title">καταχώρηση πάγιας</div>
+        </mat-card-header>
+        <mat-card-content>
+            <form (ngSubmit)="submit()" [formGroup]="createForm" name="cereateForm">
+                <div class="container">
+                    <mat-form-field class="field-width">
+                        <mat-label>Κλάδος</mat-label>
+                        <mat-select formControlName="lineOfBusiness" matNativeControl>
+                            <mat-option *ngFor="let lineOfbusiness of linesOfBusinesses"
+                                [value]="lineOfbusiness.branchName" ngDefaultControl>
+                                {{ lineOfbusiness.branchName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="policyField field-width">
+                        <mat-label>Αριθμός Συμβολαίου</mat-label>
+                        <input formControlName="policyNo" type="number" min="0" matInput
+                            placeholder="Συμπληρώστε το policy number" />
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Αίτηση</mat-label>
+                        <input formControlName="endorsement" type="number" matInput
+                            placeholder="Συμπληρώστε την αίτηση" />
+                    </mat-form-field>
+
+                    <mat-dialog-actions>
+                        <button mat-raised-button type="button" class="common-btn">
+                            Καθαρισμος
+                        </button>
+                        <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
+                            Αναζήτηση
+                        </button>
+                    </mat-dialog-actions>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+<!-- <mat-form-field
+              class="has-date field-width"
+              fxLayout="column"
+              appearance="fill"
+            >
+              <mat-label>Start date/End date από - εώς</mat-label>
+              <mat-date-range-input [rangePicker]="completedDateRange"> -->
+<!-- (focus)="completedDateRange.open()"
+                  (click)="completedDateRange.open()" -->
+<!-- <input
+                  formControlName="payDateFrom"
+                  matStartDate
+                  placeholder="Από"
+                /> -->
+<!-- (focus)="completedDateRange.open()"
+                  (click)="completedDateRange.open()" -->
+<!-- <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="completedDateRange"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+            </mat-form-field> -->

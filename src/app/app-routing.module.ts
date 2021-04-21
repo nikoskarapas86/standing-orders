@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CreateStandingOrderComponent } from './create-standing-order/create-standing-order.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'search', component: SearchStandingOrderComponent },
+  { path: 'create', component: CreateStandingOrderComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
