@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
     });
 
-    // this.userService.logout();
+    this.authenticationService.logout();
   }
 
   ngOnDestroy(): void {
@@ -57,9 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       (result) => {
         this.loading = false;
         if (result) {
-          // this.userService.login(result);
-          this.navigateAfterSuccess();
           this.authenticationService.token = result.token;
+          this.navigateAfterSuccess();
         }
       },
       (error: HttpErrorResponse) => {
