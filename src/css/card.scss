@@ -1,129 +1,62 @@
-mat-card.mat-card {
-    @include _box(none, 8px, 0, 2rem 0 0 0, 670px, 0px 3px 6px #00000029 !important);
-    @include _container(auto, auto);
-    max-width: 70%;
-    background-color: #ffffff;
-  
-    .validation-message {
-      margin: 15px 0;
-    }
-  
-    .mat-card-header-text {
-      margin: 0 9px;
-    }
-  
-    @include tablet-landscape {
-      @include _container(unset !important, auto);
-      max-width: unset !important;
-      min-width: unset !important;
-    }
-  
-    @include mobile-only {
-      width: 100%;
-      min-height: unset;
-      padding-bottom: 0 !important;
-      margin: 0;
-    }
-  }
-  
+mat-card.mat-card-outer {
+  margin: auto;
+  padding: 0px;
+  width: 40%;
+  border-radius: 9px;
+  min-width: fit-content;
   mat-card-header.mat-card-header {
-    @include _container(auto, 80px);
-    @include _flex(column, flex-start);
+    width: auto;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #00529c;
+    border-radius: 9px 9px 0 0;
+  }
+  .card-title {
+    border-radius: 9px 9px 0 0;
+    height: 26px;
+    color: $white-text-primary;
+    letter-spacing: 0.26px;
+    font-size: 18px;
+    margin: 0;
+    padding: 2rem 0 0 1.5rem;
     background-color: $blue-primary-main;
-    border-radius: 8px 8px 0px 0px;
-  
-    @include mobile-only {
-      @include _container(auto, 45px);
-    }
-  
-    .card-title-modal {
-      color: $white-text-primary;
-      @include viewport-laptop-desktop {
-        text-align: center;
-        padding: 2rem 0;
-      }
-  
-      @include viewport-mobile-tablet {
-        text-align: center;
-        padding: 0.8rem 0;
-      }
-    }
-  
-    .card-title {
-      @include _container_with_font(400px, 26px, $white-text-primary, unset, 0.26px, 18px, 0, 2rem 0 0 1.5rem);
-      text-align: left;
-  
-      @include mobile-only {
-        padding: 1rem;
-        width: 300px;
-        height: auto;
-      }
-    }
-  
-    .card-subtitle {
-      @include _container_with_font(300px, 19px, $white-text-secondary, unset, 0.09px, 14px/20px, 0, 4px 0 15px 24px);
-    }
-  
-    .material-icons {
-      font-size: 20px;
-      color: white;
-    }
-  
-    i {
-      margin-right: 7px;
-    }
-  
-   
   }
-  
-  mat-card.mat-card-outer {
-    .mat-card-content {
+  .mat-card-content {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+
+    form .container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .mat-card-actions {
+    padding: 0px 30px;
+    margin: 0px;
+
+    .mat-raised-button {
       margin: 0px;
-      padding: 2rem 1.5rem;
-  
-    }
-  
-    .mat-card-actions {
-      padding: 0px 30px;
-      margin: 0px;
-  
-      .mat-raised-button {
-        margin: 0px;
-      }
     }
   }
-  
-  .mat-card-inner {
-    padding: 1rem 0;
+}
+
+.mat-card-inner {
+  padding: 1rem 0;
+}
+
+mat-card.mat-card-outer {
+  .mat-card-content {
+    margin: 0px;
+    padding: 2rem 1.5rem;
   }
-  
-  .mat-card.table-container {
-    @include _box(none, 4px !important, unset, 0.5rem 1.5rem, unset !important, 0px 0px 4px #00000029 !important);
-    background: #ffffff 0% 0% no-repeat padding-box;
-    max-width: unset !important;
-    margin-top: 0;
-  
-    
-  
-    .mat-card-content {
-      @include _flex(column, unset);
-    }
-  
-  
-    .table-container-header {
-      @include _flex(row, space-between);
-      border-bottom: 1px solid $borders-dividers;
-      padding: 0 1rem;
-  
-      h1 {
-        font-weight: normal;
-      }
-  
-      .button-row {
-        @include _flex(row, unset);
-      }
-  
-    }
-  
-  }
-  
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
