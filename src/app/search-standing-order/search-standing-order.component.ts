@@ -17,9 +17,7 @@ export class SearchStandingOrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataService.searchLinesOfBusiness().subscribe((res) => {
-      this.linesOfBusiness = res;
-    });
+  
     this.buildFormGroup();
   }
 

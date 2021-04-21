@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LineOfBussiness } from '../models/line-of-bussiness';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,28 +10,28 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./create-standing-order.component.scss']
 })
 export class CreateStandingOrderComponent implements OnInit {
-  public linesOfBusinesses: string[];
+  public linesOfBusinesses$: Observable<LineOfBussiness[]>;
   createForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private dataService: DataService
-    ) { }
+    public dataService: DataService
+    ) {
+      this.linesOfBusinesses$ =this.dataService.searchLinesOfBusiness()
+     }
 
   ngOnInit(): void {
-    this.dataService.searchLinesOfBusiness().subscribe(
-      linesOfBusinesses => this.linesOfBusinesses = linesOfBusinesses
-    )
+   
     this.buildFormGroup();
   }
   private buildFormGroup(): void {
     this.createForm = this.formBuilder.group({
       lineOfBusiness: null,
       policyNo: null,
-      endorsement:null
+      endorsement:''
     })
   }
   submit() {
-
+console.log(this.createForm.value)
   }
 
 }
