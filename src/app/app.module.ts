@@ -12,6 +12,7 @@ import { TokenInterceptor } from './services/token-interceptor';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
+import { CreateStandingOrderComponent } from './create-standing-order/create-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     NavComponent,
     HomeComponent,
     SearchStandingOrderComponent,
+    CreateStandingOrderComponent,
   ],
   imports: [
     BrowserModule,

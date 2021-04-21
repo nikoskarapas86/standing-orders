@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'ΔΗΜΙΟΥΡΓΙΑ ΠΑΓΙΑΣ',
       imgSrc: './assets/images/create.svg',
-      onClick: () => this.router.navigate(['/*']),
+      onClick: () => this.router.navigate(['/create']),
     },
     {
       title: 'ΑΝΑΖΗΤΗΣΗ ΠΑΓΙΑΣ',
@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    console.log('=--=-=-==-')
+  }
 
   ngOnInit(): void {}
 }
