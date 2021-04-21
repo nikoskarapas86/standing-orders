@@ -39,7 +39,7 @@ export class DataService {
   // }
 
   searchLinesOfBusiness(): Observable<LineOfBussiness[]> {
-    return this.http.get<LineOfBussiness[]>(`${this.url}int/search/linesOfBusiness`);
+    return this.http.get<LineOfBussiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
 
   update(updateRequest: UpdateRequest): Observable<UpdateResponse> {
