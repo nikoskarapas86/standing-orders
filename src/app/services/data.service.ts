@@ -12,7 +12,7 @@ import { SearchItem } from '../models/search-response';
 import { UpdateRequest } from '../models/update-request';
 import { UpdateResponse } from '../models/update-response';
 import { environment } from '../../environments/environment';
-import { LineOfBussiness } from '../models/line-of-bussiness';
+import { LineOfBusiness } from '../models/line-of-business';
 
 @Injectable({
   providedIn: 'root',
@@ -41,8 +41,8 @@ export class DataService {
   //   return this.http.delete<DeleteResponse>('/int/delete', deleteRequest);
   // }
 
-  searchLinesOfBusiness(): Observable<LineOfBussiness[]> {
-    return this.http.get<LineOfBussiness[]>(`${this.url}/int/search/linesOfBusiness`);
+  searchLinesOfBusiness(): Observable<LineOfBusiness[]> {
+    return this.http.get<LineOfBusiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
 
   update(updateRequest: UpdateRequest): Observable<UpdateResponse> {
