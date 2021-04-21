@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LineOfBussiness } from '../models/line-of-bussiness';
+import { LineOfBusiness } from '../models/line-of-business';
+import { SearchPolicyRequest } from '../models/search-policy-request';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./create-standing-order.component.scss'],
 })
 export class CreateStandingOrderComponent implements OnInit {
-  public linesOfBusinesses$: Observable<LineOfBussiness[]>;
+  public linesOfBusinesses$: Observable<LineOfBusiness[]>;
   createForm: FormGroup;
   constructor(private formBuilder: FormBuilder, public dataService: DataService) {
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
@@ -28,5 +29,10 @@ export class CreateStandingOrderComponent implements OnInit {
   }
   submit() {
     console.log(this.createForm.value);
+    let searchPolicyRequest: SearchPolicyRequest = new SearchPolicyRequest();
+    searchPolicyRequest.policyNo = this.createForm.value.policyNo;
+    searchPolicyRequest.lineOfBusiness = this.createForm.value.lineOfBusiness;
+    searchPolicyRequest.endorsement = this.createForm.value.endorsement;
+    this.dataService.searchPolicy(searchPolicyRequest).subscribe(res => console.log(res));
   }
 }

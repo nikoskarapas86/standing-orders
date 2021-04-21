@@ -27,7 +27,7 @@ mat-card.mat-card-outer {
     display: flex;
     flex-direction: column;
     margin: 0px;
-
+    padding: 2rem 1.5rem;
     form .container {
       display: flex;
       flex-direction: column;
@@ -48,12 +48,7 @@ mat-card.mat-card-outer {
   padding: 1rem 0;
 }
 
-mat-card.mat-card-outer {
-  .mat-card-content {
-    margin: 0px;
-    padding: 2rem 1.5rem;
-  }
-}
+
 
 .button-row {
   display: flex;
