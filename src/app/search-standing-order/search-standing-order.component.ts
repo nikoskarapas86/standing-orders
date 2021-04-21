@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LineOfBusiness } from '../models/line-of-business';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -9,12 +11,14 @@ import { DataService } from '../services/data.service';
 })
 export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
-  linesOfBusiness: string[];
+  linesOfBusiness$: Observable<LineOfBusiness[]>;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
+
+    this.linesOfBusiness$ = this.dataService.searchLinesOfBusiness();
   }
 
   private buildFormGroup(): void {

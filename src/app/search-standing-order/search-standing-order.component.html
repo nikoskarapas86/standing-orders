@@ -1,144 +1,142 @@
-<div class="container-card">
-  <mat-card class="mat-card-outer">
-    <mat-card-header>
-      <div class="card-title">Αναζήτηση</div>
-    </mat-card-header>
-    <mat-card-content>
-      <form (ngSubmit)="submit()" [formGroup]="searchForm" name="searchForm">
-        <div>
-          <mat-form-field class="field-width">
-            <mat-label>Κλάδος</mat-label>
-            <!-- (selectionChange)="enableAndDisableFields($event.value)"
+<mat-card class="mat-card-outer">
+  <mat-card-header>
+    <div class="card-title">Αναζήτηση</div>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="submit()" [formGroup]="searchForm" name="searchForm">
+      <div class="container">
+        <mat-form-field class="field-width">
+          <mat-label>Κλάδος</mat-label>
+          <!-- (selectionChange)="enableAndDisableFields($event.value)"
             (keydown.enter)="$event.preventDefault()" -->
-            <mat-select formControlName="lineOfBusiness" matNativeControl>
-              <mat-option
-                *ngFor="let lineOfbusiness of linesOfBusiness"
-                [value]="lineOfbusiness.branchName"
-                ngDefaultControl
-              >
-                {{ lineOfbusiness.branchName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <mat-select formControlName="lineOfBusiness" matNativeControl>
+            <mat-option
+              *ngFor="let item of linesOfBusiness$ | async"
+              [value]="item.lineOfbusiness"
+              ngDefaultControl
+            >
+              {{ item.lineOfbusiness }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <mat-form-field class="policyField field-width">
-            <mat-label>Policy Number</mat-label>
-            <!-- (keypress)="cleanTransportAndKip()"
+        <mat-form-field class="policyField field-width">
+          <mat-label>Policy Number</mat-label>
+          <!-- (keypress)="cleanTransportAndKip()"
               (paste)="pasteOnContractNum($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="policyNumber"
-              type="number"
-              min="0"
-              matInput
-              placeholder="Συμπληρώστε το policy number"
-            />
-          </mat-form-field>
+          <input
+            formControlName="policyNumber"
+            type="number"
+            min="0"
+            matInput
+            placeholder="Συμπληρώστε το policy number"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Τύπος Πληρωμής</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Τύπος Πληρωμής</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="paymentType"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε τον τύπο πληρωμής"
-            />
-          </mat-form-field>
+          <input
+            formControlName="paymentType"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε τον τύπο πληρωμής"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Payment ID</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Payment ID</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="paymentId"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε το payment id"
-            />
-          </mat-form-field>
+          <input
+            formControlName="paymentId"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε το payment id"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Τραπεζικός Λογαριασμός</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Τραπεζικός Λογαριασμός</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="bankAccount"
-              type="number"
-              matInput
-              placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό"
-            />
-          </mat-form-field>
+          <input
+            formControlName="bankAccount"
+            type="number"
+            matInput
+            placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Customer Last Name</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Customer Last Name</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="customerLastName"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε το Επίθετο"
-            />
-          </mat-form-field>
+          <input
+            formControlName="customerLastName"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε το Επίθετο"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Customer Last Name</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Agent</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="agent"
-              type="number"
-              matInput
-              placeholder="Συμπληρώστε το Νούμερο του Agent"
-            />
-          </mat-form-field>
+          <input
+            formControlName="agent"
+            type="number"
+            matInput
+            placeholder="Συμπληρώστε το Νούμερο του Agent"
+          />
+        </mat-form-field>
 
-          <mat-form-field class="has-date field-width" fxLayout="column" appearance="fill">
-            <mat-label>Start date/End date από - εώς</mat-label>
-            <mat-date-range-input [rangePicker]="completedDateRange">
-              <!-- (focus)="completedDateRange.open()"
+        <mat-form-field class="has-date field-width" fxLayout="column" appearance="fill">
+          <mat-label>Start date/End date από - εώς</mat-label>
+          <mat-date-range-input [rangePicker]="completedDateRange">
+            <!-- (focus)="completedDateRange.open()"
                 (click)="completedDateRange.open()" -->
-              <input formControlName="payDateFrom" matStartDate placeholder="Από" />
-              <!-- (focus)="completedDateRange.open()"
+            <input formControlName="payDateFrom" matStartDate placeholder="Από" />
+            <!-- (focus)="completedDateRange.open()"
                 (click)="completedDateRange.open()" -->
-              <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
-            <mat-date-range-picker #completedDateRange></mat-date-range-picker>
-          </mat-form-field>
+            <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
+          <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+        </mat-form-field>
 
-          <mat-form-field class="field-width">
-            <mat-label>Endorsement</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
+        <mat-form-field class="field-width">
+          <mat-label>Endorsement</mat-label>
+          <!-- (keypress)="cleanTransportAndContract()"
               (paste)="pasteOnKip($event)"
               (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="endorsement"
-              type="number"
-              matInput
-              placeholder="Συμπληρώστε το Endorsement"
-            />
-          </mat-form-field>
+          <input
+            formControlName="endorsement"
+            type="number"
+            matInput
+            placeholder="Συμπληρώστε το Endorsement"
+          />
+        </mat-form-field>
 
-          <mat-dialog-actions>
-            <!-- (click)="resetForm()" -->
-            <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
-            <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
-              Αναζήτηση
-            </button>
-          </mat-dialog-actions>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+        <mat-dialog-actions>
+          <!-- (click)="resetForm()" -->
+          <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
+          <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
+            Αναζήτηση
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
 
 <div id="resTable">
   <!-- <app-search-table></app-search-table> -->
