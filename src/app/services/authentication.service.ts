@@ -12,7 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private authURL = environment.baseUrl + 'int/login';
+  private authURL = environment.baseUrl + '/int/login';
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient, private router: Router) {}
