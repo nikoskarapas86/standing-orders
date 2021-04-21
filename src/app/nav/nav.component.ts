@@ -1,9 +1,4 @@
-import {
-  Component,
-  ChangeDetectorRef,
-  AfterContentChecked,
-  AfterViewChecked,
-} from '@angular/core';
+import { Component, ChangeDetectorRef, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -25,8 +20,7 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
   ) {}
 
   ngAfterContentChecked(): void {
-    this.isVisible =
-      localStorage.getItem('role') !== 'read-write' ? false : true;
+    this.isVisible = localStorage.getItem('role') !== 'read-write' ? false : true;
   }
 
   ngAfterViewChecked(): void {

@@ -1,6 +1,4 @@
-
 @import '/src/css/variables.scss';
-
 
 .form-top h4 {
   text-align: center;
@@ -52,8 +50,6 @@
 .form-bottom {
   padding: 25px;
   margin-top: 2rem;
-
- 
 }
 
 .headlogin {
@@ -177,18 +173,13 @@
   flex-direction: row;
   justify-content: center;
 
- 
-
   .environment {
     display: flex;
-   
   }
 
   .imglogonins {
     height: 4rem;
     padding: 0 50px;
-
-    
   }
 }
 

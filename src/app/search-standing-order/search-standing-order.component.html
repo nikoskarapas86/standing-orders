@@ -100,28 +100,17 @@
             />
           </mat-form-field>
 
-          <mat-form-field
-            class="has-date field-width"
-            fxLayout="column"
-            appearance="fill"
-          >
+          <mat-form-field class="has-date field-width" fxLayout="column" appearance="fill">
             <mat-label>Start date/End date από - εώς</mat-label>
             <mat-date-range-input [rangePicker]="completedDateRange">
               <!-- (focus)="completedDateRange.open()"
                 (click)="completedDateRange.open()" -->
-              <input
-                formControlName="payDateFrom"
-                matStartDate
-                placeholder="Από"
-              />
+              <input formControlName="payDateFrom" matStartDate placeholder="Από" />
               <!-- (focus)="completedDateRange.open()"
                 (click)="completedDateRange.open()" -->
               <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
             </mat-date-range-input>
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="completedDateRange"
-            ></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
             <mat-date-range-picker #completedDateRange></mat-date-range-picker>
           </mat-form-field>
 
@@ -140,15 +129,8 @@
 
           <mat-dialog-actions>
             <!-- (click)="resetForm()" -->
-            <button mat-raised-button type="button" class="common-btn">
-              Καθαρισμος
-            </button>
-            <button
-              mat-raised-button
-              class="search-btn"
-              id="searchBtn"
-              type="submit"
-            >
+            <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
+            <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
               Αναζήτηση
             </button>
           </mat-dialog-actions>

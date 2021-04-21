@@ -2,10 +2,7 @@
   <div class="logoninsa">
     <img src="./assets/images/ethniki.jpg" class="imglogonins" />
   </div>
-  <div
-    class="container-login"
-    style="background-image: url(./assets/images/bg-nins.jpg)"
-  >
+  <div class="container-login" style="background-image: url(./assets/images/bg-nins.jpg)">
     <div class="LoginSection">
       <div class="form-bottom">
         <mat-card-content>
@@ -37,9 +34,7 @@
                   formControlName="username"
                   placeholder="Συμπληρώστε το username σας."
                 />
-                <mat-icon    
-                 matSuffix
-                class="material-icon show-password">person</mat-icon>
+                <mat-icon matSuffix class="material-icon show-password">person</mat-icon>
                 <mat-error *ngIf="hasRequiredError('username')">
                   Το πεδίο είναι υποχρεωτικό.
                 </mat-error>
@@ -53,12 +48,9 @@
                   formControlName="password"
                   placeholder="Συμπληρώστε το password σας."
                 />
-                <mat-icon
-                  matSuffix
-                  class="material-icon show-password"
-                  (click)="hide = !hide"
-                  >{{ hide ? "visibility_off" : "visibility" }}</mat-icon
-                >
+                <mat-icon matSuffix class="material-icon show-password" (click)="hide = !hide">{{
+                  hide ? 'visibility_off' : 'visibility'
+                }}</mat-icon>
                 <mat-error *ngIf="hasRequiredError('password')">
                   Το πεδίο είναι υποχρεωτικό.
                 </mat-error>
@@ -71,7 +63,7 @@
                   [disabled]="!loginForm.valid"
                 >
                   Σύνδεση
-                </button>        
+                </button>
               </div>
             </div>
           </form>

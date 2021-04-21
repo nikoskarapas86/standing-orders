@@ -1,26 +1,24 @@
 @mixin _flex($direction, $align) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $align;
-  }
-  
-  @mixin _font-conf($letter-spacing, $line-height, $text-align, $color) {
-    letter-spacing: $letter-spacing;
-    line-height: $line-height;
-    text-align: $text-align;
-    color: $color;
-  }
-  @mixin _box($border, $border-radius, $padding, $margin, $min-width, $box-shadow) {
-    border: $border;
-    border-radius: $border-radius;
-    padding: $padding;
-    margin: $margin;
-    min-width: $min-width;
-    box-shadow: $box-shadow;
-  }
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $align;
+}
 
+@mixin _font-conf($letter-spacing, $line-height, $text-align, $color) {
+  letter-spacing: $letter-spacing;
+  line-height: $line-height;
+  text-align: $text-align;
+  color: $color;
+}
+@mixin _box($border, $border-radius, $padding, $margin, $min-width, $box-shadow) {
+  border: $border;
+  border-radius: $border-radius;
+  padding: $padding;
+  margin: $margin;
+  min-width: $min-width;
+  box-shadow: $box-shadow;
+}
 
-  
 @mixin _container($width, $height: $width) {
   width: $width;
   min-height: $height;
@@ -32,7 +30,16 @@
   justify-content: $align;
 }
 
-@mixin _container_with_font($width, $height, $color, $line-height, $letter-spacing, $font-size, $margin, $padding) {
+@mixin _container_with_font(
+  $width,
+  $height,
+  $color,
+  $line-height,
+  $letter-spacing,
+  $font-size,
+  $margin,
+  $padding
+) {
   width: $width;
   height: $height;
   color: $color;

@@ -13,10 +13,8 @@ const routes: Routes = [
     path: 'search',
     component: SearchStandingOrderComponent,
     canActivate: [AuthGuardService],
-  }, 
-  { path: 'create',
-   component: CreateStandingOrderComponent,
-  canActivate: [AuthGuardService], },
+  },
+  { path: 'create', component: CreateStandingOrderComponent, canActivate: [AuthGuardService] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 

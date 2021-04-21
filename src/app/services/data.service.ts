@@ -27,9 +27,12 @@ export class DataService {
   }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
-    return this.http.post<SearchPolicyResponse>(`${this.url}/int/search/policy`, searchPolicyRequest);
+    return this.http.post<SearchPolicyResponse>(
+      `${this.url}/int/search/policy`,
+      searchPolicyRequest
+    );
   }
- 
+
   create(createRequest: CreateRequest): Observable<CreateResponse> {
     return this.http.post<CreateResponse>(`${this.url}/int/create`, createRequest);
   }

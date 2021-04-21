@@ -1,9 +1,5 @@
 <div class="cards-container">
-  <mat-card
-    *ngFor="let feature of features"
-    class="mat-card-outer"
-    (click)="feature.onClick()"
-  >
+  <mat-card *ngFor="let feature of features" class="mat-card-outer" (click)="feature.onClick()">
     <mat-card-content>
       <app-progressive-image [width]="auto" [height]="auto">
         <img appProgressiveImage [src]="feature.imgSrc" alt="" />

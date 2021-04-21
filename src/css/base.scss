@@ -1,20 +1,18 @@
 @import './variables.scss';
 @import './mixins.scss';
 
-html,body{
+html,
+body {
   margin: 0;
-    background-color: $background-main;
-    @include _container(100%, 100vh);
-   
-    font-weight: normal;
-    font-family: $font-family;
-    overflow: hidden;
-    font-size: 1em;
+  background-color: $background-main;
+  @include _container(100%, 100vh);
+
+  font-weight: normal;
+  font-family: $font-family;
+  overflow: hidden;
+  font-size: 1em;
 }
 
-
-
-
 .mat-form-field-appearance-fill .mat-form-field-flex {
-   background-color: transparent!important;
+  background-color: transparent !important;
 }

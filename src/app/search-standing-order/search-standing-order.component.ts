@@ -11,13 +11,9 @@ export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
   linesOfBusiness: string[];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private dataService: DataService
-  ) {}
+  constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
   ngOnInit(): void {
-  
     this.buildFormGroup();
   }
 

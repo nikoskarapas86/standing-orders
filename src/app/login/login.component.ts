@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.subscriptions$.length > 0) {
-      this.subscriptions$.forEach((subscription) => {
+      this.subscriptions$.forEach(subscription => {
         if (subscription) {
           subscription.unsubscribe();
         }
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     credentials.username = this.loginForm.get('username').value;
     credentials.password = this.loginForm.get('password').value;
     const login$ = this.authenticationService.login(credentials).subscribe(
-      (result) => {
+      result => {
         this.loading = false;
         if (result) {
           this.authenticationService.token = result.token;
@@ -85,9 +85,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   hasRequiredError(key: string): boolean {
-    return (
-      this.loginForm.get(key).touched &&
-      this.loginForm.get(key).hasError('required')
-    );
+    return this.loginForm.get(key).touched && this.loginForm.get(key).hasError('required');
   }
 }

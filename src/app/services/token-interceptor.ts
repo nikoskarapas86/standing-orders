@@ -14,15 +14,9 @@ import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService
-  ) {}
+  constructor(private router: Router, private authenticationService: AuthenticationService) {}
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log(this.authenticationService.token);
     request = request.clone({
       setHeaders: {
