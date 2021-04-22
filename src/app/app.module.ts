@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { CreateStandingOrderComponent } from './create-standing-order/create-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SearchTableComponent } from './search-table/search-table.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     HomeComponent,
     SearchStandingOrderComponent,
     CreateStandingOrderComponent,
+    SearchTableComponent,
   ],
   imports: [
     BrowserModule,

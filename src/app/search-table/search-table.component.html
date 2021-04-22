@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="center" *ngIf="standingOrders && standingOrders.length">
+    <table mat-table [dataSource]="standingOrdersDataSource" class="mat-elevation-z8">
+      <div *ngFor="let item of tableItems">
+        <ng-container matColumnDef="{{ item.columnDef }}">
+          <th mat-header-cell *matHeaderCellDef>{{ item.headerCellDef }}</th>
+          <td mat-cell *matCellDef="let element">{{ element[item.columnDef] }}</td>
+        </ng-container>
+      </div>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

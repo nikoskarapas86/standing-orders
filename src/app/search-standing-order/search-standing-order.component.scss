@@ -1,5 +1,22 @@
 .field-width {
-  // width: 250px;
   box-sizing: border-box;
-  max-width: 50%;
+  max-width: 80%;
+}
+
+.date-field-width {
+  max-width: 40%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
