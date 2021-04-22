@@ -23,7 +23,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   searchStandingOrder(searchRequest: SearchRequest): Observable<SearchItem[]> {
-    return this.http.post<SearchItem[]>(`${this.url}/search/standingOrder`, searchRequest);
+    return this.http.post<SearchItem[]>(`${this.url}/int/search/standingOrder`, searchRequest);
   }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {

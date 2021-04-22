@@ -15,7 +15,7 @@
               [value]="item.lineOfbusiness"
               ngDefaultControl
             >
-              {{ item.lineOfbusiness }}
+              {{ item.title }}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -93,7 +93,7 @@
               (keydown.enter)="$event.preventDefault()" -->
           <input
             formControlName="agent"
-            type="number"
+            type="string"
             matInput
             placeholder="Συμπληρώστε το Νούμερο του Agent"
           />
@@ -120,7 +120,7 @@
               (keydown.enter)="$event.preventDefault()" -->
           <input
             formControlName="endorsement"
-            type="number"
+            type="string"
             matInput
             placeholder="Συμπληρώστε το Endorsement"
           />
