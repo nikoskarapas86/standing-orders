@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
   <div class="center" *ngIf="standingOrders && standingOrders.length">
     <table mat-table [dataSource]="standingOrdersDataSource">
       <div *ngFor="let item of tableItems">
@@ -13,5 +13,51 @@
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div> -->
+
+<div class="container mt-5">
+  <div *ngIf="standingOrders && standingOrders.length">
+    <mat-table mat-table [dataSource]="standingOrdersDataSource">
+      <div *ngFor="let tableItem of tableItems">
+        <ng-container [matColumnDef]="tableItem.columnDef">
+          <mat-header-cell *matHeaderCellDef>{{ tableItem.headerCellDef }}</mat-header-cell>
+          <mat-cell class="pointer-cell" (click)="onOfferCodeClick(row)" *matCellDef="let row">
+            <mat-cell class="tablet-label">{{ tableItem.headerCellDeff }}</mat-cell>
+            <div>{{ row[tableItem.columnDef] }}</div>
+          </mat-cell>
+        </ng-container>
+      </div>
+      <!-- <ng-container matColumnDef="actions">
+        <mat-header-cell style="display: flex; justify-content: center" *matHeaderCellDef
+          >Ενέργειες</mat-header-cell
+        >
+        <mat-cell
+          style="display: flex; flex-direction: row; justify-content: center"
+          *matCellDef="let row"
+        >
+          <div class="action-row">
+            <div class="container-offer-btn">
+              <button class="offer-btn">
+                <mat-icon>local_printshop</mat-icon>
+              </button>
+            </div>
+            <div class="container-offer-btn">
+              <button class="offer-btn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container> -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></mat-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      [pageSize]="10"
+      [length]="standingOrders.length"
+      showFirstLastButtons
+    ></mat-paginator>
   </div>
 </div>

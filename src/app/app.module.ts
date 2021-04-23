@@ -15,6 +15,7 @@ import { SearchStandingOrderComponent } from './search-standing-order/search-sta
 import { CreateStandingOrderComponent } from './create-standing-order/create-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { SearchTableComponent } from './search-table/search-table.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SearchTableComponent } from './search-table/search-table.component';
     SearchTableComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
