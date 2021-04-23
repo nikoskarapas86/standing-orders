@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CreateRequest } from '../models/create-request';
 import { CreateResponse } from '../models/create-response';
 // import { DeleteRequest } from '../models/delete-request';
@@ -19,8 +19,26 @@ import { LineOfBusiness } from '../models/line-of-business';
 })
 export class DataService {
   private url = environment.baseUrl;
+_hasPolicyResponse:boolean = false;
 
-  constructor(private http: HttpClient) {}
+set hasPolicyResponse(val:boolean){
+this._hasPolicyResponse =val
+}
+
+get hasPolicyResponse(){
+ return this._hasPolicyResponse 
+  }
+  constructor(private http: HttpClient) { }
+
+  private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
+  searchPolicyResponse$: Observable<SearchPolicyResponse> = this.searchPolicyResponseSubject.asObservable();
+  setSearchPolicySubject(response: SearchPolicyResponse) {
+    this.searchPolicyResponseSubject.next(response);
+  }
+
+  getValueSearchPolicySubject(){
+    return this.searchPolicyResponseSubject.getValue();
+  }
 
   searchStandingOrder(searchRequest: SearchRequest): Observable<SearchItem[]> {
     return this.http.post<SearchItem[]>(`${this.url}/search/standingOrder`, searchRequest);
