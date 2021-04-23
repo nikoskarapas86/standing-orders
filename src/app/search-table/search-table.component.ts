@@ -8,7 +8,7 @@ import { TableItem } from '../models/table-item';
   templateUrl: './search-table.component.html',
   styleUrls: ['./search-table.component.scss'],
 })
-export class SearchTableComponent implements AfterContentChecked {
+export class SearchTableComponent implements OnInit, AfterContentChecked {
   @Input() standingOrders: SearchItem[];
   standingOrdersDataSource: MatTableDataSource<any>;
 
@@ -29,10 +29,15 @@ export class SearchTableComponent implements AfterContentChecked {
     { columnDef: 'startDate', headerCellDef: 'Ημερομηνία Έναρξης' },
     { columnDef: 'endDate', headerCellDef: 'Ημερομηνία Τέλους' },
     { columnDef: 'endorsement', headerCellDef: 'Endorsement' },
+    { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
 
   constructor() {}
+
+  ngOnInit(): void {
+    // this.displayedColumns.push('actions');
+  }
 
   ngAfterContentChecked(): void {
     this.standingOrdersDataSource = new MatTableDataSource(this.standingOrders);

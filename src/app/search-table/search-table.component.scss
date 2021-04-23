@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  width: 70%;
 }
 
 .center {
@@ -43,14 +44,23 @@ table {
   width: 100%;
 }
 
-// .radius {
-//   border-radius: 9px;
+// .container-offer-btn {
+//   width: 48px;
+//   height: 48px;
+//   display: flex;
+//   align-items: center;
 // }
 
-// table tr:last-child td:first-child {
-//   border-bottom-left-radius: 9px;
-// }
+// .offer-btn,
+// .offer-btn:active,
+// .offer-btn:focus {
+//   width: 48px;
+//   height: 48px;
+//   border: none;
+//   outline: none;
+//   background-color: transparent;
 
-// table tr:last-child td:last-child {
-//   border-bottom-right-radius: 9px;
+//   color: #000000de;
+//   opacity: 0.6;
+//   cursor: pointer;
 // }
