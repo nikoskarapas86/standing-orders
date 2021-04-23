@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container mt-5">
   <div class="center" *ngIf="standingOrders && standingOrders.length">
-    <table mat-table [dataSource]="standingOrdersDataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="standingOrdersDataSource">
       <div *ngFor="let item of tableItems">
         <ng-container matColumnDef="{{ item.columnDef }}">
           <th mat-header-cell *matHeaderCellDef>{{ item.headerCellDef }}</th>
