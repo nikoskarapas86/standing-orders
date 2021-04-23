@@ -8,13 +8,17 @@ import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: 'home', component: HomeComponent, 
+ 
+  canActivate: [AuthGuardService] },
   {
     path: 'search',
     component: SearchStandingOrderComponent,
     canActivate: [AuthGuardService],
   },
-  { path: 'create', component: CreateStandingOrderComponent, canActivate: [AuthGuardService] },
+  { path: 'create',
+  loadChildren: () => import('./create-standing-order/create-standing-order.module').then(m => m.CreateStandingOrderModule),
+   canActivate: [AuthGuardService] },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 

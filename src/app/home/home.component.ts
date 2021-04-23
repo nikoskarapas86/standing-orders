@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'ΔΗΜΙΟΥΡΓΙΑ ΠΑΓΙΑΣ',
       imgSrc: './assets/images/create.svg',
-      onClick: () => this.router.navigate(['/create']),
+      onClick: () => this.router.navigate(['/create/search-policy']),
     },
     {
       title: 'ΑΝΑΖΗΤΗΣΗ ΠΑΓΙΑΣ',

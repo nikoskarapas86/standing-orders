@@ -1,0 +1,94 @@
+<mat-card class="mat-card-outer">
+    <mat-card-header>
+        <div class="card-title">καταχώρηση πάγιας</div>
+    </mat-card-header>
+    <mat-card-content>
+        <form  [formGroup]="createForm" name="cereateForm">
+            <div class="container">
+                <mat-form-field class="field-width">
+                    <mat-label>Κλάδος</mat-label>
+                    <mat-select formControlName="lineOfBusiness" matNativeControl>
+                        <mat-option *ngFor="let item of linesOfBusinesses$ | async" [value]="item.lineOfBusiness"
+                            ngDefaultControl>
+                            {{ item.title }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="policyField field-width">
+                    <mat-label>Αριθμός Συμβολαίου</mat-label>
+                    <input formControlName="policyNo" type="number" min="0" matInput
+                        placeholder="Συμπληρώστε το policy number" />
+                </mat-form-field>
+                <mat-form-field class="field-width">
+                    <mat-label>Αίτηση</mat-label>
+                    <input formControlName="endorsement" type="number" matInput placeholder="Συμπληρώστε την αίτηση" />
+                </mat-form-field>
+
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Παραγωγός</mat-label>
+                    <input formControlName="agent" type="number" matInput placeholder="Συμπληρώστε τον κωδικό παραγωγού" />
+                </mat-form-field>
+               
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Όνομα</mat-label>
+                    <input formControlName="firstName" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Επίθετο</mat-label>
+                    <input formControlName="lastName" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Οδός</mat-label>
+                    <input formControlName="address" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Πόλη</mat-label>
+                    <input formControlName="city" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Τ.Κώδικας</mat-label>
+                    <input formControlName="postalCode" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>Τηλέφωνο</mat-label>
+                    <input formControlName="phone" type="text" matInput />
+                </mat-form-field>
+                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                    <mat-label>email</mat-label>
+                    <input formControlName="email" type="text" matInput />
+                </mat-form-field>
+                <!-- <mat-form-field
+              class="has-date field-width"
+              fxLayout="column"
+              appearance="fill"
+            >
+              <mat-label>Start date/End date από - εώς</mat-label>
+              <mat-date-range-input [rangePicker]="completedDateRange"> -->
+                <!-- (focus)="completedDateRange.open()"
+                  (click)="completedDateRange.open()" -->
+                <!-- <input
+                  formControlName="payDateFrom"
+                  matStartDate
+                  placeholder="Από"
+                /> -->
+                <!-- (focus)="completedDateRange.open()"
+                  (click)="completedDateRange.open()" -->
+                <!-- <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="completedDateRange"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+            </mat-form-field> -->
+            <mat-dialog-actions>
+                <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
+                <button mat-raised-button (click)="this.dataService.hasPolicyResponse? creationalSubmit():searchSubmit()" class="search-btn" id="searchBtn" type="submit">
+                  Αναζήτηση
+                </button>
+              </mat-dialog-actions>
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
