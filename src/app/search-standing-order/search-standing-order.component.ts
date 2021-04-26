@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { LineOfBusiness } from '../models/line-of-business';
+import { SearchRequest } from '../models/search-request';
+import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -9,12 +13,14 @@ import { DataService } from '../services/data.service';
 })
 export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
-  linesOfBusiness: string[];
+  linesOfBusiness$: Observable<LineOfBusiness[]>;
+  standingOrders: SearchItem[];
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
+    this.linesOfBusiness$ = this.dataService.searchLinesOfBusiness();
   }
 
   private buildFormGroup(): void {
@@ -32,5 +38,48 @@ export class SearchStandingOrderComponent implements OnInit {
     });
   }
 
-  submit(): void {}
+  submit(): void {
+    const request: SearchRequest = {
+      policyNo: 1389945,
+      lineOfBusiness: null,
+      paymentType: null,
+      paymentId: null,
+      bankAccount: null,
+      customerLastName: null,
+      agent: null,
+      startDate: null,
+      endDate: null,
+      endorsement: null,
+    };
+
+    // const request: SearchRequest = {
+    //   policyNo: 1389945,
+    //   lineOfBusiness: 'LIFE',
+    //   paymentType: 'BANK_ACCOUNT',
+    //   paymentId: 10882690,
+    //   bankAccount: '01389945000000062916',
+    //   customerLastName: 'ΠΟΥΜΠΟΥΡΙΔΗΣ             ',
+    //   agent: 99999,
+    //   startDate: '2020-09-09',
+    //   endDate: '2100-12-31',
+    //   endorsement: 'Μ128788',
+    // };
+
+    // const request: SearchRequest = {
+    //   policyNo: this.searchForm.get('policyNumber').value,
+    //   lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
+    //   paymentType: this.searchForm.get('paymentType').value,
+    //   paymentId: this.searchForm.get('paymentId').value,
+    //   bankAccount: this.searchForm.get('bankAccount').value,
+    //   customerLastName: this.searchForm.get('customerLastName').value,
+    //   agent: this.searchForm.get('agent').value,
+    //   startDate: this.searchForm.get('payDateFrom').value,
+    //   endDate: this.searchForm.get('payDateTo').value,
+    //   endorsement: this.searchForm.get('endorsement').value,
+    // };
+
+    this.dataService.searchStandingOrder(request).subscribe(res => {
+      this.standingOrders = res;
+    });
+  }
 }

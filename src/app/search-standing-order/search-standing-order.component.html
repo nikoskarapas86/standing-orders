@@ -1,31 +1,57 @@
-<div class="container-card">
-  <mat-card class="mat-card-outer">
-    <mat-card-header>
-      <div class="card-title">Αναζήτηση</div>
-    </mat-card-header>
-    <mat-card-content>
-      <form (ngSubmit)="submit()" [formGroup]="searchForm" name="searchForm">
-        <div>
+<mat-card class="mat-card-outer">
+  <mat-card-header>
+    <div class="card-title">Αναζήτηση</div>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="submit()" [formGroup]="searchForm" name="searchForm">
+      <div class="row">
+        <div class="container">
           <mat-form-field class="field-width">
             <mat-label>Κλάδος</mat-label>
-            <!-- (selectionChange)="enableAndDisableFields($event.value)"
-            (keydown.enter)="$event.preventDefault()" -->
             <mat-select formControlName="lineOfBusiness" matNativeControl>
               <mat-option
-                *ngFor="let lineOfbusiness of linesOfBusiness"
-                [value]="lineOfbusiness.branchName"
+                *ngFor="let item of linesOfBusiness$ | async"
+                [value]="item.lineOfbusiness"
                 ngDefaultControl
               >
-                {{ lineOfbusiness.branchName }}
+                {{ item.title }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
+          <mat-form-field class="field-width">
+            <mat-label>Επίθετο Πελάτη</mat-label>
+            <input
+              formControlName="customerLastName"
+              type="text"
+              matInput
+              placeholder="Συμπληρώστε το Επίθετο"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="field-width">
+            <mat-label>Payment ID</mat-label>
+            <input
+              formControlName="paymentId"
+              type="text"
+              matInput
+              placeholder="Συμπληρώστε το payment id"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="field-width">
+            <mat-label>Endorsement</mat-label>
+            <input
+              formControlName="endorsement"
+              type="string"
+              matInput
+              placeholder="Συμπληρώστε το Endorsement"
+            />
+          </mat-form-field>
+        </div>
+        <div class="container">
           <mat-form-field class="policyField field-width">
             <mat-label>Policy Number</mat-label>
-            <!-- (keypress)="cleanTransportAndKip()"
-              (paste)="pasteOnContractNum($event)"
-              (keydown.enter)="$event.preventDefault()" -->
             <input
               formControlName="policyNumber"
               type="number"
@@ -36,36 +62,7 @@
           </mat-form-field>
 
           <mat-form-field class="field-width">
-            <mat-label>Τύπος Πληρωμής</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="paymentType"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε τον τύπο πληρωμής"
-            />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Payment ID</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="paymentId"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε το payment id"
-            />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
             <mat-label>Τραπεζικός Λογαριασμός</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
             <input
               formControlName="bankAccount"
               type="number"
@@ -75,71 +72,43 @@
           </mat-form-field>
 
           <mat-form-field class="field-width">
-            <mat-label>Customer Last Name</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
+            <mat-label>Τύπος Πληρωμής</mat-label>
             <input
-              formControlName="customerLastName"
+              formControlName="paymentType"
               type="text"
               matInput
-              placeholder="Συμπληρώστε το Επίθετο"
+              placeholder="Συμπληρώστε τον τύπο πληρωμής"
             />
           </mat-form-field>
 
           <mat-form-field class="field-width">
-            <mat-label>Customer Last Name</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
+            <mat-label>Agent</mat-label>
             <input
               formControlName="agent"
-              type="number"
+              type="string"
               matInput
               placeholder="Συμπληρώστε το Νούμερο του Agent"
             />
           </mat-form-field>
-
-          <mat-form-field class="has-date field-width" fxLayout="column" appearance="fill">
-            <mat-label>Start date/End date από - εώς</mat-label>
-            <mat-date-range-input [rangePicker]="completedDateRange">
-              <!-- (focus)="completedDateRange.open()"
-                (click)="completedDateRange.open()" -->
-              <input formControlName="payDateFrom" matStartDate placeholder="Από" />
-              <!-- (focus)="completedDateRange.open()"
-                (click)="completedDateRange.open()" -->
-              <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
-            <mat-date-range-picker #completedDateRange></mat-date-range-picker>
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Endorsement</mat-label>
-            <!-- (keypress)="cleanTransportAndContract()"
-              (paste)="pasteOnKip($event)"
-              (keydown.enter)="$event.preventDefault()" -->
-            <input
-              formControlName="endorsement"
-              type="number"
-              matInput
-              placeholder="Συμπληρώστε το Endorsement"
-            />
-          </mat-form-field>
-
-          <mat-dialog-actions>
-            <!-- (click)="resetForm()" -->
-            <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
-            <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
-              Αναζήτηση
-            </button>
-          </mat-dialog-actions>
         </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
+      </div>
+      <mat-form-field class="has-date date-field-width" fxLayout="column" appearance="fill">
+        <mat-label>Από - Έως</mat-label>
+        <mat-date-range-input [rangePicker]="completedDateRange">
+          <input formControlName="payDateFrom" matStartDate placeholder="Από" />
+          <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
+        <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+      </mat-form-field>
 
-<div id="resTable">
-  <!-- <app-search-table></app-search-table> -->
-</div>
+      <mat-dialog-actions>
+        <!-- (click)="resetForm()" -->
+        <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
+        <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Αναζήτηση</button>
+      </mat-dialog-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<app-search-table [standingOrders]="standingOrders"></app-search-table>

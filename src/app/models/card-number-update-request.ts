@@ -1,4 +1,4 @@
-export class UpdateRequest {
+export class CardNumberUpdateRequest {
   'key': {
     id: number;
     versionNo: number;

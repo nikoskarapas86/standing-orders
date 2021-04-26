@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+}
+
+.center {
+  width: 95%;
+  max-width: 1447px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+.datatable-body {
+  width: auto;
+}
+
+.fl {
+  display: flex !important;
+  align-items: right !important;
+}
+
+mat-spinner {
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+material-icons {
+  color: #24406d;
+}
+
+button {
+  width: auto;
+  height: auto;
+  line-height: 0px;
+  color: #24406d;
+}
+
+table {
+  width: 100%;
+}
+
+.container-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.btn,
+.btn:active,
+.btn:focus {
+  width: 48px;
+  height: 48px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  color: #000000de;
+  opacity: 0.6;
+  cursor: pointer;
+}

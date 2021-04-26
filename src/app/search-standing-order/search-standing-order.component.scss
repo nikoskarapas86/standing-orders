@@ -1,64 +1,22 @@
-@import 'src/css/variables';
-
-.container-card {
-  max-width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: auto;
+.field-width {
+  box-sizing: border-box;
+  max-width: 80%;
 }
 
-mat-card.mat-card-outer {
-  padding: 0px;
-  width: 40%;
-  border-radius: 9px;
-  min-width: fit-content;
-  .mat-card-content {
-    margin: 0px;
-    padding: 2rem 1.5rem;
-  }
-  mat-card-header.mat-card-header {
-    width: auto;
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: $blue-primary-main;
-    border-radius: 9px 9px 0 0;
-  }
-  .card-title {
-    border-radius: 9px 9px 0 0;
-    width: 100%;
-    height: 26px;
-    color: $white-text-primary;
-    letter-spacing: 0.26px;
-    font-size: 18px;
-    margin: 0;
-    padding: 2rem 0 0 1.5rem;
-    background-color: $blue-primary-main;
-  }
-  .mat-card-content {
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
+.date-field-width {
+  max-width: 40%;
+}
 
-    form .container {
-      display: flex;
-      flex-direction: column;
-    }
-  }
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .mat-card-actions {
-    padding: 0px 30px;
-    margin: 0px;
-
-    .mat-raised-button {
-      margin: 0px;
-    }
-  }
-  mat-dialog-actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }

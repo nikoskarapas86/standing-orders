@@ -13,6 +13,11 @@ import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SearchTableComponent } from './search-table/search-table.component';
+import { CommonModule } from '@angular/common';
+import { EditStandingOrderComponent } from './edit-standing-order/edit-standing-order.component';
+import { CreditCardComponent } from './credit-card/credit-card.component';
+import { IbanComponent } from './iban/iban.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +26,14 @@ import { AuthGuardService } from './services/auth-guard.service';
     NavComponent,
     HomeComponent,
     SearchStandingOrderComponent,
-   
+
+    SearchTableComponent,
+    EditStandingOrderComponent,
+    CreditCardComponent,
+    IbanComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
