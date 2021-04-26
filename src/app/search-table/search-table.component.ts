@@ -1,7 +1,9 @@
 import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
+import { EditService } from '../services/edit.service';
 
 @Component({
   selector: 'app-search-table',
@@ -10,8 +12,7 @@ import { TableItem } from '../models/table-item';
 })
 export class SearchTableComponent implements OnInit, AfterContentChecked {
   @Input() standingOrders: SearchItem[];
-  standingOrdersDataSource: MatTableDataSource<any>;
-
+  dataSource: MatTableDataSource<any>;
   tableItems: TableItem[] = [
     {
       columnDef: 'policyNo',
@@ -33,13 +34,24 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
 
-  constructor() {}
+  constructor(private router: Router, private editService: EditService) {}
 
   ngOnInit(): void {
-    // this.displayedColumns.push('actions');
+    this.editService.selectedStandingOrder = null;
   }
 
   ngAfterContentChecked(): void {
-    this.standingOrdersDataSource = new MatTableDataSource(this.standingOrders);
+    this.dataSource = new MatTableDataSource(this.standingOrders);
+  }
+
+  edit(element: SearchItem) {
+    this.editService.selectedStandingOrder = element;
+    console.log(element);
+    this.router.navigate(['edit', element.id]);
+  }
+
+  delete(index: number) {
+    this.dataSource.data.splice(index, 1);
+    this.dataSource.data = [...this.dataSource.data];
   }
 }

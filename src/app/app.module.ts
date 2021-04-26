@@ -16,6 +16,9 @@ import { CreateStandingOrderComponent } from './create-standing-order/create-sta
 import { AuthGuardService } from './services/auth-guard.service';
 import { SearchTableComponent } from './search-table/search-table.component';
 import { CommonModule } from '@angular/common';
+import { EditStandingOrderComponent } from './edit-standing-order/edit-standing-order.component';
+import { CreditCardComponent } from './credit-card/credit-card.component';
+import { IbanComponent } from './iban/iban.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { CommonModule } from '@angular/common';
     SearchStandingOrderComponent,
     CreateStandingOrderComponent,
     SearchTableComponent,
+    EditStandingOrderComponent,
+    CreditCardComponent,
+    IbanComponent,
   ],
   imports: [
     CommonModule,

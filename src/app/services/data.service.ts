@@ -9,10 +9,13 @@ import { SearchPolicyRequest } from '../models/search-policy-request';
 import { SearchPolicyResponse } from '../models/search-policy-response';
 import { SearchRequest } from '../models/search-request';
 import { SearchItem } from '../models/search-response';
-import { UpdateRequest } from '../models/update-request';
+import { CardNumberUpdateRequest } from '../models/card-number-update-request';
 import { UpdateResponse } from '../models/update-response';
 import { environment } from '../../environments/environment';
 import { LineOfBusiness } from '../models/line-of-business';
+import { DeleteRequest } from '../models/delete-request';
+import { DeleteResponse } from '../models/delete-response';
+import { IbanUpdateRequest } from '../models/iban-update-request';
 
 @Injectable({
   providedIn: 'root',
@@ -37,15 +40,15 @@ export class DataService {
     return this.http.post<CreateResponse>(`${this.url}/int/create`, createRequest);
   }
 
-  // delete(deleteRequest: DeleteRequest): Observable<DeleteResponse> {
-  //   return this.http.delete<DeleteResponse>('/int/delete', deleteRequest);
-  // }
+  delete(deleteRequest: DeleteRequest): Observable<DeleteResponse> {
+    return this.http.delete<DeleteResponse>(`${this.url}/int/delete`);
+  }
 
   searchLinesOfBusiness(): Observable<LineOfBusiness[]> {
     return this.http.get<LineOfBusiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
 
-  update(updateRequest: UpdateRequest): Observable<UpdateResponse> {
-    return this.http.put<UpdateResponse>(`${this.url}/int/delete`, updateRequest);
+  update(updateRequest: CardNumberUpdateRequest | IbanUpdateRequest): Observable<UpdateResponse> {
+    return this.http.put<UpdateResponse>(`${this.url}/int/update`, updateRequest);
   }
 }

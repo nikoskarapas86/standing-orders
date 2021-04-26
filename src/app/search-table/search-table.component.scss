@@ -44,23 +44,23 @@ table {
   width: 100%;
 }
 
-// .container-offer-btn {
-//   width: 48px;
-//   height: 48px;
-//   display: flex;
-//   align-items: center;
-// }
+.container-btn {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
 
-// .offer-btn,
-// .offer-btn:active,
-// .offer-btn:focus {
-//   width: 48px;
-//   height: 48px;
-//   border: none;
-//   outline: none;
-//   background-color: transparent;
+.btn,
+.btn:active,
+.btn:focus {
+  width: 48px;
+  height: 48px;
+  border: none;
+  outline: none;
+  background-color: transparent;
 
-//   color: #000000de;
-//   opacity: 0.6;
-//   cursor: pointer;
-// }
+  color: #000000de;
+  opacity: 0.6;
+  cursor: pointer;
+}

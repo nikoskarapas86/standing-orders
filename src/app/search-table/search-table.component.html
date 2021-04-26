@@ -18,21 +18,21 @@
 
 <div class="container mt-5">
   <div *ngIf="standingOrders && standingOrders.length">
-    <mat-table mat-table [dataSource]="standingOrdersDataSource">
+    <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">
           <mat-header-cell *matHeaderCellDef>{{ tableItem.headerCellDef }}</mat-header-cell>
-          <mat-cell class="pointer-cell" *matCellDef="let row">
+          <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
             <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
             <div *ngIf="tableItem.columnDef === 'actions'">
               <div class="action-row">
-                <div class="container-offer-btn">
-                  <button class="offer-btn">
+                <div class="container-btn">
+                  <button class="btn" (click)="edit(row)">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>
-                <div class="container-offer-btn">
-                  <button class="offer-btn">
+                <div class="container-btn" (click)="delete(index)">
+                  <button class="btn">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>

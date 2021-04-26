@@ -1,0 +1,26 @@
+<mat-card class="mat-card-outer">
+  <mat-card-header>
+    <div class="card-title">Επεξεργασία</div>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="submit()" [formGroup]="form" name="searchForm">
+      <div class="row">
+        <div class="container">
+          <mat-form-field class="field-width">
+            <mat-label>ΙΒΑΝ</mat-label>
+            <input
+              formControlName="iban"
+              type="string"
+              matInput
+              placeholder="Συμπληρώστε το Νούμερο του Agent"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-dialog-actions>
+        <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Πληρωμή</button>
+      </mat-dialog-actions>
+    </form>
+  </mat-card-content>
+</mat-card>
