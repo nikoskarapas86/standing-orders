@@ -41,7 +41,14 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    this.dataSource = new MatTableDataSource(this.standingOrders);
+    const newStandingOrders = this.standingOrders
+      ? this.standingOrders.map(o => ({
+          ...o,
+          startDate: o.startDate.slice().reverse().join('/'),
+          endDate: o.endDate.slice().reverse().join('/'),
+        }))
+      : [];
+    this.dataSource = new MatTableDataSource(newStandingOrders);
   }
 
   edit(element: SearchItem) {
