@@ -19,15 +19,7 @@ import { LineOfBusiness } from '../models/line-of-business';
 })
 export class DataService {
   private url = environment.baseUrl;
-_hasPolicyResponse:boolean = false;
 
-set hasPolicyResponse(val:boolean){
-this._hasPolicyResponse =val
-}
-
-get hasPolicyResponse(){
- return this._hasPolicyResponse 
-  }
   constructor(private http: HttpClient) { }
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);

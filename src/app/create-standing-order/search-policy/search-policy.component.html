@@ -20,11 +20,10 @@
                         placeholder="Συμπληρώστε το policy number" />
                 </mat-form-field>
                 <mat-form-field class="field-width">
-                    <mat-label>Αίτηση</mat-label>
-                    <input formControlName="endorsement" type="number" matInput placeholder="Συμπληρώστε την αίτηση" />
-                </mat-form-field>
-
-                <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
+                  <mat-label>Αίτηση</mat-label>
+                  <input formControlName="endorsement" type="number" matInput placeholder="Συμπληρώστε την αίτηση" />
+              </mat-form-field>
+                <!--  <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
                     <mat-label>Παραγωγός</mat-label>
                     <input formControlName="agent" type="number" matInput placeholder="Συμπληρώστε τον κωδικό παραγωγού" />
                 </mat-form-field>
@@ -56,7 +55,7 @@
                 <mat-form-field *ngIf="this.dataService.hasPolicyResponse" class="field-width">
                     <mat-label>email</mat-label>
                     <input formControlName="email" type="text" matInput />
-                </mat-form-field>
+                </mat-form-field> -->
                 <!-- <mat-form-field
               class="has-date field-width"
               fxLayout="column"
@@ -83,7 +82,7 @@
             </mat-form-field> -->
             <mat-dialog-actions>
                 <button mat-raised-button type="button" class="common-btn">Καθαρισμος</button>
-                <button mat-raised-button (click)="this.dataService.hasPolicyResponse? creationalSubmit():searchSubmit()" class="search-btn" id="searchBtn" type="submit">
+                <button mat-raised-button (click)="searchSubmit()" class="search-btn" id="searchBtn" type="submit">
                   Αναζήτηση
                 </button>
               </mat-dialog-actions>

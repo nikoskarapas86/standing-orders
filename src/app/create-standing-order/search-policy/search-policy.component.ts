@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -13,13 +13,13 @@ import { CreateStandingService } from '../create-standing.service';
   templateUrl: './search-policy.component.html',
   styleUrls: ['./search-policy.component.scss']
 })
-export class SearchPolicyComponent  implements OnInit {
+export class SearchPolicyComponent implements OnInit {
   public linesOfBusinesses$: Observable<LineOfBusiness[]>;
   searchPolicyResponse$: Observable<SearchPolicyResponse[]>;
   createForm: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder, private createStandingService:CreateStandingService,public dataService: DataService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private createStandingService: CreateStandingService, public dataService: DataService, private router: Router) {
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
   }
 
@@ -31,15 +31,8 @@ export class SearchPolicyComponent  implements OnInit {
     this.createForm = this.formBuilder.group({
       lineOfBusiness: null,
       policyNo: null,
-      firstName:[{value: null, disabled: true}],
-      agent:[{value: null}],
-      lastName:[{value: null, disabled: true}],
-      address:[{value: null, disabled: true}],
-      city:null,
-      postalCode:null,
       endorsement: '',
-      phone:[{value: null, disabled: true}],
-      email:[{value: null}],
+
     });
   }
   searchSubmit() {
@@ -54,15 +47,15 @@ export class SearchPolicyComponent  implements OnInit {
       // for(let item in res){
       //  res[item]? this.createForm.controls[item]?.setValue(res[item]):this.createForm.controls[item]?.setValue('');
       // }
-      // this.dataService.hasPolicyResponse =true;
-      this.router.navigate(['/create/create-order'])
+      this.dataService.setSearchPolicySubject(res)
+      this.router.navigate(['/create/payment-way'])
     },
-    error=>{
-      console.log(error)
-    }
+      error => {
+        console.log(error)
+      }
     );
   }
-  creationalSubmit(){
+  creationalSubmit() {
     console.log(this.createForm)
   }
 }

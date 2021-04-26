@@ -6,7 +6,8 @@ import { CreateRoutingModule } from './create-standing-order-routing.module';
 import { CreateStandingOrderComponent } from './create-standing-order.component';
 import { MaterialModule } from '../material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StandingOrderComponent } from './standing-order/standing-order.component';
+import { PaymentWayCheckerComponent } from './payment-way-checker/payment-way-checker.component';
+
 
 
 
@@ -14,7 +15,8 @@ import { StandingOrderComponent } from './standing-order/standing-order.componen
   declarations: [
     CreateStandingOrderComponent,
     SearchPolicyComponent,
-    StandingOrderComponent
+    PaymentWayCheckerComponent,
+  
   ],
   imports: [
     CommonModule,
