@@ -27,6 +27,10 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
     this.changeDetectorRef.detectChanges();
   }
 
+navigateToHome(){
+  this.router.navigate(['/home']);
+}
+
   logout(): void {
     this.router.navigate(['']);
     this.authenticationService.logout();

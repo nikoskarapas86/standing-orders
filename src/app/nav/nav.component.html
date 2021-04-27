@@ -1,8 +1,8 @@
 <div *ngIf="authenticationService.token">
   <mat-toolbar>
     <mat-toolbar-row>
-      <div>
-        <img src="./assets/images/logo.png" />
+      <div class="nav-img">
+        <img (click)="navigateToHome()"  src="./assets/images/logo.png" />
       </div>
 
       <div>
