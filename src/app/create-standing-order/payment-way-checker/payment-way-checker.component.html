@@ -3,22 +3,23 @@
         <div class="card-title">Επιλογή τρόπου πληρωμής</div>
     </mat-card-header>
     <mat-card-content>
-     
-
-            <mat-form-field class="field-width">
-                <mat-label>Τρόπος Πληρωμής</mat-label>
-                <mat-select  (selectionChange)="paymentWayChoise($event)" matNativeControl>
-                    <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType"
-                        ngDefaultControl>
-                        {{ item.title }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-           
-
-      
-        </mat-card-content>
-        </mat-card>
 
 
-      
+        <mat-form-field class="field-width">
+            <mat-label>Τρόπος Πληρωμής</mat-label>
+            <mat-select (selectionChange)="paymentWayChoise($event)" matNativeControl>
+                <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType" ngDefaultControl>
+                    {{ item.title }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="paymentType === 'BANK_ACCOUNT'">
+            <app-search-iban></app-search-iban>
+        </div>
+        <div *ngIf="paymentType === 'CREDIT_CARD'">
+            <app-search-credit-card></app-search-credit-card>
+        </div>
+
+    </mat-card-content>
+</mat-card>

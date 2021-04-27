@@ -1,0 +1,237 @@
+@import 'src/css/mixins';
+@import 'src/css/variables';
+
+/* todo IMPORTANT TO READ BEFORE WRITING CSS FOR THIS COMPONENT
+In order to avoid the usage of deprecated ng-deep to override angular material classes and keep on being able to
+upgrade to future angular versions, encapsulation has been removed for credit-card.component.ts. This means that
+classes are part of global name space and could cause conflicts with other classes BREAKING OTHER COMPONENTS CSS RULES.
+In order to avoid this, all classes that target only the credit-card.component.ts must be nested inside the below
+form[name='credit-card']
+ */
+
+@mixin font-lato-regular-large($color: $font-lato-regular-white-large) {
+  font-family: $font-family;
+  font-size: 20px;
+  font-weight: 400;
+  color: $color;
+  letter-spacing: 0.26px;
+}
+
+@mixin font-lato-regular-small($color: $font-lato-regular-small) {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 400;
+  color: $color;
+  letter-spacing: 0.26px;
+}
+
+@mixin font-lato-regular-medium($color: $font-lato-regular-medium) {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 400;
+  color: $color;
+  letter-spacing: 0.15px;
+}
+
+form[name='credit-card'] {
+  .header {
+    @include font-lato-regular-large($blue-primary-main);
+    margin: 0px;
+  }
+
+  .label-focus {
+    position: relative;
+    top: 20px;
+    left: 12px;
+    @include font-lato-regular-small($blue-primary-main);
+  }
+
+  .label-placeholder {
+    @include font-lato-regular-medium();
+    padding-left: 12px;
+  }
+
+  .card-number {
+    margin-top: 6px;
+  }
+
+  .card-holder-name {
+    margin-top: 2px;
+  }
+
+  .expiry-date {
+    margin-top: 18px;
+  }
+
+  .installment-number-container {
+    margin-top: 19px;
+    margin-bottom: 3px;
+  }
+
+  .cvv-payments-p {
+    margin-bottom: 24px;
+  }
+
+  .visible {
+    visibility: visible;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .card-number-container,
+  .card-holder-name-container,
+  .security-code-container,
+  .installment-number-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .not-hosted-fields,
+  .select-hosted-field,
+  .select-hosted-field-payments {
+    white-space: initial;
+    width: 90%;
+  }
+
+  .select-hosted-field {
+    top: 2px;
+  }
+
+  .select-hosted-field-date {
+    top: 0;
+    text-align: start;
+  }
+
+  .expiry-date {
+    display: flex;
+    width: 424px;
+    max-width: 100%;
+    align-items: center;
+    .expiry-month-container {
+      width: 50%;
+      text-align: initial;
+      align-self: center;
+    }
+
+    .expiry-year-container {
+      width: 50%;
+      text-align: end;
+      align-self: center;
+    }
+  }
+
+  .space-between {
+    flex: 1 1 auto;
+  }
+
+  #expiry-month,
+  #expiry-year,
+  #card-number,
+  #cardholder-name,
+  #installment-number {
+    height: 56px;
+    max-width: 100%;
+    background-color: $font-lato-bold;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    @include font-lato-regular-medium();
+  }
+
+  #expiry-month,
+  #expiry-year {
+    width: 200px;
+  }
+
+  #card-number,
+  #cardholder-name,
+  #installment-number {
+    width: 424px;
+  }
+
+  #expiry-month,
+  #expiry-year,
+  #installment-number {
+    border-bottom: 2px solid $font-lato-regular-small;
+    padding-left: 12px;
+  }
+
+  #expiry-month:disabled,
+  #expiry-year:disabled,
+  #installment-number:disabled {
+    border-color: $border-input-disabled;
+  }
+
+  #installment-number:hover {
+    border-bottom: 2px solid $blue-primary-main;
+  }
+
+  #installment-number:disabled {
+    border-bottom: 1px solid black;
+    opacity: 0.4;
+  }
+
+  .pt-40 {
+    padding-top: 40px;
+
+    .divider-width {
+      width: 99%;
+      position: inherit;
+      color: rgba(0, 0, 0, 0.12);
+    }
+
+    .amount-container {
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 50px;
+
+      .payment-amount {
+        color: rgb(118, 118, 118);
+      }
+
+      .amount-literal {
+        display: flex;
+        justify-self: center;
+      }
+
+      .amount {
+        // @include font-lato-bold-large($font-lato-bold-large);
+        font-family: $font-family;
+        font-size: 20px;
+        font-weight: 700;
+        color: $font-lato-bold-large;
+        letter-spacing: 0.26px;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+.mat-raised-button {
+  cursor: pointer;
+  color: white;
+  background-color: $primary-color;
+}
+
+.mat-raised-button.mat-button-disabled:disabled {
+  cursor: default;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+
+  .mt-1 {
+    margin-top: 1rem;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

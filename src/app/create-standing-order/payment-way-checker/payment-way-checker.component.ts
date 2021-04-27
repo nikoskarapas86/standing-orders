@@ -16,7 +16,7 @@ export class PaymentWayCheckerComponent implements OnInit {
   paymentWayForm: FormGroup;
   items: FormArray;
   paymentTypes$: Observable<PaymentType[]>;
-  paymentType:string;
+  paymentType: string;
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
@@ -34,16 +34,16 @@ export class PaymentWayCheckerComponent implements OnInit {
   private buildFormGroup(): void {
     this.paymentWayForm = this.formBuilder.group({
       paymentType: null,
-    
+
     })
   }
   paymentWayChoise(event) {
     console.log(event.value)
-  this.paymentType = event.value
+    this.paymentType = event.value
 
   }
 
-  
+
 
   createIbanItems(): FormGroup {
     return this.formBuilder.group({
