@@ -53,19 +53,6 @@ export class SearchStandingOrderComponent implements OnInit {
     };
 
     // const request: SearchRequest = {
-    //   policyNo: 1389945,
-    //   lineOfBusiness: 'LIFE',
-    //   paymentType: 'BANK_ACCOUNT',
-    //   paymentId: 10882690,
-    //   bankAccount: '01389945000000062916',
-    //   customerLastName: 'ΠΟΥΜΠΟΥΡΙΔΗΣ             ',
-    //   agent: 99999,
-    //   startDate: '2020-09-09',
-    //   endDate: '2100-12-31',
-    //   endorsement: 'Μ128788',
-    // };
-
-    // const request: SearchRequest = {
     //   policyNo: this.searchForm.get('policyNumber').value,
     //   lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
     //   paymentType: this.searchForm.get('paymentType').value,
@@ -81,5 +68,9 @@ export class SearchStandingOrderComponent implements OnInit {
     this.dataService.searchStandingOrder(request).subscribe(res => {
       this.standingOrders = res;
     });
+  }
+
+  resetForm() {
+    this.searchForm.reset();
   }
 }
