@@ -1,9 +1,12 @@
 import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { EditService } from '../services/edit.service';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-search-table',
@@ -34,7 +37,12 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
 
-  constructor(private router: Router, private editService: EditService) {}
+  constructor(
+    private router: Router,
+    private editService: EditService,
+    private matDialog: MatDialog,
+    private modalService: ModalService
+  ) {}
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
@@ -60,5 +68,15 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   delete(index: number) {
     this.dataSource.data.splice(index, 1);
     this.dataSource.data = [...this.dataSource.data];
+
+    this.openModal();
+  }
+
+  private openModal() {
+    const modalDialog = this.matDialog.open(DeleteListComponent, {
+      height: '220px',
+      width: '500px',
+    });
+    this.modalService.modalDialog = modalDialog;
   }
 }
