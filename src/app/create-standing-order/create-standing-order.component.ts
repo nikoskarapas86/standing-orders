@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { LineOfBusiness } from '../models/line-of-business';
-import { DataService } from '../services/data.service';
+import {  Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-standing-order',
@@ -10,26 +7,16 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./create-standing-order.component.scss'],
 })
 export class CreateStandingOrderComponent implements OnInit {
-  public linesOfBusinesses$: Observable<LineOfBusiness[]>;
-  createForm: FormGroup;
-  constructor(
-    private formBuilder: FormBuilder,
-    public dataService: DataService
-  ) {
-    this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
-  }
+ 
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.buildFormGroup();
+  
+
   }
-  private buildFormGroup(): void {
-    this.createForm = this.formBuilder.group({
-      lineOfBusiness: null,
-      policyNo: null,
-      endorsement: '',
-    });
+  navigateToHome(){
+    this.router.navigate(['/home']);
   }
-  submit() {
-    console.log(this.createForm.value);
-  }
+
 }

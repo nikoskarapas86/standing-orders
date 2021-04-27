@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     {
       title: 'ΔΗΜΙΟΥΡΓΙΑ ΠΑΓΙΑΣ',
       imgSrc: './assets/images/create.svg',
-      onClick: () => this.router.navigate(['/create']),
+      onClick: () => this.router.navigate(['/create/search-policy']),
     },
     {
       title: 'ΑΝΑΖΗΤΗΣΗ ΠΑΓΙΑΣ',
@@ -22,10 +22,7 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(private router: Router, private dataService: DataService) {
-    console.log('=--=-=-==-');
-    this.dataService
-      .searchLinesOfBusiness()
-      .subscribe(linesOfBusinesses => console.log(linesOfBusinesses));
+ 
   }
 
   ngOnInit(): void {}
