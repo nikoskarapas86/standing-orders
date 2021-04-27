@@ -16,6 +16,7 @@ import { LineOfBusiness } from '../models/line-of-business';
 import { DeleteRequest } from '../models/delete-request';
 import { DeleteResponse } from '../models/delete-response';
 import { IbanUpdateRequest } from '../models/iban-update-request';
+import { DeleteReason } from '../models/delete-reason';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +51,9 @@ export class DataService {
 
   update(updateRequest: CardNumberUpdateRequest | IbanUpdateRequest): Observable<UpdateResponse> {
     return this.http.put<UpdateResponse>(`${this.url}/int/update`, updateRequest);
+  }
+
+  deleteReasons(): Observable<DeleteReason[]> {
+    return this.http.get<DeleteReason[]>(`${this.url}/int/search/deleteReasons`);
   }
 }
