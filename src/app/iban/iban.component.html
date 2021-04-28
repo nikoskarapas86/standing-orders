@@ -3,7 +3,7 @@
     <div class="card-title">Επεξεργασία</div>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="submit()" [formGroup]="form" name="searchForm">
+    <form (ngSubmit)="submit()" [formGroup]="form" name="searchForm" class="align-items-center">
       <div class="row">
         <div class="container">
           <mat-form-field class="field-width">
@@ -17,8 +17,7 @@
           </mat-form-field>
         </div>
       </div>
-
-      <mat-dialog-actions>
+      <mat-dialog-actions class="submit-btn">
         <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Πληρωμή</button>
       </mat-dialog-actions>
     </form>
