@@ -3,9 +3,14 @@
     <div class="card-title">Αναζήτηση</div>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="submit()" [formGroup]="searchForm" name="searchForm">
+    <form
+      (ngSubmit)="submit()"
+      [formGroup]="searchForm"
+      name="searchForm"
+      style="justify-content: space-between; display: flex"
+    >
       <div class="row">
-        <div class="container">
+        <div class="container" style="align-items: center">
           <mat-form-field class="field-width">
             <mat-label>Κλάδος</mat-label>
             <mat-select formControlName="lineOfBusiness" matNativeControl>
@@ -48,8 +53,18 @@
               placeholder="Συμπληρώστε το Endorsement"
             />
           </mat-form-field>
+
+          <mat-form-field class="field-width" fxLayout="column" appearance="fill">
+            <mat-label>Από - Έως</mat-label>
+            <mat-date-range-input [rangePicker]="completedDateRange">
+              <input formControlName="payDateFrom" matStartDate placeholder="Από" />
+              <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
+            <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+          </mat-form-field>
         </div>
-        <div class="container">
+        <div class="container" style="align-items: center">
           <mat-form-field class="policyField field-width">
             <mat-label>Policy Number</mat-label>
             <input
@@ -92,17 +107,8 @@
           </mat-form-field>
         </div>
       </div>
-      <mat-form-field class="has-date date-field-width" fxLayout="column" appearance="fill">
-        <mat-label>Από - Έως</mat-label>
-        <mat-date-range-input [rangePicker]="completedDateRange">
-          <input formControlName="payDateFrom" matStartDate placeholder="Από" />
-          <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
-        <mat-date-range-picker #completedDateRange></mat-date-range-picker>
-      </mat-form-field>
 
-      <mat-dialog-actions>
+      <mat-dialog-actions class="space-evenly">
         <button mat-raised-button type="button" class="common-btn" (click)="resetForm()">
           Καθαρισμος
         </button>
