@@ -36,3 +36,8 @@ export class SearchItem {
   'standingOrderStatus': string;
   'standingOrderStatusDate': number[];
 }
+
+export class SearchResponse {
+  searchId: string;
+  standingOrderDTOList: SearchItem[];
+}

@@ -1,8 +1,4 @@
 export class DeleteRequest {
-  'key': {
-    id: number;
-    versionNo: number;
-  };
-
-  'deleteReason': string;
+  id: number;
+  deleteReason: string;
 }

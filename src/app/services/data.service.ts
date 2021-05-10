@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CreateRequest } from '../models/create-request';
 import { CreateResponse } from '../models/create-response';
-// import { DeleteRequest } from '../models/delete-request';
-// import { DeleteResponse } from '../models/delete-response';
 import { SearchPolicyRequest } from '../models/search-policy-request';
 import { SearchPolicyResponse } from '../models/search-policy-response';
 import { SearchRequest } from '../models/search-request';
-import { SearchItem } from '../models/search-response';
+import { SearchResponse } from '../models/search-response';
 import { CardNumberUpdateRequest } from '../models/card-number-update-request';
 import { UpdateResponse } from '../models/update-response';
 import { environment } from '../../environments/environment';
@@ -24,7 +22,7 @@ import { DeleteReason } from '../models/delete-reason';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
   searchPolicyResponse$: Observable<SearchPolicyResponse> = this.searchPolicyResponseSubject.asObservable();
@@ -32,12 +30,12 @@ export class DataService {
     this.searchPolicyResponseSubject.next(response);
   }
 
-  getValueSearchPolicySubject(){
+  getValueSearchPolicySubject() {
     return this.searchPolicyResponseSubject.getValue();
   }
 
-  searchStandingOrder(searchRequest: SearchRequest): Observable<SearchItem[]> {
-    return this.http.post<SearchItem[]>(`${this.url}/int/search/standingOrder`, searchRequest);
+  searchStandingOrder(searchRequest: SearchRequest): Observable<SearchResponse> {
+    return this.http.post<SearchResponse>(`${this.url}/int/search/standingOrder`, searchRequest);
   }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
@@ -51,8 +49,8 @@ export class DataService {
     return this.http.post<CreateResponse>(`${this.url}/int/create`, createRequest);
   }
 
-  delete(deleteRequest: DeleteRequest): Observable<DeleteResponse> {
-    return this.http.delete<DeleteResponse>(`${this.url}/int/delete`);
+  delete(deleteRequest: DeleteRequest, searchId: string): Observable<DeleteResponse> {
+    return this.http.post<DeleteResponse>(`${this.url}/int/delete/${searchId}`, deleteRequest);
   }
 
   searchLinesOfBusiness(): Observable<LineOfBusiness[]> {

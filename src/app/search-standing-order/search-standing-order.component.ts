@@ -15,6 +15,7 @@ export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
   linesOfBusiness$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
+  searchId: string;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
@@ -66,7 +67,8 @@ export class SearchStandingOrderComponent implements OnInit {
     // };
 
     this.dataService.searchStandingOrder(request).subscribe(res => {
-      this.standingOrders = res;
+      this.searchId = res.searchId;
+      this.standingOrders = res.standingOrderDTOList;
     });
   }
 
