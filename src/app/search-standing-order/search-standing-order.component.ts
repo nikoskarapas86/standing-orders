@@ -40,31 +40,31 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-    const request: SearchRequest = {
-      policyNo: 1389945,
-      lineOfBusiness: null,
-      paymentType: null,
-      paymentId: null,
-      bankAccount: null,
-      customerLastName: null,
-      agent: null,
-      startDate: null,
-      endDate: null,
-      endorsement: null,
-    };
-
     // const request: SearchRequest = {
-    //   policyNo: this.searchForm.get('policyNumber').value,
-    //   lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
-    //   paymentType: this.searchForm.get('paymentType').value,
-    //   paymentId: this.searchForm.get('paymentId').value,
-    //   bankAccount: this.searchForm.get('bankAccount').value,
-    //   customerLastName: this.searchForm.get('customerLastName').value,
-    //   agent: this.searchForm.get('agent').value,
-    //   startDate: this.searchForm.get('payDateFrom').value,
-    //   endDate: this.searchForm.get('payDateTo').value,
-    //   endorsement: this.searchForm.get('endorsement').value,
+    //   policyNo: 1389945,
+    //   lineOfBusiness: null,
+    //   paymentType: null,
+    //   paymentId: null,
+    //   bankAccount: null,
+    //   customerLastName: null,
+    //   agent: null,
+    //   startDate: null,
+    //   endDate: null,
+    //   endorsement: null,
     // };
+
+    const request: SearchRequest = {
+      policyNo: this.searchForm.get('policyNumber').value,
+      lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
+      paymentType: this.searchForm.get('paymentType').value,
+      paymentId: this.searchForm.get('paymentId').value,
+      bankAccount: this.searchForm.get('bankAccount').value,
+      customerLastName: this.searchForm.get('customerLastName').value,
+      agent: this.searchForm.get('agent').value,
+      startDate: this.searchForm.get('payDateFrom').value,
+      endDate: this.searchForm.get('payDateTo').value,
+      endorsement: this.searchForm.get('endorsement').value,
+    };
 
     this.dataService.searchStandingOrder(request).subscribe(res => {
       this.searchId = res.searchId;
