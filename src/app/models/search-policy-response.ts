@@ -1,5 +1,5 @@
 export class SearchPolicyResponse {
-  nastName: string;
+  lastName: string;
   firstName: string;
   address: string;
   phone: number;

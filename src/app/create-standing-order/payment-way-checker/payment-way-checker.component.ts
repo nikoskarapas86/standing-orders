@@ -17,6 +17,8 @@ export class PaymentWayCheckerComponent implements OnInit {
   items: FormArray;
   paymentTypes$: Observable<PaymentType[]>;
   paymentType: string;
+  policyResponseForm: FormGroup;
+  displayEndorsment:boolean = true;
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
@@ -26,14 +28,38 @@ export class PaymentWayCheckerComponent implements OnInit {
 
   }
 
+
+
+
   ngOnInit(): void {
-    // this.buildFormGroup();
-    // this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => { !res ? this.router.navigate(['/create/search-policy']) : null })
+    this.builddisplayedFormGroup()
+    this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
+      console.log(res)
+      res ? this.fillPolicyResponseForm(res) :this.navigateBack()
+    console.log(this.policyResponseForm.get('firstName').value)
+    this.displayEndorsment = this.policyResponseForm.get('endorsement').value? true : false
+    })
+  
+  }
+navigateBack(){
+  this.router.navigate(['/home']);
+}
+
+  fillPolicyResponseForm(res: SearchPolicyResponse) {
+    for (let item in res) {
+      res[item] ? this.policyResponseForm.controls[item]?.setValue(res[item]) : this.policyResponseForm.controls[item]?.setValue(null);
+    }
   }
 
-  private buildFormGroup(): void {
-    this.paymentWayForm = this.formBuilder.group({
-      paymentType: null,
+
+  private builddisplayedFormGroup(): void {
+    this.policyResponseForm = this.formBuilder.group({
+      address: [{value: '', disabled: true}],
+      firstName: [{value: '', disabled: true}],
+      lastName: [{value: '', disabled: true}],
+      phone: [{value: '', disabled: true}],
+      policyNo: [{value: '', disabled: true}],
+      endorsement:[{value: '', disabled: true}]
 
     })
   }

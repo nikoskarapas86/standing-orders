@@ -13,7 +13,6 @@ export class CreateStandingOrderComponent implements OnInit {
 
   ngOnInit(): void {
   
-
   }
   navigateToHome(){
     this.router.navigate(['/home']);

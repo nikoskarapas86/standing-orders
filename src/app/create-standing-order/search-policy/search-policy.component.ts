@@ -42,11 +42,6 @@ export class SearchPolicyComponent implements OnInit {
     searchPolicyRequest.lineOfBusiness = this.createForm.value.lineOfBusiness;
     searchPolicyRequest.endorsement = this.createForm.value.endorsement;
     this.createStandingService.searchPolicy(searchPolicyRequest).subscribe((res: SearchPolicyResponse) => {
-
-      console.log(res)
-      // for(let item in res){
-      //  res[item]? this.createForm.controls[item]?.setValue(res[item]):this.createForm.controls[item]?.setValue('');
-      // }
       this.dataService.setSearchPolicySubject(res)
       this.router.navigate(['/create/payment-way'])
     },

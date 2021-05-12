@@ -21,5 +21,30 @@
             <app-search-credit-card></app-search-credit-card>
         </div>
 
+        <form [formGroup]="policyResponseForm" name="policyResponseForm">
+            <div class="container">
+
+                <mat-form-field class="policyField field-width">
+                    <mat-label>Αριθμός Συμβολαίου</mat-label>
+                    <input formControlName="policyNo"  matInput  />
+                </mat-form-field>
+                <mat-form-field *ngIf="displayEndorsment" class="field-width">
+                    <mat-label>Αίτηση</mat-label>
+                    <input formControlName="endorsement"  matInput  />
+                </mat-form-field>
+                <mat-form-field class="field-width">
+                    <mat-label>Όνομα</mat-label>
+                    <input formControlName="firstName"  matInput />
+                </mat-form-field>
+                <mat-form-field class="field-width">
+                    <mat-label>Επίθετο</mat-label>
+                    <input formControlName="lastName"  matInput  />
+                </mat-form-field>
+                <mat-form-field class="field-width">
+                    <mat-label>Tηλέφωνο</mat-label>
+                    <input formControlName="phone"  matInput  />
+                </mat-form-field>
+            </div>
+        </form>
     </mat-card-content>
 </mat-card>
