@@ -19,6 +19,7 @@ export class PaymentWayCheckerComponent implements OnInit {
   paymentType: string;
   policyResponseForm: FormGroup;
   displayEndorsment:boolean = true;
+  dispalyFieldsOfPolicy:boolean = true;
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
@@ -66,6 +67,7 @@ navigateBack(){
   paymentWayChoise(event) {
     console.log(event.value)
     this.paymentType = event.value
+    this.dispalyFieldsOfPolicy = false
 
   }
 

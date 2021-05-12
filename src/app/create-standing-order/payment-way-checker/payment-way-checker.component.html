@@ -4,47 +4,57 @@
     </mat-card-header>
     <mat-card-content>
 
-
-        <mat-form-field class="field-width">
-            <mat-label>Τρόπος Πληρωμής</mat-label>
-            <mat-select (selectionChange)="paymentWayChoise($event)" matNativeControl>
-                <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType" ngDefaultControl>
-                    {{ item.title }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <div *ngIf="paymentType === 'BANK_ACCOUNT'">
-            <app-search-iban></app-search-iban>
-        </div>
-        <div *ngIf="paymentType === 'CREDIT_CARD'">
-            <app-search-credit-card></app-search-credit-card>
-        </div>
-
-        <form [formGroup]="policyResponseForm" name="policyResponseForm">
-            <div class="container">
-
-                <mat-form-field class="policyField field-width">
-                    <mat-label>Αριθμός Συμβολαίου</mat-label>
-                    <input formControlName="policyNo"  matInput  />
-                </mat-form-field>
-                <mat-form-field *ngIf="displayEndorsment" class="field-width">
-                    <mat-label>Αίτηση</mat-label>
-                    <input formControlName="endorsement"  matInput  />
-                </mat-form-field>
+        <div class="row">
+            <div class="container" style="align-items: center">
                 <mat-form-field class="field-width">
-                    <mat-label>Όνομα</mat-label>
-                    <input formControlName="firstName"  matInput />
+                    <mat-label>Τρόπος Πληρωμής</mat-label>
+                    <mat-select (selectionChange)="paymentWayChoise($event)" matNativeControl>
+                        <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType"
+                            ngDefaultControl>
+                            {{ item.title }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
-                <mat-form-field class="field-width">
-                    <mat-label>Επίθετο</mat-label>
-                    <input formControlName="lastName"  matInput  />
-                </mat-form-field>
-                <mat-form-field class="field-width">
-                    <mat-label>Tηλέφωνο</mat-label>
-                    <input formControlName="phone"  matInput  />
-                </mat-form-field>
+
+                <div *ngIf="paymentType === 'BANK_ACCOUNT'">
+                    <app-search-iban></app-search-iban>
+                </div>
+                <div *ngIf="paymentType === 'CREDIT_CARD'">
+                    <app-search-credit-card></app-search-credit-card>
+                </div>
             </div>
-        </form>
+        </div>
+
+        <div *ngIf="dispalyFieldsOfPolicy">
+            <form [formGroup]="policyResponseForm" name="policyResponseForm">
+                <div class="row">
+                    <div class="container" style="align-items: center">
+
+                        <mat-form-field class="field-width">
+                            <mat-label>Αριθμός Συμβολαίου</mat-label>
+                            <input formControlName="policyNo" matInput />
+                        </mat-form-field>
+                        <mat-form-field *ngIf="displayEndorsment" class="field-width">
+                            <mat-label>Αίτηση</mat-label>
+                            <input formControlName="endorsement" matInput />
+                        </mat-form-field>
+                        <mat-form-field class="field-width">
+                            <mat-label>Όνομα</mat-label>
+                            <input formControlName="firstName" matInput />
+                        </mat-form-field>
+                        <mat-form-field class="field-width">
+                            <mat-label>Επίθετο</mat-label>
+                            <input formControlName="lastName" matInput />
+                        </mat-form-field>
+                        <mat-form-field class="field-width">
+                            <mat-label>Tηλέφωνο</mat-label>
+                            <input formControlName="phone" matInput />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
     </mat-card-content>
 </mat-card>
