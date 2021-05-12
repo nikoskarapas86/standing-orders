@@ -20,12 +20,14 @@ export class SearchIbanComponent implements OnInit {
   }
 
   checkIban() {
+    console.log(this.ibanForm.get('iban').value)
+    this.router.navigate(['/create/create-order'])
+  }
+
+  ibanFormGroup() { 
     this.ibanForm = this.formBuilder.group({
       iban: null
     })
   }
 
-  ibanFormGroup() {
-    console.log(this.ibanForm.get('iban').value)
-  }
 }

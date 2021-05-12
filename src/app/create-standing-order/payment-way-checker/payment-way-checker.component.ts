@@ -33,7 +33,7 @@ export class PaymentWayCheckerComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.builddisplayedFormGroup()
+    this.buildisplayedFormGroup()
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
       console.log(res)
       res ? this.fillPolicyResponseForm(res) :this.navigateBack()
@@ -53,7 +53,7 @@ navigateBack(){
   }
 
 
-  private builddisplayedFormGroup(): void {
+  private buildisplayedFormGroup(): void {
     this.policyResponseForm = this.formBuilder.group({
       address: [{value: '', disabled: true}],
       firstName: [{value: '', disabled: true}],

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentWayCheckerComponent } from './payment-way-checker/payment-way-checker.component';
 import { SearchCreditCardComponent } from './search-credit-card/search-credit-card.component';
 import { SearchIbanComponent } from './search-iban/search-iban.component';
+import { CreateOrderComponent } from './create-order/create-order.component';
 
 
 
@@ -20,6 +21,7 @@ import { SearchIbanComponent } from './search-iban/search-iban.component';
     PaymentWayCheckerComponent,
     SearchCreditCardComponent,
     SearchIbanComponent,
+    CreateOrderComponent,
   
   ],
   imports: [
