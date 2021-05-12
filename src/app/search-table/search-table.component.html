@@ -1,37 +1,21 @@
-<!-- <div class="container mt-5">
-  <div class="center" *ngIf="standingOrders && standingOrders.length">
-    <table mat-table [dataSource]="standingOrdersDataSource">
-      <div *ngFor="let item of tableItems">
-        <ng-container matColumnDef="{{ item.columnDef }}">
-          <th mat-header-cell *matHeaderCellDef>{{ item.headerCellDef }}</th>
-          <td mat-cell *matCellDef="let element">{{ element[item.columnDef] }}</td>
-        </ng-container>
-      </div>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
-</div> -->
-
 <div class="container mt-5">
   <div *ngIf="standingOrders && standingOrders.length">
     <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">
-          <mat-header-cell *matHeaderCellDef>{{ tableItem.headerCellDef }}</mat-header-cell>
+          <mat-header-cell class="fs-14" *matHeaderCellDef>{{
+            tableItem.headerCellDef
+          }}</mat-header-cell>
           <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
             <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
             <div *ngIf="tableItem.columnDef === 'actions'">
-              <div class="action-row">
-                <div class="container-btn">
-                  <button class="btn" (click)="edit(row)">
+              <div class="action-row" *ngIf="row.activeStandingOrder">
+                <div class="container-btn" (click)="edit(row)">
+                  <button class="btn">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>
-                <div class="container-btn" (click)="delete(index)">
+                <div class="container-btn" (click)="delete(index, row)">
                   <button class="btn">
                     <mat-icon>delete</mat-icon>
                   </button>

@@ -15,6 +15,7 @@ import { ModalService } from '../services/modal.service';
 })
 export class SearchTableComponent implements OnInit, AfterContentChecked {
   @Input() standingOrders: SearchItem[];
+  @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
   tableItems: TableItem[] = [
     {
@@ -65,17 +66,21 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
     this.router.navigate(['edit', element.id]);
   }
 
-  delete(index: number) {
+  delete(index: number, searchItem: SearchItem) {
     this.dataSource.data.splice(index, 1);
     this.dataSource.data = [...this.dataSource.data];
 
-    this.openModal();
+    this.openModal(searchItem.id, this.searchId);
   }
 
-  private openModal() {
+  private openModal(searchItemId: number, searchId: string) {
     const modalDialog = this.matDialog.open(DeleteListComponent, {
       height: '220px',
       width: '500px',
+      data: {
+        searchItemId,
+        searchId,
+      },
     });
     this.modalService.modalDialog = modalDialog;
   }
