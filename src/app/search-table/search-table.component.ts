@@ -18,22 +18,22 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
   tableItems: TableItem[] = [
+    { columnDef: 'id', headerCellDef: 'Αρ. Πάγιας Εντολής' },
     {
       columnDef: 'policyNo',
-      headerCellDef: 'Policy Number',
+      headerCellDef: 'Αρ. Συμβολαίου',
     },
     {
       columnDef: 'lineOfBusiness',
       headerCellDef: 'Κλάδος',
     },
-    { columnDef: 'paymentType', headerCellDef: 'Τύπος Πληρωμής' },
-    { columnDef: 'id', headerCellDef: 'Id Πληρωμής' },
-    { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λογαριασμός' },
     { columnDef: 'lastName', headerCellDef: 'Επίθετο Πελάτη' },
-    { columnDef: 'agent', headerCellDef: 'Agent' },
-    { columnDef: 'startDate', headerCellDef: 'Ημερομηνία Έναρξης' },
-    { columnDef: 'endDate', headerCellDef: 'Ημερομηνία Τέλους' },
-    { columnDef: 'endorsement', headerCellDef: 'Endorsement' },
+    { columnDef: 'paymentTypeLiteral', headerCellDef: 'Τύπος Πληρωμής' },
+    { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λογαριασμός' },
+    { columnDef: 'agent', headerCellDef: 'Κωδ. Παραγωγού' },
+    { columnDef: 'startDate', headerCellDef: 'Ημ/νία Έναρξης' },
+    { columnDef: 'endDate', headerCellDef: 'Ημ/νία Τέλους' },
+    { columnDef: 'endorsement', headerCellDef: 'Αίτηση' },
     { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
@@ -55,6 +55,7 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
           ...o,
           startDate: o.startDate.slice().reverse().join('/'),
           endDate: o.endDate.slice().reverse().join('/'),
+          paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
         }))
       : [];
     this.dataSource = new MatTableDataSource(newStandingOrders);
