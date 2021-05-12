@@ -65,7 +65,6 @@ navigateBack(){
     })
   }
   paymentWayChoise(event) {
-    console.log(event.value)
     this.paymentType = event.value
     this.dispalyFieldsOfPolicy = false
 

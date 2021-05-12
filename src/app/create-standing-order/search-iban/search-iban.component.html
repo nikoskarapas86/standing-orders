@@ -1,1 +1,15 @@
-
+<form [formGroup]="ibanForm" name="ibanForm">
+    <div class="row">
+        <div class="container" style="align-items: center">
+            <mat-form-field class="field-width">
+                <mat-label>IBAN </mat-label>
+                <input formControlName="iban" matInput />
+            </mat-form-field>
+        </div>
+        <mat-dialog-actions class="space-evenly">
+            <button mat-raised-button (click)="checkIban()" class="search-btn" id="searchBtn" type="submit">
+              ΕΛΕΓΧΟΣ
+            </button>
+          </mat-dialog-actions>
+    </div>
+</form>
