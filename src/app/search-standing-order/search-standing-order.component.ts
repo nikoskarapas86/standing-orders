@@ -5,6 +5,7 @@ import { LineOfBusiness } from '../models/line-of-business';
 import { SearchRequest } from '../models/search-request';
 import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search-standing-order',
@@ -17,11 +18,21 @@ export class SearchStandingOrderComponent implements OnInit {
   standingOrders: SearchItem[];
   searchId: string;
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private dataService: DataService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
     this.linesOfBusiness$ = this.dataService.searchLinesOfBusiness();
+    this.searchService.getIsDeleteCalled.subscribe(res => {
+      if (res) {
+        this.submit();
+        this.searchService.isDeleteCalled = false;
+      }
+    });
   }
 
   private buildFormGroup(): void {
@@ -66,10 +77,13 @@ export class SearchStandingOrderComponent implements OnInit {
       endorsement: this.searchForm.get('endorsement').value,
     };
 
-    this.dataService.searchStandingOrder(request).subscribe(res => {
-      this.searchId = res.searchId;
-      this.standingOrders = res.standingOrderDTOList;
-    });
+    this.dataService.searchStandingOrder(request).subscribe(
+      res => {
+        this.searchId = res.searchId;
+        this.standingOrders = res.standingOrderDTOList;
+      },
+      error => {}
+    );
   }
 
   resetForm() {

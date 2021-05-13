@@ -68,9 +68,6 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
   }
 
   delete(index: number, searchItem: SearchItem) {
-    this.dataSource.data.splice(index, 1);
-    this.dataSource.data = [...this.dataSource.data];
-
     this.openModal(searchItem.id, this.searchId);
   }
 
