@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 })
 export class IbanComponent implements OnInit {
   form: FormGroup;
+  isValid: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private dataService: DataService) {}
 
@@ -36,6 +37,14 @@ export class IbanComponent implements OnInit {
 
     this.dataService.update(request).subscribe(res => {
       console.log(res);
+    });
+  }
+
+  validate(): void {
+    const request = { iban: this.form.get('iban').value.toString() };
+    this.dataService.validate(request).subscribe(res => {
+      console.log(res);
+      this.isValid = res.isValid;
     });
   }
 }

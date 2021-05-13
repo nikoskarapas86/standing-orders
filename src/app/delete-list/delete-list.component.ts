@@ -4,6 +4,7 @@ import { DeleteReason } from '../models/delete-reason';
 import { DeleteRequest } from '../models/delete-request';
 import { DataService } from '../services/data.service';
 import { ModalService } from '../services/modal.service';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-delete-list',
@@ -17,6 +18,7 @@ export class DeleteListComponent implements OnInit {
   constructor(
     public dataService: DataService,
     private modalService: ModalService,
+    private searchService: SearchService,
     @Inject(MAT_DIALOG_DATA) public data: { searchItemId: number; searchId: string }
   ) {}
 
@@ -37,6 +39,7 @@ export class DeleteListComponent implements OnInit {
     };
     this.dataService.delete(request, this.data.searchId).subscribe(res => {
       this.close();
+      this.searchService.isDeleteCalled = true;
     });
   }
 }

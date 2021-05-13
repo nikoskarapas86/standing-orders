@@ -15,6 +15,8 @@ import { DeleteRequest } from '../models/delete-request';
 import { DeleteResponse } from '../models/delete-response';
 import { IbanUpdateRequest } from '../models/iban-update-request';
 import { DeleteReason } from '../models/delete-reason';
+import { ValidateRequest } from '../models/validate-request';
+import { ValidateResponse } from '../models/validate-response';
 
 @Injectable({
   providedIn: 'root',
@@ -63,5 +65,9 @@ export class DataService {
 
   deleteReasons(): Observable<DeleteReason[]> {
     return this.http.get<DeleteReason[]>(`${this.url}/int/search/deleteReasons`);
+  }
+
+  validate(validateRequest: ValidateRequest): Observable<ValidateResponse> {
+    return this.http.post<ValidateResponse>(`${this.url}/int/validate/iban`, validateRequest);
   }
 }
