@@ -8,4 +8,5 @@ export class SearchPolicyResponse {
   endorsement: string;
   newCollectionAgency: number;
   oldCollectionAgency: number;
+  searchId:string;
 }

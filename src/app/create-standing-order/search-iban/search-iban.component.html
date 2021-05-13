@@ -7,9 +7,10 @@
             </mat-form-field>
         </div>
         <mat-dialog-actions class="space-evenly">
-            <button mat-raised-button (click)="checkIban()" class="search-btn" id="searchBtn" type="submit">
-              ΕΛΕΓΧΟΣ
+            <button mat-raised-button (click)="isValid? createOrder() : checkIban()" class="search-btn" id="searchBtn"
+                type="submit">
+                {{isValid? 'ΔΗΜΙΟΥΡΓΙΑ': 'ΕΛΕΓΧΟΣ' }}
             </button>
-          </mat-dialog-actions>
+        </mat-dialog-actions>
     </div>
 </form>

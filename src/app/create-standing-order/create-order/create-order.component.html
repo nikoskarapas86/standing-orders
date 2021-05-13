@@ -1,6 +1,6 @@
 <mat-card class="mat-card-outer">
     <mat-card-header>
-        <div class="card-title">Επιλογή τρόπου πληρωμής</div>
+        <div class="card-title">Αριθμός Πάγιας : {{standingOrderID}}</div>
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="creationalForm" name="creationalForm">
@@ -13,28 +13,12 @@
                 <input formControlName="policyNo" matInput />
             </mat-form-field>
             <mat-form-field  class="field-width">
-                <mat-label></mat-label>
-                <input formControlName="endorsement" matInput />
-            </mat-form-field>
-            <mat-form-field  class="field-width">
                 <mat-label>'Ονομα</mat-label>
                 <input formControlName="firstName" matInput />
             </mat-form-field>
             <mat-form-field  class="field-width">
                 <mat-label>Επίθετο</mat-label>
                 <input formControlName="lastName" matInput />
-            </mat-form-field>
-            <mat-form-field  class="field-width">
-                <mat-label>Οδός</mat-label>
-                <input formControlName="street" matInput />
-            </mat-form-field>
-            <mat-form-field  class="field-width">
-                <mat-label>Πόλη</mat-label>
-                <input formControlName="city" matInput />
-            </mat-form-field>
-            <mat-form-field  class="field-width">
-                <mat-label>Τηλέφωνο</mat-label>
-                <input formControlName="phoneNumber" matInput />
             </mat-form-field>
         </form>
     </mat-card-content>
