@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { LineOfBusiness } from '../models/line-of-business';
 import { SearchRequest } from '../models/search-request';
 import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
+import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search-standing-order',
   templateUrl: './search-standing-order.component.html',
   styleUrls: ['./search-standing-order.component.scss'],
+  providers: [DestroyService],
 })
 export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
@@ -21,7 +24,8 @@ export class SearchStandingOrderComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private readonly destroy$: DestroyService
   ) {}
 
   ngOnInit(): void {
@@ -77,13 +81,16 @@ export class SearchStandingOrderComponent implements OnInit {
       endorsement: this.searchForm.get('endorsement').value,
     };
 
-    this.dataService.searchStandingOrder(request).subscribe(
-      res => {
-        this.searchId = res.searchId;
-        this.standingOrders = res.standingOrderDTOList;
-      },
-      error => {}
-    );
+    this.dataService
+      .searchStandingOrder(request)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        res => {
+          this.searchId = res.searchId;
+          this.standingOrders = res.standingOrderDTOList;
+        },
+        error => {}
+      );
   }
 
   resetForm() {
