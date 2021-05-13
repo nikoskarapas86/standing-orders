@@ -20,6 +20,7 @@ export class PaymentWayCheckerComponent implements OnInit {
   policyResponseForm: FormGroup;
   displayEndorsment:boolean = true;
   dispalyFieldsOfPolicy:boolean = true;
+  isIbanValid:boolean =false;
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
@@ -29,15 +30,16 @@ export class PaymentWayCheckerComponent implements OnInit {
 
   }
 
-
+  ibanvalid(event){
+    this.isIbanValid= event? true:false
+  }
 
 
   ngOnInit(): void {
+ 
     this.buildisplayedFormGroup()
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
-      console.log(res)
       res ? this.fillPolicyResponseForm(res) :this.navigateBack()
-    console.log(this.policyResponseForm.get('firstName').value)
     this.displayEndorsment = this.policyResponseForm.get('endorsement').value? true : false
     })
   
@@ -67,7 +69,6 @@ navigateBack(){
   paymentWayChoise(event) {
     this.paymentType = event.value
     this.dispalyFieldsOfPolicy = false
-
   }
 
 

@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { CreateOrderRequest } from '../models/create-order-req';
+import { CreateOrderRersponse } from '../models/create-order-response';
+import { IbanRequest } from '../models/iban-request';
+import { IbanResponse } from '../models/ibanResponse';
 import { PaymentType } from '../models/payment-type';
 import { SearchPolicyRequest } from '../models/search-policy-request';
 import { SearchPolicyResponse } from '../models/search-policy-response';
@@ -14,10 +18,24 @@ export class CreateStandingService {
   private url = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
+  private createOrderRersponseSubject = new BehaviorSubject<CreateOrderRersponse>(undefined);
+  createOrderResponse$: Observable<CreateOrderRersponse> = this.createOrderRersponseSubject.asObservable();
+  setCreateOrderSubject(response: CreateOrderRersponse) {
+    this.createOrderRersponseSubject.next(response);
+  }
+
+
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
     return this.http.post<SearchPolicyResponse>(
       `${this.url}/int/search/policy`,
       searchPolicyRequest
+    );
+  }
+  
+  ibanChecker(ibanReq:IbanRequest): Observable<IbanResponse>{
+    return this.http.post<IbanResponse>(
+      `${this.url}/int/validate/iban `,
+      ibanReq
     );
   }
 
@@ -25,5 +43,9 @@ export class CreateStandingService {
     return this.http.get<PaymentType[]>(`${this.url}/int/search/paymentTypes`);
   }
 
+  
+  createorder(searchId,createRequest:CreateOrderRequest):Observable<any>{
+    return this.http.post(`${this.url}/int/create/${searchId}`,createRequest)
+  }
 
 }
