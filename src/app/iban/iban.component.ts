@@ -51,7 +51,7 @@ export class IbanComponent implements OnInit {
       .subscribe(
         res => {},
         error => {
-          this.dialog.open(ModalComponent, { data: error });
+          this.dialog.open(ModalComponent, { data: error.error.error });
         }
       );
   }
