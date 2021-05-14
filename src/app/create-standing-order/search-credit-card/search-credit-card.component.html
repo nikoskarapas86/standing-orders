@@ -1,111 +1,75 @@
-<div class="container-card"> 
-      <mat-card-content id="card-content">
-        <form name="credit-card">
-          <p class="header">Εισαγάγετε τα στοιχεία της κάρτας</p>
-  
-          <div class="card-number">
-            <div class="card-number-container">
-              <label id="card-number-label" class="label-focus"> Αριθμός Κάρτας </label>
-              <input
-                type="text"
-                id="card-number"
-                class="label-placeholder"
-                placeholder="Αριθμός Κάρτας"
-                title="card number"
-                aria-label="enter your card number"
-                value=""
-                tabindex="1"
-                readonly
-                [disabled]="isLoading"
-              />
-            </div>
+<div class="container-card">
+  <mat-card-content id="card-content">
+    <form name="credit-card">
+      <p class="header">Εισαγάγετε τα στοιχεία της κάρτας</p>
+
+      <div class="card-number">
+        <div class="card-number-container">
+          <label id="card-number-label" class="label-focus"> Αριθμός Κάρτας </label>
+          <input type="text" id="card-number" class="label-placeholder" placeholder="Αριθμός Κάρτας" title="card number"
+            aria-label="enter your card number" value="" tabindex="1" readonly [disabled]="isLoading" />
+        </div>
+      </div>
+
+
+      <div class="expiry-date">
+        <div class="expiry-month-container">
+          <label for="expiry-month">
+            <select id="expiry-month" required="" class="form-control input-md" readOnly [disabled]="isLoading">
+              <option value="">Μήνας (MM)</option>
+              <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+            </select>
+          </label>
+        </div>
+        <div class="space-between"></div>
+        <div class="expiry-year-container">
+          <label for="expiry-year">
+            <select id="expiry-year" required="" readOnly class="form-control input-md" [disabled]="isLoading">
+              <option value="">Έτος (YY)</option>
+              <option *ngFor="let year of years" [value]="year.value">
+                {{ year.viewValue }}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div *ngIf="hasInstallments && mastercard.installments?.length > 0" class="installment-number-container">
+        <div class="installment-number">
+          <label for="installment-number"></label>
+          <select id="installment-number" required readOnly [disabled]="isLoading">
+            <option value="">Δόσεις</option>
+            <option *ngFor="let installment of mastercard.installments" [value]="installment">
+              {{ installment }}
+            </option>
+          </select>
+          <p class="form-input-helper-text select-hosted-field-date hidden"></p>
+        </div>
+      </div>
+
+      <div class="pt-40">
+        <mat-divider class="divider-width"></mat-divider>
+        <div class="amount-container">
+          <div class="payment-amount">Ποσό Πληρωμής</div>
+          <div class="amount-literal">
+            <span class="amount">{{ mastercard.amount }}</span>
+            <span class="material-icons">euro_symbol</span>
           </div>
-         
-  
-          <div class="expiry-date">
-            <div class="expiry-month-container">
-              <label for="expiry-month">
-                <select
-                  id="expiry-month"
-                  required=""
-                  class="form-control input-md"
-                  readOnly
-                  [disabled]="isLoading"
-                >
-                  <option value="">Μήνας (MM)</option>
-                  <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-                </select>
-              </label>
-            </div>
-            <div class="space-between"></div>
-            <div class="expiry-year-container">
-              <label for="expiry-year">
-                <select
-                  id="expiry-year"
-                  required=""
-                  readOnly
-                  class="form-control input-md"
-                  [disabled]="isLoading"
-                >
-                  <option value="">Έτος (YY)</option>
-                  <option *ngFor="let year of years" [value]="year.value">
-                    {{ year.viewValue }}
-                  </option>
-                </select>
-              </label>
-            </div>
-          </div>
-  
-          <div
-            *ngIf="hasInstallments && mastercard.installments?.length > 0"
-            class="installment-number-container"
-          >
-            <div class="installment-number">
-              <label for="installment-number"></label>
-              <select id="installment-number" required readOnly [disabled]="isLoading">
-                <option value="">Δόσεις</option>
-                <option *ngFor="let installment of mastercard.installments" [value]="installment">
-                  {{ installment }}
-                </option>
-              </select>
-              <p class="form-input-helper-text select-hosted-field-date hidden"></p>
-            </div>
-          </div>
-  
-          <div class="pt-40">
-            <mat-divider class="divider-width"></mat-divider>
-            <div class="amount-container">
-              <div class="payment-amount">Ποσό Πληρωμής</div>
-              <div class="amount-literal">
-                <span class="amount">{{ mastercard.amount }}</span>
-                <span class="material-icons">euro_symbol</span>
-              </div>
-            </div>
-            <mat-divider class="divider-width"></mat-divider>
-          </div>
-          <div class="btn-container">
-            <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button>
-            <button
-              class="mt-1 flex-center"
-              [disabled]="isPaymentCompleted || isLoading"
-              mat-raised-button
-              type="submit"
-              (click)="isNextPushed ? pay() : next()"
-            >
-              <ng-container *ngIf="!isLoading">
-                {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }}
-              </ng-container>
-              <ng-container *ngIf="isLoading">
-                <mat-spinner
-                  diameter="20"
-                  strokeWidth="2"
-                  mode="indeterminate"
-                  value="100"
-                ></mat-spinner>
-              </ng-container>
-            </button>
-          </div>
-        </form>
-      </mat-card-content> 
-  </div>
-  
+        </div>
+        <mat-divider class="divider-width"></mat-divider>
+      </div>
+      <div class="btn-container">
+        <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button>
+        <button class="mt-1 flex-center" [disabled]="isPaymentCompleted || isLoading" mat-raised-button type="submit"
+          (click)="isNextPushed ? pay() : next()">
+          <ng-container *ngIf="!isLoading">
+            {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }}
+          </ng-container>
+          <ng-container *ngIf="isLoading">
+            <mat-spinner diameter="20" strokeWidth="2" mode="indeterminate" value="100"></mat-spinner>
+          </ng-container>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</div>

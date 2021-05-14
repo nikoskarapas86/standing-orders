@@ -1,6 +1,6 @@
 
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject,  OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Input } from 'src/app/models/input';
 import { Colors, HostedFieldsIds, HostedFieldsSelectors, HostedSessionCallbacks, HostedSessionPaymentType, HostedSessionStatus, MastercardEnum } from 'src/app/credit-card/enum';
@@ -45,8 +45,8 @@ export class SearchCreditCardComponent implements OnInit {
   constructor(
     private mastercardService: MastercardService,
     @Inject(DOCUMENT) private document: Document,
-    private windowRefService: WindowRefService 
-  ) {}
+    private windowRefService: WindowRefService
+  ) { }
 
   ngOnInit(): void {
     this.setYears();
@@ -246,70 +246,70 @@ export class SearchCreditCardComponent implements OnInit {
 
   private getBorderColor = (response, formField: string, fieldId: string) =>
     response.errors[formField] === HostedSessionStatus.INVALID ||
-    (response.errors[formField] === HostedSessionStatus.MISSING &&
-      this.activeFieldValidated === HostedFieldsIds[fieldId])
+      (response.errors[formField] === HostedSessionStatus.MISSING &&
+        this.activeFieldValidated === HostedFieldsIds[fieldId])
       ? Colors.redInvalid
       : Colors.blackValid;
-      next() {
-        this.isNextPushed = true;
-        // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
-        this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
-          HostedSessionPaymentType.CARD
-        );
-      }
+  next() {
+    this.isNextPushed = true;
+    // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
+    this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
+      HostedSessionPaymentType.CARD
+    );
+  }
 
 
-      pay(): void {
-        this.isLoading = true;
-        if (!this.isNameOnCard) return;
-    
-        this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
-          HostedSessionPaymentType.CARD
-        );
-        const installments = this.getInstallments();
-        this.mastercardService.pay({ installments }).subscribe(
-          res => {
-            this.isPaymentCompleted = true;
-            this.isLoading = false;
-          },
-          error => {
-            this.isLoading = false;
-          }
-        );
+  pay(): void {
+    this.isLoading = true;
+    if (!this.isNameOnCard) return;
+
+    this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
+      HostedSessionPaymentType.CARD
+    );
+    const installments = this.getInstallments();
+    this.mastercardService.pay({ installments }).subscribe(
+      res => {
+        this.isPaymentCompleted = true;
+        this.isLoading = false;
+      },
+      error => {
+        this.isLoading = false;
       }
-    
-      private getInstallments(): string {
-        const installments = this.document.getElementById('installment-number') as HTMLInputElement;
-        if (installments) return installments.value || '0';
-    
-        return '0';
-      }
-    
-      cancel(): void {
-        this.mastercardService.isMastercardVisible = false;
-        this.mastercardService.hasSearched = false;
-      }
-    
-      // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE
-      private applyAntiClickJacking(): void {
-        const head = this.document.getElementsByTagName('head')[0];
-        const style = this.document.createElement('style');
-        style.id = 'antiClickjack';
-        style.innerHTML = `
+    );
+  }
+
+  private getInstallments(): string {
+    const installments = this.document.getElementById('installment-number') as HTMLInputElement;
+    if (installments) return installments.value || '0';
+
+    return '0';
+  }
+
+  cancel(): void {
+    this.mastercardService.isMastercardVisible = false;
+    this.mastercardService.hasSearched = false;
+  }
+
+  // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE
+  private applyAntiClickJacking(): void {
+    const head = this.document.getElementsByTagName('head')[0];
+    const style = this.document.createElement('style');
+    style.id = 'antiClickjack';
+    style.innerHTML = `
           body {
             display: none !important;
           }
         `;
-        head.appendChild(style);
-      }
-    
-      private removeAntiClickJacking(): void {
-        if (self === top) {
-          const antiClickjack = this.document.getElementById('antiClickjack');
-          antiClickjack.parentNode.removeChild(antiClickjack);
-        } else {
-          top.location = self.location;
-        }
-      }
+    head.appendChild(style);
+  }
+
+  private removeAntiClickJacking(): void {
+    if (self === top) {
+      const antiClickjack = this.document.getElementById('antiClickjack');
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  }
 
 }

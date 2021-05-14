@@ -21,7 +21,7 @@ import { CreateOrderComponent } from './create-order/create-order.component';
     PaymentWayCheckerComponent,
     SearchCreditCardComponent,
     SearchIbanComponent,
-    CreateOrderComponent,
+    CreateOrderComponent
   
   ],
   imports: [

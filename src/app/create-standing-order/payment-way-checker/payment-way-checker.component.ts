@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ModalComponent } from 'src/app/modal/modal.component';
 import { PaymentType } from 'src/app/models/payment-type';
 import { SearchPolicyResponse } from 'src/app/models/search-policy-response';
 import { DataService } from 'src/app/services/data.service';
@@ -18,35 +20,41 @@ export class PaymentWayCheckerComponent implements OnInit {
   paymentTypes$: Observable<PaymentType[]>;
   paymentType: string;
   policyResponseForm: FormGroup;
-  displayEndorsment:boolean = true;
-  dispalyFieldsOfPolicy:boolean = true;
-  isIbanValid:boolean =false;
+  displayEndorsment: boolean = true;
+  dispalyFieldsOfPolicy: boolean = true;
+  isIbanValid: boolean = false;
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
   ) {
     this.paymentTypes$ = this.createStandingService.getPaymentTypes()
 
   }
 
-  ibanvalid(event){
-    this.isIbanValid= event? true:false
+  ibanvalid(event) {
+    this.isIbanValid = event ? true : false
   }
 
 
   ngOnInit(): void {
- 
+
     this.buildisplayedFormGroup()
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
-      res ? this.fillPolicyResponseForm(res) :this.navigateBack()
-    this.displayEndorsment = this.policyResponseForm.get('endorsement').value? true : false
-    })
-  
+      res ? this.fillPolicyResponseForm(res) : this.navigateBack()
+      this.displayEndorsment = this.policyResponseForm.get('endorsement').value ? true : false
+    },
+      error => {
+
+        this.dialog.open(ModalComponent, { data: error });
+      }
+    )
+
   }
-navigateBack(){
-  this.router.navigate(['/home']);
-}
+  navigateBack() {
+    this.router.navigate(['/home']);
+  }
 
   fillPolicyResponseForm(res: SearchPolicyResponse) {
     for (let item in res) {
@@ -57,12 +65,12 @@ navigateBack(){
 
   private buildisplayedFormGroup(): void {
     this.policyResponseForm = this.formBuilder.group({
-      address: [{value: '', disabled: true}],
-      firstName: [{value: '', disabled: true}],
-      lastName: [{value: '', disabled: true}],
-      phone: [{value: '', disabled: true}],
-      policyNo: [{value: '', disabled: true}],
-      endorsement:[{value: '', disabled: true}]
+      address: [{ value: '', disabled: true }],
+      firstName: [{ value: '', disabled: true }],
+      lastName: [{ value: '', disabled: true }],
+      phone: [{ value: '', disabled: true }],
+      policyNo: [{ value: '', disabled: true }],
+      endorsement: [{ value: '', disabled: true }]
 
     })
   }
