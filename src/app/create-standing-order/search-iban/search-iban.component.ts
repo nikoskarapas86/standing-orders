@@ -40,9 +40,9 @@ export class SearchIbanComponent implements OnInit {
     ibanRequest.iban = this.ibanForm.get('iban').value.trim()
     this.createStandingService.ibanChecker(ibanRequest).subscribe(
       res => {
-       
+
         this.isValid = res.isValid
-        res.isValid? this.ibanValid() : this.ibanInvalid()
+        res.isValid ? this.ibanValid() : this.ibanInvalid()
       },
       error => {
         this.dialog.open(ModalComponent, { data: error });
@@ -56,7 +56,7 @@ export class SearchIbanComponent implements OnInit {
     this.ibanIsValid.emit(true);
   }
 
-  ibanInvalid(){
+  ibanInvalid() {
     this.dialog.open(ModalComponent, { data: "Δεν υπάρχει τραπεζικός λογαριασμός" });
   }
 

@@ -32,7 +32,7 @@ export class ModalComponent implements OnInit {
     const error = this.data.error;
     this.hasRedirectError = error 
     this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
-    this.buttonText = this.hasRedirectError ? 'signup.modal.confirmation' : 'signup.modal.ok';
+
   }
 
   getTermsContent(msg) {

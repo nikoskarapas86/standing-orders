@@ -25,7 +25,7 @@ export class CreateOrderComponent implements OnInit {
   ngOnInit(): void {
     this.creationalFormGroup()
     this.createStandingService.createOrderResponse$.subscribe((res: CreateOrderRersponse) => {
-     res? this.fillCreationalForm(res):this.router.navigate(['/home'])
+      res ? this.fillCreationalForm(res) : this.router.navigate(['/home'])
     })
   }
 
@@ -37,16 +37,16 @@ export class CreateOrderComponent implements OnInit {
   }
   creationalFormGroup() {
     this.creationalForm = this.formBuilder.group({
-      lineOfBusiness: [{value: '', disabled: true}],
-      policyNo: [{value: '', disabled: true}],
-      lastName: [{value: '', disabled: true}],
-      firstName: [{value: '', disabled: true}],
-      street: [{value: '', disabled: true}],
-      city: [{value: '', disabled: true}],
-      postalCode: [{value: '', disabled: true}],
-      phoneNumber: [{value: '', disabled: true}],
-      email: [{value: '', disabled: true}],
-      vatNumber: [{value: '', disabled: true}]
+      lineOfBusiness: [{ value: '', disabled: true }],
+      policyNo: [{ value: '', disabled: true }],
+      lastName: [{ value: '', disabled: true }],
+      firstName: [{ value: '', disabled: true }],
+      street: [{ value: '', disabled: true }],
+      city: [{ value: '', disabled: true }],
+      postalCode: [{ value: '', disabled: true }],
+      phoneNumber: [{ value: '', disabled: true }],
+      email: [{ value: '', disabled: true }],
+      vatNumber: [{ value: '', disabled: true }]
     })
   }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ModalComponent } from 'src/app/modal/modal.component';
 import { LineOfBusiness } from 'src/app/models/line-of-business';
 import { SearchPolicyRequest } from 'src/app/models/search-policy-request';
 import { SearchPolicyResponse } from 'src/app/models/search-policy-response';
@@ -26,6 +28,7 @@ export class SearchPolicyComponent implements OnInit {
     private createStandingService: CreateStandingService,
     public dataService: DataService,
     private router: Router,
+    public dialog: MatDialog,
     private readonly destroy$: DestroyService
   ) {
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
@@ -59,6 +62,7 @@ export class SearchPolicyComponent implements OnInit {
         },
         error => {
           console.log(error);
+          this.dialog.open(ModalComponent, { data: error });
         }
       );
   }
