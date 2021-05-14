@@ -17,7 +17,7 @@ import { SearchService } from '../services/search.service';
 })
 export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
-  linesOfBusiness$: Observable<LineOfBusiness[]>;
+  linesOfBusinesses$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
   searchId: string;
 
@@ -30,7 +30,7 @@ export class SearchStandingOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildFormGroup();
-    this.linesOfBusiness$ = this.dataService.searchLinesOfBusiness();
+    this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
     this.searchService.getIsDeleteCalled.subscribe(res => {
       if (res) {
         this.submit();

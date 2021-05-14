@@ -8,7 +8,8 @@
         <mat-form-field class="field-width">
           <mat-label>Κλάδος</mat-label>
           <mat-select formControlName="lineOfBusiness" matNativeControl>
-            <mat-option *ngFor="let item of linesOfBusinesses$ | async" [value]="item.lineOfBusiness" ngDefaultControl>
+            <mat-option *ngFor="let item of linesOfBusinesses$ | async"
+             [value]="item.lineOfBusiness" ngDefaultControl>
               {{ item.title }}
             </mat-option>
           </mat-select>
