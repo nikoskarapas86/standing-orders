@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ModalComponent } from '../modal/modal.component';
 import { LineOfBusiness } from '../models/line-of-business';
 import { SearchRequest } from '../models/search-request';
 import { SearchItem } from '../models/search-response';
@@ -25,6 +27,7 @@ export class SearchStandingOrderComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private searchService: SearchService,
+    public dialog: MatDialog,
     private readonly destroy$: DestroyService
   ) {}
 
@@ -89,7 +92,9 @@ export class SearchStandingOrderComponent implements OnInit {
           this.searchId = res.searchId;
           this.standingOrders = res.standingOrderDTOList;
         },
-        error => {}
+        error => {
+          this.dialog.open(ModalComponent, { data: error });
+        }
       );
   }
 

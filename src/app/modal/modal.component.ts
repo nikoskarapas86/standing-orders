@@ -15,34 +15,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   @ViewChild('modalContent', { read: ViewContainerRef })
-  modalDynamicContent: ViewContainerRef;
   message: string;
-  termsContent: boolean = false;
-  buttonText: string;
-  hasRedirectError: boolean;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalComponent>,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const error = this.data.error;
-    this.hasRedirectError = error && (error.errorCode === 'IU002' || error.errorCode === 'IU003');
-    this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
-    this.buttonText = this.hasRedirectError ? 'signup.modal.confirmation' : 'signup.modal.ok';
-  }
-
-  getTermsContent(msg) {
-    this.termsContent = true;
-    return msg;
+    this.message = error ? this.getMessagefromJSON(error.message) : 'Παρουσιάστηκε Σφάλμα';
   }
 
   getMessagefromJSON(message: string) {
     let msg = this.isJson(message)
-      ? JSON.parse(message).reduce((msg, item) => (msg += item.message.concat('  ')), ' ')
+      ? JSON.parse(message).reduce((msg, item) => (msg += item.message.concat('\n')), ' ')
       : message;
     return msg;
   }
@@ -58,14 +48,9 @@ export class ModalComponent implements OnInit {
 
   accept() {
     this.dialogRef.close(true);
-    if (this.hasRedirectError) this.router.navigateByUrl('signup/phone');
   }
 
   dismiss() {
     this.dialogRef.close(false);
   }
-
-  getActionNoTitle = () => ({
-    'action__no-title': !this.termsContent,
-  });
 }

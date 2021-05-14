@@ -17,10 +17,6 @@
   flex-direction: row;
   justify-content: space-between;
 
-  &__no-title {
-    justify-content: flex-end;
-  }
-
   &-row {
     display: flex;
     flex-direction: row;
@@ -30,6 +26,7 @@
       color: white;
     }
   }
+
   &__close-btn {
     cursor: pointer;
     border-style: none;
@@ -43,6 +40,7 @@
     background-color: inherit;
   }
 }
+
 .distance {
   margin-top: 20px;
   margin-bottom: 40px;
