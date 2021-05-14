@@ -47,3 +47,8 @@ button {
   text-align: unset;
   color: #000000de;
 }
+
+.action-row {
+  display: flex;
+  flex-direction: row;
+}

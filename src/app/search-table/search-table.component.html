@@ -10,12 +10,12 @@
             <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
             <div *ngIf="tableItem.columnDef === 'actions'">
               <div class="action-row" *ngIf="row.activeStandingOrder">
-                <div class="container-btn" (click)="edit(row)">
+                <div (click)="edit(row)">
                   <button class="btn">
                     <mat-icon>edit</mat-icon>
                   </button>
                 </div>
-                <div class="container-btn" (click)="delete(index, row)">
+                <div (click)="delete(index, row)">
                   <button class="btn">
                     <mat-icon>delete</mat-icon>
                   </button>
