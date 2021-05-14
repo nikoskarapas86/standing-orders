@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ModalComponent } from 'src/app/modal/modal.component';
 import { PaymentType } from 'src/app/models/payment-type';
 import { SearchPolicyResponse } from 'src/app/models/search-policy-response';
 import { DataService } from 'src/app/services/data.service';
@@ -24,14 +26,15 @@ export class PaymentWayCheckerComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
   ) {
     this.paymentTypes$ = this.createStandingService.getPaymentTypes()
 
   }
 
   ibanvalid(event){
-    this.isIbanValid= event? true:false
+    this.isIbanValid= event? true:false 
   }
 
 
@@ -41,7 +44,12 @@ export class PaymentWayCheckerComponent implements OnInit {
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
       res ? this.fillPolicyResponseForm(res) :this.navigateBack()
     this.displayEndorsment = this.policyResponseForm.get('endorsement').value? true : false
-    })
+    },
+    error => {
+      
+      this.dialog.open(ModalComponent, { data: error });
+    }
+    )
   
   }
 navigateBack(){

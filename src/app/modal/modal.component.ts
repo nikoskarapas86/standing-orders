@@ -30,7 +30,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     const error = this.data.error;
-    this.hasRedirectError = error && (error.errorCode === 'IU002' || error.errorCode === 'IU003');
+    this.hasRedirectError = error 
     this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
     this.buttonText = this.hasRedirectError ? 'signup.modal.confirmation' : 'signup.modal.ok';
   }
