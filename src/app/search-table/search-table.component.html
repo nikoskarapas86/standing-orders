@@ -30,9 +30,11 @@
       <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></mat-row>
     </mat-table>
     <mat-paginator
+      #paginator
       [pageSizeOptions]="[5, 10, 20]"
-      [pageSize]="10"
+      [pageSize]="pageSize"
       [length]="standingOrders.length"
+      [pageIndex]="currentPage"
       showFirstLastButtons
     ></mat-paginator>
   </div>

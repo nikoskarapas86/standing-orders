@@ -1,5 +1,6 @@
-import { AfterContentChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
@@ -14,6 +15,7 @@ import { ModalService } from '../services/modal.service';
   styleUrls: ['./search-table.component.scss'],
 })
 export class SearchTableComponent implements OnInit, AfterContentChecked {
+  @ViewChild('paginator') paginator: MatPaginator;
   @Input() standingOrders: SearchItem[];
   @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
@@ -37,6 +39,10 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
     { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
+  newStandingOrders: any;
+  pageSize = 10;
+  pageSizeOptions = [5, 10, 20];
+  currentPage = 0;
 
   constructor(
     private router: Router,
@@ -59,6 +65,12 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
         }))
       : [];
     this.dataSource = new MatTableDataSource(newStandingOrders);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    console.log('this.dataSource');
+    console.log(this.dataSource);
   }
 
   edit(element: SearchItem) {
