@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { takeUntil } from 'rxjs/operators';
+import { ModalComponent } from '../modal/modal.component';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 
@@ -17,7 +19,8 @@ export class IbanComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
-    private readonly destroy$: DestroyService
+    private readonly destroy$: DestroyService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +48,12 @@ export class IbanComponent implements OnInit {
     this.dataService
       .update(request)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(res => {});
+      .subscribe(
+        res => {},
+        error => {
+          this.dialog.open(ModalComponent, { data: error });
+        }
+      );
   }
 
   validate(): void {

@@ -1,0 +1,13 @@
+<div>
+  <div class="action" [ngClass]="getActionNoTitle()">
+    <span *ngIf="termsContent"><h3>Σφάλμα</h3></span>
+    <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
+  </div>
+  <mat-dialog-content>
+    <p class="distance">{{ message }}</p>
+  </mat-dialog-content>
+
+  <div class="action-row">
+    <button mat-raised-button (click)="accept()">ΟΚ</button>
+  </div>
+</div>

@@ -19,6 +19,7 @@ import { EditStandingOrderComponent } from './edit-standing-order/edit-standing-
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { IbanComponent } from './iban/iban.component';
 import { DeleteListComponent } from './delete-list/delete-list.component';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DeleteListComponent } from './delete-list/delete-list.component';
     CreditCardComponent,
     IbanComponent,
     DeleteListComponent,
+    ModalComponent,
   ],
   imports: [
     CommonModule,
