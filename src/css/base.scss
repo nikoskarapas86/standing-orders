@@ -1,5 +1,6 @@
 @import './variables.scss';
 @import './mixins.scss';
+@include _font-face('Roboto', '../assets/fonts/Roboto-Regular.ttf');
 
 html,
 body {
@@ -38,6 +39,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
