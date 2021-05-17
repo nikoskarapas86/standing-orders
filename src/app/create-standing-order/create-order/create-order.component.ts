@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ModalComponent } from 'src/app/modal/modal.component';
 import { CreateOrderRersponse } from 'src/app/models/create-order-response';
 import { SearchPolicyResponse } from 'src/app/models/search-policy-response';
 import { DataService } from 'src/app/services/data.service';
@@ -17,6 +19,7 @@ export class CreateOrderComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
+    public dialog: MatDialog,
     private router: Router,
     private createStandingService: CreateStandingService
 
@@ -30,7 +33,9 @@ export class CreateOrderComponent implements OnInit {
   }
 
   fillCreationalForm(res) {
+   
     this.standingOrderID = res.id
+    this.dialog.open(ModalComponent, { data: "Η πάγια με αριθμό  "+  this.standingOrderID +" δημιουργήθηκε επιτυχώς" });
     for (let item in res) {
       res[item] ? this.creationalForm.controls[item]?.setValue(res[item]) : this.creationalForm.controls[item]?.setValue(null);
     }
