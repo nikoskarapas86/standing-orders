@@ -49,3 +49,10 @@
   margin: $margin;
   padding: $padding;
 }
+
+@mixin _font-face($font-name, $path) {
+  @font-face {
+    font-family: $font-name;
+    src: url($path) format('truetype');
+  }
+}

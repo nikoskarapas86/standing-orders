@@ -1,3 +1,5 @@
+@import 'src/css/variables';
+
 mat-spinner {
   margin-top: 3px;
   margin-left: 3px;
@@ -26,4 +28,27 @@ button {
   color: #000000de;
   opacity: 0.6;
   cursor: pointer;
+}
+
+.mat-row:hover {
+  background: $row-hover;
+}
+
+.pointer-cell {
+  cursor: default;
+}
+
+.mat-header-cell {
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 13px !important;
+  letter-spacing: 0.09px;
+  line-height: unset;
+  text-align: unset;
+  color: #000000de;
+}
+
+.action-row {
+  display: flex;
+  flex-direction: row;
 }
