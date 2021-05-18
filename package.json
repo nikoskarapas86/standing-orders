@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --base-href /standingorders/ --deploy-url /standingorderspublic/ --aot --output-hashing=all",
+    "build": "ng build --base-href /standingOrders/ --deploy-url /standingOrderspublic/ --aot --output-hashing=all",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
