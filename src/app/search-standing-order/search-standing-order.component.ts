@@ -59,7 +59,6 @@ export class SearchStandingOrderComponent implements OnInit {
 
   submit(): void {
    
-    console.log('-==-=--=')
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
@@ -78,9 +77,7 @@ export class SearchStandingOrderComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
-          console.log('-==-=--=')
           this.searchId = res.searchId;
-          // this.standingOrders = res.standingOrderDTOList;
           this.dataService.setStandingOrdersSubject(res.standingOrderDTOList)
           this.standingOrders$ = this.dataService.standingOrders$
           console.log(this.standingOrders$)
@@ -92,7 +89,6 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   resetForm() {
-    console.log('-==-=--=')
     this.searchForm.reset();
   }
 }
