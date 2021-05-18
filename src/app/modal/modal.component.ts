@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     const error = this.data.error;
     this.hasRedirectError = error 
-    this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
+    this.message =  error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
 
   }
 
