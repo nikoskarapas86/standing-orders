@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div *ngIf="standingOrders && standingOrders.length">
+  <div >
     <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">

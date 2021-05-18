@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
+import { DataService } from '../services/data.service';
 import { EditService } from '../services/edit.service';
 import { ModalService } from '../services/modal.service';
 
@@ -14,9 +15,9 @@ import { ModalService } from '../services/modal.service';
   templateUrl: './search-table.component.html',
   styleUrls: ['./search-table.component.scss'],
 })
-export class SearchTableComponent implements OnInit, AfterContentChecked {
+export class SearchTableComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
-  @Input() standingOrders: SearchItem[];
+   standingOrders: SearchItem[] =[];
   @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
   tableItems: TableItem[] = [
@@ -48,34 +49,31 @@ export class SearchTableComponent implements OnInit, AfterContentChecked {
     private router: Router,
     private editService: EditService,
     private matDialog: MatDialog,
+    private dataService:DataService,
     private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
+    this.dataService.standingOrders$.subscribe(res=>{
+ 
+      const newStandingOrders= res.map(o => ({
+        ...o,
+        startDate: o.startDate.slice().reverse().join('/'),
+        endDate: o.endDate.slice().reverse().join('/'),
+        paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
+      }))
+      this.dataSource = new MatTableDataSource(newStandingOrders);
+    })
   }
 
-  ngAfterContentChecked(): void {
-    const newStandingOrders = this.standingOrders
-      ? this.standingOrders.map(o => ({
-          ...o,
-          startDate: o.startDate.slice().reverse().join('/'),
-          endDate: o.endDate.slice().reverse().join('/'),
-          paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
-        }))
-      : [];
-    this.dataSource = new MatTableDataSource(newStandingOrders);
-  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    console.log('this.dataSource');
-    console.log(this.dataSource);
   }
 
   edit(element: SearchItem) {
     this.editService.selectedStandingOrder = element;
-    console.log(element);
     this.router.navigate(['edit', element.id]);
   }
 
