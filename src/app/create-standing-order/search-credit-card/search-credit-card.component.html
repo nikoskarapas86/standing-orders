@@ -1,3 +1,8 @@
+<mat-card class="mat-card-outer">
+  <mat-card-header>
+      <div class="card-title">Επιλογή τρόπου πληρωμής με ΚΑΡΤΑ</div>
+  </mat-card-header>
+  
 <div class="container-card">
   <mat-card-content id="card-content">
     <form name="credit-card">
@@ -59,7 +64,10 @@
         <mat-divider class="divider-width"></mat-divider>
       </div>
       <div class="btn-container">
-        <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button>
+        <button mat-raised-button class="common-btn mt-1 flex-center"  (click)="back()"
+        type="button">
+         ΠΙΣΩ
+    </button>
         <button class="mt-1 flex-center" [disabled]="isPaymentCompleted || isLoading" mat-raised-button type="submit"
           (click)="isNextPushed ? pay() : next()">
           <ng-container *ngIf="!isLoading">
@@ -73,3 +81,4 @@
     </form>
   </mat-card-content>
 </div>
+</mat-card>

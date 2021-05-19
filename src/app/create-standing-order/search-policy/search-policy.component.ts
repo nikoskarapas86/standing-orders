@@ -47,7 +47,6 @@ export class SearchPolicyComponent implements OnInit {
   }
 
   searchSubmit() {
-    console.log(this.createForm.value);
     let searchPolicyRequest: SearchPolicyRequest = new SearchPolicyRequest();
     searchPolicyRequest.policyNo = this.createForm.value.policyNo;
     searchPolicyRequest.lineOfBusiness = this.createForm.value.lineOfBusiness;

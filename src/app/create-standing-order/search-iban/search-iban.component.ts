@@ -33,9 +33,12 @@ export class SearchIbanComponent implements OnInit {
     this.ibanFormGroup()
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => this.searchId = res.searchId)
   }
+  
+  back() {
+    this.router.navigate(['create/payment-way'])
+  }
 
   checkIban() {
-    console.log(this.ibanForm.get('iban').value)
     let ibanRequest: IbanRequest = new IbanRequest()
     ibanRequest.iban = this.ibanForm.get('iban').value.trim()
     this.createStandingService.ibanChecker(ibanRequest).subscribe(
