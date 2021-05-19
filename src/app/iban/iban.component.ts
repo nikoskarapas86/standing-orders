@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ModalComponent } from '../modal/modal.component';
 import { DataService } from '../services/data.service';
@@ -20,7 +21,8 @@ export class IbanComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private readonly destroy$: DestroyService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,5 +66,9 @@ export class IbanComponent implements OnInit {
       .subscribe(res => {
         this.isValid = res.isValid;
       });
+  }
+
+  cancel(): void {
+    this.router.navigate(['/search']);
   }
 }

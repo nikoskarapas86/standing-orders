@@ -3,12 +3,7 @@
     <div class="card-title">Επεξεργασία</div>
   </mat-card-header>
   <mat-card-content>
-    <form
-      (ngSubmit)="isValid ? submit() : validate()"
-      [formGroup]="form"
-      name="searchForm"
-      class="align-items-center"
-    >
+    <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="form" name="searchForm">
       <div class="row">
         <div class="container">
           <mat-form-field class="field-width">
@@ -22,7 +17,10 @@
           </mat-form-field>
         </div>
       </div>
-      <mat-dialog-actions class="submit-btn">
+      <mat-dialog-actions class="space-between">
+        <button mat-raised-button type="button" class="common-btn" (click)="cancel()">
+          Aκύρωση
+        </button>
         <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
           {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
         </button>
