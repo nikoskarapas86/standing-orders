@@ -20,6 +20,7 @@ import { CreditCardComponent } from './credit-card/credit-card.component';
 import { IbanComponent } from './iban/iban.component';
 import { DeleteListComponent } from './delete-list/delete-list.component';
 import { ModalComponent } from './modal/modal.component';
+import { HomeButtonComponent } from './home-button/home-button.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ModalComponent } from './modal/modal.component';
     IbanComponent,
     DeleteListComponent,
     ModalComponent,
+    HomeButtonComponent,
   ],
   imports: [
     CommonModule,
