@@ -69,4 +69,8 @@ export class SearchPolicyComponent implements OnInit {
   creationalSubmit() {
     console.log(this.createForm);
   }
+
+  resetForm(): void {
+    this.createForm.reset();
+  }
 }
