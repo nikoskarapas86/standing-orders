@@ -58,7 +58,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-   
+   this.dataService.setStandingOrdersSubject(undefined)
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
