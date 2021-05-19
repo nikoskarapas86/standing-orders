@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <form
-      (ngSubmit)="submit()"
+
       [formGroup]="searchForm"
       name="searchForm"
       style="justify-content: space-between; display: flex"
@@ -112,14 +112,15 @@
         <button mat-raised-button type="button" class="common-btn" (click)="resetForm()">
           Καθαρισμος
         </button>
-        <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Αναζήτηση</button>
+        <button mat-raised-button class="search-btn" id="searchBtn"  (click)="submit()" type="button">Αναζήτηση</button>
       </mat-dialog-actions>
     </form>
   </mat-card-content>
 </mat-card>
-<div class="justify-content-center">
-  <app-search-table
-    [standingOrders]="standingOrders"
+<!-- *ngIf="standingOrders$ | async" -->
+<div *ngIf="standingOrders$ | async"  class="justify-content-center">
+  <app-search-table 
+    
     [searchId]="searchId"
     class="w-90"
   ></app-search-table>

@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <div *ngIf="standingOrders && standingOrders.length">
+  <div >
     <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">
@@ -29,11 +29,13 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></mat-row>
     </mat-table>
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      [pageSize]="10"
-      [length]="standingOrders.length"
-      showFirstLastButtons
-    ></mat-paginator>
   </div>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    [pageSize]="pageSize"
+    [length]="standingOrders && standingOrders.length"
+    [pageIndex]="currentPage"
+    showFirstLastButtons
+  ></mat-paginator>
 </div>
