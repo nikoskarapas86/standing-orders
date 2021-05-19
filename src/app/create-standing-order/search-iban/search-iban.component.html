@@ -1,16 +1,29 @@
-<form [formGroup]="ibanForm" name="ibanForm">
-    <div class="row">
-        <div class="container" style="align-items: center">
-            <mat-form-field class="field-width">
-                <mat-label>IBAN </mat-label>
-                <input formControlName="iban" matInput />
-            </mat-form-field>
-        </div>
-        <mat-dialog-actions class="space-evenly">
-            <button mat-raised-button (click)="isValid? createOrder() : checkIban()" class="search-btn" id="searchBtn"
-                type="submit">
-                {{isValid? 'ΔΗΜΙΟΥΡΓΙΑ': 'ΕΛΕΓΧΟΣ' }}
-            </button>
-        </mat-dialog-actions>
-    </div>
-</form>
+<mat-card class="mat-card-outer">
+    <mat-card-header>
+        <div class="card-title">Επιλογή τρόπου πληρωμής με IBAN</div>
+    </mat-card-header>
+    <mat-card-content>
+
+        <form [formGroup]="ibanForm" name="ibanForm">
+            <div class="row">
+                <div class="container" style="align-items: center">
+                    <mat-form-field class="field-width">
+                        <mat-label>IBAN </mat-label>
+                        <input formControlName="iban" matInput />
+                    </mat-form-field>
+                </div>
+                <mat-dialog-actions class="space-evenly">
+                    <button mat-raised-button class="common-btn"  (click)="back()"
+                    type="button">
+                     ΠΙΣΩ
+                </button>
+
+                    <button mat-raised-button (click)="isValid? createOrder() : checkIban()" class="search-btn"
+                        id="searchBtn" type="submit">
+                        {{isValid? 'ΔΗΜΙΟΥΡΓΙΑ': 'ΕΛΕΓΧΟΣ' }}
+                    </button>
+                </mat-dialog-actions>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

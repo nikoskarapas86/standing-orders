@@ -75,7 +75,7 @@ export class PaymentWayCheckerComponent implements OnInit {
     })
   }
   paymentWayChoise(event) {
-    this.paymentType = event.value
+    event.value === 'BANK_ACCOUNT' ?this.router.navigate(['create/iban']) :this.router.navigate(['create/credit-card'])
     this.dispalyFieldsOfPolicy = false
   }
 

@@ -8,6 +8,7 @@ import { InitPaymentResponse } from 'src/app/models/init-payment-response';
 import { LabelInput } from 'src/app/models/label-input';
 import { MastercardService } from 'src/app/services/mastercard.service';
 import { WindowRefService } from 'src/app/services/window-ref.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-credit-card',
@@ -45,12 +46,12 @@ export class SearchCreditCardComponent implements OnInit {
   constructor(
     private mastercardService: MastercardService,
     @Inject(DOCUMENT) private document: Document,
+    private router: Router,
     private windowRefService: WindowRefService
   ) { }
 
   ngOnInit(): void {
     this.setYears();
-
     this.mastercard = this.mastercardService.initPaymentResponse;
     this.initMastercardSetUp();
   }
@@ -285,9 +286,10 @@ export class SearchCreditCardComponent implements OnInit {
     return '0';
   }
 
-  cancel(): void {
+  back(): void {
     this.mastercardService.isMastercardVisible = false;
     this.mastercardService.hasSearched = false;
+    this.router.navigate(['create/payment-way'])
   }
 
   // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE
