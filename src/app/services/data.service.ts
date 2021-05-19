@@ -26,6 +26,12 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
+private standingOrdersResponseSubject = new BehaviorSubject<any[]>(undefined);
+standingOrders$ : Observable<any[]> = this.standingOrdersResponseSubject.asObservable();
+setStandingOrdersSubject(response: any[]) {
+  this.standingOrdersResponseSubject.next(response);
+}
+
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
   searchPolicyResponse$: Observable<SearchPolicyResponse> = this.searchPolicyResponseSubject.asObservable();
   setSearchPolicySubject(response: SearchPolicyResponse) {

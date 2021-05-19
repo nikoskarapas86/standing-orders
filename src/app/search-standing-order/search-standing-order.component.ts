@@ -22,14 +22,14 @@ export class SearchStandingOrderComponent implements OnInit {
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
   searchId: string;
-
+  standingOrders$: Observable<any[]>
   constructor(
     private formBuilder: FormBuilder,
-    private dataService: DataService,
+    public dataService: DataService,
     private searchService: SearchService,
     public dialog: MatDialog,
     private readonly destroy$: DestroyService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.buildFormGroup();
@@ -58,19 +58,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-    // const request: SearchRequest = {
-    //   policyNo: 1389945,
-    //   lineOfBusiness: null,
-    //   paymentType: null,
-    //   paymentId: null,
-    //   bankAccount: null,
-    //   customerLastName: null,
-    //   agent: null,
-    //   startDate: null,
-    //   endDate: null,
-    //   endorsement: null,
-    // };
-
+   
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
@@ -90,7 +78,9 @@ export class SearchStandingOrderComponent implements OnInit {
       .subscribe(
         res => {
           this.searchId = res.searchId;
-          this.standingOrders = res.standingOrderDTOList;
+          this.dataService.setStandingOrdersSubject(res.standingOrderDTOList)
+          this.standingOrders$ = this.dataService.standingOrders$
+          console.log(this.standingOrders$)
         },
         error => {
           this.dialog.open(ModalComponent, { data: error });
