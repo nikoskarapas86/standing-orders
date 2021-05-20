@@ -62,7 +62,13 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
+    const tempStartDate = this.searchForm.get('payDateFrom').value;
+    const tempEndDate = this.searchForm.get('payDateTo').value;
+    const startDate = tempStartDate ? moment(tempStartDate).format('YYYY-MM-DD') : null;
+    const endDate = tempEndDate ? moment(tempEndDate).format('YYYY-MM-DD') : null;
+
     this.dataService.setStandingOrdersSubject(undefined);
+    console.log(this.searchForm.get('payDateFrom').value);
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
@@ -71,9 +77,8 @@ export class SearchStandingOrderComponent implements OnInit {
       bankAccount: this.searchForm.get('bankAccount').value,
       customerLastName: this.searchForm.get('customerLastName').value,
       agent: this.searchForm.get('agent').value,
-      startDate: moment(this.searchForm.get('payDateFrom').value).format('YYYY-MM-DD'),
-      endDate: moment(this.searchForm.get('payDateTo').value).format('YYYY-MM-DD'),
-
+      startDate,
+      endDate,
       endorsement: this.searchForm.get('endorsement').value,
     };
 
