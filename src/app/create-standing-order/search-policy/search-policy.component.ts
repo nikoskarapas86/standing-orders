@@ -60,7 +60,6 @@ export class SearchPolicyComponent implements OnInit {
           this.router.navigate(['/create/payment-way']);
         },
         error => {
-          console.log(error);
           this.dialog.open(ModalComponent, { data: error });
         }
       );
