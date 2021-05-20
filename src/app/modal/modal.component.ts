@@ -21,7 +21,6 @@ export class ModalComponent implements OnInit {
   message: string;
   termsContent: boolean = false;
   buttonText: string;
-  hasRedirectError: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalComponent>,
@@ -30,9 +29,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     const error = this.data.error;
-    this.hasRedirectError = error 
-    this.message =  error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
-
+    this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
   }
 
   getTermsContent(msg) {
