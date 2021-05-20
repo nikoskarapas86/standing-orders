@@ -24,6 +24,8 @@ export class SearchStandingOrderComponent implements OnInit {
   standingOrders: SearchItem[];
   searchId: string;
   standingOrders$: Observable<any[]>;
+  minDate = moment().subtract(3, 'months').toDate();
+
   constructor(
     private formBuilder: FormBuilder,
     public dataService: DataService,
@@ -41,6 +43,7 @@ export class SearchStandingOrderComponent implements OnInit {
         this.searchService.isDeleteCalled = false;
       }
     });
+    console.log(this.minDate);
   }
 
   private buildFormGroup(): void {
