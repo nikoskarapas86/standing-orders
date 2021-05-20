@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   redirectUrl: string;
   hide = true;
   loginForm: FormGroup;
+ 
   private subscriptions$: Subscription[] = [];
 
   constructor(
