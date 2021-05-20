@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -22,14 +23,14 @@ export class SearchStandingOrderComponent implements OnInit {
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
   searchId: string;
-  standingOrders$: Observable<any[]>
+  standingOrders$: Observable<any[]>;
   constructor(
     private formBuilder: FormBuilder,
     public dataService: DataService,
     private searchService: SearchService,
     public dialog: MatDialog,
     private readonly destroy$: DestroyService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
@@ -58,7 +59,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-   this.dataService.setStandingOrdersSubject(undefined)
+    this.dataService.setStandingOrdersSubject(undefined);
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
@@ -67,8 +68,9 @@ export class SearchStandingOrderComponent implements OnInit {
       bankAccount: this.searchForm.get('bankAccount').value,
       customerLastName: this.searchForm.get('customerLastName').value,
       agent: this.searchForm.get('agent').value,
-      startDate: this.searchForm.get('payDateFrom').value,
-      endDate: this.searchForm.get('payDateTo').value,
+      startDate: moment(this.searchForm.get('payDateFrom').value).format('YYYY-MM-DD'),
+      endDate: moment(this.searchForm.get('payDateTo').value).format('YYYY-MM-DD'),
+
       endorsement: this.searchForm.get('endorsement').value,
     };
 
@@ -78,9 +80,8 @@ export class SearchStandingOrderComponent implements OnInit {
       .subscribe(
         res => {
           this.searchId = res.searchId;
-          this.dataService.setStandingOrdersSubject(res.standingOrderDTOList)
-          this.standingOrders$ = this.dataService.standingOrders$
-          console.log(this.standingOrders$)
+          this.dataService.setStandingOrdersSubject(res.standingOrderDTOList);
+          this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {
           this.dialog.open(ModalComponent, { data: error });
