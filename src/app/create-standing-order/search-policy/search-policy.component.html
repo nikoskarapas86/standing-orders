@@ -16,7 +16,11 @@
         </mat-form-field>
         <mat-form-field class="policyField field-width">
           <mat-label>Αριθμός Συμβολαίου</mat-label>
-          <input formControlName="policyNo" type="number" min="0" matInput placeholder="Συμπληρώστε το policy number" />
+          <input formControlName="policyNo" 
+          onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
+          !(event.target.value.length == 0 && event.which == 48)"
+          maxlength="9"
+         matInput placeholder="Συμπληρώστε το policy number" />
         </mat-form-field>
         <mat-form-field class="field-width">
           <mat-label>Αίτηση</mat-label>
