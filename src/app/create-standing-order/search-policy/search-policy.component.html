@@ -22,7 +22,7 @@
           maxlength="9"
          matInput placeholder="Συμπληρώστε το policy number" />
         </mat-form-field>
-        <mat-form-field class="field-width">
+        <mat-form-field *ngIf ="createForm.get('lineOfBusiness').value =='LIFE'" class="field-width">
           <mat-label>Αίτηση</mat-label>
           <input formControlName="endorsement" type="number" matInput placeholder="Συμπληρώστε την αίτηση" />
         </mat-form-field>
