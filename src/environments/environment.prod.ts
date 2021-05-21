@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'backend',
+  baseUrl: 'http://a99jdev03/standingorders/backend',
 };
