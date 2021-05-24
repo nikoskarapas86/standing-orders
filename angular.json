@@ -48,8 +48,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "baseHref": "/standingOrders/",
-              "deployUrl": "/standingOrderspublic/",
+              "baseHref": "/standingorders/",
+              "deployUrl": "/standingorderspublic/",
               "budgets": [
                 {
                   "type": "initial",
