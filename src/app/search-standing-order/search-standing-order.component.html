@@ -1,94 +1,131 @@
-<mat-card class="mat-card-outer">
-  <mat-card-header>
-    <div class="card-title">Αναζήτηση</div>
-  </mat-card-header>
-  <mat-card-content>
-    <form
-      [formGroup]="searchForm"
-      name="searchForm"
-      style="justify-content: space-between; display: flex"
-    >
-      <div class="row">
-        <div class="container" style="align-items: center">
-          <mat-form-field class="field-width">
-            <mat-label>Κλάδος</mat-label>
-            <mat-select formControlName="lineOfBusiness" matNativeControl>
-              <mat-option *ngFor="let item of linesOfBusinesses$ | async" [value]="item.lineOfBusiness"
-                ngDefaultControl>
-                {{ item.title }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Επίθετο Πελάτη</mat-label>
-            <input formControlName="customerLastName" type="text" matInput placeholder="Συμπληρώστε το Επίθετο" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Αρ. Πάγιας Εντολής</mat-label>
-            <input formControlName="paymentId" type="text" matInput placeholder="Συμπληρώστε τον αρ. πάγιας εντολής" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Αρ. Αίτησης</mat-label>
-            <input formControlName="endorsement" type="string" matInput placeholder="Συμπληρώστε τον αρ. αίτησης" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width" fxLayout="column" appearance="fill">
-            <mat-label>Ημ/νία Εισαγωγής Από - Έως</mat-label>
-            <mat-date-range-input [rangePicker]="completedDateRange" [min]="minDate">
-              <input formControlName="payDateFrom" matStartDate placeholder="Από" />
-              <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
-            </mat-date-range-input>
-            <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
-            <mat-date-range-picker #completedDateRange></mat-date-range-picker>
-          </mat-form-field>
-        </div>
-        <div class="container" style="align-items: center">
-          <mat-form-field class="policyField field-width">
-            <mat-label>Αρ. Συμβολαίου</mat-label>
-            <input formControlName="policyNumber" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
-          !(event.target.value.length == 0 && event.which == 48)" maxlength="9" matInput
-              placeholder="Συμπληρώστε τον αρ. συμβολαίου" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Τραπεζικός Λογαριασμός</mat-label>
-            <input formControlName="bankAccount" type="number" matInput
-              placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Τύπος Πληρωμής</mat-label>
-            <input formControlName="paymentType" type="text" matInput placeholder="Συμπληρώστε τον τύπο πληρωμής" />
-          </mat-form-field>
-
-          <mat-form-field class="field-width">
-            <mat-label>Κωδικός Παραγωγού</mat-label>
-            <input formControlName="agent" type="string" matInput placeholder="Συμπληρώστε τον Κωδικό Παραγωγού" />
-          </mat-form-field>
-        </div>
+<form [formGroup]="searchForm" name="searchForm" id="searchCriteria">
+  <div class="form-row">
+    <div class="form-row-item">
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Κλάδος</mat-label>
+          <mat-select formControlName="lineOfBusiness" matNativeControl>
+            <mat-option
+              *ngFor="let item of linesOfBusinesses$ | async"
+              [value]="item.lineOfBusiness"
+              ngDefaultControl
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
 
-      <mat-dialog-actions class="space-evenly">
-        <button mat-raised-button type="button" class="common-btn" (click)="resetForm()">
-          Καθαρισμος
-        </button>
-        <button
-          mat-raised-button
-          class="search-btn"
-          id="searchBtn"
-          (click)="submit()"
-          type="button"
-        >
-          Αναζήτηση
-        </button>
-      </mat-dialog-actions>
-    </form>
-  </mat-card-content>
-</mat-card>
-<!-- *ngIf="standingOrders$ | async" -->
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Επίθετο Πελάτη</mat-label>
+          <input
+            formControlName="customerLastName"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε το Επίθετο"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Αρ. Πάγιας Εντολής</mat-label>
+          <input
+            formControlName="paymentId"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε τον αρ. πάγιας εντολής"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Αρ. Αίτησης</mat-label>
+          <input
+            formControlName="endorsement"
+            type="string"
+            matInput
+            placeholder="Συμπληρώστε τον αρ. αίτησης"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Ημ/νία Εισαγωγής Από - Έως</mat-label>
+          <mat-date-range-input [rangePicker]="completedDateRange" [min]="minDate">
+            <input formControlName="payDateFrom" matStartDate placeholder="Από" />
+            <input formControlName="payDateTo" matEndDate placeholder="Εώς" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
+          <mat-date-range-picker #completedDateRange></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Αρ. Συμβολαίου</mat-label>
+          <input
+            formControlName="policyNumber"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
+          !(event.target.value.length == 0 && event.which == 48)"
+            maxlength="9"
+            matInput
+            placeholder="Συμπληρώστε τον αρ. συμβολαίου"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Τραπεζικός Λογαριασμός</mat-label>
+          <input
+            formControlName="bankAccount"
+            type="number"
+            matInput
+            placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Τύπος Πληρωμής</mat-label>
+          <input
+            formControlName="paymentType"
+            type="text"
+            matInput
+            placeholder="Συμπληρώστε τον τύπο πληρωμής"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-field" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Κωδικός Παραγωγού</mat-label>
+          <input
+            formControlName="agent"
+            type="string"
+            matInput
+            placeholder="Συμπληρώστε τον Κωδικό Παραγωγού"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <mat-dialog-actions class="space-evenly">
+    <button mat-raised-button type="button" class="common-btn" (click)="resetForm()">
+      Καθαρισμος
+    </button>
+    <button mat-raised-button class="search-btn" id="searchBtn" (click)="submit()" type="button">
+      Αναζήτηση
+    </button>
+  </mat-dialog-actions>
+</form>
+
 <div *ngIf="standingOrders$ | async" class="justify-content-center">
   <app-search-table [searchId]="searchId" class="w-90"></app-search-table>
 </div>

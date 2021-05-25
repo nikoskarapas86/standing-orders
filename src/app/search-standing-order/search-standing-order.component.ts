@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,12 +12,13 @@ import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-search-standing-order',
   templateUrl: './search-standing-order.component.html',
   styleUrls: ['./search-standing-order.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [DestroyService],
 })
 export class SearchStandingOrderComponent implements OnInit {
