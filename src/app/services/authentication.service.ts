@@ -23,6 +23,7 @@ export class AuthenticationService {
 
   logout(): void {
     localStorage.removeItem('STANDING_ORDERS_TOKEN');
+    localStorage.removeItem("uname");
   }
 
   redirectUserToLogin(): void {
@@ -37,7 +38,7 @@ export class AuthenticationService {
   set username(name){
     localStorage.setItem('uname', name);
   }
-  
+
   get token(): string {
     return localStorage.getItem('STANDING_ORDERS_TOKEN');
   }
