@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -17,7 +17,7 @@ import { ModalService } from '../services/modal.service';
 })
 export class SearchTableComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
-   standingOrders: SearchItem[] =[];
+  standingOrders: SearchItem[] = [];
   @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
   tableItems: TableItem[] = [
@@ -30,13 +30,14 @@ export class SearchTableComponent implements OnInit {
       columnDef: 'lineOfBusiness',
       headerCellDef: 'Κλάδος',
     },
-    { columnDef: 'lastName', headerCellDef: 'Επίθετο Πελάτη' },
+    { columnDef: 'name', headerCellDef: 'Ονομ/μο Πελάτη' },
     { columnDef: 'paymentTypeLiteral', headerCellDef: 'Τύπος Πληρωμής' },
     { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λογαριασμός' },
     { columnDef: 'agent', headerCellDef: 'Κωδ. Παραγωγού' },
     { columnDef: 'startDate', headerCellDef: 'Ημ/νία Έναρξης' },
-    { columnDef: 'endDate', headerCellDef: 'Ημ/νία Τέλους' },
+    { columnDef: 'endDate', headerCellDef: 'Ημ/νία Λήξης' },
     { columnDef: 'endorsement', headerCellDef: 'Αίτηση' },
+    { columnDef: 'standingOrderStatus', headerCellDef: 'Κατάσταση' },
     { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
@@ -49,24 +50,23 @@ export class SearchTableComponent implements OnInit {
     private router: Router,
     private editService: EditService,
     private matDialog: MatDialog,
-    private dataService:DataService,
+    private dataService: DataService,
     private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
-    this.dataService.standingOrders$.subscribe(res=>{
- 
-      const newStandingOrders= res.map(o => ({
+    this.dataService.standingOrders$.subscribe(res => {
+      const newStandingOrders = res.map(o => ({
         ...o,
         startDate: o.startDate.slice().reverse().join('/'),
         endDate: o.endDate.slice().reverse().join('/'),
         paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
-      }))
+        name: `${o.firstName} ${o.lastName}`,
+      }));
       this.dataSource = new MatTableDataSource(newStandingOrders);
-    })
+    });
   }
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
