@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 import { ModalComponent } from '../modal/modal.component';
 import { LineOfBusiness } from '../models/line-of-business';
 import { SearchRequest } from '../models/search-request';
@@ -11,6 +12,7 @@ import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 
 @Component({
   selector: 'app-search-standing-order',
@@ -31,7 +33,8 @@ export class SearchStandingOrderComponent implements OnInit {
     public dataService: DataService,
     private searchService: SearchService,
     public dialog: MatDialog,
-    private readonly destroy$: DestroyService
+    private readonly destroy$: DestroyService,
+    private _adapter: DateAdapter<any>
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +46,7 @@ export class SearchStandingOrderComponent implements OnInit {
         this.searchService.isDeleteCalled = false;
       }
     });
-    console.log(this.minDate);
+    this._adapter.setLocale('el');
   }
 
   private buildFormGroup(): void {
