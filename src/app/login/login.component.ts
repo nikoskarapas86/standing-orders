@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.loading = false;
         if (result) {
           this.authenticationService.token = result.token;
+          this.authenticationService.username =result.username;
           this.navigateAfterSuccess();
         }
       },

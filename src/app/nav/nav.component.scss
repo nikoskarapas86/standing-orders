@@ -13,6 +13,16 @@ mat-toolbar {
   margin-bottom: 30px;
 }
 
+.user{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.item{
+  margin-right: 4px;
+    color: white;
+    margin-bottom: 2px;
+}
 a {
   color: $white-text-primary;
 }

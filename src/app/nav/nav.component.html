@@ -5,7 +5,8 @@
         <img (click)="navigateToHome()"  src="./assets/images/logo.png" />
       </div>
 
-      <div>
+      <div class="user">
+        <mat-icon class="item">  person</mat-icon> <span class="item">{{authenticationService.username}}</span>
         <button class="mat-icon-btn" (click)="logout()">
           <mat-icon>power_settings_new</mat-icon>
         </button>

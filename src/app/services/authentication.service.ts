@@ -29,6 +29,15 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
   }
 
+
+  get username():string{
+    return localStorage.getItem("uname")
+  }
+
+  set username(name){
+    localStorage.setItem('uname', name);
+  }
+  
   get token(): string {
     return localStorage.getItem('STANDING_ORDERS_TOKEN');
   }

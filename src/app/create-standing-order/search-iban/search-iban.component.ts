@@ -60,7 +60,7 @@ export class SearchIbanComponent implements OnInit {
   }
 
   ibanInvalid() {
-    this.dialog.open(ModalComponent, { data: "Δεν υπάρχει τραπεζικός λογαριασμός" });
+    this.dialog.open(ModalComponent, { data: "Ο  τραπεζικός λογαριασμός είναι λάθος" });
   }
 
   createOrder() {
