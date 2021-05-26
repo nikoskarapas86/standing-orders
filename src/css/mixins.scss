@@ -67,3 +67,9 @@
   background-color: $background-color !important;
   color: $color !important;
 }
+
+@mixin _font-init($font-name, $weight, $size) {
+  font-family: $font-name;
+  font-weight: $weight;
+  font-size: $size;
+}

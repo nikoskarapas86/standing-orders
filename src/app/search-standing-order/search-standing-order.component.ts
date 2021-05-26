@@ -13,6 +13,7 @@ import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
 import { DateAdapter } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-standing-order',
@@ -35,7 +36,8 @@ export class SearchStandingOrderComponent implements OnInit {
     private searchService: SearchService,
     public dialog: MatDialog,
     private readonly destroy$: DestroyService,
-    private _adapter: DateAdapter<any>
+    private _adapter: DateAdapter<any>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +105,9 @@ export class SearchStandingOrderComponent implements OnInit {
 
   resetForm() {
     this.searchForm.reset();
+  }
+
+  backHome(): void {
+    this.router.navigate(['/home']);
   }
 }
