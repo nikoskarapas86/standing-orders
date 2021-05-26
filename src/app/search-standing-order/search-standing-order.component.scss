@@ -25,225 +25,384 @@
 @import '/src/css/mixins.scss';
 // @import '/src/css/responsive-breakpoints.scss';
 
-#searchCriteria {
+// #search {
+//   .form-row {
+//     // .form-row-item .mat-form-field {
+//     //   margin-right:1rem;
+//     // }
+
+//     .form-row-item .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
+//       // @include font-size-tablet {
+//       //   font-size: 14px !important;
+//       // }
+
+//       // @include very-small-screen {
+//       //   font-size: 13px !important;
+//       // }
+//     }
+//   }
+
+//   .close-icon {
+//     mat-icon {
+//       font-size: 20px !important;
+//       margin-right: 8px;
+
+//       // @include font-size-tablet {
+//       //   margin-bottom: 6px;
+//       // }
+//     }
+//   }
+
+//   input::placeholder {
+//     // @include very-small-screen {
+//     // font-size: 13px !important;
+//     // }
+//   }
+
+//   .mat-select-trigger {
+//     @include _flex(row, center);
+//     // height: 48px;
+//     align-items: center;
+
+//     .mat-select-value {
+//       // height: 48px;
+//       max-width: unset;
+//     }
+//   }
+
+//   .mat-form-field-appearance-fill {
+//     .mat-form-field-flex {
+//       display: flex;
+//       flex-direction: row;
+//       height: 48px !important;
+//       padding: 0px 0px 0px 15px !important;
+//       align-items: flex-end;
+//     }
+
+//     .mat-select-arrow-wrapper {
+//       @include _container(48px, inherit);
+//       @include _flex(column, center);
+//       align-items: center;
+//       transform: unset !important;
+//     }
+//   }
+
+//   .mat-form-field-appearance-fill
+//     .mat-select-arrow-wrapper
+//     .mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float
+//     .mat-form-field-label,
+//   .mat-form-field-appearance-fill.mat-form-field-can-float
+//     .mat-input-server:focus
+//     + .mat-form-field-label-wrapper
+//     .mat-form-field-label {
+//     transform: translateY(-0.4em) scale(0.75) !important;
+//   }
+
+//   form {
+//     // display: flex;
+//     // flex-direction: column;
+//     // justify-content: center;
+//     @include _flex(column, center);
+//     width: 100%;
+
+//     .form-row {
+//       @include _flex(row, flex-start);
+
+//       .form-row-item {
+//         width: 80%;
+
+//         @include _flex(row, flex-start);
+//         margin-right: 20px;
+
+//         flex-wrap: wrap;
+
+//         .mat-form-field {
+//           @include _box(
+//             1px solid #0000001f,
+//             4px,
+//             unset,
+//             0 0 1rem 1rem,
+//             unset,
+//             0px 3px 6px #00000029
+//           );
+//           // @include mobile-only {
+//           //   @include _box(1px solid #0000001f, 4px, unset, 0 0 1rem 0, unset, 0px 3px 6px #00000029);
+//           // }
+
+//           // @include _display(inline-block, unset, left);
+//           @include _container(30%, 53px);
+//           // @include _font-init('Roboto', 400, inherit);
+//           @include _font-conf(0.15px, 1.125, left, inherit);
+//           min-height: unset;
+//           background-color: white;
+//           position: relative;
+//           padding: 1px;
+
+//           // @include tablet-landscape {
+//           //   width: 45%;
+//           // }
+
+//           // @include mobile-only {
+//           //   width: 100%;
+//           // }
+
+//           .mat-form-field-wrapper {
+//             padding-bottom: 0;
+//             height: inherit;
+
+//             .mat-form-field-underline {
+//               display: none;
+//             }
+
+//             .mat-form-field-infix {
+//               border-top: 0px;
+//               padding: 5px 0px 0px 0px;
+//               @include _flex(row, center);
+//               align-items: center;
+//               height: inherit;
+
+//               .mat-date-range-input .mat-date-range-input-container {
+//                 margin-top: 1.3rem;
+//               }
+
+//               .mat-date-range-input-inner {
+//                 margin: 0px;
+//               }
+
+//               .mat-form-field-label-wrapper {
+//                 top: 0;
+
+//                 label {
+//                   top: 1.65rem;
+//                 }
+//               }
+
+//               input {
+//                 // @include _display(block, bottom, inherit);
+//                 @include _box(none, none, 0, 0, unset, none);
+//                 outline: none;
+//                 margin-top: 0.5rem;
+//                 width: 100%;
+//                 max-width: 100%;
+
+//                 // @include tablet-landscape {
+//                 //   margin-top: 1rem;
+//                 // }
+//               }
+
+//               .mat-select {
+//                 padding-top: 10px;
+//                 padding-bottom: 6px;
+//               }
+//             }
+
+//             .mat-form-field-suffix {
+//               @include _flex(row, center);
+//               align-items: center;
+//             }
+//           }
+//         }
+
+//         .field-with-error .mat-form-field {
+//           width: 100%;
+//         }
+//         .mat-focused {
+//           border: 1px solid $blue-primary-light;
+//           box-shadow: 0px 0px 10px $blue-primary-light;
+
+//           .close-icon {
+//             color: $blue-primary-main;
+//           }
+//         }
+
+//         .has-date {
+//           button {
+//             width: 48px !important;
+//             height: 48px !important;
+//             font-size: 12px !important;
+//           }
+//         }
+//       }
+
+//       // TODO: add them with back button
+//       // .form-row-item:first-of-type {
+//       //   width: 10%;
+//       //   justify-content: flex-start;
+//       // }
+
+//       // .form-row-item:last-of-type {
+//       //   width: 10%;
+//       //   display: none;
+//       // }
+//     }
+
+//     .search-screen-btn {
+//       margin-right: 5px;
+//     }
+
+//     .button-row {
+//       @include _flex(row, center);
+//       margin: 1rem 0;
+
+//       button {
+//         margin: 0 0.5rem;
+//       }
+//     }
+//   }
+// }
+
+form {
+  @include _flex(column, center);
+  width: 100%;
+
   .form-row {
-    // .form-row-item .mat-form-field {
-    //   margin-right:1rem;
-    // }
+    @include _flex(row, flex-start);
 
-    .form-row-item .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
-      // @include font-size-tablet {
-      //   font-size: 14px !important;
-      // }
+    .form-row-item {
+      width: 80%;
 
-      // @include very-small-screen {
-      //   font-size: 13px !important;
-      // }
-    }
-  }
+      @include _flex(row, space-around);
+      margin-right: 20px;
 
-  .close-icon {
-    mat-icon {
-      font-size: 20px !important;
-      margin-right: 8px;
+      flex-wrap: wrap;
 
-      // @include font-size-tablet {
-      //   margin-bottom: 6px;
-      // }
-    }
-  }
+      .mat-form-field {
+        @include _box(1px solid #0000001f, 4px, unset, 0 0 1rem 1rem, unset, 0px 3px 6px #00000029);
+        // @include _container(30%, 53px);
+        @include _container(100%, 53px);
+        @include _font-conf(0.15px, 1.125, left, inherit);
+        min-height: unset;
+        background-color: white;
+        position: relative;
+        padding: 1px;
 
-  input::placeholder {
-    // @include very-small-screen {
-    // font-size: 13px !important;
-    // }
-  }
+        .mat-form-field-wrapper {
+          padding-bottom: 0;
+          height: inherit;
 
-  .mat-select-trigger {
-    @include _flex(row, center);
-    // height: 48px;
-    align-items: center;
+          .mat-form-field-underline {
+            display: none;
+          }
 
-    .mat-select-value {
-      // height: 48px;
-      max-width: unset;
-    }
-  }
-
-  .mat-form-field-appearance-fill {
-    .mat-form-field-flex {
-      display: flex;
-      flex-direction: row;
-      height: 48px !important;
-      padding: 0px 0px 0px 15px !important;
-      align-items: flex-end;
-    }
-
-    .mat-select-arrow-wrapper {
-      @include _container(48px, inherit);
-      @include _flex(column, center);
-      align-items: center;
-      transform: unset !important;
-    }
-  }
-
-  .mat-form-field-appearance-fill
-    .mat-select-arrow-wrapper
-    .mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float
-    .mat-form-field-label,
-  .mat-form-field-appearance-fill.mat-form-field-can-float
-    .mat-input-server:focus
-    + .mat-form-field-label-wrapper
-    .mat-form-field-label {
-    transform: translateY(-0.4em) scale(0.75) !important;
-  }
-
-  form {
-    @include _flex(column, center);
-    width: 100%;
-
-    .form-row {
-      @include _flex(row, flex-start);
-
-      .form-row-item {
-        width: 80%;
-
-        @include _flex(row, flex-start);
-        margin-right: 20px;
-
-        flex-wrap: wrap;
-
-        .mat-form-field {
-          @include _box(
-            1px solid #0000001f,
-            4px,
-            unset,
-            0 0 1rem 1rem,
-            unset,
-            0px 3px 6px #00000029
-          );
-          // @include mobile-only {
-          //   @include _box(1px solid #0000001f, 4px, unset, 0 0 1rem 0, unset, 0px 3px 6px #00000029);
-          // }
-
-          // @include _display(inline-block, unset, left);
-          @include _container(30%, 53px);
-          // @include _font-init('Roboto', 400, inherit);
-          @include _font-conf(0.15px, 1.125, left, inherit);
-          min-height: unset;
-          background-color: white;
-          position: relative;
-          padding: 1px;
-
-          // @include tablet-landscape {
-          //   width: 45%;
-          // }
-
-          // @include mobile-only {
-          //   width: 100%;
-          // }
-
-          .mat-form-field-wrapper {
-            padding-bottom: 0;
+          .mat-form-field-infix {
+            border-top: 0px;
+            padding: 5px 0px 0px 0px;
+            @include _flex(row, center);
+            align-items: center;
             height: inherit;
 
-            .mat-form-field-underline {
-              display: none;
+            .mat-date-range-input .mat-date-range-input-container {
+              margin-top: 1.3rem;
             }
 
-            .mat-form-field-infix {
-              border-top: 0px;
-              padding: 5px 0px 0px 0px;
-              @include _flex(row, center);
-              align-items: center;
-              height: inherit;
+            .mat-date-range-input-inner {
+              margin: 0px;
+            }
 
-              .mat-date-range-input .mat-date-range-input-container {
-                margin-top: 1.3rem;
-              }
+            .mat-form-field-label-wrapper {
+              top: 0;
 
-              .mat-date-range-input-inner {
-                margin: 0px;
-              }
-
-              .mat-form-field-label-wrapper {
-                top: 0;
-
-                label {
-                  top: 1.65rem;
-                }
-              }
-
-              input {
-                // @include _display(block, bottom, inherit);
-                @include _box(none, none, 0, 0, unset, none);
-                outline: none;
-                margin-top: 0.5rem;
-                width: 100%;
-                max-width: 100%;
-
-                // @include tablet-landscape {
-                //   margin-top: 1rem;
-                // }
-              }
-
-              .mat-select {
-                padding-top: 10px;
-                padding-bottom: 6px;
+              label {
+                top: 1.65rem;
               }
             }
 
-            .mat-form-field-suffix {
-              @include _flex(row, center);
-              align-items: center;
+            input {
+              @include _display(block, bottom, inherit);
+              @include _box(none, none, 0, 0, unset, none);
+              outline: none;
+              margin-top: 0.5rem;
+              width: 100%;
+              max-width: 100%;
+            }
+
+            .mat-select {
+              padding-top: 10px;
+              padding-bottom: 6px;
             }
           }
-        }
 
-        .field-with-error .mat-form-field {
-          width: 100%;
-        }
-        .mat-focused {
-          border: 1px solid $blue-primary-light;
-          box-shadow: 0px 0px 10px $blue-primary-light;
-
-          .close-icon {
-            color: $blue-primary-main;
-          }
-        }
-
-        .has-date {
-          button {
-            width: 48px !important;
-            height: 48px !important;
-            font-size: 12px !important;
+          .mat-form-field-suffix {
+            @include _flex(row, center);
+            align-items: center;
           }
         }
       }
 
-      // TODO: add them with back button
-      // .form-row-item:first-of-type {
-      //   width: 10%;
-      //   justify-content: flex-start;
-      // }
-
-      // .form-row-item:last-of-type {
-      //   width: 10%;
-      //   display: none;
-      // }
-    }
-
-    .search-screen-btn {
-      margin-right: 5px;
-    }
-
-    .button-row {
-      @include _flex(row, center);
-      margin: 1rem 0;
-
-      button {
-        margin: 0 0.5rem;
+      .field-with-error .mat-form-field {
+        width: 100%;
       }
+      .mat-focused {
+        border: 1px solid $blue-primary-light;
+        box-shadow: 0px 0px 10px $blue-primary-light;
+
+        .close-icon {
+          color: $blue-primary-main;
+        }
+      }
+
+      .has-date {
+        button {
+          width: 48px !important;
+          height: 48px !important;
+          font-size: 12px !important;
+        }
+      }
+    }
+
+    // TODO: add them with back button
+    .form-row-item:first-of-type {
+      width: 10%;
+      justify-content: flex-start;
+    }
+
+    .form-row-item:last-of-type {
+      width: 10%;
+      display: none;
     }
   }
+
+  .search-screen-btn {
+    margin-right: 5px;
+  }
+
+  .button-row {
+    @include _flex(row, center);
+    margin: 1rem 0;
+
+    button {
+      margin: 0 0.5rem;
+    }
+  }
+}
+
+.close-icon {
+  mat-icon {
+    font-size: 20px !important;
+    margin-right: 8px;
+
+    // @include font-size-tablet {
+    //   margin-bottom: 6px;
+    // }
+  }
+}
+
+// got from buttons.scss
+.close-icon {
+  @include _theme(transparent, $black-text-secondary);
+  @include _display(inline-block, middle, unset);
+  @include _box(1px solid transparent, 0, 5px 0 0, unset, unset, unset);
+  outline: 0;
+  cursor: pointer;
+}
+
+// got from buttons.scss
+.close-icon:after {
+  @include _container(15px, 15px);
+  @include _box(none, 50%, 2px, auto, unset, unset);
+  @include _display(block, unset, center);
+  z-index: 1;
+  color: $black-text-secondary;
+  font-size: 16px;
+  cursor: pointer;
 }

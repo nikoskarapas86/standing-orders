@@ -56,3 +56,14 @@
     src: url($path) format('truetype');
   }
 }
+
+@mixin _display($display, $vertical-align, $text-align) {
+  display: $display;
+  vertical-align: $vertical-align;
+  text-align: $text-align;
+}
+
+@mixin _theme($background-color, $color) {
+  background-color: $background-color !important;
+  color: $color !important;
+}
