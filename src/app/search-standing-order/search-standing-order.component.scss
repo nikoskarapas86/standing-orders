@@ -1,255 +1,5 @@
-// .field-width {
-//   box-sizing: border-box;
-//   max-width: 80%;
-// }
-
-// .date-field-width {
-//   max-width: 40%;
-// }
-
-// .row {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   width: 100%;
-// }
-
-// .column {
-//   display: flex;
-//   flex-direction: column;
-//   flex-basis: 100%;
-//   flex: 1;
-// }
-
 @import '/src/css/variables.scss';
 @import '/src/css/mixins.scss';
-// @import '/src/css/responsive-breakpoints.scss';
-
-// #search {
-//   .form-row {
-//     // .form-row-item .mat-form-field {
-//     //   margin-right:1rem;
-//     // }
-
-//     .form-row-item .mat-form-field .mat-form-field-wrapper .mat-form-field-infix {
-//       // @include font-size-tablet {
-//       //   font-size: 14px !important;
-//       // }
-
-//       // @include very-small-screen {
-//       //   font-size: 13px !important;
-//       // }
-//     }
-//   }
-
-//   .close-icon {
-//     mat-icon {
-//       font-size: 20px !important;
-//       margin-right: 8px;
-
-//       // @include font-size-tablet {
-//       //   margin-bottom: 6px;
-//       // }
-//     }
-//   }
-
-//   input::placeholder {
-//     // @include very-small-screen {
-//     // font-size: 13px !important;
-//     // }
-//   }
-
-//   .mat-select-trigger {
-//     @include _flex(row, center);
-//     // height: 48px;
-//     align-items: center;
-
-//     .mat-select-value {
-//       // height: 48px;
-//       max-width: unset;
-//     }
-//   }
-
-//   .mat-form-field-appearance-fill {
-//     .mat-form-field-flex {
-//       display: flex;
-//       flex-direction: row;
-//       height: 48px !important;
-//       padding: 0px 0px 0px 15px !important;
-//       align-items: flex-end;
-//     }
-
-//     .mat-select-arrow-wrapper {
-//       @include _container(48px, inherit);
-//       @include _flex(column, center);
-//       align-items: center;
-//       transform: unset !important;
-//     }
-//   }
-
-//   .mat-form-field-appearance-fill
-//     .mat-select-arrow-wrapper
-//     .mat-form-field-appearance-fill.mat-form-field-can-float.mat-form-field-should-float
-//     .mat-form-field-label,
-//   .mat-form-field-appearance-fill.mat-form-field-can-float
-//     .mat-input-server:focus
-//     + .mat-form-field-label-wrapper
-//     .mat-form-field-label {
-//     transform: translateY(-0.4em) scale(0.75) !important;
-//   }
-
-//   form {
-//     // display: flex;
-//     // flex-direction: column;
-//     // justify-content: center;
-//     @include _flex(column, center);
-//     width: 100%;
-
-//     .form-row {
-//       @include _flex(row, flex-start);
-
-//       .form-row-item {
-//         width: 80%;
-
-//         @include _flex(row, flex-start);
-//         margin-right: 20px;
-
-//         flex-wrap: wrap;
-
-//         .mat-form-field {
-//           @include _box(
-//             1px solid #0000001f,
-//             4px,
-//             unset,
-//             0 0 1rem 1rem,
-//             unset,
-//             0px 3px 6px #00000029
-//           );
-//           // @include mobile-only {
-//           //   @include _box(1px solid #0000001f, 4px, unset, 0 0 1rem 0, unset, 0px 3px 6px #00000029);
-//           // }
-
-//           // @include _display(inline-block, unset, left);
-//           @include _container(30%, 53px);
-//           // @include _font-init('Roboto', 400, inherit);
-//           @include _font-conf(0.15px, 1.125, left, inherit);
-//           min-height: unset;
-//           background-color: white;
-//           position: relative;
-//           padding: 1px;
-
-//           // @include tablet-landscape {
-//           //   width: 45%;
-//           // }
-
-//           // @include mobile-only {
-//           //   width: 100%;
-//           // }
-
-//           .mat-form-field-wrapper {
-//             padding-bottom: 0;
-//             height: inherit;
-
-//             .mat-form-field-underline {
-//               display: none;
-//             }
-
-//             .mat-form-field-infix {
-//               border-top: 0px;
-//               padding: 5px 0px 0px 0px;
-//               @include _flex(row, center);
-//               align-items: center;
-//               height: inherit;
-
-//               .mat-date-range-input .mat-date-range-input-container {
-//                 margin-top: 1.3rem;
-//               }
-
-//               .mat-date-range-input-inner {
-//                 margin: 0px;
-//               }
-
-//               .mat-form-field-label-wrapper {
-//                 top: 0;
-
-//                 label {
-//                   top: 1.65rem;
-//                 }
-//               }
-
-//               input {
-//                 // @include _display(block, bottom, inherit);
-//                 @include _box(none, none, 0, 0, unset, none);
-//                 outline: none;
-//                 margin-top: 0.5rem;
-//                 width: 100%;
-//                 max-width: 100%;
-
-//                 // @include tablet-landscape {
-//                 //   margin-top: 1rem;
-//                 // }
-//               }
-
-//               .mat-select {
-//                 padding-top: 10px;
-//                 padding-bottom: 6px;
-//               }
-//             }
-
-//             .mat-form-field-suffix {
-//               @include _flex(row, center);
-//               align-items: center;
-//             }
-//           }
-//         }
-
-//         .field-with-error .mat-form-field {
-//           width: 100%;
-//         }
-//         .mat-focused {
-//           border: 1px solid $blue-primary-light;
-//           box-shadow: 0px 0px 10px $blue-primary-light;
-
-//           .close-icon {
-//             color: $blue-primary-main;
-//           }
-//         }
-
-//         .has-date {
-//           button {
-//             width: 48px !important;
-//             height: 48px !important;
-//             font-size: 12px !important;
-//           }
-//         }
-//       }
-
-//       // TODO: add them with back button
-//       // .form-row-item:first-of-type {
-//       //   width: 10%;
-//       //   justify-content: flex-start;
-//       // }
-
-//       // .form-row-item:last-of-type {
-//       //   width: 10%;
-//       //   display: none;
-//       // }
-//     }
-
-//     .search-screen-btn {
-//       margin-right: 5px;
-//     }
-
-//     .button-row {
-//       @include _flex(row, center);
-//       margin: 1rem 0;
-
-//       button {
-//         margin: 0 0.5rem;
-//       }
-//     }
-//   }
-// }
 
 form {
   @include _flex(column, center);
@@ -261,7 +11,8 @@ form {
     .form-row-item {
       width: 80%;
 
-      @include _flex(row, space-around);
+      // @include _flex(row, space-around);
+      @include _flex(row, flex-start);
       margin-right: 20px;
 
       flex-wrap: wrap;
@@ -417,6 +168,7 @@ form {
     text-decoration: none;
     height: 20px;
     cursor: pointer;
+    margin-left: 3rem;
 
     span {
       margin-top: 3px;
@@ -426,4 +178,26 @@ form {
   a:hover {
     color: $black-text-secondary;
   }
+}
+
+.mat-form-field-appearance-fill {
+  .mat-form-field-flex {
+    display: flex;
+    flex-direction: row;
+    height: 48px !important;
+    padding: 0px 0px 0px 15px !important;
+    align-items: flex-end;
+    background-color: rgba(0, 0, 0, 0.04) !important;
+  }
+
+  .mat-select-arrow-wrapper {
+    @include _container(48px, inherit);
+    @include _flex(column, center);
+    align-items: center;
+    transform: unset !important;
+  }
+}
+
+.form-field {
+  margin-right: 10px;
 }
