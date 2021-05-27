@@ -1,3 +1,6 @@
+@import '/src/css/variables.scss';
+@import '/src/css/mixins.scss';
+
 button {
   border-radius: 5px;
 }
@@ -30,8 +33,6 @@ button {
   background-color: transparent;
   color: $blue-primary-main;
 }
-
-
 
 .search-btn {
   border: none;

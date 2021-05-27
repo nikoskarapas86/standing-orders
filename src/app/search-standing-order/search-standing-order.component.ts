@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,12 +12,14 @@ import { SearchItem } from '../models/search-response';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
-import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { DateAdapter } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-standing-order',
   templateUrl: './search-standing-order.component.html',
   styleUrls: ['./search-standing-order.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   providers: [DestroyService],
 })
 export class SearchStandingOrderComponent implements OnInit {
@@ -34,7 +36,8 @@ export class SearchStandingOrderComponent implements OnInit {
     private searchService: SearchService,
     public dialog: MatDialog,
     private readonly destroy$: DestroyService,
-    private _adapter: DateAdapter<any>
+    private _adapter: DateAdapter<any>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -102,5 +105,9 @@ export class SearchStandingOrderComponent implements OnInit {
 
   resetForm() {
     this.searchForm.reset();
+  }
+
+  backHome(): void {
+    this.router.navigate(['/home']);
   }
 }
