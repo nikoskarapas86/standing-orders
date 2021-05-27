@@ -1,66 +1,80 @@
 <form [formGroup]="searchForm" name="searchForm" id="searchCriteria">
-  
+  <div class="form-row">
+    <div class="form-row-item go-back">
+      <a (click)="backHome()">
+        <mat-icon>chevron_left</mat-icon>
+        <span>ΚΕΝΤΡΙΚΗ</span>
+      </a>
+    </div>
+    <div class="form-row-item">
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Κλάδος</mat-label>
+          <mat-select formControlName="lineOfBusiness" matNativeControl>
+            <mat-option
+              *ngFor="let item of linesOfBusinesses$ | async"
+              [value]="item.lineOfBusiness"
+              ngDefaultControl
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <div class="form-row">
-        <div class="form-row-item">
-          <mat-form-field fxLayout="row" appearance="fill">
-            <mat-label>Κλάδος</mat-label>
-            <mat-select formControlName="lineOfBusiness" matNativeControl>
-              <mat-option
-                *ngFor="let item of linesOfBusinesses$ | async"
-                [value]="item.lineOfBusiness"
-                ngDefaultControl
-              >
-                {{ item.title }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Επίθετο Πελάτη</mat-label>
+          <!-- placeholder="Συμπληρώστε το Επίθετο" -->
+          <input formControlName="customerLastName" type="text" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('customerLastName').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
 
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Αρ. Πάγιας Εντολής</mat-label>
+          <!-- placeholder="Συμπληρώστε τον αρ. πάγιας εντολής" -->
+          <input formControlName="paymentId" type="text" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('paymentId').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
 
-          <mat-form-field fxLayout="row" appearance="fill">
-            <mat-label>Επίθετο Πελάτη</mat-label>
-            <input
-              formControlName="customerLastName"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε το Επίθετο"
-              class="search-btn"
-            />
-          </mat-form-field>
-
-
-          <mat-form-field fxLayout="row" appearance="fill">
-            <mat-label>Αρ. Πάγιας Εντολής</mat-label>
-            <input
-              formControlName="paymentId"
-              type="text"
-              matInput
-              placeholder="Συμπληρώστε τον αρ. πάγιας εντολής"
-              class="search-btn"
-            />
-          </mat-form-field>
-
-
-          <mat-form-field fxLayout="row" appearance="fill">
-            <mat-label>Αρ. Αίτησης</mat-label>
-            <input
-              formControlName="endorsement"
-              type="string"
-              matInput
-              placeholder="Συμπληρώστε τον αρ. αίτησης"
-            />
-          </mat-form-field>
-        </div>
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Αρ. Αίτησης</mat-label>
+          <!-- placeholder="Συμπληρώστε τον αρ. αίτησης" -->
+          <input formControlName="endorsement" type="string" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('endorsement').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
       
 
      
 
 
-      
-      <div class="form-row">
-        <div class="form-row-item">
-      <div class="form-field" fxLayout="column">
+      <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Ημ/νία Εισαγωγής Από - Έως</mat-label>
           <mat-date-range-input [rangePicker]="completedDateRange" [min]="minDate">
@@ -72,7 +86,8 @@
         </mat-form-field>
       </div>
 
-      <div class="form-field" fxLayout="column">
+      <!-- placeholder="Συμπληρώστε τον αρ. συμβολαίου" -->
+      <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Συμβολαίου</mat-label>
           <input
@@ -81,51 +96,71 @@
           !(event.target.value.length == 0 && event.which == 48)"
             maxlength="9"
             matInput
-            placeholder="Συμπληρώστε τον αρ. συμβολαίου"
           />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('policyNumber').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
 
-      <div class="form-field" fxLayout="column">
+      <!-- placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό" -->
+      <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Τραπεζικός Λογαριασμός</mat-label>
-          <input
-            formControlName="bankAccount"
-            type="number"
-            matInput
-            placeholder="Συμπληρώστε τον τραπεζικό λογαριασμό"
-          />
+          <mat-label>Τρ. Λογαριασμός</mat-label>
+          <input formControlName="bankAccount" type="number" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('bankAccount').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
 
-      <div class="form-field" fxLayout="column">
+      <!-- placeholder="Συμπληρώστε τον τύπο πληρωμής" -->
+      <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τύπος Πληρωμής</mat-label>
-          <input
-            formControlName="paymentType"
-            type="text"
-            matInput
-            placeholder="Συμπληρώστε τον τύπο πληρωμής"
-          />
+          <input formControlName="paymentType" type="text" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('paymentType').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
 
-      <div class="form-field" fxLayout="column">
+      <!-- placeholder="Συμπληρώστε τον Κωδικό Παραγωγού" -->
+      <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Κωδικός Παραγωγού</mat-label>
-          <input
-            formControlName="agent"
-            type="string"
-            matInput
-            placeholder="Συμπληρώστε τον Κωδικό Παραγωγού"
-          />
+          <input formControlName="agent" type="string" matInput />
+          <button
+            class="close-icon"
+            type="button"
+            (click)="this.searchForm.get('agent').setValue('')"
+            tabindex="-1"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
     </div>
+    <div class="form-row-item"></div>
   </div>
 
-  <mat-dialog-actions class="space-evenly">
-    <button mat-raised-button type="button" class="common-btn" (click)="resetForm()">
+  <mat-dialog-actions class="center mt-20">
+    <button mat-raised-button type="button" class="common-btn mr-10" (click)="resetForm()">
       Καθαρισμος
     </button>
     <button mat-raised-button class="search-btn" id="searchBtn" (click)="submit()" type="button">
