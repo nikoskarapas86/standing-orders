@@ -1,4 +1,6 @@
 @import '/src/css/variables.scss';
+@import '/src/css/responsive-breakpoints.scss';
+
 .error-msg {
   margin-top: 9px;
   color: $warn-color;
