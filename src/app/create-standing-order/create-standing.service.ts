@@ -23,7 +23,10 @@ export class CreateStandingService {
   setCreateOrderSubject(response: CreateOrderRersponse) {
     this.createOrderRersponseSubject.next(response);
   }
-
+  
+  sendEmail(email:any,searchId:string){
+    return this.http.post(`${this.url}/int/sendEmail/${searchId}`,email)
+  }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
     return this.http.post<SearchPolicyResponse>(

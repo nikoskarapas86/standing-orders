@@ -2,8 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CreateOrderComponent } from "./create-order/create-order.component";
 import { CreateStandingOrderComponent } from "./create-standing-order.component";
+import { EmailComponent } from "./email/email.component";
 import { PaymentWayCheckerComponent } from "./payment-way-checker/payment-way-checker.component";
-import { SearchCreditCardComponent } from "./search-credit-card/search-credit-card.component";
 import { SearchIbanComponent } from "./search-iban/search-iban.component";
 import{SearchPolicyComponent} from "./search-policy/search-policy.component";
 
@@ -31,8 +31,8 @@ const routes: Routes = [
                 component: SearchIbanComponent,
               },
               {
-                path: 'credit-card',
-                component: SearchCreditCardComponent,
+                path: 'email',
+                component: EmailComponent,
               },
         ]}
 ];

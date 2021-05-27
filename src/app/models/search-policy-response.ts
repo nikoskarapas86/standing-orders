@@ -9,4 +9,6 @@ export class SearchPolicyResponse {
   newCollectionAgency: number;
   oldCollectionAgency: number;
   searchId:string;
+  email:string;
+
 }
