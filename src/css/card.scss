@@ -1,7 +1,15 @@
+
 mat-card.mat-card-outer {
   margin: auto;
   padding: 0px;
   width: 40%;
+  @include tablet-landscape {
+    width: 60%;
+  }
+
+  @include mobile-only {
+    width: 80%;
+  }
   border-radius: 9px;
   min-width: fit-content;
   mat-card-header.mat-card-header {

@@ -1,6 +1,6 @@
 @import 'src/css/mixins';
 @import 'src/css/variables';
-
+@import 'src/css/responsive-breakpoints.scss';
 /* todo IMPORTANT TO READ BEFORE WRITING CSS FOR THIS COMPONENT
 In order to avoid the usage of deprecated ng-deep to override angular material classes and keep on being able to
 upgrade to future angular versions, encapsulation has been removed for credit-card.component.ts. This means that

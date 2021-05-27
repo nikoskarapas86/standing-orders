@@ -1,3 +1,5 @@
+@import '/src/css/responsive-breakpoints.scss';
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -6,5 +8,11 @@
   .btn-container {
     width: 40%;
     min-width: 460px;
+    @include mobile-only {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      
+    }
   }
 }
