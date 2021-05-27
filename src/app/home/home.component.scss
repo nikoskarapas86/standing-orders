@@ -1,16 +1,14 @@
 @import '/src/css/variables.scss';
 @import '/src/css/mixins.scss';
-
+@import '/src/css/responsive-breakpoints.scss';
 .cards-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.wrapper {
-  @include _flex(row-reverse, center);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  @include home-page-cards-small-screens {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 .mat-card {
@@ -18,13 +16,33 @@
   max-width: fit-content;
   margin: 2% !important;
   border-radius: 4px !important;
+  @include mobile-only {
+    margin: 1% 0% 5% 0%;
+    max-width: none;
+  }
+ 
+  @include tablet-landscape {
+    width: 60% !important;
+      }
 
+  @include mobile-only {
+    width: 60% !important;
+  }
   .mat-card-content {
     @include _flex(column, unset);
+    align-items: center;
     padding: 1rem;
-
+    @include small-screen {
+      padding: 0.8rem;
+    }
     img {
       padding: 1rem 3rem 1rem 3rem;
+      @include small-screen {
+        padding: 0rem;
+      }
+      @include mobile-only {
+        padding: 0rem;
+      }
     }
 
     span {
@@ -33,10 +51,15 @@
       padding: 2rem 0 1rem 0;
       text-transform: uppercase;
       width: 300px;
-
+      @include small-screen {
+        font-size: 15px;
+      }
       .mat-icon {
         vertical-align: middle;
         transition: 0.2s ease-in;
+        @include small-screen {
+          padding-right: 0;
+        }
       }
     }
   }
@@ -53,4 +76,8 @@
 
 .bottom-distance {
   margin-bottom: 20px;
+
+  @include mobile-only {
+    margin-bottom: 0px;
+  }
 }
