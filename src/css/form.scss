@@ -1,3 +1,5 @@
+
+@import './responsive-breakpoints.scss';
 #date-input {
   width: 60%;
 }
@@ -17,6 +19,8 @@
   margin-right: 2%;
   flex: 1 1 46%;
   max-width: 46%;
+
+ 
 }
 
 mat-form-field.mat-form-field {
@@ -26,7 +30,9 @@ mat-form-field.mat-form-field {
   background-color: #ffffff;
   border-radius: 4px 4px 0px 0px;
   margin-bottom: 1rem;
-
+  @include mobile-only {
+    width: unset;
+  }
   &.mat-paginator-page-size-select {
     width: 56px;
   }
@@ -40,6 +46,8 @@ mat-form-field.mat-form-field {
 
   .mat-form-field {
     width: 267px;
+
+  
   }
 
   .mat-form-field:last-child {

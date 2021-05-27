@@ -1,0 +1,78 @@
+@mixin very-small-screen {
+    @media (max-width: 331px) {
+      @content;
+    }
+  }
+  
+  @mixin small-screen {
+    @media (max-width: 369px) {
+      @content;
+    }
+  }
+  
+  @mixin small-text {
+    @media (max-width: 440px) {
+      @content;
+    }
+  }
+  
+  @mixin mobile-only {
+    @media (max-width: 608px) {
+      @content;
+    }
+  }
+  
+  @mixin tablet-portrait {
+    @media (min-width: 608px) {
+      @content;
+    }
+  }
+  
+  @mixin tablet-landscape {
+    @media (max-width: 960px) {
+      @content;
+    }
+  }
+  
+  @mixin from-tablet-landscape {
+    @media (min-width: 960px) {
+      @content;
+    }
+  }
+  
+  @mixin medium-desktop {
+    @media (min-width: 1080px) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+  
+  @mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+      @content;
+    }
+  }
+  
+  @mixin font-size-tablet {
+    @media (min-width: 609px) and (max-width: 688px) {
+      @content;
+    }
+  }
+  
+  @mixin home-page-cards {
+    @media (min-width: 700px) and (max-width: 1080px) {
+      @content;
+    }
+  }
+  
+  @mixin home-page-cards-small-screens {
+    @media (max-width: 699px) {
+      @content;
+    }
+  }
+  

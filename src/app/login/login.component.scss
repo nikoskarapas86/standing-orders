@@ -1,4 +1,5 @@
 @import '/src/css/variables.scss';
+@import '/src/css/responsive-breakpoints.scss';
 .error-msg {
   margin-top: 9px;
   color: $warn-color;
@@ -57,6 +58,14 @@
 .form-bottom {
   padding: 25px;
   margin-top: 2rem;
+
+  @include tablet-landscape {
+    margin-top: 0;
+  }
+
+  @include mobile-only {
+    margin-top: 2rem;
+  }
 }
 
 .headlogin {
@@ -182,11 +191,27 @@
 
   .environment {
     display: flex;
+    @include tablet-landscape {
+      z-index: 9999;
+      margin: auto;
+      padding-left: 15rem;
+    }
   }
 
   .imglogonins {
     height: 4rem;
     padding: 0 50px;
+    @include tablet-landscape {
+      width: auto;
+      display: block;
+      margin: auto;
+      position: absolute;
+      z-index: 10;
+      right: 0;
+      left: 0;
+      top: 0;
+      height: 3rem;
+    }
   }
 }
 
