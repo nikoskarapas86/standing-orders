@@ -1,57 +1,65 @@
 <form [formGroup]="searchForm" name="searchForm" id="searchCriteria">
-  <div class="form-row">
-    <div class="form-row-item">
-      <div class="form-field" fxLayout="column">
-        <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Κλάδος</mat-label>
-          <mat-select formControlName="lineOfBusiness" matNativeControl>
-            <mat-option
-              *ngFor="let item of linesOfBusinesses$ | async"
-              [value]="item.lineOfBusiness"
-              ngDefaultControl
-            >
-              {{ item.title }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+  
 
-      <div class="form-field" fxLayout="column">
-        <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Επίθετο Πελάτη</mat-label>
-          <input
-            formControlName="customerLastName"
-            type="text"
-            matInput
-            placeholder="Συμπληρώστε το Επίθετο"
-          />
-        </mat-form-field>
-      </div>
+      <div class="form-row">
+        <div class="form-row-item">
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Κλάδος</mat-label>
+            <mat-select formControlName="lineOfBusiness" matNativeControl>
+              <mat-option
+                *ngFor="let item of linesOfBusinesses$ | async"
+                [value]="item.lineOfBusiness"
+                ngDefaultControl
+              >
+                {{ item.title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-      <div class="form-field" fxLayout="column">
-        <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Αρ. Πάγιας Εντολής</mat-label>
-          <input
-            formControlName="paymentId"
-            type="text"
-            matInput
-            placeholder="Συμπληρώστε τον αρ. πάγιας εντολής"
-          />
-        </mat-form-field>
-      </div>
 
-      <div class="form-field" fxLayout="column">
-        <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Αρ. Αίτησης</mat-label>
-          <input
-            formControlName="endorsement"
-            type="string"
-            matInput
-            placeholder="Συμπληρώστε τον αρ. αίτησης"
-          />
-        </mat-form-field>
-      </div>
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Επίθετο Πελάτη</mat-label>
+            <input
+              formControlName="customerLastName"
+              type="text"
+              matInput
+              placeholder="Συμπληρώστε το Επίθετο"
+              class="search-btn"
+            />
+          </mat-form-field>
 
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Αρ. Πάγιας Εντολής</mat-label>
+            <input
+              formControlName="paymentId"
+              type="text"
+              matInput
+              placeholder="Συμπληρώστε τον αρ. πάγιας εντολής"
+              class="search-btn"
+            />
+          </mat-form-field>
+
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Αρ. Αίτησης</mat-label>
+            <input
+              formControlName="endorsement"
+              type="string"
+              matInput
+              placeholder="Συμπληρώστε τον αρ. αίτησης"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      
+
+     
+
+
+      
+      <div class="form-row">
+        <div class="form-row-item">
       <div class="form-field" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Ημ/νία Εισαγωγής Από - Έως</mat-label>
