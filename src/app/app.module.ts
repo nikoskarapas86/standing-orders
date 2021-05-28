@@ -22,6 +22,7 @@ import { DeleteListComponent } from './delete-list/delete-list.component';
 import { ModalComponent } from './modal/modal.component';
 import { HomeButtonComponent } from './home-button/home-button.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
+import { RedirectLoaderComponent } from './redirect-loader/redirect-loader.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PolicyDetailsComponent } from './policy-details/policy-details.componen
     ModalComponent,
     HomeButtonComponent,
     PolicyDetailsComponent,
+    RedirectLoaderComponent,
   ],
   imports: [
     CommonModule,
