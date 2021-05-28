@@ -17,6 +17,7 @@ import { IbanUpdateRequest } from '../models/iban-update-request';
 import { DeleteReason } from '../models/delete-reason';
 import { ValidateRequest } from '../models/validate-request';
 import { ValidateResponse } from '../models/validate-response';
+import { PolicyResponse } from '../models/policy-response';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,8 @@ setStandingOrdersSubject(response: any[]) {
     return this.searchPolicyResponseSubject.getValue();
   }
 
+ 
+ 
   searchStandingOrder(searchRequest: SearchRequest): Observable<SearchResponse> {
     return this.http.post<SearchResponse>(`${this.url}/int/search/standingOrder`, searchRequest);
   }

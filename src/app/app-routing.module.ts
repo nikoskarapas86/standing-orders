@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditStandingOrderComponent } from './edit-standing-order/edit-standing-order.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'search',
     component: SearchStandingOrderComponent,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: 'policyDetails/:searchId',
+    component: PolicyDetailsComponent,
+ 
   },
   {
     path: 'create',
