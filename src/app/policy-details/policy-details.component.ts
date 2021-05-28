@@ -13,9 +13,14 @@ export class PolicyDetailsComponent implements OnInit {
 
    }
 
+
+
   ngOnInit(): void {
-    console.log(this.route.snapshot.params.searchId)
-   this.policyDetailService.getPolicyByEmail(this.route.snapshot.params.searchId).subscribe(res => console.log(res),error => console.log(error))
+   this.policyDetailService.getPolicyByEmail(this.route.snapshot.params.searchId).subscribe(
+     res => 
+     this.policyDetailService.setPolicySubject(res)
+     ,error => console.log(error)
+     )
   }
 
 }
