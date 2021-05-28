@@ -10,9 +10,11 @@ import { PolicyResponse } from '../models/policy-response';
   export class PolicyDetailService {
     private url = environment.baseUrl;
     private httpClient: HttpClient;
+
     constructor(handler: HttpBackend) {
         this.httpClient = new HttpClient(handler);
     }
+    
     getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
         return this.httpClient.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
       }

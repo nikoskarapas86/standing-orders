@@ -49,7 +49,13 @@ export class EmailComponent implements OnInit {
   sendEmail() {
     console.log(this.emailForm.get('email').value)
     console.log(this.searchId)
-  this.createStandingService.sendEmail({"email":this.emailForm.get('email').value},this.searchId).subscribe(res => console.log(res),error => console.log(error))
+  this.createStandingService.sendEmail({"email":this.emailForm.get('email').value},this.searchId).subscribe(
+    (res:any) => {
+      this.dialog.open(ModalComponent, { data: res.message });
+    }
+  ,error => {
+    this.dialog.open(ModalComponent, { data: error });
+  })
   }
 
   emailFormGroup() {
