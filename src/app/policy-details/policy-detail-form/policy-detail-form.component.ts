@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PolicyDetailService } from '../policy-details.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-policy-detail-form',
@@ -13,6 +14,7 @@ export class PolicyDetailFormComponent implements OnInit {
 
   constructor(
     private policyDetailService:PolicyDetailService,
+    private router: Router,
     private formBuilder: FormBuilder) {
       this.policyFormGroup()
      }
@@ -40,6 +42,6 @@ export class PolicyDetailFormComponent implements OnInit {
 
 
   next(){
-    
+    this.router.navigate(['/creditcard']);
   }
 }
