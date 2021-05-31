@@ -25,7 +25,6 @@
           </div>
         </div>
         <!-- TODO: remove logic from ts -->
-        <!-- 
         <div class="card-holder-name">
           <div class="card-holder-name-container">
             <label id="cardholder-name-label" class="label-focus"> Όνοματεπώνυμο Δικαιούχου </label>
@@ -40,7 +39,7 @@
               [disabled]="isLoading"
             />
           </div>
-        </div> -->
+        </div>
 
         <div class="expiry-date">
           <div class="expiry-month-container">
@@ -76,7 +75,7 @@
           </div>
         </div>
 
-        <div
+        <!-- <div
           *ngIf="hasInstallments && mastercard.installments?.length > 0"
           class="installment-number-container"
         >
@@ -90,14 +89,14 @@
             </select>
             <p class="form-input-helper-text select-hosted-field-date hidden"></p>
           </div>
-        </div>
+        </div> -->
 
         <div class="pt-40">
           <mat-divider class="divider-width"></mat-divider>
           <div class="amount-container">
             <div class="payment-amount">Ποσό Πληρωμής</div>
             <div class="amount-literal">
-              <span class="amount">{{ mastercard.amount }}</span>
+              <span class="amount">0.01</span>
               <span class="material-icons">euro_symbol</span>
             </div>
           </div>
@@ -105,15 +104,17 @@
         </div>
         <div class="btn-container">
           <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button>
+          <!-- (click)="isNextPushed ? initialPayment() : next()" -->
           <button
             class="mt-1 flex-center"
             [disabled]="isPaymentCompleted || isLoading"
             mat-raised-button
             type="submit"
-            (click)="isNextPushed ? pay() : next()"
+            (click)="initialPayment()"
           >
             <ng-container *ngIf="!isLoading">
-              {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }}
+              <!-- {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }} -->
+              ΠΛΗΡΩΜΗ
             </ng-container>
             <ng-container *ngIf="isLoading">
               <mat-spinner

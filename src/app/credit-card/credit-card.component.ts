@@ -10,11 +10,13 @@ import {
   HostedSessionStatus,
   MastercardEnum,
 } from './enum';
-import { InitPaymentResponse } from '../models/init-payment-response';
 import { Input } from '../models/input';
 import { LabelInput } from '../models/label-input';
 import { MastercardService } from '../services/mastercard.service';
 import { WindowRefService } from '../services/window-ref.service';
+import { CreateSessionResponse } from '../models/create-session-response';
+import { ActivatedRoute } from '@angular/router';
+import { TokenizeRequest } from '../models/tokenize-request';
 
 // const cache = {};
 
@@ -24,7 +26,7 @@ import { WindowRefService } from '../services/window-ref.service';
   styleUrls: ['./credit-card.component.scss'],
 })
 export class CreditCardComponent implements OnInit, OnDestroy {
-  mastercard: InitPaymentResponse;
+  mastercard: CreateSessionResponse;
   private paymentSession: Window;
   @Inject('windowObject') window: Window;
 
@@ -32,6 +34,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   private name: LabelInput = new LabelInput();
   private year: Input = new Input();
   private month: Input = new Input();
+  private searchId: string;
 
   private hostedFieldsSelectors = [
     HostedFieldsSelectors.NUMBER,
@@ -46,7 +49,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   isPaymentCompleted = false;
-  isNextPushed = false;
+  hasEnteredInitialPayment = false;
 
   hasInstallments: boolean;
 
@@ -57,14 +60,18 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   constructor(
     private mastercardService: MastercardService,
     @Inject(DOCUMENT) private document: Document,
-    private windowRefService: WindowRefService
+    private windowRefService: WindowRefService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.setYears();
+    this.searchId = this.route.snapshot.params.searchId;
 
-    this.mastercard = this.mastercardService.initPaymentResponse;
-    this.initMastercardSetUp();
+    this.mastercardService.createSession(this.searchId).subscribe(mastercard => {
+      this.mastercard = mastercard;
+      this.initMastercardSetUp();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -108,10 +115,12 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   private initMastercardSetUp(): void {
     if (this.mastercard) {
+      console.log('this.mastercard');
+      console.log(this.mastercard);
       const head = this.document.getElementsByTagName('head')[0];
       const script = this.document.createElement('script');
       script.id = 'mastercard-hosted-session';
-      script.src = `https://ibanke-commerce.nbg.gr/form/version/57/merchant/${this.mastercard.merchantId}/session.js`; // prod
+      script.src = `https://ibanke-commerce.nbg.gr/form/version/57/merchant/${this.mastercard.merchant}/session.js`; // prod
       script.type = 'text/javascript';
       head.appendChild(script);
       script.onload = () => this.configureHostedSession();
@@ -215,33 +224,91 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       : this.handleFieldsInErrorStatus(response);
   }
 
+  private getBrowser() {
+    const browsersMapping = {
+      Opera: 'Opera',
+      OPR: 'Opera',
+      Chrome: 'Chrome',
+      Safari: 'Safari',
+      Firefox: 'Firefox',
+      MSIE: 'IE',
+    };
+    const foundBrowser = Object.entries(browsersMapping).find(
+      b => navigator.userAgent.indexOf(b[0]) !== -1
+    );
+
+    if (foundBrowser) {
+      return foundBrowser[1];
+    }
+    if (!!this.document['documentMode']) {
+      return 'IE';
+    }
+    return 'unknown';
+  }
+
+  private getTokenizeRequest(): TokenizeRequest {
+    const d = new Date();
+    const timeZone = d.getTimezoneOffset();
+
+    return {
+      browser: this.getBrowser(),
+      browserDetails: {
+        '3DSecureChallengeWindowSize': 'FULL_SCREEN',
+        acceptHeaders: 'application/json',
+        colorDepth: screen.colorDepth,
+        // javaEnabled: navigator.javaEnabled(),
+        javaEnabled: true,
+        language: 'en-US',
+        screenHeight: screen.height,
+        screenWidth: screen.width,
+        timeZone,
+      },
+    };
+  }
+
   private handleOKStatus(response): void {
+    console.log('response');
+    console.log(response);
     this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
     this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
+    debugger;
 
-    if (this.hasInstallments === undefined && this.isNameOnCard && this.isNextPushed) {
+    // if (this.hasInstallments === undefined && this.isNameOnCard && this.isNextPushed) {
+    //   const cardNumber = response.sourceOfFunds.provided.card.number;
+    //   this.getHasInstallments(cardNumber);
+    // }
+
+    // if (this.isNameOnCard && this.isNextPushed) {
+    if (this.isNameOnCard && !this.hasEnteredInitialPayment) {
       const cardNumber = response.sourceOfFunds.provided.card.number;
-      this.getHasInstallments(cardNumber);
+      // this.getHasInstallments(cardNumber);
+
+      this.initialPayment();
+      const request = this.getTokenizeRequest();
+      this.mastercardService.tokenize(this.searchId, request).subscribe(res => {
+        console.log('res');
+        console.log(res);
+      });
     }
   }
 
-  private getHasInstallments = (cardNumber: string): void => {
-    this.isLoading = true;
-    const payments$ = this.mastercardService
-      .getHasInstallments({
-        cardNumber,
-      })
-      .subscribe(
-        ({ hasInstallments }) => {
-          this.hasInstallments = hasInstallments;
-          this.isLoading = false;
-        },
-        error => {
-          this.isLoading = false;
-        }
-      );
-    this.subscriptions$.push(payments$);
-  };
+  // private getHasInstallments = (cardNumber: string): void => {
+  //   this.isLoading = true;
+  //   const payments$ = this.mastercardService
+  //     .getHasInstallments({
+  //       cardNumber,
+  //     })
+  //     .subscribe(
+  //       ({ hasInstallments }) => {
+  //         this.hasInstallments = hasInstallments;
+  //         this.isLoading = false;
+  //       },
+  //       error => {
+  //         this.isLoading = false;
+  //       }
+  //     );
+  //   this.subscriptions$.push(payments$);
+  // };
 
   private handleFieldsInErrorStatus(response): void {
     this.cardNumber.input.style.borderColor = this.getBorderColor(response, 'cardNumber', 'NUMBER');
@@ -254,7 +321,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.name.input.style.borderColor = this.getBorderColor(response, 'name', 'NAME_ON_CARD');
 
     this.isPaymentCompleted = false;
-    this.isNextPushed = false;
+    // this.isNextPushed = false;
+    this.hasEnteredInitialPayment = false;
   }
 
   private getBorderColor = (response, formField: string, fieldId: string) =>
@@ -265,38 +333,45 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       : Colors.blackValid;
 
   next() {
-    this.isNextPushed = true;
+    // this.isNextPushed = true;
     // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
     );
   }
 
-  pay(): void {
+  initialPayment(): void {
+    debugger;
+    this.hasEnteredInitialPayment = true;
     this.isLoading = true;
-    if (!this.isNameOnCard) return;
+    // TODO: fix name
+    // if (!this.isNameOnCard) return;
 
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
     );
-    const installments = this.getInstallments();
-    this.mastercardService.pay({ installments }).subscribe(
+    // const installments = this.getInstallments();
+    this.mastercardService.initialPayment(this.searchId).subscribe(
       res => {
+        console.log('res in initialPayment');
+        console.log(res);
+        // this.isPayPushed = false;
         this.isPaymentCompleted = true;
         this.isLoading = false;
       },
       error => {
+        // this.isPayPushed = false;
         this.isLoading = false;
       }
     );
   }
 
-  private getInstallments(): string {
-    const installments = this.document.getElementById('installment-number') as HTMLInputElement;
-    if (installments) return installments.value || '0';
+  // private getInstallments(): string {
+  //   const installments = this.document.getElementById('installment-number') as HTMLInputElement;
+  //   if (installments) return installments.value || '0';
 
-    return '0';
-  }
+  //   return '0';
+  // }
 
   cancel(): void {
     this.mastercardService.isMastercardVisible = false;
