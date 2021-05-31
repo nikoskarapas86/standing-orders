@@ -18,15 +18,15 @@
     <div class="p-button">
       <p>
         {{
-          spinnerStatus === 'inProgress'
-            ? 'In progress'
+          spinnerStatus === 'inRedirect'
+            ? 'Ανακατεύθυνση σε εξέλιξη...'
             : spinnerStatus === 'warning'
-            ? 'Warning'
+            ? 'Κάτι δεν πήγε καλά. Παρακαλώ ξαναπροσπαθήστε'
             : tokenExpired
         }}
       </p>
       <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
-        {{ 'progress.tryAgain' | translate }}
+        ΠΡΟΣΠΑΘΗΣΤΕ ΞΑΝΑ
       </button>
     </div>
   </div>

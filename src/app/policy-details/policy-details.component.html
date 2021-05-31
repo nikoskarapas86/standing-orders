@@ -1,2 +1,2 @@
-
-<app-policy-detail-form ></app-policy-detail-form>
+<app-policy-detail-form *ngIf="!isPolicyLoading"></app-policy-detail-form>
+<app-redirect-loader *ngIf="isPolicyLoading"></app-redirect-loader>
