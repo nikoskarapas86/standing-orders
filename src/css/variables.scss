@@ -16,6 +16,7 @@ $primary-color: #024a86;
 $warn-color: #e30303;
 $accent-color: #919392;
 $black-color: #000000de;
+$background-active: $primary-color;
 
 /* fonts & character styles */
 $font-family: 'Lato', sans-serif;
@@ -24,6 +25,10 @@ $font-lato-regular-medium: #00000099;
 $font-lato-regular-white-large: #ffffffde;
 $font-lato-bold: #ffffff;
 $font-lato-bold-large: $black-color;
+
+$background-mat-menu-panel: $font-lato-bold 0 0 no-repeat padding-box;
+$box-shadow-color: #00000029;
+$box-shadow: 0px 3px 6px $box-shadow-color;
 
 $regular: normal;
 $bold: bold;
@@ -39,3 +44,11 @@ $regular: normal;
 $medium: 500;
 $bold: bold;
 $black: 900;
+
+$radius-5: 5px;
+$radius-4: 4px;
+
+/* spinner colors */
+$in-progress-color: #f5f7fb;
+$success-color: #1fd156;
+$warning-color: #d1711f;

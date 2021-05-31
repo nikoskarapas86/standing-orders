@@ -1,0 +1,33 @@
+<div class="mask-spinner-loader">
+  <div class="mask-spinner-container">
+    <div class="spinner-exclamation">
+      <mat-spinner
+        [ngClass]="'mat-spinner-' + spinnerStatus"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        [mode]="spinnerMode"
+        value="100"
+      ></mat-spinner>
+      <div [ngClass]="spinnerStatusContent">
+        <div class="first-line"></div>
+        <div class="second-line"></div>
+      </div>
+    </div>
+  </div>
+  <div class="mask-p">
+    <div class="p-button">
+      <p>
+        {{
+          spinnerStatus === 'inRedirect'
+            ? 'Ανακατεύθυνση σε εξέλιξη...'
+            : spinnerStatus === 'warning'
+            ? 'Κάτι δεν πήγε καλά. Παρακαλώ ξαναπροσπαθήστε'
+            : tokenExpired
+        }}
+      </p>
+      <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
+        ΠΡΟΣΠΑΘΗΣΤΕ ΞΑΝΑ
+      </button>
+    </div>
+  </div>
+</div>

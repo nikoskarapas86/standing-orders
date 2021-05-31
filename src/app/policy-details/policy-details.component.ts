@@ -5,22 +5,26 @@ import { PolicyDetailService } from './policy-details.service';
 @Component({
   selector: 'app-policy-details',
   templateUrl: './policy-details.component.html',
-  styleUrls: ['./policy-details.component.scss']
+  styleUrls: ['./policy-details.component.scss'],
 })
 export class PolicyDetailsComponent implements OnInit {
+  isPolicyLoading = true;
 
-  constructor(private route: ActivatedRoute,private policyDetailService:PolicyDetailService) {
-
-   }
+  constructor(private route: ActivatedRoute, private policyDetailService: PolicyDetailService) {}
 
 
 
   ngOnInit(): void {
-   this.policyDetailService.getPolicyByEmail(this.route.snapshot.params.searchId).subscribe(
-     res => 
-     this.policyDetailService.setPolicySubject(res)
-     ,error => console.log(error)
-     )
+    console.log(this.route.snapshot.params.searchId);
+    this.policyDetailService.getPolicyByEmail(this.route.snapshot.params.searchId).subscribe(
+      res => {
+        this.policyDetailService.isFailedSubject.next(false);
+        this.policyDetailService.setPolicySubject(res)
+        this.isPolicyLoading = false;
+      },
+      error => {
+        this.policyDetailService.isFailedSubject.next(true);
+      }
+    );
   }
-
 }

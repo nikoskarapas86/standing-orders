@@ -22,6 +22,7 @@ import { DeleteListComponent } from './delete-list/delete-list.component';
 import { ModalComponent } from './modal/modal.component';
 import { HomeButtonComponent } from './home-button/home-button.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
+import { RedirectLoaderComponent } from './redirect-loader/redirect-loader.component';
 import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/policy-detail-form.component';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/p
     ModalComponent,
     HomeButtonComponent,
     PolicyDetailsComponent,
+    RedirectLoaderComponent,
     PolicyDetailFormComponent,
   ],
   imports: [

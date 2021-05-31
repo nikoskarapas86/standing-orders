@@ -1,0 +1,62 @@
+@import '/src/css/mixins.scss';
+@import 'src/css/variables.scss';
+
+.mat-spinner-warning {
+  @include spinner-at-center();
+}
+
+.mask-spinner-loader {
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: $primary-color;
+  .mask-spinner-container,
+  .mask-p {
+    text-align: center;
+    height: 50%;
+    width: 100%;
+    min-width: 220px;
+    min-height: 220px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .mask-p {
+    .p-button {
+      align-self: initial;
+      width: 100%;
+      height: 100%;
+    }
+    button {
+      width: 188px;
+      height: 48px;
+      border: 1px solid white;
+      @include mat-button();
+    }
+  }
+  .mask-spinner-container {
+    .spinner-exclamation {
+      align-self: center;
+      position: relative;
+    }
+    // @include viewport-mobile-tablet {
+    //   height: 270px;
+    // }
+  }
+  p {
+    @include font-lato-light();
+    margin-bottom: 30px;
+    // @include viewport-mobile-tablet {
+    //   font-size: 20px;
+    // }
+  }
+}
+
+@include common-layout-styling();
+
+@include exclamation-mark();
+.warningContent {
+  @include spinner-at-center();
+}
