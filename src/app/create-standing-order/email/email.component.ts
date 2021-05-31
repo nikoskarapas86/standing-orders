@@ -15,6 +15,15 @@ import { CreateStandingService } from '../create-standing.service';
 export class EmailComponent implements OnInit {
   emailForm: FormGroup
   searchId: string
+  _isEmailDisabled: boolean = false;
+
+  set isEmailDisabled(val: boolean) {
+    this._isEmailDisabled = val
+  }
+
+  get isEmailDisabled() {
+    return this._isEmailDisabled;
+  }
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private dataService: DataService,
@@ -27,8 +36,6 @@ export class EmailComponent implements OnInit {
 
     this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => {
       if (!res) this.navigateBack()
-      console.log(res)
-      console.log(this.emailForm.controls)
       this.emailForm.controls['email'].setValue(res.email)
       this.searchId = res.searchId
     },
@@ -45,15 +52,21 @@ export class EmailComponent implements OnInit {
   }
 
   sendEmail() {
-    console.log(this.emailForm.get('email').value)
-    console.log(this.searchId)
+    this.isEmailDisabled = true;
     this.createStandingService.sendEmail({ "email": this.emailForm.get('email').value }, this.searchId).subscribe(
       (res: any) => {
-        this.dialog.open(ModalComponent, { data: res.message });
-      }
-      , error => {
+        this.dialog.open(ModalComponent, { data: res.message }).afterClosed().subscribe(() => {
+          this.router.navigate(['/home'])
+       
+        });
+      },
+      error => {
         this.dialog.open(ModalComponent, { data: error });
-      })
+        this.isEmailDisabled = false;
+      }
+    
+      
+    )
   }
 
   emailFormGroup() {

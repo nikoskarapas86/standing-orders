@@ -15,7 +15,7 @@
                     ΠΙΣΩ
                 </button>
 
-                <button mat-raised-button (click)="sendEmail()" class="search-btn"
+                <button mat-raised-button (click)="sendEmail()" [disabled]="isEmailDisabled" class="search-btn"
                     id="searchBtn" type="submit">
                 Αποστολή
                 </button>
