@@ -55,11 +55,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     credentials.username = this.loginForm.get('username').value;
     credentials.password = this.loginForm.get('password').value;
     const login$ = this.authenticationService.login(credentials).subscribe(
-      result => {
+      (result:any) => {
         this.loading = false;
         if (result) {
           this.authenticationService.token = result.token;
-          this.authenticationService.username =result.username;
+          this.authenticationService.username =result.fullName;
           this.navigateAfterSuccess();
         }
       },

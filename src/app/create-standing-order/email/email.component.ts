@@ -56,16 +56,13 @@ export class EmailComponent implements OnInit {
     this.createStandingService.sendEmail({ "email": this.emailForm.get('email').value }, this.searchId).subscribe(
       (res: any) => {
         this.dialog.open(ModalComponent, { data: res.message }).afterClosed().subscribe(() => {
-          this.router.navigate(['/home'])
-       
+          this.router.navigate(['/home'])  
         });
       },
       error => {
         this.dialog.open(ModalComponent, { data: error });
         this.isEmailDisabled = false;
-      }
-    
-      
+      } 
     )
   }
 
