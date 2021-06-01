@@ -91,6 +91,20 @@
           </div>
         </div> -->
 
+        <div class="security-code-container">
+          <label id="security-code-label" class="label-focus"> CVV </label>
+          <input
+            id="security-code"
+            type="text"
+            title="security code"
+            class="label-placeholder"
+            aria-label="three digit CCV security code"
+            placeholder="CVV"
+            readonly
+            [disabled]="isLoading"
+          />
+        </div>
+
         <div class="pt-40">
           <mat-divider class="divider-width"></mat-divider>
           <div class="amount-container">
@@ -103,14 +117,15 @@
           <mat-divider class="divider-width"></mat-divider>
         </div>
         <div class="btn-container">
-          <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button>
-          <!-- (click)="isNextPushed ? initialPayment() : next()" -->
+          <!-- <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button> -->
+          <button mat-raised-button type="button" class="mt-1">ΑΚΥΡΩΣΗ</button>
+          <!-- (click)="initialPayment()" -->
           <button
             class="mt-1 flex-center"
             [disabled]="isPaymentCompleted || isLoading"
             mat-raised-button
             type="submit"
-            (click)="initialPayment()"
+            (click)="tokenize()"
           >
             <ng-container *ngIf="!isLoading">
               <!-- {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }} -->
