@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateSessionResponse } from '../models/create-session-response';
+import { InitialPaymentResponse } from '../models/initial-payment-response';
 import { PayRequest } from '../models/pay-request';
 import { PayResponse } from '../models/pay-response';
 import { TokenizeRequest } from '../models/tokenize-request';
@@ -29,8 +30,8 @@ export class MastercardService {
     return this.httpClient.post<TokenizeResponse>(`${this.url}/int/tokenize/${searchId}`, request);
   }
 
-  initialPayment(searchId: string): Observable<CreateSessionResponse> {
-    return this.httpClient.post<CreateSessionResponse>(
+  initialPayment(searchId: string): Observable<InitialPaymentResponse> {
+    return this.httpClient.post<InitialPaymentResponse>(
       `${this.url}/int/initialPayment/${searchId}`,
       null
     );

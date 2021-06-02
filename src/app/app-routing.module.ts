@@ -38,6 +38,10 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuardService],
   },
+  {
+    path: 'complete',
+    loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule),
+  },
 
   { path: 'edit/:id', component: EditStandingOrderComponent, canActivate: [AuthGuardService] },
   { path: 'loader', component: RedirectLoaderComponent },

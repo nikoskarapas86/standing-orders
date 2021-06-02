@@ -338,7 +338,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     debugger;
     this.mastercardService.tokenize(this.searchId, request).subscribe(
       ({ html }) => {
-        html ? this.redirectToMastercard3ds(html) : this.initialPayment(this.searchId);
+        html ? this.redirectToMastercard3ds(html) : this.initialPayment();
       },
       (error: HttpErrorResponse) => {
         // this.webpayWizardService.isPaymentInProgress = false;
@@ -364,7 +364,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.isPayPushed = false;
   }
 
-  private initialPayment(searchId: string) {
+  private initialPayment() {
     this.mastercardService.initialPayment(this.searchId).subscribe(
       res => {
         console.log('res in initialPayment');
