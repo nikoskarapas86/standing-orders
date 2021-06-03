@@ -18,6 +18,7 @@ import { CreateSessionResponse } from '../models/create-session-response';
 import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PolicyDetailService } from '../policy-details/policy-details.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -52,10 +53,10 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   isLoading = false;
   isPaymentCompleted = false;
   isPayPushed = false;
+  isFailed = false;
 
   isNameOnCard: boolean;
   isCvv: boolean;
-  // hasNameAndCvv = false;
 
   private subscriptions$: Subscription[] = [];
 
@@ -63,7 +64,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     private mastercardService: MastercardService,
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private policyDetailsService: PolicyDetailService
   ) {}
 
   ngOnInit(): void {
@@ -164,9 +166,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         },
       },
       callbacks: {
-        // initialized: response => {
-        // initialized( ): invoked when the hosted fields attach to your payment page.
-        // },
         formSessionUpdate:
           // invoked in response to the PaymentSession.updateSessionFromForm('card')
           response => this.handleResponseUpdateSession(response),
@@ -305,7 +304,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     );
 
     this.isPaymentCompleted = false;
-    // this.isNextPushed = false;
     this.isPayPushed = false;
   }
 
@@ -318,8 +316,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   next() {
-    // this.isNextPushed = true;
-    // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
     );
@@ -335,31 +331,16 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     );
 
     const request = this.getTokenizeRequest();
-    debugger;
     this.mastercardService.tokenize(this.searchId, request).subscribe(
       ({ html }) => {
+        // this.isLoading = false;
+        this.policyDetailsService.isFailedSubject.next(false);
         html ? this.redirectToMastercard3ds(html) : this.initialPayment();
       },
       (error: HttpErrorResponse) => {
-        // this.webpayWizardService.isPaymentInProgress = false;
-        // if (error.status === 401) {
-        //   this.webpayWizardService.setIsShowSpinner({
-        //     state: SpinnerEventState.LOADED,
-        //     isShowSpinnerLoader: true,
-        //     status: WebpayPaymentStatus.TOKEN_EXPIRED,
-        //     message: error.error.error,
-        //   });
-        // } else {
-        //   this.webpayWizardService.setIsShowSpinner({
-        //     state: SpinnerEventState.LOADED,
-        //     isShowSpinnerLoader: true,
-        //     status: WebpayPaymentStatus.DECLINED,
-        //   });
-        // }
+        this.failed();
       }
     );
-
-    // this.initialPayment();
 
     this.isPayPushed = false;
   }
@@ -367,15 +348,19 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   private initialPayment() {
     this.mastercardService.initialPayment(this.searchId).subscribe(
       res => {
-        console.log('res in initialPayment');
-        console.log(res);
         this.isPaymentCompleted = true;
         this.isLoading = false;
       },
       error => {
-        this.isLoading = false;
+        this.failed();
       }
     );
+  }
+
+  private failed(): void {
+    this.isLoading = false;
+    this.isFailed = true;
+    this.policyDetailsService.isFailedSubject.next(true);
   }
 
   private redirectToMastercard3ds(htmlBody) {
@@ -384,11 +369,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     div.style.visibility = 'hidden';
     this.document.body.insertAdjacentHTML('beforeend', htmlBody);
     const scriptContent: any = this.document.getElementById('authenticate-payer-script');
-    // tslint:disable-next-line: no-eval
     eval(scriptContent.text);
-
-    // this.webpayWizardService.setIsResetStepper(true);
-    // this.isInProgress = false;
   }
 
   // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE

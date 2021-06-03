@@ -1,4 +1,4 @@
-<div class="container-card">
+<div class="container-card" *ngIf="!isFailed">
   <mat-card class="mat-card-outer">
     <mat-card-header>
       <div class="card-title">Πληρωμή</div>
@@ -145,4 +145,5 @@
     </mat-card-content>
   </mat-card>
 </div>
-<app-home-button></app-home-button>
+<app-home-button *ngIf="!isFailed"></app-home-button>
+<app-loader *ngIf="isFailed"></app-loader>
