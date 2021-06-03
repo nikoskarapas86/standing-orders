@@ -10,13 +10,14 @@ import {
   HostedSessionStatus,
   MastercardEnum,
 } from './enum';
-import { InitPaymentResponse } from '../models/init-payment-response';
 import { Input } from '../models/input';
 import { LabelInput } from '../models/label-input';
 import { MastercardService } from '../services/mastercard.service';
 import { WindowRefService } from '../services/window-ref.service';
-
-// const cache = {};
+import { CreateSessionResponse } from '../models/create-session-response';
+import { ActivatedRoute } from '@angular/router';
+import { TokenizeRequest } from '../models/tokenize-request';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-credit-card',
@@ -24,20 +25,24 @@ import { WindowRefService } from '../services/window-ref.service';
   styleUrls: ['./credit-card.component.scss'],
 })
 export class CreditCardComponent implements OnInit, OnDestroy {
-  mastercard: InitPaymentResponse;
+  mastercard: CreateSessionResponse;
   private paymentSession: Window;
   @Inject('windowObject') window: Window;
 
   private cardNumber: LabelInput = new LabelInput();
   private name: LabelInput = new LabelInput();
+  private securityCode: LabelInput = new LabelInput();
   private year: Input = new Input();
   private month: Input = new Input();
+
+  private searchId: string;
 
   private hostedFieldsSelectors = [
     HostedFieldsSelectors.NUMBER,
     HostedFieldsSelectors.NAME_ON_CARD,
     HostedFieldsSelectors.EXPIRY_MONTH,
     HostedFieldsSelectors.EXPIRY_YEAR,
+    HostedFieldsSelectors.SECURITY_CODE,
   ];
 
   months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -46,25 +51,29 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   isLoading = false;
   isPaymentCompleted = false;
-  isNextPushed = false;
-
-  hasInstallments: boolean;
+  isPayPushed = false;
 
   isNameOnCard: boolean;
+  isCvv: boolean;
+  // hasNameAndCvv = false;
 
   private subscriptions$: Subscription[] = [];
 
   constructor(
     private mastercardService: MastercardService,
     @Inject(DOCUMENT) private document: Document,
-    private windowRefService: WindowRefService
+    private windowRefService: WindowRefService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.setYears();
+    this.searchId = this.route.snapshot.params.searchId;
 
-    this.mastercard = this.mastercardService.initPaymentResponse;
-    this.initMastercardSetUp();
+    this.mastercardService.createSession(this.searchId).subscribe(mastercard => {
+      this.mastercard = mastercard;
+      this.initMastercardSetUp();
+    });
   }
 
   ngAfterViewInit(): void {
@@ -85,6 +94,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   private setInputsForHostedFields(): void {
     this.setInputLabel(this.cardNumber, '#card-number-label', 'NUMBER');
     this.setInputLabel(this.name, '#cardholder-name-label', 'NAME_ON_CARD');
+    this.setInputLabel(this.securityCode, '#security-code-label', 'SECURITY_CODE');
 
     this.year.input = this.document.querySelector(HostedFieldsIds.EXPIRY_YEAR) as HTMLInputElement;
     this.month.input = this.document.querySelector(
@@ -108,10 +118,12 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   private initMastercardSetUp(): void {
     if (this.mastercard) {
+      console.log('this.mastercard');
+      console.log(this.mastercard);
       const head = this.document.getElementsByTagName('head')[0];
       const script = this.document.createElement('script');
       script.id = 'mastercard-hosted-session';
-      script.src = `https://ibanke-commerce.nbg.gr/form/version/57/merchant/${this.mastercard.merchantId}/session.js`; // prod
+      script.src = `https://ibanke-commerce.nbg.gr/form/version/57/merchant/${this.mastercard.merchant}/session.js`; // prod
       script.type = 'text/javascript';
       head.appendChild(script);
       script.onload = () => this.configureHostedSession();
@@ -140,6 +152,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
           expiryMonth: HostedFieldsIds.EXPIRY_MONTH,
           expiryYear: HostedFieldsIds.EXPIRY_YEAR,
           nameOnCard: HostedFieldsIds.NAME_ON_CARD,
+          securityCode: HostedFieldsIds.SECURITY_CODE,
         },
       },
       locale: 'el',
@@ -173,6 +186,10 @@ export class CreditCardComponent implements OnInit, OnDestroy {
           this.name.input.placeholder = '';
           this.name.label.style.visibility = 'visible';
           break;
+        case HostedFieldsIds.SECURITY_CODE:
+          this.securityCode.input.placeholder = '';
+          this.securityCode.label.style.visibility = 'visible';
+          break;
       }
     });
   }
@@ -188,6 +205,10 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         case HostedFieldsIds.NAME_ON_CARD:
           this.name.input.placeholder = MastercardEnum.cardHolderName;
           this.name.label.style.visibility = 'hidden';
+          break;
+        case HostedFieldsIds.SECURITY_CODE:
+          this.securityCode.input.placeholder = MastercardEnum.cvv;
+          this.securityCode.label.style.visibility = 'hidden';
           break;
       }
       // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
@@ -215,33 +236,58 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       : this.handleFieldsInErrorStatus(response);
   }
 
-  private handleOKStatus(response): void {
-    this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
-    this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
+  private getBrowser() {
+    const browsersMapping = {
+      Opera: 'Opera',
+      OPR: 'Opera',
+      Chrome: 'Chrome',
+      Safari: 'Safari',
+      Firefox: 'Firefox',
+      MSIE: 'IE',
+    };
+    const foundBrowser = Object.entries(browsersMapping).find(
+      b => navigator.userAgent.indexOf(b[0]) !== -1
+    );
 
-    if (this.hasInstallments === undefined && this.isNameOnCard && this.isNextPushed) {
-      const cardNumber = response.sourceOfFunds.provided.card.number;
-      this.getHasInstallments(cardNumber);
+    if (foundBrowser) {
+      return foundBrowser[1];
     }
+    if (!!this.document['documentMode']) {
+      return 'IE';
+    }
+    return 'unknown';
   }
 
-  private getHasInstallments = (cardNumber: string): void => {
-    this.isLoading = true;
-    const payments$ = this.mastercardService
-      .getHasInstallments({
-        cardNumber,
-      })
-      .subscribe(
-        ({ hasInstallments }) => {
-          this.hasInstallments = hasInstallments;
-          this.isLoading = false;
-        },
-        error => {
-          this.isLoading = false;
-        }
-      );
-    this.subscriptions$.push(payments$);
-  };
+  private getTokenizeRequest(): TokenizeRequest {
+    const d = new Date();
+    const timeZone = d.getTimezoneOffset();
+
+    return {
+      browser: this.getBrowser(),
+      browserDetails: {
+        '3DSecureChallengeWindowSize': 'FULL_SCREEN',
+        acceptHeaders: 'application/json',
+        colorDepth: screen.colorDepth,
+        // javaEnabled: navigator.javaEnabled(),
+        javaEnabled: true,
+        language: 'en-US',
+        screenHeight: screen.height,
+        screenWidth: screen.width,
+        timeZone,
+      },
+    };
+  }
+
+  private handleOKStatus(response): void {
+    console.log('response');
+    console.log(response);
+    this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
+    this.isCvv = response.sourceOfFunds.provided.card.securityCode !== undefined;
+    this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
+    this.securityCode.input.style.borderColor = !this.isNameOnCard
+      ? Colors.redInvalid
+      : Colors.blackValid;
+  }
 
   private handleFieldsInErrorStatus(response): void {
     this.cardNumber.input.style.borderColor = this.getBorderColor(response, 'cardNumber', 'NUMBER');
@@ -252,36 +298,77 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       'EXPIRY_YEAR'
     );
     this.name.input.style.borderColor = this.getBorderColor(response, 'name', 'NAME_ON_CARD');
+    this.securityCode.input.style.borderColor = this.getBorderColor(
+      response,
+      'securityCode',
+      'SECURITY_CODE'
+    );
 
     this.isPaymentCompleted = false;
-    this.isNextPushed = false;
+    // this.isNextPushed = false;
+    this.isPayPushed = false;
   }
 
-  private getBorderColor = (response, formField: string, fieldId: string) =>
-    response.errors[formField] === HostedSessionStatus.INVALID ||
-    (response.errors[formField] === HostedSessionStatus.MISSING &&
-      this.activeFieldValidated === HostedFieldsIds[fieldId])
+  private getBorderColor(response, formField: string, fieldId: string): string {
+    return response.errors[formField] === HostedSessionStatus.INVALID ||
+      (response.errors[formField] === HostedSessionStatus.MISSING &&
+        this.activeFieldValidated === HostedFieldsIds[fieldId])
       ? Colors.redInvalid
       : Colors.blackValid;
+  }
 
   next() {
-    this.isNextPushed = true;
+    // this.isNextPushed = true;
     // invokes PaymentSession.updateSessionFromForm('card') on setPaymentSessionConfig()
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
     );
   }
 
-  pay(): void {
+  tokenize(): void {
+    this.isPayPushed = true;
     this.isLoading = true;
-    if (!this.isNameOnCard) return;
+    if (!this.isNameOnCard || !this.isCvv) return;
 
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
     );
-    const installments = this.getInstallments();
-    this.mastercardService.pay({ installments }).subscribe(
+
+    const request = this.getTokenizeRequest();
+    debugger;
+    this.mastercardService.tokenize(this.searchId, request).subscribe(
+      ({ html }) => {
+        html ? this.redirectToMastercard3ds(html) : this.initialPayment();
+      },
+      (error: HttpErrorResponse) => {
+        // this.webpayWizardService.isPaymentInProgress = false;
+        // if (error.status === 401) {
+        //   this.webpayWizardService.setIsShowSpinner({
+        //     state: SpinnerEventState.LOADED,
+        //     isShowSpinnerLoader: true,
+        //     status: WebpayPaymentStatus.TOKEN_EXPIRED,
+        //     message: error.error.error,
+        //   });
+        // } else {
+        //   this.webpayWizardService.setIsShowSpinner({
+        //     state: SpinnerEventState.LOADED,
+        //     isShowSpinnerLoader: true,
+        //     status: WebpayPaymentStatus.DECLINED,
+        //   });
+        // }
+      }
+    );
+
+    // this.initialPayment();
+
+    this.isPayPushed = false;
+  }
+
+  private initialPayment() {
+    this.mastercardService.initialPayment(this.searchId).subscribe(
       res => {
+        console.log('res in initialPayment');
+        console.log(res);
         this.isPaymentCompleted = true;
         this.isLoading = false;
       },
@@ -291,16 +378,17 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     );
   }
 
-  private getInstallments(): string {
-    const installments = this.document.getElementById('installment-number') as HTMLInputElement;
-    if (installments) return installments.value || '0';
+  private redirectToMastercard3ds(htmlBody) {
+    const div = this.document.createElement('div');
+    div.innerHTML = htmlBody;
+    div.style.visibility = 'hidden';
+    this.document.body.insertAdjacentHTML('beforeend', htmlBody);
+    const scriptContent: any = this.document.getElementById('authenticate-payer-script');
+    // tslint:disable-next-line: no-eval
+    eval(scriptContent.text);
 
-    return '0';
-  }
-
-  cancel(): void {
-    this.mastercardService.isMastercardVisible = false;
-    this.mastercardService.hasSearched = false;
+    // this.webpayWizardService.setIsResetStepper(true);
+    // this.isInProgress = false;
   }
 
   // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE

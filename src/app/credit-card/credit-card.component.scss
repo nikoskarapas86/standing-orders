@@ -129,8 +129,7 @@ form[name='credit-card'] {
   #expiry-month,
   #expiry-year,
   #card-number,
-  #cardholder-name,
-  #installment-number {
+  #cardholder-name {
     height: 56px;
     max-width: 100%;
     background-color: $font-lato-bold;
@@ -146,31 +145,19 @@ form[name='credit-card'] {
   }
 
   #card-number,
-  #cardholder-name,
-  #installment-number {
+  #cardholder-name {
     width: 424px;
   }
 
   #expiry-month,
-  #expiry-year,
-  #installment-number {
+  #expiry-year {
     border-bottom: 2px solid $font-lato-regular-small;
     padding-left: 12px;
   }
 
   #expiry-month:disabled,
-  #expiry-year:disabled,
-  #installment-number:disabled {
+  #expiry-year:disabled {
     border-color: $border-input-disabled;
-  }
-
-  #installment-number:hover {
-    border-bottom: 2px solid $blue-primary-main;
-  }
-
-  #installment-number:disabled {
-    border-bottom: 1px solid black;
-    opacity: 0.4;
   }
 
   .pt-40 {

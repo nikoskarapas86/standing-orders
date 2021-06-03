@@ -1,0 +1,28 @@
+<mat-card class="mat-card-outer">
+  <mat-card-header>
+    <div class="card-title">Πληροφορίες πληρωμής</div>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="res">
+      <form name="policyResponseForm">
+        <div class="row">
+          <div class="container" style="align-items: center">
+            <mat-form-field class="field-width">
+              <mat-label>Ονομ/μο Εντολέα</mat-label>
+              <input [value]="res.fullName" matInput disabled />
+              <!-- <input [value]="res.firstName + ' ' res.lastName" matInput /> -->
+            </mat-form-field>
+            <mat-form-field class="field-width">
+              <mat-label>Email Αποστολής</mat-label>
+              <input [value]="res.email" matInput disabled />
+            </mat-form-field>
+            <mat-form-field class="field-width">
+              <mat-label>Τράπεζα Εντολέα</mat-label>
+              <input [value]="res.organizationDescription" matInput disabled />
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

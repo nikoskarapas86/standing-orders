@@ -3,6 +3,7 @@ export enum HostedFieldsSelectors {
   EXPIRY_YEAR = 'card.expiryYear',
   EXPIRY_MONTH = 'card.expiryMonth',
   NAME_ON_CARD = 'card.nameOnCard',
+  SECURITY_CODE = 'card.securityCode',
 }
 
 export enum HostedFieldsIds {
@@ -10,6 +11,7 @@ export enum HostedFieldsIds {
   EXPIRY_MONTH = '#expiry-month',
   EXPIRY_YEAR = '#expiry-year',
   NAME_ON_CARD = '#cardholder-name',
+  SECURITY_CODE = '#security-code',
 }
 
 export enum HostedSessionStatus {
@@ -70,6 +72,7 @@ export enum HostedSessionPaymentType {
 export enum MastercardEnum {
   cardNumber = 'Αριθμός Κάρτας',
   cardHolderName = 'Όνοματεπώνυμο Δικαιούχου',
+  cvv = 'CVV',
 }
 
 export enum Colors {
