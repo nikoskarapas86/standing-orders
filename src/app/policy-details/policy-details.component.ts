@@ -12,14 +12,12 @@ export class PolicyDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private policyDetailService: PolicyDetailService) {}
 
-
-
   ngOnInit(): void {
     console.log(this.route.snapshot.params.searchId);
     this.policyDetailService.getPolicyByEmail(this.route.snapshot.params.searchId).subscribe(
       res => {
         this.policyDetailService.isFailedSubject.next(false);
-        this.policyDetailService.setPolicySubject(res)
+        this.policyDetailService.setPolicySubject(res);
         this.isPolicyLoading = false;
       },
       error => {

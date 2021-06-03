@@ -6,11 +6,11 @@ import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { MatProgressSpinner, MatSpinnerStatus, MatSpinnerStatusContent } from '../shared/enums';
 
 @Component({
-  selector: 'app-redirect-loader',
-  templateUrl: './redirect-loader.component.html',
-  styleUrls: ['./redirect-loader.component.scss'],
+  selector: 'app-loader',
+  templateUrl: './loader.component.html',
+  styleUrls: ['./loader.component.scss'],
 })
-export class RedirectLoaderComponent implements OnDestroy, AfterViewInit {
+export class LoaderComponent implements OnDestroy, AfterViewInit {
   private subscriptions$: Subscription[] = [];
   spinnerMode: MatProgressSpinner;
   spinnerStatus = MatSpinnerStatus.IN_PROGRESS;
@@ -26,6 +26,7 @@ export class RedirectLoaderComponent implements OnDestroy, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
+    console.log('im here');
     this.policyDetailService.isFailed$.subscribe(isFailed => {
       isFailed ? this.showActionFailed() : this.showActionInProgress();
     });

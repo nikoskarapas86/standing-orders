@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
-import { RedirectLoaderComponent } from './redirect-loader/redirect-loader.component';
+import { LoaderComponent } from './loader/loader.component';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -44,7 +44,7 @@ const routes: Routes = [
   },
 
   { path: 'edit/:id', component: EditStandingOrderComponent, canActivate: [AuthGuardService] },
-  { path: 'loader', component: RedirectLoaderComponent },
+  { path: 'loader', component: LoaderComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
