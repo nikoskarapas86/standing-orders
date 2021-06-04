@@ -2,6 +2,12 @@
 @import './mixins.scss';
 @include _font-face('Roboto', '../assets/fonts/Roboto-Regular.ttf');
 
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
