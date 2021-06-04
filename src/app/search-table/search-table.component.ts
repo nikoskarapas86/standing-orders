@@ -59,8 +59,8 @@ export class SearchTableComponent implements OnInit {
     this.dataService.standingOrders$.subscribe(res => {
       const newStandingOrders = res.map(o => ({
         ...o,
-        startDate: o.startDate.slice().reverse().join('/'),
-        endDate: o.endDate.slice().reverse().join('/'),
+        // startDate: o.startDate.slice().reverse().join('/'),
+        // endDate: o.endDate.slice().reverse().join('/'),
         paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
         name: `${o.firstName} ${o.lastName}`,
       }));

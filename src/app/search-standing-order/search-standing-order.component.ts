@@ -29,6 +29,10 @@ export class SearchStandingOrderComponent implements OnInit {
   searchId: string;
   standingOrders$: Observable<any[]>;
   minDate = moment().subtract(3, 'months').toDate();
+  paymentTypes = [
+    { id: 'BANK_ACCOUNT', name: 'Τρ. Λογαριασμός' },
+    { id: 'CREDIT_CARD', name: 'Κάρτα' },
+  ];
 
   constructor(
     private formBuilder: FormBuilder,

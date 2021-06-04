@@ -1,4 +1,4 @@
-<form [formGroup]="searchForm" name="searchForm" id="searchCriteria">
+<form [formGroup]="searchForm" (ngSubmit)="submit()" name="searchForm" id="searchCriteria">
   <div class="form-row">
     <div class="form-row-item go-back">
       <a (click)="backHome()">
@@ -52,7 +52,12 @@
         </mat-form-field>
       </div>
 
-      <div class="mr-10" fxLayout="column">
+      <div
+        *ngIf="searchForm.controls.lineOfBusiness.value === 'LIFE'"
+        class="mr-10"
+        fxLayout="column"
+      >
+        <!-- <div class="mr-10" fxLayout="column"> -->
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Αίτησης</mat-label>
           <input formControlName="endorsement" type="string" matInput />
@@ -124,15 +129,20 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τύπος Πληρωμής</mat-label>
-          <input formControlName="paymentType" type="text" matInput />
-          <button
+          <!-- <input formControlName="paymentType" type="text" matInput /> -->
+          <mat-select formControlName="paymentType" matNativeControl>
+            <mat-option *ngFor="let item of paymentTypes" [value]="item.id" ngDefaultControl>
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+          <!-- <button
             class="close-icon"
             type="button"
             (click)="this.searchForm.get('paymentType').setValue(null)"
             tabindex="-1"
           >
             <mat-icon>close</mat-icon>
-          </button>
+          </button> -->
         </mat-form-field>
       </div>
 
@@ -158,9 +168,7 @@
     <button mat-raised-button type="button" class="common-btn mr-10" (click)="resetForm()">
       Καθαρισμος
     </button>
-    <button mat-raised-button class="search-btn" id="searchBtn" (click)="submit()" type="button">
-      Αναζήτηση
-    </button>
+    <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Αναζήτηση</button>
   </mat-dialog-actions>
 </form>
 
