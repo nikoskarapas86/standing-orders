@@ -129,7 +129,8 @@ form[name='credit-card'] {
   #expiry-month,
   #expiry-year,
   #card-number,
-  #cardholder-name {
+  #cardholder-name,
+  #security-code {
     height: 56px;
     max-width: 100%;
     background-color: $font-lato-bold;
@@ -145,7 +146,8 @@ form[name='credit-card'] {
   }
 
   #card-number,
-  #cardholder-name {
+  #cardholder-name,
+  #security-code {
     width: 424px;
   }
 
