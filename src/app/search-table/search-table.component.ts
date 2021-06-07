@@ -49,7 +49,7 @@ export class SearchTableComponent implements OnInit {
   newStandingOrders: any;
   pageEvent: PageEvent;
   pageSizeOptions = [5, 10, 20];
-  totalElements: number = 0;
+  totalEs: number = 0;
   numberOfElements:number =0;
   constructor(
     private router: Router,
@@ -62,7 +62,7 @@ export class SearchTableComponent implements OnInit {
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-     this.totalElements =res.standingOrders.totalElements;
+     this.totalEs =res.standingOrders.totalElements;
      this.numberOfElements =res.standingOrders.numberOfElements;
       const newStandingOrders = res["standingOrders"]["content"].map(o => ({
         ...o,
@@ -73,9 +73,7 @@ export class SearchTableComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+  
 
   edit(element: SearchItem) {
     this.editService.selectedStandingOrder = element;
@@ -84,13 +82,15 @@ export class SearchTableComponent implements OnInit {
 
 
   onPaginateChange(pageEvent: PageEvent) {
+    console.log(pageEvent.pageIndex)
     this.dataService.searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
       .subscribe(
         res => {
           this.dataService.setStandingOrdersSubject(res);
-          this.dataSource.paginator = this.paginator;
-        })
-    // this.searchOfferService.updateCriteriaAndSearch('pageNumber', pageEvent.pageIndex + 1);
+        },
+        error => console.log(error)
+        )
+ 
     return pageEvent;
   }
 
