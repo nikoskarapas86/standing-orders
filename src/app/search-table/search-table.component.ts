@@ -1,12 +1,14 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { DataService } from '../services/data.service';
+import { DestroyService } from '../services/destroy.service';
 import { EditService } from '../services/edit.service';
 import { ModalService } from '../services/modal.service';
 
@@ -18,8 +20,11 @@ import { ModalService } from '../services/modal.service';
 export class SearchTableComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
   standingOrders: SearchItem[] = [];
+  private readonly destroy$: DestroyService;
   @Input() searchId: string;
   dataSource: MatTableDataSource<any>;
+  pageSize = 10;
+  currentPage = 0;
   tableItems: TableItem[] = [
     { columnDef: 'id', headerCellDef: 'Αρ. Πάγιας Εντολής' },
     {
@@ -42,9 +47,8 @@ export class SearchTableComponent implements OnInit {
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
   newStandingOrders: any;
-  pageSize = 10;
+ 
   pageSizeOptions = [5, 10, 20];
-  currentPage = 0;
 
   constructor(
     private router: Router,
@@ -75,6 +79,20 @@ export class SearchTableComponent implements OnInit {
   edit(element: SearchItem) {
     this.editService.selectedStandingOrder = element;
     this.router.navigate(['edit', element.id]);
+  }
+
+  
+  pageChanged(pageEvent: PageEvent) {
+    console.log(1)
+    this.dataService.searchStandingOrder(this.dataService.searchRequest,pageEvent.pageIndex,pageEvent.pageSize)
+   
+    .subscribe(
+      res => {
+      console.log(3)
+        this.dataService.setStandingOrdersSubject(res["standingOrders"]["content"]);
+      })
+    // this.searchOfferService.updateCriteriaAndSearch('pageNumber', pageEvent.pageIndex + 1);
+    return pageEvent;
   }
 
   delete(index: number, searchItem: SearchItem) {

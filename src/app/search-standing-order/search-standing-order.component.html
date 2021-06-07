@@ -11,11 +11,7 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Κλάδος</mat-label>
           <mat-select formControlName="lineOfBusiness" matNativeControl>
-            <mat-option
-              *ngFor="let item of linesOfBusinesses$ | async"
-              [value]="item.lineOfBusiness"
-              ngDefaultControl
-            >
+            <mat-option *ngFor="let item of linesOfBusinesses$ | async" [value]="item.lineOfBusiness" ngDefaultControl>
               {{ item.title }}
             </mat-option>
           </mat-select>
@@ -26,47 +22,40 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Επίθετο Πελάτη</mat-label>
           <input formControlName="customerLastName" type="text" matInput />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('customerLastName').setValue(null)"
-            tabindex="-1"
-          >
+          <button class="close-icon" type="button" (click)="this.searchForm.get('customerLastName').setValue(null)"
+            tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </div>
-
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Όνομα Πελάτη</mat-label>
+          <input formControlName="customerFirstName" type="text" matInput />
+          <button class="close-icon" type="button" (click)="this.searchForm.get('customerFirstName').setValue(null)"
+            tabindex="-1">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Πάγιας Εντολής</mat-label>
           <input formControlName="paymentId" type="text" matInput />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('paymentId').setValue(null)"
-            tabindex="-1"
-          >
+          <button class="close-icon" type="button" (click)="this.searchForm.get('paymentId').setValue(null)"
+            tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </div>
 
-      <div
-        *ngIf="searchForm.controls.lineOfBusiness.value === 'LIFE'"
-        class="mr-10"
-        fxLayout="column"
-      >
+      <div *ngIf="searchForm.controls.lineOfBusiness.value === 'LIFE'" class="mr-10" fxLayout="column">
         <!-- <div class="mr-10" fxLayout="column"> -->
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Αίτησης</mat-label>
           <input formControlName="endorsement" type="string" matInput />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('endorsement').setValue(null)"
-            tabindex="-1"
-          >
+          <button class="close-icon" type="button" (click)="this.searchForm.get('endorsement').setValue(null)"
+            tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -87,19 +76,10 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Συμβολαίου</mat-label>
-          <input
-            formControlName="policyNumber"
-            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
-          !(event.target.value.length == 0 && event.which == 48)"
-            maxlength="9"
-            matInput
-          />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('policyNumber').setValue(null)"
-            tabindex="-1"
-          >
+          <input formControlName="policyNumber" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
+          !(event.target.value.length == 0 && event.which == 48)" maxlength="9" matInput />
+          <button class="close-icon" type="button" (click)="this.searchForm.get('policyNumber').setValue(null)"
+            tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -115,12 +95,8 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τρ. Λογαριασμός</mat-label>
           <input formControlName="bankAccount" type="number" matInput />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('bankAccount').setValue(null)"
-            tabindex="-1"
-          >
+          <button class="close-icon" type="button" (click)="this.searchForm.get('bankAccount').setValue(null)"
+            tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -150,12 +126,7 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Κωδικός Παραγωγού</mat-label>
           <input formControlName="agent" type="string" matInput />
-          <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('agent').setValue(null)"
-            tabindex="-1"
-          >
+          <button class="close-icon" type="button" (click)="this.searchForm.get('agent').setValue(null)" tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>

@@ -64,6 +64,7 @@ export class SearchStandingOrderComponent implements OnInit {
       paymentId: null,
       bankAccount: null,
       customerLastName: null,
+      customerFirstName:null,
       agent: null,
       payDateFrom: new Date().toISOString().substring(0, 10),
       payDateTo: new Date().toISOString().substring(0, 10),
@@ -76,9 +77,7 @@ export class SearchStandingOrderComponent implements OnInit {
     const tempEndDate = this.searchForm.get('payDateTo').value;
     const startDate = tempStartDate ? moment(tempStartDate).format('YYYY-MM-DD') : null;
     const endDate = tempEndDate ? moment(tempEndDate).format('YYYY-MM-DD') : null;
-
     this.dataService.setStandingOrdersSubject(undefined);
-    console.log(this.searchForm.get('payDateFrom').value);
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,
       lineOfBusiness: this.searchForm.get('lineOfBusiness').value,
@@ -87,18 +86,20 @@ export class SearchStandingOrderComponent implements OnInit {
       bankAccount: this.searchForm.get('bankAccount').value,
       customerLastName: this.searchForm.get('customerLastName').value,
       agent: this.searchForm.get('agent').value,
+      customerFirstName: this.searchForm.get('customerFirstName').value,
       startDate,
       endDate,
       endorsement: this.searchForm.get('endorsement').value,
     };
-
+    this.dataService.searchRequest = request;
     this.dataService
-      .searchStandingOrder(request)
+      .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
+        
           this.searchId = res.searchId;
-          this.dataService.setStandingOrdersSubject(res.standingOrderDTOList);
+          this.dataService.setStandingOrdersSubject(res["standingOrders"]["content"]);
           this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {

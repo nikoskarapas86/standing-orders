@@ -25,13 +25,24 @@ import { PolicyResponse } from '../models/policy-response';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-private standingOrdersResponseSubject = new BehaviorSubject<any[]>(undefined);
-standingOrders$ : Observable<any[]> = this.standingOrdersResponseSubject.asObservable();
-setStandingOrdersSubject(response: any[]) {
-  this.standingOrdersResponseSubject.next(response);
-}
+
+  _searchRequest: SearchRequest;
+  private standingOrdersResponseSubject = new BehaviorSubject<any[]>(undefined);
+  standingOrders$: Observable<any[]> = this.standingOrdersResponseSubject.asObservable();
+  setStandingOrdersSubject(response: any[]) {
+    this.standingOrdersResponseSubject.next(response);
+  }
+
+
+  set searchRequest(request) {
+    this._searchRequest = request
+  }
+
+  get searchRequest() {
+    return this._searchRequest
+  }
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
   searchPolicyResponse$: Observable<SearchPolicyResponse> = this.searchPolicyResponseSubject.asObservable();
@@ -43,10 +54,11 @@ setStandingOrdersSubject(response: any[]) {
     return this.searchPolicyResponseSubject.getValue();
   }
 
+
+
+  searchStandingOrder(searchRequest: SearchRequest, pageNumber = 0, sizeOfResult = 10): Observable<SearchResponse> {
  
- 
-  searchStandingOrder(searchRequest: SearchRequest): Observable<SearchResponse> {
-    return this.http.post<SearchResponse>(`${this.url}/int/search/standingOrder`, searchRequest);
+    return this.http.post<SearchResponse>(`${this.url}/int/search/standingOrder?page=${pageNumber}&size=${sizeOfResult}`, searchRequest);
   }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
