@@ -47,7 +47,7 @@ export class SearchTableComponent implements OnInit {
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
   newStandingOrders: any;
- 
+  pageEvent: PageEvent;
   pageSizeOptions = [5, 10, 20];
 
   constructor(
@@ -82,7 +82,7 @@ export class SearchTableComponent implements OnInit {
   }
 
   
-  pageChanged(pageEvent: PageEvent) {
+  onPaginateChange(pageEvent: PageEvent) {
     console.log(1)
     this.dataService.searchStandingOrder(this.dataService.searchRequest,pageEvent.pageIndex,pageEvent.pageSize)
    

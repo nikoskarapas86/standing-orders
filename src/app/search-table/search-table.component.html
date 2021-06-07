@@ -36,7 +36,7 @@
     [pageSize]="pageSize"
     [length]="standingOrders && standingOrders.length"
    
-    (page)="pageChanged($event)"
+    (page)="pageEvent = $event; onPaginateChange($event)"
     showFirstLastButtons
   ></mat-paginator>
 </div>
