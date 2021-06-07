@@ -7,17 +7,15 @@ import { SearchPolicyRequest } from '../models/search-policy-request';
 import { SearchPolicyResponse } from '../models/search-policy-response';
 import { SearchRequest } from '../models/search-request';
 import { SearchResponse } from '../models/search-response';
-import { CardNumberUpdateRequest } from '../models/card-number-update-request';
 import { UpdateResponse } from '../models/update-response';
 import { environment } from '../../environments/environment';
 import { LineOfBusiness } from '../models/line-of-business';
 import { DeleteRequest } from '../models/delete-request';
 import { DeleteResponse } from '../models/delete-response';
-import { IbanUpdateRequest } from '../models/iban-update-request';
 import { DeleteReason } from '../models/delete-reason';
 import { ValidateRequest } from '../models/validate-request';
 import { ValidateResponse } from '../models/validate-response';
-import { PolicyResponse } from '../models/policy-response';
+import { UpdateBankAccountRequest } from '../models/update-bank-account-request';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +23,7 @@ import { PolicyResponse } from '../models/policy-response';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   _searchRequest: SearchRequest;
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
@@ -35,13 +32,12 @@ export class DataService {
     this.standingOrdersResponseSubject.next(response);
   }
 
-
   set searchRequest(request) {
-    this._searchRequest = request
+    this._searchRequest = request;
   }
 
   get searchRequest() {
-    return this._searchRequest
+    return this._searchRequest;
   }
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
@@ -54,11 +50,15 @@ export class DataService {
     return this.searchPolicyResponseSubject.getValue();
   }
 
-
-
-  searchStandingOrder(searchRequest: SearchRequest, pageNumber = 0, sizeOfResult = 10): Observable<SearchResponse> {
- 
-    return this.http.post<SearchResponse>(`${this.url}/int/search/standingOrder?page=${pageNumber}&size=${sizeOfResult}`, searchRequest);
+  searchStandingOrder(
+    searchRequest: SearchRequest,
+    pageNumber = 0,
+    sizeOfResult = 10
+  ): Observable<SearchResponse> {
+    return this.http.post<SearchResponse>(
+      `${this.url}/int/search/standingOrder?page=${pageNumber}&size=${sizeOfResult}`,
+      searchRequest
+    );
   }
 
   searchPolicy(searchPolicyRequest: SearchPolicyRequest): Observable<SearchPolicyResponse> {
@@ -80,8 +80,15 @@ export class DataService {
     return this.http.get<LineOfBusiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
 
-  update(updateRequest: CardNumberUpdateRequest | IbanUpdateRequest): Observable<UpdateResponse> {
-    return this.http.put<UpdateResponse>(`${this.url}/int/update`, updateRequest);
+  // update(updateRequest: CardNumberUpdateRequest | IbanUpdateRequest): Observable<UpdateResponse> {
+  //   return this.http.put<UpdateResponse>(`${this.url}/int/update/bankAccount/${searchId}`, updateRequest);
+  // }
+
+  updateBankAccount(
+    request: UpdateBankAccountRequest,
+    searchId: string
+  ): Observable<UpdateResponse> {
+    return this.http.put<UpdateResponse>(`${this.url}/int/update/bankAccount/${searchId}`, request);
   }
 
   deleteReasons(): Observable<DeleteReason[]> {

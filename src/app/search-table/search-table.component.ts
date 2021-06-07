@@ -50,21 +50,22 @@ export class SearchTableComponent implements OnInit {
   pageEvent: PageEvent;
   pageSizeOptions = [5, 10, 20];
   totalEs: number = 0;
-  numberOfElements:number =0;
+  numberOfElements: number = 0;
+
   constructor(
     private router: Router,
     private editService: EditService,
     private matDialog: MatDialog,
     private dataService: DataService,
     private modalService: ModalService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-     this.totalEs =res.standingOrders.totalElements;
-     this.numberOfElements =res.standingOrders.numberOfElements;
-      const newStandingOrders = res["standingOrders"]["content"].map(o => ({
+      this.totalEs = res.standingOrders.totalElements;
+      this.numberOfElements = res.standingOrders.numberOfElements;
+      const newStandingOrders = res['standingOrders']['content'].map(o => ({
         ...o,
         paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
         name: `${o.firstName} ${o.lastName}`,
@@ -73,24 +74,21 @@ export class SearchTableComponent implements OnInit {
     });
   }
 
-  
-
   edit(element: SearchItem) {
     this.editService.selectedStandingOrder = element;
-    this.router.navigate(['edit', element.id]);
+    this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
   }
 
-
   onPaginateChange(pageEvent: PageEvent) {
-    console.log(pageEvent.pageIndex)
-    this.dataService.searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
+    this.dataService
+      .searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
       .subscribe(
         res => {
           this.dataService.setStandingOrdersSubject(res);
         },
         error => console.log(error)
-        )
- 
+      );
+
     return pageEvent;
   }
 

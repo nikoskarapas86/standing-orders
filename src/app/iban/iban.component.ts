@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ModalComponent } from '../modal/modal.component';
 import { DataService } from '../services/data.service';
@@ -16,17 +16,20 @@ import { DestroyService } from '../services/destroy.service';
 export class IbanComponent implements OnInit {
   form: FormGroup;
   isValid: boolean = false;
+  searchId: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataService,
     private readonly destroy$: DestroyService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
+    this.searchId = history.state.searchId;
   }
 
   buildFormGroup(): void {
@@ -37,21 +40,19 @@ export class IbanComponent implements OnInit {
 
   submit(): void {
     const request = {
-      key: {
-        id: 20000074,
-        versionNo: 1,
-      },
-
-      paymentType: 'BANK_ACCOUNT',
-
+      id: this.activatedRoute.snapshot.params.id,
       iban: this.form.get('iban').value.toString(),
     };
 
     this.dataService
-      .update(request)
+      .updateBankAccount(request, this.searchId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        res => {},
+        res => {
+          this.dialog.open(ModalComponent, {
+            data: 'Ο τραπεζικός λογαριασμός ενημερώθηκε επιτυχώς',
+          });
+        },
         error => {
           this.dialog.open(ModalComponent, { data: error.error.error });
         }
