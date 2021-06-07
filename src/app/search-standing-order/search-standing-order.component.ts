@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ModalComponent } from '../modal/modal.component';
 import { LineOfBusiness } from '../models/line-of-business';
 import { SearchRequest } from '../models/search-request';
-import { SearchItem } from '../models/search-response';
+import { SearchItem, SearchResponse } from '../models/search-response';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
@@ -96,10 +96,10 @@ export class SearchStandingOrderComponent implements OnInit {
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        res => {
-        
+        (res:SearchResponse) => {
+          // ["standingOrders"]["content"]
           this.searchId = res.searchId;
-          this.dataService.setStandingOrdersSubject(res["standingOrders"]["content"]);
+          this.dataService.setStandingOrdersSubject(res);
           this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {

@@ -29,9 +29,9 @@ export class DataService {
 
 
   _searchRequest: SearchRequest;
-  private standingOrdersResponseSubject = new BehaviorSubject<any[]>(undefined);
-  standingOrders$: Observable<any[]> = this.standingOrdersResponseSubject.asObservable();
-  setStandingOrdersSubject(response: any[]) {
+  private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
+  standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
+  setStandingOrdersSubject(response: any) {
     this.standingOrdersResponseSubject.next(response);
   }
 

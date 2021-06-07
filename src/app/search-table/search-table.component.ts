@@ -49,22 +49,23 @@ export class SearchTableComponent implements OnInit {
   newStandingOrders: any;
   pageEvent: PageEvent;
   pageSizeOptions = [5, 10, 20];
-
+  totalElements: number = 0;
+  numberOfElements:number =0;
   constructor(
     private router: Router,
     private editService: EditService,
     private matDialog: MatDialog,
     private dataService: DataService,
     private modalService: ModalService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-      const newStandingOrders = res.map(o => ({
+     this.totalElements =res.standingOrders.totalElements;
+     this.numberOfElements =res.standingOrders.numberOfElements;
+      const newStandingOrders = res["standingOrders"]["content"].map(o => ({
         ...o,
-        // startDate: o.startDate.slice().reverse().join('/'),
-        // endDate: o.endDate.slice().reverse().join('/'),
         paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
         name: `${o.firstName} ${o.lastName}`,
       }));
@@ -81,16 +82,14 @@ export class SearchTableComponent implements OnInit {
     this.router.navigate(['edit', element.id]);
   }
 
-  
+
   onPaginateChange(pageEvent: PageEvent) {
-    console.log(1)
-    this.dataService.searchStandingOrder(this.dataService.searchRequest,pageEvent.pageIndex,pageEvent.pageSize)
-   
-    .subscribe(
-      res => {
-      console.log(3)
-        this.dataService.setStandingOrdersSubject(res["standingOrders"]["content"]);
-      })
+    this.dataService.searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
+      .subscribe(
+        res => {
+          this.dataService.setStandingOrdersSubject(res);
+          this.dataSource.paginator = this.paginator;
+        })
     // this.searchOfferService.updateCriteriaAndSearch('pageNumber', pageEvent.pageIndex + 1);
     return pageEvent;
   }
