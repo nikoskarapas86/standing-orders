@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -58,7 +58,7 @@ export class SearchStandingOrderComponent implements OnInit {
 
   private buildFormGroup(): void {
     this.searchForm = this.formBuilder.group({
-      lineOfBusiness: null,
+      lineOfBusiness: [null,[Validators.required]],
       policyNumber: null,
       paymentType: null,
       paymentId: null,
@@ -66,12 +66,12 @@ export class SearchStandingOrderComponent implements OnInit {
       customerLastName: null,
       customerFirstName:null,
       agent: null,
-      payDateFrom: new Date().toISOString().substring(0, 10),
-      payDateTo: new Date().toISOString().substring(0, 10),
+      payDateFrom:[new Date().toISOString().substring(0, 10),Validators.required],
+      payDateTo: [new Date().toISOString().substring(0, 10),[Validators.required]],
       endorsement: null,
     });
   }
-
+  // [{value: new Date().toISOString().substring(0, 10)},[Validators.required]],
   submit(): void {
     const tempStartDate = this.searchForm.get('payDateFrom').value;
     const tempEndDate = this.searchForm.get('payDateTo').value;
@@ -97,7 +97,6 @@ export class SearchStandingOrderComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (res:SearchResponse) => {
-          // ["standingOrders"]["content"]
           this.searchId = res.searchId;
           this.dataService.setStandingOrdersSubject(res);
           this.standingOrders$ = this.dataService.standingOrders$;
