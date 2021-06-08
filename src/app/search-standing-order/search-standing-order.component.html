@@ -85,6 +85,17 @@
         </mat-form-field>
       </div>
 
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Τύπος Πληρωμής</mat-label>
+          <mat-select formControlName="paymentType" matNativeControl>
+            <mat-option *ngFor="let item of paymentTypes" [value]="item.id" ngDefaultControl>
+              {{ item.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <!-- TODO: check why cannot get the condition -->
       <!-- <div
         *ngIf="searchForm.controls.paymentType.value === 'BANK_ACCOUNT"
@@ -99,26 +110,6 @@
             tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
-        </mat-form-field>
-      </div>
-
-      <div class="mr-10" fxLayout="column">
-        <mat-form-field fxLayout="row" appearance="fill">
-          <mat-label>Τύπος Πληρωμής</mat-label>
-          <!-- <input formControlName="paymentType" type="text" matInput /> -->
-          <mat-select formControlName="paymentType" matNativeControl>
-            <mat-option *ngFor="let item of paymentTypes" [value]="item.id" ngDefaultControl>
-              {{ item.name }}
-            </mat-option>
-          </mat-select>
-          <!-- <button
-            class="close-icon"
-            type="button"
-            (click)="this.searchForm.get('paymentType').setValue(null)"
-            tabindex="-1"
-          >
-            <mat-icon>close</mat-icon>
-          </button> -->
         </mat-form-field>
       </div>
 
