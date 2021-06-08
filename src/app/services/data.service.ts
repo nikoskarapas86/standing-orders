@@ -16,6 +16,7 @@ import { DeleteReason } from '../models/delete-reason';
 import { ValidateRequest } from '../models/validate-request';
 import { ValidateResponse } from '../models/validate-response';
 import { UpdateBankAccountRequest } from '../models/update-bank-account-request';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   _searchRequest: SearchRequest;
+  private privateSearchForm: FormGroup;
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
   standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
   setStandingOrdersSubject(response: any) {
@@ -38,6 +40,14 @@ export class DataService {
 
   get searchRequest() {
     return this._searchRequest;
+  }
+
+  set searchForm(val: FormGroup) {
+    this.privateSearchForm = val;
+  }
+
+  get searchForm() {
+    return this.privateSearchForm;
   }
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
