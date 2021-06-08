@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-// import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   redirectUrl: string;
   hide = true;
   loginForm: FormGroup;
- 
   private subscriptions$: Subscription[] = [];
 
   constructor(
@@ -26,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private authenticationService: AuthenticationService,
     // private userService: UserService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dataService: DataService
   ) {
     this.redirectUrl = this.activatedRoute.snapshot.queryParams.redirectTo;
   }
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
 
     this.authenticationService.logout();
+    this.resetSearch();
   }
 
   ngOnDestroy(): void {
@@ -55,11 +56,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     credentials.username = this.loginForm.get('username').value;
     credentials.password = this.loginForm.get('password').value;
     const login$ = this.authenticationService.login(credentials).subscribe(
-      (result:any) => {
+      (result: any) => {
         this.loading = false;
         if (result) {
           this.authenticationService.token = result.token;
-          this.authenticationService.username =result.fullName;
+          this.authenticationService.username = result.fullName;
           this.navigateAfterSuccess();
         }
       },
@@ -73,17 +74,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscriptions$.push(login$);
   }
 
+  resetSearch(): void {
+    this.dataService.searchRequest = undefined;
+    this.dataService.searchForm = undefined;
+  }
+
   private navigateAfterSuccess(): void {
     this.router.navigate(['/home']);
-    // if (this.redirectUrl) {
-    //   this.router.navigateByUrl(this.redirectUrl);
-    // } else {
-    //   if(this.userService.getCanReadAndWrite()){
-    //     this.router.navigate(['insert']);
-    //   }else{
-    //     this.router.navigate(['search']);
-    //   }
-    // }
   }
 
   hasRequiredError(key: string): boolean {
