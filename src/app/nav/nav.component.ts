@@ -1,6 +1,7 @@
 import { Component, ChangeDetectorRef, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,13 +13,13 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
   public insertClicked = true;
   public searchClicked = false;
   public isDisabled = false;
-  
 
   constructor(
     public authenticationService: AuthenticationService,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef
-  ) { }
+    private changeDetectorRef: ChangeDetectorRef,
+    private dataService: DataService
+  ) {}
 
   ngAfterContentChecked(): void {
     this.isVisible = localStorage.getItem('role') !== 'read-write' ? false : true;
@@ -29,6 +30,8 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
   }
 
   navigateToHome() {
+    this.dataService.searchForm = undefined;
+    this.dataService.searchRequest = undefined;
     this.router.navigate(['/home']);
   }
 

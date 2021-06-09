@@ -1,4 +1,6 @@
-@import 'src/css/variables';
+@import '/src/css/variables.scss';
+@import '/src/css/mixins.scss';
+@import '/src/css/responsive-breakpoints.scss';
 
 mat-spinner {
   margin-top: 3px;
@@ -51,4 +53,135 @@ button {
 .action-row {
   display: flex;
   flex-direction: row;
+}
+
+.mat-row {
+  border-bottom: 1px solid #0000001f !important;
+  padding: 0.4rem 1rem;
+
+  @include tablet-landscape {
+    @include _box(none !important, 4px, 0, 0 0 2rem 0, unset, 0px 0px 4px #00000029);
+    background: #ffffff 0% 0% no-repeat padding-box;
+    flex-direction: column;
+    min-width: 90% !important;
+    width: 90%;
+    padding: 15px 7px 7px !important;
+  }
+
+  @include small-text {
+    width: 100%;
+  }
+
+  .mat-cell {
+    font-size: 13px;
+
+    @include tablet-landscape {
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @include small-text {
+      align-items: start;
+    }
+
+    div {
+      @include tablet-landscape {
+        padding: 0 1rem;
+        text-align: center;
+      }
+
+      @include small-text {
+        text-align: left;
+      }
+    }
+
+    .action-row {
+      @include tablet-landscape {
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+      }
+
+      @include small-text {
+        justify-content: flex-start;
+      }
+
+      .offer-btn:hover {
+        @include tablet-landscape {
+          background: rgb(159, 159, 159);
+        }
+      }
+    }
+  }
+
+  .offer-code-link {
+    @include _font-init('Roboto', $regular, 13px);
+    color: $blue-primary-main;
+    line-height: 30px;
+    text-decoration: underline;
+  }
+
+  .offer-code-link:hover {
+    color: $blue-primary-light;
+  }
+}
+@include tablet-landscape {
+  .mat-table {
+    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    margin-left: 1rem;
+
+    background: transparent;
+  }
+}
+@include mobile-only {
+  .mat-table {
+    grid-template-columns: repeat(1, 1fr);
+    display: grid;
+    background: transparent;
+  }
+}
+.mat-header-row {
+  margin-top: 0;
+  padding-top: 0;
+  padding: 1rem;
+  border-bottom: 1px solid #0000001f !important;
+
+  @include tablet-landscape {
+    display: none;
+  }
+
+  .mat-header-cell {
+    @include _font-init('Roboto', $bold, 13px);
+    @include _font-conf(0.09px, unset, unset, #000000de);
+    padding-left: 0 !important;
+  }
+
+  .mat-header-cell:last-of-type {
+    justify-content: flex-start;
+  }
+}
+
+
+mat-cell, mat-header-cell, mat-footer-cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  min-height: 17px;
+}
+@include tablet-landscape {
+.mat-paginator {
+  display: block;
+  background: transparent;
+}
+}
+
+@include tablet-landscape {
+  mat-form-field.mat-form-field.mat-paginator-page-size-select{
+  background: transparent!important;
+}
 }

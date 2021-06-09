@@ -1,10 +1,11 @@
-<form [formGroup]="searchForm" (ngSubmit)="submit()" name="searchForm" id="searchCriteria">
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()" name="searchForm" id="searchCriteria">
   <div class="form-row">
     <div class="form-row-item go-back">
-      <a (click)="backHome()">
-        <mat-icon>chevron_left</mat-icon>
-        <span>ΚΕΝΤΡΙΚΗ</span>
-      </a>
+      
+        <a (click)="backHome()">
+          <mat-icon>chevron_left</mat-icon>
+          <span>ΚΕΝΤΡΙΚΗ</span>
+        </a>
     </div>
     <div class="form-row-item">
       <div class="mr-10" fxLayout="column">
@@ -102,7 +103,7 @@
         class="mr-10"
         fxLayout="column"
       > -->
-      <div class="mr-10" fxLayout="column">
+      <div *ngIf="searchForm.controls.paymentType.value == 'BANK_ACCOUNT'" class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τρ. Λογαριασμός</mat-label>
           <input formControlName="bankAccount" type="number" matInput />

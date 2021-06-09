@@ -54,6 +54,11 @@ export class SearchStandingOrderComponent implements OnInit {
       }
     });
     this._adapter.setLocale('el');
+
+    if (this.dataService.searchRequest) {
+      this.fetchSearchResults();
+      this.searchForm = this.dataService.searchForm;
+    }
   }
 
   private buildFormGroup(): void {
@@ -64,15 +69,15 @@ export class SearchStandingOrderComponent implements OnInit {
       paymentId: null,
       bankAccount: null,
       customerLastName: null,
-      customerFirstName:null,
+      customerFirstName: null,
       agent: null,
       payDateFrom:[new Date().toISOString().substring(0, 10),Validators.required],
       payDateTo: [new Date().toISOString().substring(0, 10),[Validators.required]],
       endorsement: null,
     });
   }
-  // [{value: new Date().toISOString().substring(0, 10)},[Validators.required]],
-  submit(): void {
+
+  private createSubmitRequest(): void {
     const tempStartDate = this.searchForm.get('payDateFrom').value;
     const tempEndDate = this.searchForm.get('payDateTo').value;
     const startDate = tempStartDate ? moment(tempStartDate).format('YYYY-MM-DD') : null;
@@ -92,11 +97,15 @@ export class SearchStandingOrderComponent implements OnInit {
       endorsement: this.searchForm.get('endorsement').value,
     };
     this.dataService.searchRequest = request;
+    this.dataService.searchForm = this.searchForm;
+  }
+
+  submit(): void {
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
-        (res:SearchResponse) => {
+        (res: SearchResponse) => {
           this.searchId = res.searchId;
           this.dataService.setStandingOrdersSubject(res);
           this.standingOrders$ = this.dataService.standingOrders$;
@@ -107,11 +116,25 @@ export class SearchStandingOrderComponent implements OnInit {
       );
   }
 
+  fetchSearchResults(): void {
+    if (!this.dataService.searchRequest) this.createSubmitRequest();
+    this.submit();
+  }
+
+  onSubmit(): void {
+    this.createSubmitRequest();
+    this.submit();
+  }
+
   resetForm() {
     this.searchForm.reset();
+    this.searchForm.get('payDateFrom').setValue(new Date().toISOString().substring(0, 10));
+    this.searchForm.get('payDateTo').setValue(new Date().toISOString().substring(0, 10));
   }
 
   backHome(): void {
+    this.dataService.searchForm = undefined;
+    this.dataService.searchRequest = undefined;
     this.router.navigate(['/home']);
   }
 }

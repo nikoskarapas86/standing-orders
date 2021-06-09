@@ -1,5 +1,6 @@
 @import '/src/css/variables.scss';
 @import '/src/css/mixins.scss';
+@import '/src/css/responsive-breakpoints.scss';
 
 form {
   @include _flex(column, center);
@@ -160,7 +161,9 @@ form {
 
 .go-back {
   margin-top: 0.83rem;
-
+  @include tablet-landscape {
+    visibility: hidden;
+  }
   a {
     @include _font-init('Roboto', $bold, 14px);
     @include _font-conf(0.42px, inherit, center, $black-text-primary);
