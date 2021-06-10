@@ -90,9 +90,9 @@ export class DataService {
     return this.http.get<LineOfBusiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
 
-  // update(updateRequest: CardNumberUpdateRequest | IbanUpdateRequest): Observable<UpdateResponse> {
-  //   return this.http.put<UpdateResponse>(`${this.url}/int/update/bankAccount/${searchId}`, updateRequest);
-  // }
+  sendEmail(email:any,searchId:string){
+    return this.http.post(`${this.url}/int/sendEmail/${searchId}`,email)
+  }
 
   updateBankAccount(
     request: UpdateBankAccountRequest,

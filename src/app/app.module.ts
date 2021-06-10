@@ -25,6 +25,7 @@ import { PolicyDetailsComponent } from './policy-details/policy-details.componen
 import { LoaderComponent } from './loader/loader.component';
 import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/policy-detail-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/p
     HomeButtonComponent,
     PolicyDetailsComponent,
     LoaderComponent,
-    PolicyDetailFormComponent,
+    PolicyDetailFormComponent
   ],
   imports: [
     CommonModule,

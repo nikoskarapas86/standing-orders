@@ -1,7 +1,8 @@
 <div class="flex-row">
   <div class="btn-container">
-    <button mat-raised-button class="common-btn" (click)="navigateToHome()">
-      Επιστροφη στη κεντρικη
+    <button mat-raised-button class="common-btn" (click)="atSearchScreen? navigateToSearch():navigateToHome()">
+      
+      {{ atSearchScreen ? 'Επιστροφη στην αναζήτηση' : 'Επιστροφη στη κεντρικη' }}
     </button>
   </div>
 </div>

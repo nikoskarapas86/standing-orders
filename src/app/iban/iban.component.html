@@ -1,31 +1,83 @@
 <mat-card class="mat-card-outer">
   <mat-card-header>
-    <div class="card-title">Επεξεργασία</div>
+    <div class="card-title">Επεξεργασία Πάγιας</div>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="form" name="searchForm">
+    <form [formGroup]="policyResponseForm" name="policyResponseForm">
       <div class="row">
         <div class="container">
+
           <mat-form-field class="field-width">
-            <mat-label>ΙΒΑΝ</mat-label>
-            <input
-              formControlName="iban"
-              type="string"
-              matInput
-              placeholder="Συμπληρώστε το Νούμερο του Agent"
-            />
+            <mat-label>Αριθμός Συμβολαίου</mat-label>
+            <input formControlName="policyNo" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Όνομα</mat-label>
+            <input formControlName="firstName" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Επίθετο</mat-label>
+            <input formControlName="lastName" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Tηλέφωνο</mat-label>
+            <input formControlName="phone" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>τρέχον IBAN</mat-label>
+            <input formControlName="iban" matInput />
           </mat-form-field>
         </div>
+        <mat-form-field class="field-width">
+          <mat-label>Αλλαγή Στοοιχείων Πληρωμής</mat-label>
+          <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid" matNativeControl>
+            <mat-option *ngFor="let item of paymentTypes" [value]="item.value" ngDefaultControl>
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <mat-dialog-actions class="space-between">
-        <button mat-raised-button type="button" class="common-btn" (click)="cancel()">
-          Aκύρωση
-        </button>
-        <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
-          {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
-        </button>
-      </mat-dialog-actions>
+
     </form>
+    <div *ngIf="paymentType === 'IBAN'">
+      <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="form" name="searchForm">
+        <div class="row">
+          <div class="container">
+            <mat-form-field class="field-width">
+              <mat-label>νέο ΙΒΑΝ</mat-label>
+              <input formControlName="iban" type="string" matInput placeholder="Συμπληρώστε το Νούμερο του Agent" />
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-dialog-actions class="space-between">
+          <!-- <button mat-raised-button type="button" class="common-btn" (click)="cancel()">
+            Aκύρωση
+          </button> -->
+          <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
+            {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+    <div *ngIf="paymentType === 'CARD'">
+      <form [formGroup]="emailForm" name="emailForm">
+        <div class="container">
+          <mat-form-field class="field-width">
+            <mat-label> email </mat-label>
+            <input formControlName="email" matInput />
+          </mat-form-field>
+        </div>
+        <mat-dialog-actions class="space-between">
+
+
+          <button mat-raised-button (click)="sendEmail()" [disabled]="isEmailDisabled" class="search-btn" id="searchBtn"
+            type="submit">
+            Αποστολή
+          </button>
+        </mat-dialog-actions>
+      </form>
+
+    </div>
   </mat-card-content>
 </mat-card>
-<app-home-button></app-home-button>
+<app-home-button [atSearchScreen]="true"></app-home-button>

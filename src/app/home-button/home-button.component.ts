@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,10 +8,15 @@ import { Router } from '@angular/router';
 })
 export class HomeButtonComponent implements OnInit {
   constructor(private router: Router) {}
-
-  ngOnInit(): void {}
+ @Input() atSearchScreen:boolean = false;
+  ngOnInit(): void {
+ 
+  }
 
   navigateToHome() {
     this.router.navigate(['/home']);
+  }
+  navigateToSearch() {
+    this.router.navigate(['/search']);
   }
 }
