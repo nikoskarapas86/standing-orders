@@ -63,8 +63,8 @@ export class SearchTableComponent implements OnInit {
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-      this.totalEs = res.standingOrders.totalElements;
-      this.numberOfElements = res.standingOrders.numberOfElements;
+      this.totalEs = res.standingOrders?.totalElements;
+      this.numberOfElements = res.standingOrders?.numberOfElements;
       const newStandingOrders = res['standingOrders']['content'].map(o => ({
         ...o,
         paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
@@ -75,8 +75,16 @@ export class SearchTableComponent implements OnInit {
   }
 
   edit(element: SearchItem) {
-    this.editService.selectedStandingOrder = element;
-    this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
+    this.editService.edit(this.searchId,element.id).subscribe(
+      res => {
+        if(res){
+          console.log(res)
+          this.editService.selectedStandingOrder = element;
+          this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
+        }
+      }
+    )
+  
   }
 
   onPaginateChange(pageEvent: PageEvent) {

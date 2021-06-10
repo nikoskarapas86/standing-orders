@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PaymentType } from '../models/payment-type';
 import { EditService } from '../services/edit.service';
@@ -14,10 +15,12 @@ export class EditStandingOrderComponent implements OnInit {
   
   constructor(
     public editService: EditService,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
-    
+    console.log(this.editService.selectedStandingOrder)
+    this.editService.selectedStandingOrder?null: this.router.navigate(['/search']);
     
   }
 
