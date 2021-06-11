@@ -63,7 +63,7 @@ export class SearchStandingOrderComponent implements OnInit {
 
   private buildFormGroup(): void {
     this.searchForm = this.formBuilder.group({
-      lineOfBusiness: [null,[Validators.required]],
+      lineOfBusiness: [null, Validators.required],
       policyNumber: null,
       paymentType: null,
       paymentId: null,
