@@ -38,7 +38,7 @@ export class SearchTableComponent implements OnInit {
     },
     { columnDef: 'name', headerCellDef: 'Ονομ/μο Πελάτη' },
     { columnDef: 'paymentTypeLiteral', headerCellDef: 'Τύπος Πληρωμής' },
-    { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λ. /Κάρτα' },
+    { columnDef: 'iban', headerCellDef: 'ΙΒΑΝ/Κάρτα' },
     { columnDef: 'agent', headerCellDef: 'Κωδ. Παραγωγού' },
     { columnDef: 'startDate', headerCellDef: 'Ημ/νία Έναρξης' },
     { columnDef: 'endDate', headerCellDef: 'Ημ/νία Λήξης' },
@@ -61,14 +61,11 @@ export class SearchTableComponent implements OnInit {
     public dialog: MatDialog,
     private modalService: ModalService,
     private renderer: Renderer2
-
-
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-
       this.totalEs = res?.standingOrders?.totalElements;
       this.numberOfElements = res.standingOrders?.numberOfElements;
       const newStandingOrders = res['standingOrders']['content'].map(o => ({
@@ -81,25 +78,18 @@ export class SearchTableComponent implements OnInit {
   }
 
   getCard(row) {
-    this.editService.getCard(row.tokenOfCardNumber).subscribe(
-     
-      res => {
-      
-        this.dialog.open(ModalComponent, { data: res });
-      }
-    )
+    this.editService.getCard(row.tokenOfCardNumber).subscribe(res => {
+      this.dialog.open(ModalComponent, { data: res });
+    });
   }
 
   edit(element: SearchItem) {
-    this.editService.edit(this.searchId, element.id).subscribe(
-      res => {
-        if (res) {
-          this.editService.selectedStandingOrder = element;
-          this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
-        }
+    this.editService.edit(this.searchId, element.id).subscribe(res => {
+      if (res) {
+        this.editService.selectedStandingOrder = element;
+        this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
       }
-    )
-
+    });
   }
 
   onPaginateChange(pageEvent: PageEvent) {
