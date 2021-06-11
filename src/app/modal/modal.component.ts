@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Card } from '../models/card';
 
 @Component({
   selector: 'app-modal',
@@ -25,11 +26,15 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalComponent>,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const error = this.data.error;
-    this.message = error ? this.getMessagefromJSON(error.message) : this.getTermsContent(this.data);
+    this.message = error ? this.getMessagefromJSON(error.message) : (typeof (this.data) == "object" && !error) ? this.getMessage(this.data) : this.getTermsContent(this.data);
+  }
+
+  getMessage(card: Card) {
+    return "Η κάρτα έχει αριθμό : " + card.cardNumber + " και ημ/νια λήξης : " + card.cardExpiry
   }
 
   getTermsContent(msg) {

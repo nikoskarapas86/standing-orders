@@ -36,11 +36,10 @@ export class IbanComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {
-   
+  ngOnInit(): void { 
     this.buildFormGroup();
     this.buildisplayedFormGroup();
-    this. emailFormGroup();
+    this.emailFormGroup();
     this.fillPolicyResponseForm(this.editService.selectedStandingOrder)
     this.searchId = history.state.searchId;
   }
