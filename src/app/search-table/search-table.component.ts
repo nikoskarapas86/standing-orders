@@ -98,6 +98,7 @@ export class SearchTableComponent implements OnInit {
       .subscribe(
         res => {
           this.dataService.setStandingOrdersSubject(res);
+          this.searchId = res.searchId;
         },
         error => console.log(error)
       );
