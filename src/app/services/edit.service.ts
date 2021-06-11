@@ -10,7 +10,7 @@ import { SearchItem } from '../models/search-response';
 export class EditService {
   private privateSelectedStandingOrder: SearchItem;
   private url = environment.baseUrl;
-constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) { }
   set selectedStandingOrder(value: SearchItem) {
     this.privateSelectedStandingOrder = value;
   }
@@ -19,11 +19,11 @@ constructor(private http: HttpClient){}
     return this.privateSelectedStandingOrder;
   }
 
-getCard(){
-  
-}
+  getCard(tokenOfCardNumber: string) {
+    return this.http.post<any>(`${this.url}/int/search/cardDetails`, { token: tokenOfCardNumber })
+  }
 
-  edit(searchId:string,identity:number):Observable<any>{
-    return this.http.post<any>(`${this.url}/int/update/select/${searchId}`,{id:identity})
+  edit(searchId: string, identity: number): Observable<any> {
+    return this.http.post<any>(`${this.url}/int/update/select/${searchId}`, { id: identity })
   }
 }

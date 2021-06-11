@@ -1,12 +1,7 @@
-
-
-
-
-
-<div  *ngIf="editService.selectedStandingOrder?.paymentType === 'BANK_ACCOUNT'">
+<div *ngIf="editService.selectedStandingOrder?.paymentType === 'BANK_ACCOUNT'">
   <app-iban></app-iban>
 
 </div>
 <div *ngIf="editService.selectedStandingOrder?.paymentType === 'CREDIT_CARD'">
-  <app-credit-card></app-credit-card>
+  <app-credit-card-form></app-credit-card-form>
 </div>

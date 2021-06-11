@@ -29,7 +29,8 @@
         </div>
         <mat-form-field class="field-width">
           <mat-label>Αλλαγή Στοιχείων Πληρωμής</mat-label>
-          <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid" matNativeControl>
+          <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)"
+            [disabled]="isIbanValid" matNativeControl>
             <mat-option *ngFor="let item of paymentTypes" [value]="item.value" ngDefaultControl>
               {{ item.title }}
             </mat-option>
@@ -48,9 +49,6 @@
           </div>
         </div>
         <mat-dialog-actions class="space-between">
-          <!-- <button mat-raised-button type="button" class="common-btn" (click)="cancel()">
-            Aκύρωση
-          </button> -->
           <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
             {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
           </button>

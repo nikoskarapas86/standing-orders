@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
+import { ModalComponent } from '../modal/modal.component';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { DataService } from '../services/data.service';
@@ -57,6 +58,7 @@ export class SearchTableComponent implements OnInit {
     private editService: EditService,
     private matDialog: MatDialog,
     private dataService: DataService,
+    public dialog: MatDialog,
     private modalService: ModalService,
     private renderer: Renderer2
 
@@ -67,7 +69,7 @@ export class SearchTableComponent implements OnInit {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
 
-      this.totalEs = res.standingOrders?.totalElements;
+      this.totalEs = res?.standingOrders?.totalElements;
       this.numberOfElements = res.standingOrders?.numberOfElements;
       const newStandingOrders = res['standingOrders']['content'].map(o => ({
         ...o,
@@ -79,15 +81,19 @@ export class SearchTableComponent implements OnInit {
   }
 
   getCard(row) {
-    console.log(row)
-    
+    this.editService.getCard(row.tokenOfCardNumber).subscribe(
+     
+      res => {
+      
+        this.dialog.open(ModalComponent, { data: res });
+      }
+    )
   }
 
   edit(element: SearchItem) {
     this.editService.edit(this.searchId, element.id).subscribe(
       res => {
         if (res) {
-          console.log(res)
           this.editService.selectedStandingOrder = element;
           this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
         }

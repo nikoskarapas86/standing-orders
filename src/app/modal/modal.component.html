@@ -1,6 +1,6 @@
 <div>
   <div class="action">
-    <span *ngIf="!termsContent"><h3>Σφάλμα</h3></span>
+    <span *ngIf="!termsContent"><h3>{{data.error?'Σφάλμα':'Πληροφορίες'}}</h3></span>
     <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
   </div>
   <mat-dialog-content>

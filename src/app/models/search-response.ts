@@ -35,6 +35,7 @@ export class SearchItem {
   'cardStatusDate': number[];
   'standingOrderStatus': string;
   'standingOrderStatusDate': number[];
+  'tokenOfCardNumber':string;
 }
 
 export class SearchResponse {
