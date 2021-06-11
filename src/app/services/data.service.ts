@@ -93,7 +93,9 @@ export class DataService {
   sendEmail(email:any,searchId:string){
     return this.http.post(`${this.url}/int/sendEmail/${searchId}`,email)
   }
-
+  sendUpdateEmail(email:any,searchId:string){
+    return this.http.post(`${this.url}/int/update/sendEmail/${searchId}`,email)
+  }
   updateBankAccount(
     request: UpdateBankAccountRequest,
     searchId: string
