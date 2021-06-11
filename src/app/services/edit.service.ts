@@ -19,7 +19,9 @@ constructor(private http: HttpClient){}
     return this.privateSelectedStandingOrder;
   }
 
-
+getCard(){
+  
+}
 
   edit(searchId:string,identity:number):Observable<any>{
     return this.http.post<any>(`${this.url}/int/update/select/${searchId}`,{id:identity})

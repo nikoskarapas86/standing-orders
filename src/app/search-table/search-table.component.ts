@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -37,7 +37,7 @@ export class SearchTableComponent implements OnInit {
     },
     { columnDef: 'name', headerCellDef: 'Ονομ/μο Πελάτη' },
     { columnDef: 'paymentTypeLiteral', headerCellDef: 'Τύπος Πληρωμής' },
-    { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λογαριασμός' },
+    { columnDef: 'bankAccount', headerCellDef: 'Τραπεζικός Λ. /Κάρτα' },
     { columnDef: 'agent', headerCellDef: 'Κωδ. Παραγωγού' },
     { columnDef: 'startDate', headerCellDef: 'Ημ/νία Έναρξης' },
     { columnDef: 'endDate', headerCellDef: 'Ημ/νία Λήξης' },
@@ -57,12 +57,16 @@ export class SearchTableComponent implements OnInit {
     private editService: EditService,
     private matDialog: MatDialog,
     private dataService: DataService,
-    private modalService: ModalService
-  ) {}
+    private modalService: ModalService,
+    private renderer: Renderer2
+
+
+  ) { }
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
+
       this.totalEs = res.standingOrders?.totalElements;
       this.numberOfElements = res.standingOrders?.numberOfElements;
       const newStandingOrders = res['standingOrders']['content'].map(o => ({
@@ -74,17 +78,22 @@ export class SearchTableComponent implements OnInit {
     });
   }
 
+  getCard(row) {
+    console.log(row)
+    
+  }
+
   edit(element: SearchItem) {
-    this.editService.edit(this.searchId,element.id).subscribe(
+    this.editService.edit(this.searchId, element.id).subscribe(
       res => {
-        if(res){
+        if (res) {
           console.log(res)
           this.editService.selectedStandingOrder = element;
           this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
         }
       }
     )
-  
+
   }
 
   onPaginateChange(pageEvent: PageEvent) {
