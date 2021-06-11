@@ -135,7 +135,7 @@
      mat-raised-button 
     class="search-btn"
      id="searchBtn"
-     [disabled]="!searchForm.valid"
+     [disabled]="!searchForm.valid || searchBtnDisabled"
      type="submit">Αναζήτηση</button>
   </mat-dialog-actions>
 </form>

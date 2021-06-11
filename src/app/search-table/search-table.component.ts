@@ -66,7 +66,8 @@ export class SearchTableComponent implements OnInit {
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-      this.totalEs = res?.standingOrders?.totalElements;
+      if(res){
+        this.totalEs = res?.standingOrders?.totalElements;
       this.numberOfElements = res.standingOrders?.numberOfElements;
       const newStandingOrders = res['standingOrders']['content'].map(o => ({
         ...o,
@@ -74,6 +75,7 @@ export class SearchTableComponent implements OnInit {
         name: `${o.firstName} ${o.lastName}`,
       }));
       this.dataSource = new MatTableDataSource(newStandingOrders);
+      }
     });
   }
 

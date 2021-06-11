@@ -22,7 +22,7 @@ export class SearchPolicyComponent implements OnInit {
   public linesOfBusinesses$: Observable<LineOfBusiness[]>;
   searchPolicyResponse$: Observable<SearchPolicyResponse[]>;
   createForm: FormGroup;
-
+  searchBtnDisabled:boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private createStandingService: CreateStandingService,
@@ -61,7 +61,8 @@ export class SearchPolicyComponent implements OnInit {
         },
         error => {
           this.dialog.open(ModalComponent, { data: error });
-        }
+        },
+        ()=>{this.searchBtnDisabled = false}
       );
   }
 

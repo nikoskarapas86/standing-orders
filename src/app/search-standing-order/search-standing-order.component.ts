@@ -26,6 +26,7 @@ export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
+  searchBtnDisabled:boolean = false;
   searchId: string;
   standingOrders$: Observable<any[]>;
   minDate = moment().subtract(3, 'months').toDate();
@@ -101,6 +102,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
+    this.searchBtnDisabled =true;
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
@@ -112,7 +114,8 @@ export class SearchStandingOrderComponent implements OnInit {
         },
         error => {
           this.dialog.open(ModalComponent, { data: error });
-        }
+        },
+        ()=>{ this.searchBtnDisabled =false;}
       );
   }
 
