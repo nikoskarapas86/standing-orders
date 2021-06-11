@@ -17,10 +17,11 @@ export class CreditCardFormComponent implements OnInit {
   paymentTypes: any[] = [{ title: "επιλογή νέας Κάρτας", value: 'CARD' }, { title: "Αλλαγή τρόπου πληρωμής σε IBAN", value: 'IBAN' }];
   paymentType: string;
   cardForm: FormGroup;
-  ibanForm:FormGroup;
+  ibanForm: FormGroup;
   emailForm: FormGroup;
   searchId: string;
   _isEmailDisabled: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     public editService: EditService,
@@ -53,11 +54,13 @@ export class CreditCardFormComponent implements OnInit {
   paymentWayChoise($event) {
     this.paymentType = $event.value
   }
+
   fillPolicyResponseForm(res: any) {
     for (let item in res) {
       res[item] ? this.cardForm.controls[item]?.setValue(res[item]) : this.cardForm.controls[item]?.setValue(null);
     }
   }
+
   getCard() {
     this.editService.getCard(this.editService.selectedStandingOrder.tokenOfCardNumber).subscribe(
 
@@ -66,10 +69,12 @@ export class CreditCardFormComponent implements OnInit {
       }
     )
   }
+
   submit(): void {
+
     const request = {
       id: this.activatedRoute.snapshot.params.id,
-      iban: this.ibanForm.get('iban').value.toString(),
+      iban: this.ibanForm.get('iban').value.toString().trim(),
     };
 
     this.dataService
@@ -79,7 +84,7 @@ export class CreditCardFormComponent implements OnInit {
         res => {
           this.dialog.open(ModalComponent, {
             data: 'Ο τραπεζικός λογαριασμός ενημερώθηκε επιτυχώς',
-          }).afterClosed().subscribe( ()=> this.router.navigate(['/search']));
+          }).afterClosed().subscribe(() => this.router.navigate(['/search']));
         },
         error => {
           this.dialog.open(ModalComponent, { data: error.error.error });
@@ -107,17 +112,16 @@ export class CreditCardFormComponent implements OnInit {
 
   sendEmail() {
     this.isEmailDisabled = true;
-   
-    this.dataService.sendUpdateEmail({ email : this.emailForm.get('email').value }, this.searchId).subscribe(
+    this.dataService.sendUpdateEmail({ email: this.emailForm.get('email').value }, this.searchId).subscribe(
       (res: any) => {
         this.dialog.open(ModalComponent, { data: res.message }).afterClosed().subscribe(() => {
-          this.router.navigate(['/home'])  
+          this.router.navigate(['/home'])
         });
       },
       error => {
         this.dialog.open(ModalComponent, { data: error });
         this.isEmailDisabled = false;
-      } 
+      }
     )
   }
 }

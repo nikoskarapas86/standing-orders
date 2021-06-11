@@ -78,7 +78,7 @@ export class IbanComponent implements OnInit {
   submit(): void {
     const request = {
       id: this.activatedRoute.snapshot.params.id,
-      iban: this.form.get('iban').value.toString(),
+      iban: this.form.get('iban').value.toString().trim(),
     };
 
     this.dataService
@@ -103,7 +103,6 @@ export class IbanComponent implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe(res => {
         this.isValid = res.isValid;
-
         if (!this.isValid)
           this.dialog.open(ModalComponent, { data: 'Το IBAN που εισάγατε δεν είναι έγκυρο' });
       });
