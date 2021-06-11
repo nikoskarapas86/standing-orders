@@ -19,7 +19,6 @@ export class EditStandingOrderComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    console.log(this.editService.selectedStandingOrder)
     this.editService.selectedStandingOrder?null: this.router.navigate(['/search']);
     
   }

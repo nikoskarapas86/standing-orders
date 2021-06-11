@@ -6,7 +6,6 @@
     <form [formGroup]="policyResponseForm" name="policyResponseForm">
       <div class="row">
         <div class="container">
-
           <mat-form-field class="field-width">
             <mat-label>Αριθμός Συμβολαίου</mat-label>
             <input formControlName="policyNo" matInput />
@@ -29,7 +28,7 @@
           </mat-form-field>
         </div>
         <mat-form-field class="field-width">
-          <mat-label>Αλλαγή Στοοιχείων Πληρωμής</mat-label>
+          <mat-label>Αλλαγή Στοιχείων Πληρωμής</mat-label>
           <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid" matNativeControl>
             <mat-option *ngFor="let item of paymentTypes" [value]="item.value" ngDefaultControl>
               {{ item.title }}
@@ -37,7 +36,6 @@
           </mat-select>
         </mat-form-field>
       </div>
-
     </form>
     <div *ngIf="paymentType === 'IBAN'">
       <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="form" name="searchForm">
