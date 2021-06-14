@@ -27,7 +27,7 @@ export class PolicyDetailService {
 
 
     getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
-        return this.httpClient.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
+        return this.httpClient.get<PolicyResponse>(`${this.url}/int/update/policy/${searchId}`);
       }
 
 }

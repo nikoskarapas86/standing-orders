@@ -26,7 +26,6 @@ export class LoaderComponent implements OnDestroy, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    console.log('im here');
     this.policyDetailService.isFailed$.subscribe(isFailed => {
       isFailed ? this.showActionFailed() : this.showActionInProgress();
     });
