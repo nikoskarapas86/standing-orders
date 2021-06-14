@@ -164,8 +164,9 @@ button {
   }
 }
 
-
-mat-cell, mat-header-cell, mat-footer-cell {
+mat-cell,
+mat-header-cell,
+mat-footer-cell {
   flex: 1;
   display: flex;
   align-items: center;
@@ -174,14 +175,21 @@ mat-cell, mat-header-cell, mat-footer-cell {
   min-height: 17px;
 }
 @include tablet-landscape {
-.mat-paginator {
-  display: block;
-  background: transparent;
-}
+  .mat-paginator {
+    display: block;
+    background: transparent;
+  }
 }
 
 @include tablet-landscape {
-  mat-form-field.mat-form-field.mat-paginator-page-size-select{
-  background: transparent!important;
+  mat-form-field.mat-form-field.mat-paginator-page-size-select {
+    background: transparent !important;
+  }
 }
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }

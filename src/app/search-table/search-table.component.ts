@@ -47,7 +47,6 @@ export class SearchTableComponent implements OnInit {
     { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
-  newStandingOrders: any;
   pageEvent: PageEvent;
   pageSizeOptions = [5, 10, 20];
   totalEs: number = 0;
@@ -66,15 +65,15 @@ export class SearchTableComponent implements OnInit {
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
     this.dataService.standingOrders$.subscribe(res => {
-      if(res){
+      if (res) {
         this.totalEs = res?.standingOrders?.totalElements;
-      this.numberOfElements = res.standingOrders?.numberOfElements;
-      const newStandingOrders = res['standingOrders']['content'].map(o => ({
-        ...o,
-        paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
-        name: `${o.firstName} ${o.lastName}`,
-      }));
-      this.dataSource = new MatTableDataSource(newStandingOrders);
+        this.numberOfElements = res.standingOrders?.numberOfElements;
+        const newStandingOrders = res['standingOrders']['content'].map(o => ({
+          ...o,
+          paymentTypeLiteral: o.paymentType === 'BANK_ACCOUNT' ? 'Λογαριασμός' : 'Κάρτα',
+          name: `${o.firstName} ${o.lastName}`,
+        }));
+        this.dataSource = new MatTableDataSource(newStandingOrders);
       }
     });
   }

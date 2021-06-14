@@ -1,5 +1,14 @@
-<div class="container mt-5">
-  <div >
+<div *ngIf="!dataSource" class="no-results mt-5">
+  <div>
+    <img src="./assets/images/empty-results.svg" />
+  </div>
+  <div>
+    <p class="empty-message">Δεν υπάρχουν αποτελέσματα. Eπαναπροσδιορίστε την αναζήτησή σας</p>
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="dataSource">
+  <div>
     <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">
@@ -7,8 +16,6 @@
             tableItem.headerCellDef
           }}</mat-header-cell>
           <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
-
-
             <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
             <div *ngIf="tableItem.columnDef === 'iban' "><button class="mat-icon-btn" (click)="getCard(row)"><mat-icon>payment</mat-icon></button></div>
             <div *ngIf="tableItem.columnDef === 'actions'">
