@@ -6,11 +6,11 @@
         <form [formGroup]="policyForm" name="policyForm">
             <div class="container">
                 <mat-form-field class="field-width">
-                    <mat-label>Επώνυμο </mat-label>
-                    <input formControlName="lastName" matInput />
+                    <mat-label>Αρ. Συμβολαίου </mat-label>
+                    <input formControlName="policyNo" matInput />
                 </mat-form-field>
             </div>
-            <div class="container">
+            <!-- <div class="container">
                 <mat-form-field class="field-width">
                     <mat-label>Όνομα </mat-label>
                     <input formControlName="firstName" matInput />
@@ -21,7 +21,7 @@
                     <mat-label>Κλάδος </mat-label>
                     <input formControlName="lineOfBusiness" matInput />
                 </mat-form-field>
-            </div>
+            </div> -->
             <mat-dialog-actions class="space-between">
                 
                 <button mat-raised-button (click)="next()" class="search-btn" id="searchBtn" type="submit">

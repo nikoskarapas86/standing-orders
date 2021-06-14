@@ -21,14 +21,20 @@ export class PolicyDetailFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.policyDetailService.policy$.subscribe(res => this.fillPolicylForm(res));
+    this.policyDetailService.policy$.subscribe(res => 
+      {
+console.log(res)
+        this.fillPolicylForm(res)
+      }
+    
+      );
   }
 
   policyFormGroup() {
     this.policyForm = this.formBuilder.group({
-      lastName: [{ value: '', disabled: true }],
-      firstName: [{ value: '', disabled: true }],
-      lineOfBusiness: [{ value: '', disabled: true }],
+      policyNo: [{ value: '', disabled: true }],
+      // firstName: [{ value: '', disabled: true }],
+      // lineOfBusiness: [{ value: '', disabled: true }],
     });
   }
 
