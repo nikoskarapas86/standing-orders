@@ -26,7 +26,7 @@ export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   standingOrders: SearchItem[];
-  searchBtnDisabled:boolean = false;
+  searchBtnDisabled: boolean = false;
   searchId: string;
   standingOrders$: Observable<any[]>;
   minDate = moment().subtract(3, 'months').toDate();
@@ -72,8 +72,8 @@ export class SearchStandingOrderComponent implements OnInit {
       customerLastName: null,
       customerFirstName: null,
       agent: null,
-      payDateFrom:[new Date().toISOString().substring(0, 10),Validators.required],
-      payDateTo: [new Date().toISOString().substring(0, 10),[Validators.required]],
+      payDateFrom: [new Date().toISOString().substring(0, 10), Validators.required],
+      payDateTo: [new Date().toISOString().substring(0, 10), [Validators.required]],
       endorsement: null,
     });
   }
@@ -102,7 +102,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-    this.searchBtnDisabled =true;
+    this.searchBtnDisabled = true;
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
@@ -113,11 +113,14 @@ export class SearchStandingOrderComponent implements OnInit {
           this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {
+          this.dataService.setStandingOrdersSubject(undefined);
+          this.searchBtnDisabled = false;
+          this.standingOrders$ = this.dataService.standingOrders$;
           this.dialog.open(ModalComponent, { data: error });
         },
-        ()=>{ 
-          
-          this.searchBtnDisabled =false;}
+        () => {
+          this.searchBtnDisabled = false;
+        }
       );
   }
 
