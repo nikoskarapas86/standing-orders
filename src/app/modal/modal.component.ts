@@ -21,6 +21,8 @@ export class ModalComponent implements OnInit {
   modalDynamicContent: ViewContainerRef;
   message: string;
   termsContent: boolean = false;
+  cardNumber:string;
+  expiryDate:string;
   buttonText: string;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,7 +36,9 @@ export class ModalComponent implements OnInit {
   }
 
   getMessage(card: Card) {
-    return "Η κάρτα έχει αριθμό : " + card.cardNumber + " και ημ/νια λήξης : " + card.cardExpiry
+    this.cardNumber=card.cardNumber ;
+    this.expiryDate = card.cardExpiry;
+    // return "Η κάρτα έχει αριθμό : " + card.cardNumber + " και ημ/νια λήξης : " + card.cardExpiry
   }
 
   getTermsContent(msg) {
