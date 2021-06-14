@@ -48,7 +48,7 @@ export class CreateStandingService {
 
   
   createorder(searchId,createRequest:CreateOrderRequest):Observable<any>{
-    return this.http.post(`${this.url}/int/create/${searchId}`,createRequest)
+    return this.http.post(`${this.url}/int/create/bankAccount/${searchId}`,createRequest)
   }
 
 }

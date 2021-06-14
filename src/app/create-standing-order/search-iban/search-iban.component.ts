@@ -31,7 +31,7 @@ export class SearchIbanComponent implements OnInit {
 
   ngOnInit(): void {
     this.ibanFormGroup()
-    this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => this.searchId = res.searchId)
+    this.dataService.searchPolicyResponse$.subscribe((res: SearchPolicyResponse) => res?  this.searchId = res.searchId: this.router.navigate(['home']))
   }
   
   back() {

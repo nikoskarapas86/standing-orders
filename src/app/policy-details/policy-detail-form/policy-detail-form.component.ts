@@ -23,7 +23,6 @@ export class PolicyDetailFormComponent implements OnInit {
   ngOnInit(): void {
     this.policyDetailService.policy$.subscribe(res => 
       {
-console.log(res)
         this.fillPolicylForm(res)
       }
     
