@@ -1,4 +1,4 @@
-<div *ngIf="!dataSource" class="no-results mt-5">
+<div *ngIf="!dataSource || !dataSource.data.length" class="no-results mt-5">
   <div>
     <img src="./assets/images/empty-results.svg" />
   </div>
@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="container mt-5" *ngIf="dataSource">
+<div class="container mt-5" *ngIf="dataSource && dataSource.data.length">
   <div>
     <mat-table mat-table [dataSource]="dataSource">
       <div *ngFor="let tableItem of tableItems">
@@ -17,7 +17,11 @@
           }}</mat-header-cell>
           <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
             <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
-            <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] =='' "><button class="mat-icon-btn" (click)="getCard(row)"><mat-icon>payment</mat-icon></button></div>
+            <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
+              <button class="mat-icon-btn" (click)="getCard(row)">
+                <mat-icon>payment</mat-icon>
+              </button>
+            </div>
             <div *ngIf="tableItem.columnDef === 'actions'">
               <div class="action-row" *ngIf="row.activeStandingOrder">
                 <div (click)="edit(row)">
