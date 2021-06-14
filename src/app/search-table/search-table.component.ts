@@ -104,7 +104,6 @@ export class SearchTableComponent implements OnInit {
         },
         error => console.log(error)
       );
-
     return pageEvent;
   }
 
