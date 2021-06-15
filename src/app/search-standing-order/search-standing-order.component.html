@@ -51,7 +51,6 @@
       </div>
 
       <div *ngIf="searchForm.controls.lineOfBusiness.value === 'LIFE'" class="mr-10" fxLayout="column">
-        <!-- <div class="mr-10" fxLayout="column"> -->
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Αίτησης</mat-label>
           <input formControlName="endorsement" type="string" matInput />
@@ -97,12 +96,6 @@
         </mat-form-field>
       </div>
 
-      <!-- TODO: check why cannot get the condition -->
-      <!-- <div
-        *ngIf="searchForm.controls.paymentType.value === 'BANK_ACCOUNT"
-        class="mr-10"
-        fxLayout="column"
-      > -->
       <div *ngIf="searchForm.controls.paymentType.value == 'BANK_ACCOUNT'" class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τρ. Λογαριασμός</mat-label>
@@ -140,6 +133,4 @@
   </mat-dialog-actions>
 </form>
 
-<!-- <div *ngIf="standingOrders$ | async" class="justify-content-center"> -->
 <app-search-table [searchId]="searchId" class="w-90"></app-search-table>
-<!-- </div> -->
