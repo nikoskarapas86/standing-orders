@@ -9,7 +9,7 @@
 
 <div class="container mt-5" *ngIf="dataSource && dataSource.data.length">
   <div>
-    <mat-table mat-table [dataSource]="dataSource">
+    <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
       <div *ngFor="let tableItem of tableItems">
         <ng-container [matColumnDef]="tableItem.columnDef">
           <mat-header-cell class="fs-14" *matHeaderCellDef>{{
