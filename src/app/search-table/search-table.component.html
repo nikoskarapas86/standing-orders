@@ -16,7 +16,12 @@
             tableItem.headerCellDef
           }}</mat-header-cell>
           <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
-            <div *ngIf="tableItem.columnDef !== 'actions'">{{ row[tableItem.columnDef] }}</div>
+            <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
+              {{ tableItem.headerCellDef }}:
+            </div>
+            <div *ngIf="tableItem.columnDef !== 'actions'">
+              {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
+            </div>
             <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
               <button class="mat-icon-btn" (click)="getCard(row)">
                 <mat-icon>payment</mat-icon>
