@@ -322,9 +322,11 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   tokenize(): void {
+    console.log(this.isNameOnCard);
+    console.log(this.isCvv);
+    if (!this.isNameOnCard || !this.isCvv) return;
     this.isPayPushed = true;
     this.isLoading = true;
-    if (!this.isNameOnCard || !this.isCvv) return;
 
     this.paymentSession[HostedSessionCallbacks.updateSessionFromForm](
       HostedSessionPaymentType.CARD
