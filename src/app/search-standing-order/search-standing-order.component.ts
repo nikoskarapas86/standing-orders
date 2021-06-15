@@ -81,8 +81,8 @@ export class SearchStandingOrderComponent implements OnInit {
   private createSubmitRequest(): void {
     const tempStartDate = this.searchForm.get('payDateFrom').value;
     const tempEndDate = this.searchForm.get('payDateTo').value;
-    const startDate = tempStartDate ? moment(tempStartDate).format('DD-MM-YYYY') : null;
-    const endDate = tempEndDate ? moment(tempEndDate).format('DD-MM-YYYY') : null;
+    const startDate = tempStartDate ? moment(tempStartDate).format('DD/MM/YYYY') : null;
+    const endDate = tempEndDate ? moment(tempEndDate).format('DD/MM/YYYY') : null;
     this.dataService.setStandingOrdersSubject(undefined);
     const request: SearchRequest = {
       policyNo: this.searchForm.get('policyNumber').value,

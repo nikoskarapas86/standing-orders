@@ -19,8 +19,18 @@
             <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
               {{ tableItem.headerCellDef }}:
             </div>
-            <div *ngIf="tableItem.columnDef !== 'actions'">
+            <div
+              *ngIf="
+                tableItem.columnDef !== 'actions' && tableItem.columnDef !== 'standingOrderStatus'
+              "
+            >
               {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
+            </div>
+            <div
+              *ngIf="tableItem.columnDef === 'standingOrderStatus'"
+              [ngClass]="row.activeStandingOrder ? 'active' : 'non-active'"
+            >
+              {{ row[tableItem.columnDef] }}
             </div>
             <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
               <button class="mat-icon-btn" (click)="getCard(row)">
