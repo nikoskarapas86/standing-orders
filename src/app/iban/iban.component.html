@@ -1,6 +1,6 @@
 <mat-card class="mat-card-outer">
   <mat-card-header>
-    <div class="card-title">Επεξεργασία Πάγιας</div>
+    <div class="card-title"> <span>Επεξεργασία Πάγιας με αριθμό : </span>  <span>{{this.editService.selectedStandingOrder.id}}</span> </div>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="policyResponseForm" name="policyResponseForm">

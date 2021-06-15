@@ -5,3 +5,9 @@
 //   align-items: flex-end;
 //   flex-direction: column;
 // }
+
+.card-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

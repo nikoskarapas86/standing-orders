@@ -41,12 +41,12 @@
               <div class="action-row" *ngIf="row.activeStandingOrder">
                 <div (click)="edit(row)">
                   <button class="btn">
-                    <mat-icon>edit</mat-icon>
+                    <mat-icon class="edit-row">edit</mat-icon>
                   </button>
                 </div>
                 <div (click)="delete(index, row)">
                   <button class="btn">
-                    <mat-icon>delete</mat-icon>
+                    <mat-icon class="delete-row">delete</mat-icon>
                   </button>
                 </div>
               </div>

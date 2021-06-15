@@ -1,5 +1,5 @@
 <div>
-  <div class="action">
+  <div [ngClass]="termsContent ?  'action-1':'action' ">
     <span *ngIf="!termsContent"><h3>{{data.error?'Σφάλμα':'Πληροφορίες Κάρτας'}}</h3></span>
     <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
   </div>
