@@ -23,7 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: 'policyDetails/:searchId',
+    path: 'policyDetails',
     component: PolicyDetailsComponent,
   },
   {

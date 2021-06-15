@@ -12,7 +12,6 @@ export class PolicyDetailService {
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
 
-
     constructor(handler: HttpBackend) {
         this.httpClient = new HttpClient(handler);
     }
