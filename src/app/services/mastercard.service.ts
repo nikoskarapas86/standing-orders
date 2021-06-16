@@ -38,8 +38,8 @@ export class MastercardService {
     );
   }
 
-  initialPayment(searchId: string): Observable<InitialPaymentResponse> {
-    const update = this.dataService.status === 'create' ? '' : '/update';
+  initialPayment(searchId: string, status: string = null): Observable<InitialPaymentResponse> {
+    let update = status === 'create' ? '' : '/update';
     return this.httpClient.post<InitialPaymentResponse>(
       `${this.url}/int${update}/initialPayment/${searchId}`,
       null

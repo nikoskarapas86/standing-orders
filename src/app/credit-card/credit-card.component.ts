@@ -347,8 +347,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.isPayPushed = false;
   }
 
-  private initialPayment() {
-    this.mastercardService.initialPayment(this.searchId).subscribe(
+  private initialPayment(): void {
+    this.mastercardService.initialPayment(this.searchId, status).subscribe(
       res => {
         this.isPaymentCompleted = true;
         this.isLoading = false;
