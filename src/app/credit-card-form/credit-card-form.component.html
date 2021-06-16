@@ -1,69 +1,81 @@
 <mat-card class="mat-card-outer">
-    <mat-card-header>
-        <div class="card-title">Επεξεργασία Πάγιας</div>
-    </mat-card-header>
-    <mat-card-content>
-        <form [formGroup]="cardForm" name="cardForm">
-            <div class="row">
-                <div class="container">
-                    <mat-form-field class="field-width">
-                        <mat-label>Αριθμός Κάρτας</mat-label>
-                        <input formControlName="cardNumber" matInput />
-                      </mat-form-field>
-                      <mat-form-field class="field-width">
-                        <mat-label>Ημ/νια λήξης</mat-label>
-                        <input formControlName="cardExpiry" matInput />
-                      </mat-form-field>
-                </div>
-                <div class="field-width in-column">
-                  <label id="example-radio-group-label" class="bottom-margin">Αλλαγή Στοιχείων Πληρωμής</label>
-                  <mat-radio-group 
-                    aria-labelledby="example-radio-group-label"
-                    class="example-radio-group in-column"
-                    formControlName="paymentTypeSelect" >
-                    <mat-radio-button class="example-radio-button bottom-margin"  (change)="paymentWayChoise($event)" *ngFor="let item of paymentTypes"[value]="item.value">
-                      {{item.title }}
-                    </mat-radio-button>
-                  </mat-radio-group>
-        
-                </div>
-            </div>
-        </form>
-        <div *ngIf="paymentType === 'IBAN'">
-            <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="ibanForm" name="ibanForm">
-              <div class="row">
-                <div class="container">
-                  <mat-form-field class="field-width">
-                    <mat-label>νέο ΙΒΑΝ</mat-label>
-                    <input formControlName="iban" type="string" matInput placeholder="Συμπληρώστε το Νούμερο του Agent" />
-                  </mat-form-field>
-                </div>
-              </div>
-              <mat-dialog-actions class="space-between">
-                <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
-                  {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
-                </button>
-              </mat-dialog-actions>
-            </form>
+  <mat-card-header>
+    <div class="card-title">Επεξεργασία Πάγιας</div>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="cardForm" name="cardForm">
+      <div class="row">
+        <div class="container">
+          <mat-form-field class="field-width">
+            <mat-label>Αριθμός Συμβολαίου</mat-label>
+            <input formControlName="policyNo" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Όνομα</mat-label>
+            <input formControlName="firstName" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Επίθετο</mat-label>
+            <input formControlName="lastName" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Αριθμός Κάρτας</mat-label>
+            <input formControlName="cardNumber" matInput />
+          </mat-form-field>
+          <mat-form-field class="field-width">
+            <mat-label>Ημ/νια λήξης</mat-label>
+            <input formControlName="cardExpiry" matInput />
+          </mat-form-field>
+        </div>
+        <div class="field-width in-column">
+          <label id="example-radio-group-label" class="bottom-margin">Αλλαγή Στοιχείων Πληρωμής</label>
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group in-column"
+            formControlName="paymentTypeSelect">
+            <mat-radio-button class="example-radio-button bottom-margin" (change)="paymentWayChoise($event)"
+              *ngFor="let item of paymentTypes" [value]="item.value">
+              {{item.title }}
+            </mat-radio-button>
+          </mat-radio-group>
+
+        </div>
+      </div>
+    </form>
+    <div *ngIf="paymentType === 'IBAN'">
+      <form (ngSubmit)="isValid ? submit() : validate()" [formGroup]="ibanForm" name="ibanForm">
+        <div class="row">
+          <div class="container">
+            <mat-form-field class="field-width">
+              <mat-label>νέο ΙΒΑΝ</mat-label>
+              <input formControlName="iban" type="string" matInput placeholder="Συμπληρώστε το Νούμερο του Agent" />
+            </mat-form-field>
           </div>
-          <div *ngIf="paymentType === 'CARD'">
-            <form [formGroup]="emailForm" name="emailForm">
-              <div class="container">
-                <mat-form-field class="field-width">
-                  <mat-label> email </mat-label>
-                  <input formControlName="email" matInput />
-                </mat-form-field>
-              </div>
-              <mat-dialog-actions class="space-between">
-      
-      
-                <button mat-raised-button (click)="sendEmail()" [disabled]="isEmailDisabled" class="search-btn" id="searchBtn"
-                  type="submit">
-                  Αποστολή
-                </button>
-              </mat-dialog-actions>
-            </form>
-      
-          </div>
-    </mat-card-content>
+        </div>
+        <mat-dialog-actions class="space-between">
+          <button mat-raised-button class="search-btn" id="searchBtn" type="submit">
+            {{ isValid ? 'Ανανέωση' : 'Έλεγχος' }}
+          </button>
+        </mat-dialog-actions>
+      </form>
+    </div>
+    <div *ngIf="paymentType === 'CARD'">
+      <form [formGroup]="emailForm" name="emailForm">
+        <div class="container">
+          <mat-form-field class="field-width">
+            <mat-label> email </mat-label>
+            <input formControlName="email" matInput />
+          </mat-form-field>
+        </div>
+        <mat-dialog-actions class="space-between">
+
+
+          <button mat-raised-button (click)="sendEmail()" [disabled]="isEmailDisabled" class="search-btn" id="searchBtn"
+            type="submit">
+            Αποστολή
+          </button>
+        </mat-dialog-actions>
+      </form>
+
+    </div>
+  </mat-card-content>
 </mat-card>
+<app-home-button [atSearchScreen]="true"></app-home-button>

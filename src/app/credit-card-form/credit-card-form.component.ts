@@ -33,11 +33,13 @@ export class CreditCardFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCard();
+   
     this.buildCardFormGroup();
     this.emailFormGroup();
     this.buildIbanFormGroup();
-    this.searchId = history.state.searchId;
+    this.searchId = history.state.searchId
+    this.fillPolicyResponseForm(this.editService.selectedCard );
+    this.fillPolicyResponseForm(this.editService.selectedStandingOrder );
   }
 
   emailFormGroup() {
@@ -61,14 +63,7 @@ export class CreditCardFormComponent implements OnInit {
     }
   }
 
-  getCard() {
-    this.editService.getCard(this.editService.selectedStandingOrder.tokenOfCardNumber).subscribe(
-
-      res => {
-        this.fillPolicyResponseForm(res)
-      }
-    )
-  }
+ 
 
   submit(): void {
 
@@ -96,6 +91,9 @@ export class CreditCardFormComponent implements OnInit {
     this.cardForm = this.formBuilder.group({
       cardExpiry: [{ value: '', disabled: true }],
       cardNumber: [{ value: '', disabled: true }],
+      firstName: [{ value: '', disabled: true }],
+      lastName: [{ value: '', disabled: true }],
+      policyNo: [{ value: '', disabled: true }],
       paymentTypeSelect: ''
     });
   }

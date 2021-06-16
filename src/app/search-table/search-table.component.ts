@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { ModalComponent } from '../modal/modal.component';
+import { Card } from '../models/card';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { DataService } from '../services/data.service';
@@ -60,10 +61,11 @@ export class SearchTableComponent implements OnInit {
     public dialog: MatDialog,
     private modalService: ModalService,
     private renderer: Renderer2
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.editService.selectedStandingOrder = null;
+
     this.dataService.standingOrders$.subscribe(res => {
       if (res) {
         this.totalEs = res?.standingOrders?.totalElements;
@@ -87,6 +89,7 @@ export class SearchTableComponent implements OnInit {
   edit(element: SearchItem) {
     this.editService.edit(this.searchId, element.id).subscribe(res => {
       if (res) {
+        res.cardNumber !==""? this.editService.selectedCard = res:null;
         this.editService.selectedStandingOrder = element;
         this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
       }

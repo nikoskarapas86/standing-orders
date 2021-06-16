@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Card } from '../models/card';
 import { SearchItem } from '../models/search-response';
 
 @Injectable({
@@ -9,8 +10,16 @@ import { SearchItem } from '../models/search-response';
 })
 export class EditService {
   private privateSelectedStandingOrder: SearchItem;
+  private privateSelectedCard: Card;
   private url = environment.baseUrl;
   constructor(private http: HttpClient) { }
+  set selectedCard(value: Card) {
+    this.privateSelectedCard = value;
+  }
+
+  get selectedCard(): Card {
+    return this.privateSelectedCard;
+  }
   set selectedStandingOrder(value: SearchItem) {
     this.privateSelectedStandingOrder = value;
   }
