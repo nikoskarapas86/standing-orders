@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PolicyDetailFormComponent implements OnInit {
   policyForm: FormGroup;
+  searchId: string;
 
   constructor(
     private policyDetailService: PolicyDetailService,
@@ -21,12 +22,13 @@ export class PolicyDetailFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.policyDetailService.policy$.subscribe(res => 
-      {
-        this.fillPolicylForm(res)
-      }
-    
-      );
+    this.route.queryParams.subscribe(params => {
+      this.searchId = params.searchId;
+    });
+
+    this.policyDetailService.policy$.subscribe(res => {
+      this.fillPolicylForm(res);
+    });
   }
 
   policyFormGroup() {
@@ -46,6 +48,6 @@ export class PolicyDetailFormComponent implements OnInit {
   }
 
   next() {
-    this.router.navigate([`/creditcard/${this.route.snapshot.params.searchId}`]);
+    this.router.navigate([`/creditcard/${this.searchId}`]);
   }
 }
