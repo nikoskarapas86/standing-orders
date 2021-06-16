@@ -15,15 +15,18 @@
                         <input formControlName="cardExpiry" matInput />
                       </mat-form-field>
                 </div>
-                <mat-form-field class="field-width">
-                    <mat-label>Αλλαγή Στοιχείων Πληρωμής</mat-label>
-                    <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)"
-                       matNativeControl>
-                      <mat-option *ngFor="let item of paymentTypes" [value]="item.value" ngDefaultControl>
-                        {{ item.title }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                <div class="field-width in-column">
+                  <label id="example-radio-group-label" class="bottom-margin">Αλλαγή Στοιχείων Πληρωμής</label>
+                  <mat-radio-group 
+                    aria-labelledby="example-radio-group-label"
+                    class="example-radio-group in-column"
+                    formControlName="paymentTypeSelect" >
+                    <mat-radio-button class="example-radio-button bottom-margin"  (change)="paymentWayChoise($event)" *ngFor="let item of paymentTypes"[value]="item.value">
+                      {{item.title }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+        
+                </div>
             </div>
         </form>
         <div *ngIf="paymentType === 'IBAN'">
