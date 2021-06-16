@@ -24,7 +24,7 @@ export class PolicyDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.dataService.status = params.status;
-      this.policyDetailService
+      this.dataService
         .getPolicyByEmail(params.searchId)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
