@@ -8,6 +8,7 @@ import { PayRequest } from '../models/pay-request';
 import { PayResponse } from '../models/pay-response';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { TokenizeResponse } from '../models/tokenize-response';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,30 +17,39 @@ export class MastercardService {
   private url = environment.baseUrl;
   private policyDetailsToken: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private dataService: DataService) {}
 
   setPolicyDetailsToken = (policyDetailsToken: string): void => {
     this.policyDetailsToken = policyDetailsToken;
   };
 
   createSession(searchId: string): Observable<CreateSessionResponse> {
-    return this.httpClient.get<CreateSessionResponse>(`${this.url}/int/create/session/${searchId}`);
+    const update = this.dataService.status === 'create' ? '' : '/update';
+    return this.httpClient.get<CreateSessionResponse>(
+      `${this.url}/int${update}/create/session/${searchId}`
+    );
   }
 
   tokenize(searchId: string, request: TokenizeRequest): Observable<TokenizeResponse> {
-    return this.httpClient.post<TokenizeResponse>(`${this.url}/int/tokenize/${searchId}`, request);
+    const update = this.dataService.status === 'create' ? '' : '/update';
+    return this.httpClient.post<TokenizeResponse>(
+      `${this.url}/int${update}/tokenize/${searchId}`,
+      request
+    );
   }
 
   initialPayment(searchId: string): Observable<InitialPaymentResponse> {
+    const update = this.dataService.status === 'create' ? '' : '/update';
     return this.httpClient.post<InitialPaymentResponse>(
-      `${this.url}/int/initialPayment/${searchId}`,
+      `${this.url}/int${update}/initialPayment/${searchId}`,
       null
     );
   }
 
-  pay = (request: PayRequest): Observable<PayResponse> => {
-    return this.httpClient.post<PayResponse>('posweb/payment/pay', request, {
-      headers: { PolicyDetails: this.policyDetailsToken },
-    });
-  };
+  // pay = (request: PayRequest): Observable<PayResponse> => {
+  //   const update = this.dataService.status === 'create' ? '' : '/update';
+  //   return this.httpClient.post<PayResponse>('posweb/payment/pay', request, {
+  //     headers: { PolicyDetails: this.policyDetailsToken },
+  //   });
+  // };
 }
