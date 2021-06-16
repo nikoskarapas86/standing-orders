@@ -7,58 +7,56 @@
   </div>
 </div>
 
-<div class="container mt-5" *ngIf="dataSource && dataSource.data.length">
-  <div>
-    <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
-      <div *ngFor="let tableItem of tableItems">
-        <ng-container [matColumnDef]="tableItem.columnDef">
-          <mat-header-cell class="fs-14" *matHeaderCellDef>{{
-            tableItem.headerCellDef
-          }}</mat-header-cell>
-          <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
-            <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
-              {{ tableItem.headerCellDef }}:
-            </div>
-            <div
-              *ngIf="
-                tableItem.columnDef !== 'actions' && tableItem.columnDef !== 'standingOrderStatus'
-              "
-            >
-              {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
-            </div>
-            <div
-              *ngIf="tableItem.columnDef === 'standingOrderStatus'"
-              [ngClass]="row.activeStandingOrder ? 'active' : 'non-active'"
-            >
-              {{ row[tableItem.columnDef] }}
-            </div>
-            <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
-              <button class="mat-icon-btn" (click)="getCard(row)">
-                <mat-icon>payment</mat-icon>
-              </button>
-            </div>
-            <div *ngIf="tableItem.columnDef === 'actions'">
-              <div class="action-row" *ngIf="row.activeStandingOrder">
-                <div (click)="edit(row)">
-                  <button class="btn">
-                    <mat-icon class="edit-row">edit</mat-icon>
-                  </button>
-                </div>
-                <div (click)="delete(index, row)">
-                  <button class="btn">
-                    <mat-icon class="delete-row">delete</mat-icon>
-                  </button>
-                </div>
+<div class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
+  <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
+    <div *ngFor="let tableItem of tableItems">
+      <ng-container [matColumnDef]="tableItem.columnDef">
+        <mat-header-cell class="fs-14" *matHeaderCellDef>{{
+          tableItem.headerCellDef
+        }}</mat-header-cell>
+        <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
+          <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
+            {{ tableItem.headerCellDef }}:
+          </div>
+          <div
+            *ngIf="
+              tableItem.columnDef !== 'actions' && tableItem.columnDef !== 'standingOrderStatus'
+            "
+          >
+            {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
+          </div>
+          <div
+            *ngIf="tableItem.columnDef === 'standingOrderStatus'"
+            [ngClass]="row.activeStandingOrder ? 'active' : 'non-active'"
+          >
+            {{ row[tableItem.columnDef] }}
+          </div>
+          <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
+            <button class="mat-icon-btn" (click)="getCard(row)">
+              <mat-icon>payment</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="tableItem.columnDef === 'actions'">
+            <div class="action-row" *ngIf="row.activeStandingOrder">
+              <div (click)="edit(row)">
+                <button class="btn">
+                  <mat-icon class="edit-row">edit</mat-icon>
+                </button>
+              </div>
+              <div (click)="delete(index, row)">
+                <button class="btn">
+                  <mat-icon class="delete-row">delete</mat-icon>
+                </button>
               </div>
             </div>
-          </mat-cell>
-        </ng-container>
-      </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+    </div>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></mat-row>
-    </mat-table>
-  </div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns" class="table-row"></mat-row>
+  </mat-table>
   <mat-paginator
     #paginator
     [pageSizeOptions]="[5, 10, 20]"

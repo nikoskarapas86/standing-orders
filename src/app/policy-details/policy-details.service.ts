@@ -7,14 +7,13 @@ import { PolicyResponse } from '../models/policy-response';
   providedIn: 'root',
 })
 export class PolicyDetailService {
-  private url = environment.baseUrl;
-  private httpClient: HttpClient;
+  // private url = environment.baseUrl;
+  // private httpClient: HttpClient;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
 
-
     constructor(handler: HttpBackend) {
-        this.httpClient = new HttpClient(handler);
+        // this.httpClient = new HttpClient(handler);
     }
 
     private policyResponseSubject = new BehaviorSubject<PolicyResponse>(undefined);
@@ -25,9 +24,7 @@ export class PolicyDetailService {
       this.policyResponseSubject.next(response);
     }
 
-
-    getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
-        return this.httpClient.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
-      }
-
+    // getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
+    //   return this.http.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
+    // }
 }

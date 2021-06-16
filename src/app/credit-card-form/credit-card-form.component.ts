@@ -112,7 +112,7 @@ export class CreditCardFormComponent implements OnInit {
 
   sendEmail() {
     this.isEmailDisabled = true;
-    this.dataService.sendUpdateEmail({ email: this.emailForm.get('email').value }, this.searchId).subscribe(
+    this.dataService.sendEmail({ email: this.emailForm.get('email').value }, this.searchId).subscribe(
       (res: any) => {
         this.dialog.open(ModalComponent, { data: res.message }).afterClosed().subscribe(() => {
           this.router.navigate(['/home'])
