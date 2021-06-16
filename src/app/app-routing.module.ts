@@ -4,10 +4,10 @@ import { EditStandingOrderComponent } from './edit-standing-order/edit-standing-
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
-import { CreditCardComponent } from './credit-card/credit-card.component';
 import { LoaderComponent } from './loader/loader.component';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ClientContainerComponent } from './client-container/client-container.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'creditcard/:searchId',
-    component: CreditCardComponent,
+    component: ClientContainerComponent,
   },
   {
     path: 'create',
@@ -40,7 +40,9 @@ const routes: Routes = [
   },
   {
     path: 'complete',
-    loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule),
+    // TODO: back to complete and remove it from app.module.ts
+    component: ClientContainerComponent,
+    // loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule),
   },
 
   { path: 'edit/:id', component: EditStandingOrderComponent, canActivate: [AuthGuardService] },

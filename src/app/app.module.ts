@@ -25,7 +25,8 @@ import { PolicyDetailsComponent } from './policy-details/policy-details.componen
 import { LoaderComponent } from './loader/loader.component';
 import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/policy-detail-form.component';
 import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
-
+import { ClientContainerComponent } from './client-container/client-container.component';
+import { CompleteComponent } from './complete/complete.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { CreditCardFormComponent } from './credit-card-form/credit-card-form.com
     PolicyDetailsComponent,
     LoaderComponent,
     PolicyDetailFormComponent,
-    CreditCardFormComponent
+    CreditCardFormComponent,
+    ClientContainerComponent,
+    CompleteComponent,
   ],
   imports: [
     CommonModule,

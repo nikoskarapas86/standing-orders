@@ -80,3 +80,10 @@ export enum Colors {
   redInvalid = '#e30303',
   blackValid = '#0000008a',
 }
+
+export enum CreditCardImage {
+  FRONT_NAME = 'name',
+  FRONT_DATE = 'date',
+  FRONT_NUMBER = 'number',
+  BACK = 'code',
+}

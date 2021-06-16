@@ -17,6 +17,7 @@ $warn-color: #e30303;
 $accent-color: #919392;
 $black-color: #000000de;
 $background-active: $primary-color;
+$background-inactive: $accent-color;
 
 /* fonts & character styles */
 $font-family: 'Lato', sans-serif;
@@ -26,6 +27,7 @@ $font-lato-regular-white-large: #ffffffde;
 $font-lato-bold: #ffffff;
 $font-lato-bold-large: $black-color;
 
+$background: $font-lato-light 0 0 no-repeat padding-box;
 $background-mat-menu-panel: $font-lato-bold 0 0 no-repeat padding-box;
 $box-shadow-color: #00000029;
 $box-shadow: 0px 3px 6px $box-shadow-color;

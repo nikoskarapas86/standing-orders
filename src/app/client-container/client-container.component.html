@@ -1,0 +1,74 @@
+<div id="stepper-wrapper" class="stepper-wrapper">
+  <div class="step">
+    <!-- <div *ngIf="isShowSpinner" class="mask-mobile-spinner-loader">
+      <div class="mask-mobile-spinner">
+        <div class="spinner-symbol">
+          <mat-spinner
+            [ngClass]="'mat-spinner-' + spinnerStatus"
+            diameter="80"
+            strokeWidth="2"
+            [mode]="spinnerMode"
+            value="100"
+          ></mat-spinner>
+          <div [ngClass]="spinnerStatusContent">
+            <div class="first-line"></div>
+            <div class="second-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mask-mobile-p">
+        <div class="p-button">
+          <p *ngIf="spinne rStatus !== 'warning'">
+            {{ spinnerStatusMessage | translate }}
+          </p>
+          <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
+            {{
+              stepper?.selectedIndex === 0
+                ? ('progress.tryAgain' | translate)
+                : ('main.wizard.creditCard.previousPage' | translate)
+            }}
+          </button>
+        </div>
+      </div>
+    </div> -->
+    <app-credit-card *ngIf="false"></app-credit-card>
+    <app-complete *ngIf="true"></app-complete>
+  </div>
+  <div *ngIf="!isShowSpinner" #backgroundImage class="mask-desktop">
+    <!-- <p *ngIf="stepper.selectedIndex === 0">
+      {{ 'main.wizard.background.default' | translate }}
+    </p>
+    <p *ngIf="stepper.selectedIndex === 1">
+      {{ 'main.wizard.background.' + branchName.toLowerCase() | translate }}
+    </p> -->
+  </div>
+  <!-- <div *ngIf="isShowSpinner" class="mask-desktop-spinner-loader">
+    <div class="mask-desktop-spinner">
+      <div class="spinner-symbol">
+        <mat-spinner
+          [ngClass]="'mat-spinner-' + spinnerStatus"
+          diameter="212"
+          strokeWidth="7"
+          [mode]="spinnerMode"
+          value="100"
+        ></mat-spinner>
+        <div [ngClass]="spinnerStatusContent">
+          <div class="first-line"></div>
+          <div class="second-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mask-desktop-p">
+      <div class="p-button">
+        <p>{{ spinnerStatusMessage | translate }}</p>
+        <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-raised-button>
+          {{
+            stepper.selectedIndex === 0
+              ? ('progress.tryAgain' | translate)
+              : ('main.wizard.creditCard.previousPage' | translate)
+          }}
+        </button>
+      </div>
+    </div>
+  </div> -->
+</div>

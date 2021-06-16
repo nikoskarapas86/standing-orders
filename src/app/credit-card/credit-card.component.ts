@@ -3,6 +3,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
   Colors,
+  CreditCardImage,
   HostedFieldsIds,
   HostedFieldsSelectors,
   HostedSessionCallbacks,
@@ -19,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PolicyDetailService } from '../policy-details/policy-details.service';
+import { ClientContainerService } from '../services/client-container-service';
 
 @Component({
   selector: 'app-credit-card',
@@ -65,7 +67,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
     private route: ActivatedRoute,
-    private policyDetailsService: PolicyDetailService
+    private policyDetailsService: PolicyDetailService,
+    private clientContainerService: ClientContainerService
   ) {}
 
   ngOnInit(): void {
@@ -180,14 +183,23 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         case HostedFieldsIds.NUMBER:
           this.cardNumber.input.placeholder = '';
           this.cardNumber.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_NUMBER);
           break;
         case HostedFieldsIds.NAME_ON_CARD:
           this.name.input.placeholder = '';
           this.name.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_NAME);
+          break;
+        case HostedFieldsIds.EXPIRY_MONTH:
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_DATE);
+          break;
+        case HostedFieldsIds.EXPIRY_YEAR:
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_DATE);
           break;
         case HostedFieldsIds.SECURITY_CODE:
           this.securityCode.input.placeholder = '';
           this.securityCode.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.BACK);
           break;
       }
     });
