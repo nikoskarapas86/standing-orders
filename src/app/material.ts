@@ -33,7 +33,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   imports: [
-    MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatIconModule,
@@ -41,11 +40,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatToolbarModule,
     MatListModule,
     MatSidenavModule,
-
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatInputModule ,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatAutocompleteModule,
@@ -66,7 +65,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
   ],
   exports: [
-    MatInputModule,
+    
     MatButtonModule,
     MatDialogModule,
     MatSelectModule,
@@ -76,7 +75,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
-
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
@@ -93,6 +91,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSortModule,
     MatTreeModule,
     MatTooltipModule,
+    MatInputModule ,
     MatStepperModule,
     MatSnackBarModule,
     MatGridListModule,

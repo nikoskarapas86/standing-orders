@@ -37,7 +37,6 @@ export class IbanComponent implements OnInit {
   ) {}
 
   ngOnInit(): void { 
-    console.log(this.editService.selectedStandingOrder)
     this.buildFormGroup();
     this.buildisplayedFormGroup();
     this.emailFormGroup();

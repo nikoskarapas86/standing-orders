@@ -28,6 +28,18 @@
           </mat-form-field>
         </div>
         <mat-form-field class="field-width">
+          <label id="example-radio-group-label">Αλλαγή Στοιχείων Πληρωμής</label>
+          <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            formControlName="paymentTypeSelect" >
+            <mat-radio-button class="example-radio-button"  (change)="paymentWayChoise($event)" *ngFor="let item of paymentTypes"[value]="item.value">
+              {{item.title }}
+            </mat-radio-button>
+          </mat-radio-group>
+
+        </mat-form-field>
+        <!-- <mat-form-field class="field-width">
           <mat-label>Αλλαγή Στοιχείων Πληρωμής</mat-label>
           <mat-select formControlName="paymentTypeSelect" (selectionChange)="paymentWayChoise($event)"
             [disabled]="isIbanValid" matNativeControl>
@@ -35,7 +47,7 @@
               {{ item.title }}
             </mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
     </form>
     <div *ngIf="paymentType === 'IBAN'">
