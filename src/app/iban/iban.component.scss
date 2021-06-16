@@ -11,3 +11,14 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.in-column{
+    display: flex;
+    flex-direction: column;
+}
+
+mat-form-field.mat-form-field {
+    margin-bottom:0.5rem;
+}
+.bottom-margin{
+    margin-bottom: 6px;
+}
