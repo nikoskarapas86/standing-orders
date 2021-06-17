@@ -48,6 +48,7 @@ export class ClientContainerComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {
+            console.log(res.lineOfBusiness)
             this.policyDetailService.isFailedSubject.next(false);
             this.policyDetailService.setPolicySubject(res);
             this.isPolicyLoading = false;
