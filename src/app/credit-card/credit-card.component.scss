@@ -162,6 +162,8 @@ form[name='credit-card'] {
     border-color: $border-input-disabled;
   }
 
+  @include mat-list-item-content();
+
   .pt-40 {
     padding-top: 40px;
 

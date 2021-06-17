@@ -2,6 +2,14 @@
   margin-top: 5rem;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-6 {
+  margin-bottom: 6rem;
+}
+
 .justify-content-center {
   display: flex;
   justify-content: center;
@@ -28,4 +36,9 @@
 
 .justify-items-center {
   justify-items: center;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
 }
