@@ -1,7 +1,12 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { ClientContainerService } from '../services/client-container-service';
+import { DataService } from '../services/data.service';
+import { DestroyService } from '../services/destroy.service';
 
 @Component({
   selector: 'app-client-container',
@@ -11,6 +16,7 @@ import { ClientContainerService } from '../services/client-container-service';
 export class ClientContainerComponent implements OnInit {
   @ViewChildren('backgroundImage') backgroundImage: QueryList<ElementRef>;
   private subscriptions$: Subscription[] = [];
+  isPolicyLoading = true;
   private images = {
     0: './assets/images/SCENE_EMPTY.svg',
     1: '',
@@ -26,13 +32,34 @@ export class ClientContainerComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private breakpointObserver: BreakpointObserver,
-    private clientContainerService: ClientContainerService
+    private clientContainerService: ClientContainerService,
+    private route: ActivatedRoute,
+    private policyDetailService: PolicyDetailService,
+    private dataService: DataService,
+    private readonly destroy$: DestroyService
+ 
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.dataService.status = params.status;
+      this.dataService
+        .getPolicyByEmail(params.searchId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          res => {
+            this.policyDetailService.isFailedSubject.next(false);
+            this.policyDetailService.setPolicySubject(res);
+            this.isPolicyLoading = false;
+          },
+          error => {
+            this.policyDetailService.isFailedSubject.next(true);
+          }
+        );
+    });
+  }
 
   ngAfterViewInit(): void {
-    // this.getIsShowSpinner();
     this.observeCreditCardBackground();
   }
 

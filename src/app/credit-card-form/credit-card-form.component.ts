@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ModalComponent } from '../modal/modal.component';
+import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { EditService } from '../services/edit.service';
@@ -29,10 +30,15 @@ export class CreditCardFormComponent implements OnInit {
     private readonly destroy$: DestroyService,
     private dataService: DataService,
     private router: Router,
+    private policyDetailService: PolicyDetailService,
     private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+
+  
+
+
     this.getCard();
     this.buildCardFormGroup();
     this.emailFormGroup();

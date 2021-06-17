@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { MastercardService } from '../services/mastercard.service';
 
 @Component({
@@ -13,10 +14,12 @@ export class CompleteComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private mastercardService: MastercardService
+    private mastercardService: MastercardService,
+   
   ) {}
 
   ngOnInit(): void {
+
     this.initialPayment();
   }
 
