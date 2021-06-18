@@ -68,6 +68,8 @@ export class SearchTableComponent implements OnInit {
 
     this.dataService.standingOrders$.subscribe(res => {
       if (res) {
+        console.log(res)
+        console.log('=--=-=-=-=--=-=-=-=')
         this.totalEs = res?.standingOrders?.totalElements;
         this.numberOfElements = res.standingOrders?.numberOfElements;
         const newStandingOrders = res['standingOrders']['content'].map(o => ({

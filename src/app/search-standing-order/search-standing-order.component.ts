@@ -46,10 +46,12 @@ export class SearchStandingOrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+  
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
     this.searchService.getIsDeleteCalled.subscribe(res => {
       if (res) {
+      
         this.submit();
         this.searchService.isDeleteCalled = false;
       }
@@ -57,6 +59,7 @@ export class SearchStandingOrderComponent implements OnInit {
     this._adapter.setLocale('el');
 
     if (this.dataService.searchRequest) {
+     
       this.fetchSearchResults();
       this.searchForm = this.dataService.searchForm;
     }
@@ -79,6 +82,7 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   private createSubmitRequest(): void {
+  
     const tempStartDate = this.searchForm.get('payDateFrom').value;
     const tempEndDate = this.searchForm.get('payDateTo').value;
     const startDate = tempStartDate ? moment(tempStartDate).format('DD/MM/YYYY') : null;
@@ -102,26 +106,34 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
+    console.log(4)
+    this.dataService.setStandingOrdersSubject(undefined);
     this.searchBtnDisabled = true;
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (res: SearchResponse) => {
+         
           this.searchId = res.searchId;
           this.dataService.setStandingOrdersSubject(res);
           this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {
-          this.dataService.setStandingOrdersSubject(undefined);
-          this.searchBtnDisabled = false;
-          this.standingOrders$ = this.dataService.standingOrders$;
-          this.dialog.open(ModalComponent, { data: error });
+        this.errorHandler(error)
         },
         () => {
           this.searchBtnDisabled = false;
         }
       );
+  }
+
+  
+  errorHandler(error){
+    this.dataService.setStandingOrdersSubject(undefined);
+    this.searchBtnDisabled = false;
+    this.standingOrders$ = this.dataService.standingOrders$;
+    this.dialog.open(ModalComponent, { data: error });
   }
 
   fetchSearchResults(): void {
