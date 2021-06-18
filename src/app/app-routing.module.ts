@@ -24,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'policyDetails',
-    component: PolicyDetailsComponent,
+    // component: PolicyDetailsComponent,
+    component: ClientContainerComponent,
   },
   {
     path: 'creditcard/:searchId',

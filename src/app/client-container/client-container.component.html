@@ -31,12 +31,12 @@
         </div>
       </div>
     </div> -->
-    <app-credit-card *ngIf="true"></app-credit-card>
-    <app-complete *ngIf="false"></app-complete>
+    <app-policy-details *ngIf="step === 0" [isPolicyLoading]="isPolicyLoading"></app-policy-details>
+    <app-credit-card *ngIf="step === 1"></app-credit-card>
+    <app-complete *ngIf="step === 2"></app-complete>
   </div>
 
-
-  <div  *ngIf="false" class="mask-desktop-spinner-loader">
+  <div *ngIf="step === 2" class="mask-desktop-spinner-loader">
     <div class="mask-desktop-spinner">
       <div class="spinner-symbol">
         <mat-spinner
@@ -56,9 +56,7 @@
         </div>
       </div>
     </div>
-   
   </div>
-
 
   <!-- <div [ngClass]="spinnerStatusContent">
     <div class="success-status">
@@ -68,7 +66,8 @@
   </div> -->
 
   <div *ngIf="!isShowSpinner" #backgroundImage class="mask-desktop">
-  
+    <!-- <p *ngIf="step === 0">im here 1</p>
+    <p *ngIf="step === 1">im here 2</p> -->
   </div>
   <!-- <div *ngIf="isShowSpinner" class="mask-desktop-spinner-loader">
     <div class="mask-desktop-spinner">

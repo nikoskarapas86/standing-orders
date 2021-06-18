@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } fro
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { CreditCardImage } from '../credit-card/enum';
 import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { ClientContainerService } from '../services/client-container-service';
 import { DataService } from '../services/data.service';
@@ -19,15 +20,18 @@ export class ClientContainerComponent implements OnInit {
   isPolicyLoading = true;
   private images = {
     0: './assets/images/SCENE_EMPTY.svg',
-    1: '',
-    2: {
+    1: {
       name: './assets/images/card_name.png',
       number: './assets/images/card_number.png',
       date: './assets/images/card_date.png',
       code: './assets/images/card_code.png',
     },
+    2: '',
   };
   isShowSpinner = false;
+  isCreditCard = false;
+  branchName: string;
+  step = 0;
 
   constructor(
     private renderer: Renderer2,
@@ -37,31 +41,70 @@ export class ClientContainerComponent implements OnInit {
     private policyDetailService: PolicyDetailService,
     private dataService: DataService,
     private readonly destroy$: DestroyService
- 
   ) {}
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.dataService.status = params.status;
-      this.dataService
-        .getPolicyByEmail(params.searchId)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          res => {
-            console.log(res.lineOfBusiness)
-            this.policyDetailService.isFailedSubject.next(false);
-            this.policyDetailService.setPolicySubject(res);
-            this.isPolicyLoading = false;
-          },
-          error => {
-            this.policyDetailService.isFailedSubject.next(true);
-          }
-        );
-    });
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    if (this.step === 0) {
+      console.log('im here');
+      this.route.queryParams.subscribe(params => {
+        this.dataService.status = params.status;
+        this.dataService
+          .getPolicyByEmail(params.searchId)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            res => {
+              this.step === 1;
+              this.changeBackgroundImages();
+              this.branchName = res.lineOfBusiness;
+              this.policyDetailService.isFailedSubject.next(false);
+              // this.policyDetailService.setPolicySubject(res);
+              this.policyDetailService.policyResponse = res;
+              this.isPolicyLoading = false;
+            },
+            error => {
+              this.policyDetailService.isFailedSubject.next(true);
+            }
+          );
+      });
+    }
+    this.changeBackgroundImages();
+    // console.log(this.policyDetailService.policyResponse.lineOfBusiness);
     this.observeCreditCardBackground();
+  }
+
+  private changeBackgroundImages(): void {
+    'im here 1';
+    this.backgroundImage.forEach(div => {
+      const backgroundImage =
+        this.step === 0
+          ? // ? `./assets/images/SCENE_${this.branchName}.svg`
+            this.images[this.step]
+          : this.step === 1
+          ? this.images[this.step].number
+          : '';
+      if (this.step === 1) {
+        this.renderer.setStyle(
+          div.nativeElement,
+          'background',
+          `#024a86 url(${backgroundImage}) no-repeat center center`
+        );
+        this.resizeCreditCard(div);
+      } else {
+        this.renderer.setStyle(
+          div.nativeElement,
+          'background',
+          `#024a86 url(${backgroundImage}) no-repeat center bottom`
+        );
+        if (backgroundImage.includes('SCENE_EMPTY')) {
+          this.renderer.setStyle(div.nativeElement, 'background-size', 'contain');
+        } else {
+          this.renderer.setStyle(div.nativeElement, 'background-size', 'cover');
+          this.renderer.setStyle(div.nativeElement, 'height', 'auto');
+        }
+      }
+    });
   }
 
   // private getIsShowSpinner(): void {
@@ -99,6 +142,7 @@ export class ClientContainerComponent implements OnInit {
   private changeCreditCardBackground(creditCardImage): void {
     this.backgroundImage.forEach(div => {
       const backgroundImage = this.images[2][creditCardImage];
+      // const backgroundImage = this.images[0];
       this.renderer.setStyle(
         div.nativeElement,
         'background',

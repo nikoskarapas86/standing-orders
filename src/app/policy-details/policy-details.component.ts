@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
@@ -12,7 +12,7 @@ import { PolicyDetailService } from './policy-details.service';
   providers: [DestroyService],
 })
 export class PolicyDetailsComponent implements OnInit {
-  isPolicyLoading = true;
+  @Input() isPolicyLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,21 +22,21 @@ export class PolicyDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.dataService.status = params.status;
-      this.dataService
-        .getPolicyByEmail(params.searchId)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          res => {
-            this.policyDetailService.isFailedSubject.next(false);
-            this.policyDetailService.setPolicySubject(res);
-            this.isPolicyLoading = false;
-          },
-          error => {
-            this.policyDetailService.isFailedSubject.next(true);
-          }
-        );
-    });
+    // this.route.queryParams.subscribe(params => {
+    //   this.dataService.status = params.status;
+    //   this.dataService
+    //     .getPolicyByEmail(params.searchId)
+    //     .pipe(takeUntil(this.destroy$))
+    //     .subscribe(
+    //       res => {
+    //         this.policyDetailService.policyResponse = res;
+    //         this.policyDetailService.isFailedSubject.next(false);
+    //         this.isPolicyLoading = false;
+    //       },
+    //       error => {
+    //         this.policyDetailService.isFailedSubject.next(true);
+    //       }
+    //     );
+    // });
   }
 }
