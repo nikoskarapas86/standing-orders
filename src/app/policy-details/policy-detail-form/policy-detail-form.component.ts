@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PolicyDetailService } from '../policy-details.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Console } from 'node:console';
+
 
 @Component({
   selector: 'app-policy-detail-form',
