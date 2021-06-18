@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientContainerService } from 'src/app/services/client-container-service';
 
+
 @Component({
   selector: 'app-policy-detail-form',
   templateUrl: './policy-detail-form.component.html',
@@ -29,6 +30,7 @@ export class PolicyDetailFormComponent implements OnInit {
     });
 
     this.policyDetailService.policy$.subscribe(res => {
+   console.log(res)
       this.fillPolicylForm(res);
     });
   }
@@ -43,6 +45,7 @@ export class PolicyDetailFormComponent implements OnInit {
 
   fillPolicylForm(res) {
     for (let item in res) {
+      console.log('IIIITTTTTYEEEEMMMMMM',item)
       res[item]
         ? this.policyForm.controls[item]?.setValue(res[item])
         : this.policyForm.controls[item]?.setValue(null);
