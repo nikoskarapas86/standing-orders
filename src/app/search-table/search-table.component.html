@@ -1,4 +1,4 @@
-<div *ngIf="!dataSource || !dataSource.data.length" class="no-results mt-5">
+<div *ngIf="(!dataSource || !dataSource.data.length ) && !(resultsLoading$ | async)" class="no-results mt-5">
   <div>
     <img src="./assets/images/empty-results.svg" />
   </div>
@@ -6,8 +6,10 @@
     <p class="empty-message">Δεν υπάρχουν αποτελέσματα. Eπαναπροσδιορίστε την αναζήτησή σας</p>
   </div>
 </div>
-
-<div class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
+<div *ngIf="resultsLoading$ | async" class="no-results mt-5" fxLayoutAlign="center">
+  <mat-spinner color="primary" strokeWidth="1" [diameter]="180"></mat-spinner>
+</div>
+<div [ngClass]="(resultsLoading$ | async) ? 'hidden' : ''" class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
     <div *ngFor="let tableItem of tableItems">
       <ng-container [matColumnDef]="tableItem.columnDef">

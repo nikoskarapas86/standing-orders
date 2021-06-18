@@ -26,7 +26,8 @@ export class DataService {
   private url = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
-
+  public resultsLoadingSubject = new BehaviorSubject<boolean>(false);
+  resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
   private privateSearchForm: FormGroup;
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);

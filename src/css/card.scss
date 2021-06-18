@@ -41,6 +41,11 @@ mat-card.mat-card-outer {
       flex-direction: column;
     }
 
+    .mat-card-inner {
+      padding: 1rem 0;
+    }
+    
+
     // .expiry-date {
     //   display: flex;
     //   width: 424px;

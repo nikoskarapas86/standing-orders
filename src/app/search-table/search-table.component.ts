@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { ModalComponent } from '../modal/modal.component';
@@ -52,7 +53,7 @@ export class SearchTableComponent implements OnInit {
   pageSizeOptions = [5, 10, 20];
   totalEs: number = 0;
   numberOfElements: number = 0;
-
+  resultsLoading$: Observable<boolean>;
   constructor(
     private router: Router,
     private editService: EditService,
@@ -64,12 +65,11 @@ export class SearchTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   this.resultsLoading$ = this.dataService.resultsLoading$
     this.editService.selectedStandingOrder = null;
 
     this.dataService.standingOrders$.subscribe(res => {
       if (res) {
-        console.log(res)
-        console.log('=--=-=-=-=--=-=-=-=')
         this.totalEs = res?.standingOrders?.totalElements;
         this.numberOfElements = res.standingOrders?.numberOfElements;
         const newStandingOrders = res['standingOrders']['content'].map(o => ({

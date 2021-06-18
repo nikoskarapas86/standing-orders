@@ -29,6 +29,7 @@ export class SearchStandingOrderComponent implements OnInit {
   searchBtnDisabled: boolean = false;
   searchId: string;
   standingOrders$: Observable<any[]>;
+  
   minDate = moment().subtract(3, 'months').toDate();
   paymentTypes = [
     { id: 'BANK_ACCOUNT', name: 'Τρ. Λογαριασμός' },
@@ -108,6 +109,7 @@ export class SearchStandingOrderComponent implements OnInit {
   submit(): void {
     console.log(4)
     this.dataService.setStandingOrdersSubject(undefined);
+    this.dataService.resultsLoadingSubject.next(true)
     this.searchBtnDisabled = true;
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
@@ -124,11 +126,12 @@ export class SearchStandingOrderComponent implements OnInit {
         },
         () => {
           this.searchBtnDisabled = false;
+          this.dataService.resultsLoadingSubject.next(false)
         }
       );
   }
 
-  
+
   errorHandler(error){
     this.dataService.setStandingOrdersSubject(undefined);
     this.searchBtnDisabled = false;

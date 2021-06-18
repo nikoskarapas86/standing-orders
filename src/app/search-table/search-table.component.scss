@@ -228,3 +228,10 @@ mat-footer-cell {
 .empty-message {
   color: rgba(0, 0, 0, 0.6);
 }
+
+.hidden {
+  visibility: hidden;
+  display: none;
+  height: 0px;
+  width:0px;
+}
