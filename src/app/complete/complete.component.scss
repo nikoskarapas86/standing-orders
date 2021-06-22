@@ -207,3 +207,9 @@ further info: https://angular.io/guide/component-styles
   color: white;
   font-weight: 900;
 }
+
+.column-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
