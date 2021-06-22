@@ -112,8 +112,7 @@ export class ClientContainerComponent implements OnInit {
 
   private changeCreditCardBackground(creditCardImage): void {
     this.backgroundImage.forEach(div => {
-      const backgroundImage = this.images[2][creditCardImage];
-      // const backgroundImage = this.images[0];
+      const backgroundImage = this.images[1][creditCardImage];
       this.renderer.setStyle(
         div.nativeElement,
         'background',
