@@ -23,9 +23,9 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.dataService.status = params.status;
       // TODO: check why if is necessary when loading credit card
-      if (params?.searchId)
+      if (params?.searchId) {
+        this.dataService.status = params.status;
         this.dataService
           .getPolicyByEmail(params.searchId)
           .pipe(takeUntil(this.destroy$))
@@ -39,6 +39,7 @@ export class PolicyDetailsComponent implements OnInit {
               this.policyDetailsService.isFailedSubject.next(true);
             }
           );
+      }
     });
   }
 }
