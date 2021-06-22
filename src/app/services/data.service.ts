@@ -17,7 +17,7 @@ import { ValidateRequest } from '../models/validate-request';
 import { ValidateResponse } from '../models/validate-response';
 import { UpdateBankAccountRequest } from '../models/update-bank-account-request';
 import { FormGroup } from '@angular/forms';
-import { PolicyResponse } from '../models/policy-response';
+import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 
 @Injectable({
   providedIn: 'root',
@@ -109,9 +109,9 @@ export class DataService {
   //   return this.http.post(`${this.url}/int/update/sendEmail/${searchId}`, email);
   // }
 
-  getPolicyByEmail(searchId: string): Observable<PolicyResponse> {
+  getPolicyByEmail(searchId: string): Observable<GetPolicyByEmailResponse> {
     const update = this.privateStatus === 'create' ? '' : '/update';
-    return this.http.get<PolicyResponse>(`${this.url}/int${update}/policy/${searchId}`);
+    return this.http.get<GetPolicyByEmailResponse>(`${this.url}/int${update}/policy/${searchId}`);
   }
 
   updateBankAccount(

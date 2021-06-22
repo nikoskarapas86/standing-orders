@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PolicyResponse } from '../models/policy-response';
+import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,7 +10,7 @@ export class PolicyDetailsService {
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
 
-  private privatePolicyResponse: PolicyResponse;
+  private privatePolicyResponse: GetPolicyByEmailResponse;
 
   constructor() {}
 
@@ -18,12 +18,12 @@ export class PolicyDetailsService {
     return this.privatePolicyResponse;
   }
 
-  set policyResponse(val: PolicyResponse) {
+  set policyResponse(val: GetPolicyByEmailResponse) {
     this.privatePolicyResponse = val;
   }
 
-  private policyResponseSubject = new BehaviorSubject<PolicyResponse>(undefined);
-  policy$: Observable<PolicyResponse> = this.policyResponseSubject.asObservable();
+  // private policyResponseSubject = new BehaviorSubject<GetPolicyByEmailResponse>(undefined);
+  // policy$: Observable<GetPolicyByEmailResponse> = this.policyResponseSubject.asObservable();
 
   // setPolicySubject(response: PolicyResponse) {
   //   this.policyResponseSubject.next(response);
