@@ -232,6 +232,33 @@ mat-spinner {
 
 @include mask-desktop-spinner-loader(65%);
 
+
+.mask-mobile {
+  position: relative;
+  @include viewport-mobile-tablet {
+    display: block;
+    position: relative;
+    min-height: 160px;
+    background-color: $primary-color;
+    p {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      -moz-transform: translateX(-50%) translateY(-35%);
+      -webkit-transform: translateX(-50%) translateY(-35%);
+      transform: translateX(-50%) translateY(-35%);
+      text-align: center;
+      @include font-lato-regular-medium($font-lato-regular-white-large);
+      &.personal-accident {
+        margin-top: 10px;
+      }
+    }
+  }
+  @include viewport-laptop-desktop {
+    display: none;
+  }
+}
+
 /* Todo
 ::ng-deep is planned to be deprecated in future releases, so from angular 2 - 9 it is
 full compatible. As alternative to avoid using this pseudo selector is to apply the
@@ -289,28 +316,13 @@ further info: https://angular.io/guide/component-styles
       transform: translateX(-50%) translateY(-50%) rotate(45deg);
       opacity: 1;
     }
-  // }
-  // @include viewport-mobile-tablet {
-  //   .first-line {
-  //     height: 15px;
-  //     right: 2px;
-  //     top: 18px;
-  //     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-  //     stroke-dashoffset: 48;
-  //     opacity: 1;
-  //   }
-  //   .second-line {
-  //     height: 35px;
-  //     top: 10px;
-  //     left: 10px;
-  //     transform: translateX(-50%) translateY(-50%) rotate(45deg);
-  //     opacity: 1;
-  //   }
-  // }
+
 
   color: white;
   font-weight: 900;
 }
+
+
 
 
 

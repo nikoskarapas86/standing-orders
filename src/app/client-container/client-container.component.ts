@@ -59,7 +59,6 @@ export class ClientContainerComponent implements OnInit {
               this.changeBackgroundImages();
               this.branchName = res.lineOfBusiness;
               this.policyDetailService.isFailedSubject.next(false);
-              // this.policyDetailService.setPolicySubject(res);
               this.policyDetailService.policyResponse = res;
               this.isPolicyLoading = false;
             },
@@ -70,7 +69,6 @@ export class ClientContainerComponent implements OnInit {
       });
     }
     this.changeBackgroundImages();
-    // console.log(this.policyDetailService.policyResponse.lineOfBusiness);
     this.observeCreditCardBackground();
   }
 

@@ -35,15 +35,12 @@ export class PolicyDetailFormComponent implements OnInit {
 
   policyFormGroup() {
     this.policyForm = this.formBuilder.group({
-      policyNo: [{ value: '', disabled: true }],
-      // firstName: [{ value: '', disabled: true }],
-      // lineOfBusiness: [{ value: '', disabled: true }],
+      policyNo: [{ value: '', disabled: true }]
     });
   }
 
   fillPolicylForm(res) {
     for (let item in res) {
-      console.log('IIIITTTTTYEEEEMMMMMM',item)
       res[item]
         ? this.policyForm.controls[item]?.setValue(res[item])
         : this.policyForm.controls[item]?.setValue(null);
