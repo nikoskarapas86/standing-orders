@@ -1,12 +1,10 @@
-import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { PolicyResponse } from '../models/policy-response';
 @Injectable({
   providedIn: 'root',
 })
-export class PolicyDetailService {
+export class PolicyDetailsService {
   // private url = environment.baseUrl;
   // private httpClient: HttpClient;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);

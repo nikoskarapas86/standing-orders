@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { PolicyDetailService } from '../policy-details.service';
+import { PolicyDetailsService } from '../policy-details.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientContainerService } from 'src/app/services/client-container-service';
 
-
 @Component({
-  selector: 'app-policy-detail-form',
-  templateUrl: './policy-detail-form.component.html',
-  styleUrls: ['./policy-detail-form.component.scss'],
+  selector: 'app-policy-details-form',
+  templateUrl: './policy-details-form.component.html',
+  styleUrls: ['./policy-details-form.component.scss'],
 })
-export class PolicyDetailFormComponent implements OnInit {
+export class PolicyDetailsFormComponent implements OnInit {
   policyForm: FormGroup;
   searchId: string;
 
   constructor(
-    private policyDetailService: PolicyDetailService,
+    private policyDetailsService: PolicyDetailsService,
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -29,14 +28,14 @@ export class PolicyDetailFormComponent implements OnInit {
       this.searchId = params.searchId;
     });
 
-    this.policyDetailService.policy$.subscribe(res => {
+    this.policyDetailsService.policy$.subscribe(res => {
       this.fillPolicylForm(res);
     });
   }
 
   policyFormGroup() {
     this.policyForm = this.formBuilder.group({
-      policyNo: [{ value: '', disabled: true }]
+      policyNo: [{ value: '', disabled: true }],
     });
   }
 

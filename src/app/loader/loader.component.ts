@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PolicyDetailService } from '../policy-details/policy-details.service';
+import { PolicyDetailsService } from '../policy-details/policy-details.service';
 
 import { MatProgressSpinner, MatSpinnerStatus, MatSpinnerStatusContent } from '../shared/enums';
 
@@ -22,11 +22,11 @@ export class LoaderComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private policyDetailService: PolicyDetailService
+    private policyDetailsService: PolicyDetailsService
   ) {}
 
   ngAfterViewInit(): void {
-    this.policyDetailService.isFailed$.subscribe(isFailed => {
+    this.policyDetailsService.isFailed$.subscribe(isFailed => {
       isFailed ? this.showActionFailed() : this.showActionInProgress();
     });
     this.resizeLoader();

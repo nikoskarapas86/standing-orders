@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { PolicyDetailService } from '../policy-details/policy-details.service';
 import { MastercardService } from '../services/mastercard.service';
 
 @Component({

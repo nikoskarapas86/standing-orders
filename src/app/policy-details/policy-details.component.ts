@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
-import { PolicyDetailService } from './policy-details.service';
+import { PolicyDetailsService } from './policy-details.service';
 
 @Component({
   selector: 'app-policy-details',
@@ -16,7 +16,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private policyDetailService: PolicyDetailService,
+    private policyDetailsService: PolicyDetailsService,
     private dataService: DataService,
     private readonly destroy$: DestroyService
   ) {}
@@ -29,12 +29,12 @@ export class PolicyDetailsComponent implements OnInit {
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {
-            this.policyDetailService.policyResponse = res;
-            this.policyDetailService.isFailedSubject.next(false);
+            this.policyDetailsService.policyResponse = res;
+            this.policyDetailsService.isFailedSubject.next(false);
             this.isPolicyLoading = false;
           },
           error => {
-            this.policyDetailService.isFailedSubject.next(true);
+            this.policyDetailsService.isFailedSubject.next(true);
           }
         );
     });

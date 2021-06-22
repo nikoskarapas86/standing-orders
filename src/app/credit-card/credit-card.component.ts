@@ -19,7 +19,7 @@ import { CreateSessionResponse } from '../models/create-session-response';
 import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PolicyDetailService } from '../policy-details/policy-details.service';
+import { PolicyDetailsService } from '../policy-details/policy-details.service';
 import { ClientContainerService } from '../services/client-container-service';
 
 @Component({
@@ -67,7 +67,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
     private route: ActivatedRoute,
-    private policyDetailsService: PolicyDetailService,
+    private policyDetailsService: PolicyDetailsService,
     private clientContainerService: ClientContainerService
   ) {}
 
