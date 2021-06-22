@@ -10,16 +10,15 @@ import { MastercardService } from '../services/mastercard.service';
 })
 export class CompleteComponent implements OnInit {
   res: any;
+  spinnerMode = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private mastercardService: MastercardService,
-   
+    private mastercardService: MastercardService
   ) {}
 
   ngOnInit(): void {
-
     this.initialPayment();
   }
 

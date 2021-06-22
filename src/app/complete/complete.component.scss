@@ -1,3 +1,6 @@
+@import 'src/css/mixins';
+@import 'src/css/variables';
+
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -11,4 +14,196 @@
 
 mat-form-field.mat-form-field {
   background-color: transparent;
+}
+
+mat-spinner {
+  display: inline-block;
+  margin: 16px 0 12px 0;
+}
+
+.mat-spinner-success {
+  ::ng-deep circle {
+    stroke: $success-color;
+  }
+}
+.successContent {
+  @include spinner-at-center();
+  .success-status {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.stepper-wrapper {
+  display: flex;
+  height: 100%;
+  overflow-y: auto;
+}
+
+@include landscape-iPad {
+  div.step {
+    width: 50%;
+  }
+  div.mask-desktop {
+    width: 50%;
+  }
+}
+
+@include landscape-iPad-pro {
+  div.step {
+    width: 50%;
+  }
+  div.mask-desktop {
+    width: 50%;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  @include viewport-mobile-tablet {
+    width: 100%;
+  }
+
+  @include viewport-laptop-desktop {
+    width: 35%;
+    overflow: auto;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  button[id='reprint-contract'] {
+    @include font-lato-bold-standard($primary-color);
+    white-space: normal;
+    line-height: 1.6;
+  }
+}
+
+.mask-mobile {
+  position: relative;
+  @include viewport-mobile-tablet {
+    display: block;
+    position: relative;
+    min-height: 160px;
+    background-color: $primary-color;
+    p {
+      position: absolute;
+      top: 18%;
+      left: 50%;
+      -moz-transform: translateX(-50%) translateY(-35%);
+      -webkit-transform: translateX(-50%) translateY(-35%);
+      transform: translateX(-50%) translateY(-35%);
+      text-align: center;
+      @include font-lato-regular-medium($font-lato-regular-white-large);
+      &.personal-accident {
+        margin-top: 10px;
+      }
+    }
+  }
+  @include viewport-laptop-desktop {
+    display: none;
+  }
+}
+
+@include mask-mobile-spinner-loader();
+
+.mask-desktop {
+  position: relative;
+  @include viewport-mobile-tablet {
+    display: none;
+  }
+  @include viewport-laptop-desktop {
+    background-color: $primary-color;
+    p {
+      @include font-lato-light();
+      margin: 155px 123px;
+      text-align: center;
+    }
+    display: block;
+    width: 65%;
+  }
+}
+
+@include mask-desktop-spinner-loader(65%);
+
+/* Todo
+::ng-deep is planned to be deprecated in future releases, so from angular 2 - 9 it is
+full compatible. As alternative to avoid using this pseudo selector is to apply the
+style from the src/sass folder inside a components folder, so style will be global, however,
+we could not export the stepper component keeping this css rule.
+further info: https://angular.io/guide/component-styles
+*/
+
+@include common-layout-styling();
+
+:host ::ng-deep {
+  .mat-horizontal-stepper-header-container {
+    display: none;
+  }
+  @include viewport-mobile-tablet {
+    .mat-raised-button {
+      border-radius: 0;
+    }
+  }
+  .mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
+@include exclamation-mark();
+
+.first-line,
+.second-line {
+  background-color: white;
+
+  border-radius: $radius-4;
+  width: 10px;
+
+  position: absolute;
+}
+
+.successContent {
+  position: absolute;
+  // @include viewport-laptop-desktop {
+  .first-line {
+    height: 50px;
+    top: 19px;
+    right: 8px;
+    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+    stroke-dashoffset: 48;
+    opacity: 1;
+  }
+  .second-line {
+    height: 100px;
+    left: 30px;
+    top: 2px;
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    opacity: 1;
+  }
+  // }
+  // @include viewport-mobile-tablet {
+  //   .first-line {
+  //     height: 15px;
+  //     right: 2px;
+  //     top: 18px;
+  //     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+  //     stroke-dashoffset: 48;
+  //     opacity: 1;
+  //   }
+  //   .second-line {
+  //     height: 35px;
+  //     top: 10px;
+  //     left: 10px;
+  //     transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  //     opacity: 1;
+  //   }
+  // }
+
+  color: white;
+  font-weight: 900;
 }
