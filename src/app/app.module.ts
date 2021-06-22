@@ -48,7 +48,6 @@ import { CompleteComponent } from './complete/complete.component';
     PolicyDetailFormComponent,
     CreditCardFormComponent,
     ClientContainerComponent,
-    CompleteComponent,
   ],
   imports: [
     CommonModule,

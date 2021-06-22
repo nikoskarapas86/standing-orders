@@ -42,8 +42,8 @@ const routes: Routes = [
   {
     path: 'complete',
     // TODO: back to complete and remove it from app.module.ts
-    component: ClientContainerComponent,
-    // loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule),
+    // component: ClientContainerComponent,
+    loadChildren: () => import('./complete/complete.module').then(m => m.CompleteModule),
   },
 
   { path: 'edit/:id', component: EditStandingOrderComponent, canActivate: [AuthGuardService] },

@@ -1,12 +1,46 @@
-<!-- <mat-card class="mat-card-outer"> -->
-  <mat-card-header>
-    <div class="card-title">Πληροφορίες πληρωμής</div>
-  </mat-card-header>
+<div id="stepper-wrapper" class="stepper-wrapper">
+  <div class="step">
+    <!-- <div *ngIf="isShowSpinner" class="mask-mobile-spinner-loader">
+      <div class="mask-mobile-spinner">
+        <div class="spinner-symbol">
+          <mat-spinner
+            [ngClass]="'mat-spinner-' + spinnerStatus"
+            diameter="80"
+            strokeWidth="2"
+            [mode]="spinnerMode"
+            value="100"
+          ></mat-spinner>
+          <div [ngClass]="spinnerStatusContent">
+            <div class="first-line"></div>
+            <div class="second-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mask-mobile-p">
+        <div class="p-button">
+          <p *ngIf="spinne rStatus !== 'warning'">
+            {{ spinnerStatusMessage | translate }}
+          </p>
+          <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
+            {{
+              stepper?.selectedIndex === 0
+                ? ('progress.tryAgain' | translate)
+                : ('main.wizard.creditCard.previousPage' | translate)
+            }}
+          </button>
+        </div>
+      </div>
+    </div> -->
 
-    <div  *ngIf="res">
+    <div class="justify-content-center mt-2 mb-15">
+      <img src="./assets/images/ethniki_white.png" />
+    </div>
+
+    <h1 class="justify-content-center mt-2 mb-6 h-content">Πληροφορίες πληρωμής</h1>
+    <div *ngIf="res">
       <form name="policyResponseForm">
         <div class="row">
-          <div class="container" style="align-items: center">
+          <div class="column-center" style="align-items: center">
             <mat-form-field class="field-width">
               <mat-label>Ονομ/μο Εντολέα</mat-label>
               <input [value]="res.fullName" matInput disabled />
@@ -24,5 +58,68 @@
         </div>
       </form>
     </div>
+  </div>
 
-<!-- </mat-card> -->
+  <div class="mask-desktop-spinner-loader">
+    <div class="mask-desktop-spinner">
+      <div class="spinner-symbol">
+        <mat-spinner
+          [ngClass]="'mat-spinner-success'"
+          diameter="212"
+          strokeWidth="7"
+          [mode]="spinnerMode"
+          value="100"
+        ></mat-spinner>
+        <div>
+          <div class="successContent">
+            <div class="success-status">
+              <div class="first-line"></div>
+              <div class="second-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div [ngClass]="spinnerStatusContent">
+    <div class="success-status">
+      <div class="first-line"></div>
+      <div class="second-line"></div>
+    </div>
+  </div> -->
+
+  <!-- <div *ngIf="!isShowSpinner" #backgroundImage class="mask-desktop"> -->
+  <!-- <p *ngIf="step === 0">im here 1</p>
+    <p *ngIf="step === 1">im here 2</p> -->
+  <!-- </div> -->
+  <!-- <div *ngIf="isShowSpinner" class="mask-desktop-spinner-loader">
+    <div class="mask-desktop-spinner">
+      <div class="spinner-symbol">
+        <mat-spinner
+          [ngClass]="'mat-spinner-' + spinnerStatus"
+          diameter="212"
+          strokeWidth="7"
+          [mode]="spinnerMode"
+          value="100"
+        ></mat-spinner>
+        <div [ngClass]="spinnerStatusContent">
+          <div class="first-line"></div>
+          <div class="second-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mask-desktop-p">
+      <div class="p-button">
+        <p>{{ spinnerStatusMessage | translate }}</p>
+        <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-raised-button>
+          {{
+            stepper.selectedIndex === 0
+              ? ('progress.tryAgain' | translate)
+              : ('main.wizard.creditCard.previousPage' | translate)
+          }}
+        </button>
+      </div>
+    </div>
+  </div> -->
+</div>
