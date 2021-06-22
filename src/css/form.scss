@@ -20,6 +20,11 @@
   flex: 1 1 46%;
   max-width: 46%;
 }
+.field-width[_ngcontent-ajm-c292] {
+  @include mobile-only {
+  max-width:  fit-content;
+  }
+}
 
 mat-form-field.mat-form-field {
   width: 424px;
@@ -31,6 +36,7 @@ mat-form-field.mat-form-field {
 
   @include mobile-only {
     width: unset;
+    margin-bottom: -0.4rem;
   }
 
   &.mat-paginator-page-size-select {
@@ -43,7 +49,9 @@ mat-form-field.mat-form-field {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-
+  @include mobile-only {
+    justify-content:center;
+  }
   .mat-form-field {
     width: 267px;
 
@@ -73,7 +81,9 @@ form {
   flex-direction: column;
   justify-content: flex-start;
   font-size: 17px;
-
+  @include mobile-only {
+    justify-content:center;
+  }
   p {
     padding: 0;
     margin: 0;

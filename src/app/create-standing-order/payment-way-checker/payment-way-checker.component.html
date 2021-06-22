@@ -1,49 +1,43 @@
 <mat-card class="mat-card-outer">
     <mat-card-header>
-        <div class="card-title">Επιλογή τρόπου πληρωμής</div>
+        <div class="card-title">ΕΠΙΛΟΓΗ ΤΡΟΠΟΥ ΠΛΗΡΩΜΗΣ</div>
     </mat-card-header>
     <mat-card-content>
-
         <div *ngIf="dispalyFieldsOfPolicy">
             <form [formGroup]="policyResponseForm" name="policyResponseForm">
-                <div class="row">
-                    <div class="container" style="align-items: center">
-                        
-                        <mat-form-field class="field-width">
-                            <mat-label>Αριθμός Συμβολαίου</mat-label>
-                            <input formControlName="policyNo" matInput />
-                        </mat-form-field>
-                        <mat-form-field *ngIf="displayEndorsment" class="field-width">
-                            <mat-label>Αίτηση</mat-label>
-                            <input formControlName="endorsement" matInput />
-                        </mat-form-field>
-                        <mat-form-field class="field-width">
-                            <mat-label>Όνομα</mat-label>
-                            <input formControlName="firstName" matInput />
-                        </mat-form-field>
-                        <mat-form-field class="field-width">
-                            <mat-label>Επίθετο</mat-label>
-                            <input formControlName="lastName" matInput />
-                        </mat-form-field>
-                        <mat-form-field class="field-width">
-                            <mat-label>Tηλέφωνο</mat-label>
-                            <input formControlName="phone" matInput />
-                        </mat-form-field>
-                        <mat-form-field class="field-width">
-                            <mat-label>Επιλογή Τρόπου Πληρωμής</mat-label>
-                            <mat-select (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid"
-                                matNativeControl>
-                                <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType"
-                                    ngDefaultControl>
-                                    {{ item.title }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
+                <div class="container" style="align-items: center">
+                    <mat-form-field class="field-width">
+                        <mat-label>Αριθμός Συμβολαίου</mat-label>
+                        <input formControlName="policyNo" matInput />
+                    </mat-form-field>
+                    <mat-form-field *ngIf="displayEndorsment" class="field-width">
+                        <mat-label>Αίτηση</mat-label>
+                        <input formControlName="endorsement" matInput />
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Όνομα</mat-label>
+                        <input formControlName="firstName" matInput />
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Επίθετο</mat-label>
+                        <input formControlName="lastName" matInput />
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Tηλέφωνο</mat-label>
+                        <input formControlName="phone" matInput />
+                    </mat-form-field>
+                    <mat-form-field class="field-width">
+                        <mat-label>Επιλογή Τρόπου Πληρωμής</mat-label>
+                        <mat-select (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid"
+                            matNativeControl>
+                            <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType"
+                                ngDefaultControl>
+                                {{ item.title }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
-
             </form>
         </div>
-
     </mat-card-content>
 </mat-card>
