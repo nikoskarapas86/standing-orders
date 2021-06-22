@@ -38,9 +38,7 @@ export class PolicyDetailsFormComponent implements OnInit {
   }
 
   setPolicylForm(res: GetPolicyByEmailResponse): void {
-    debugger;
     this.policyForm.patchValue({ policyNo: res.policyNo });
-    console.log(this.policyForm);
   }
 
   next() {
