@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { ClientContainerService } from '../services/client-container-service';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { PolicyDetailsService } from './policy-details.service';
@@ -24,19 +25,21 @@ export class PolicyDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.dataService.status = params.status;
-      this.dataService
-        .getPolicyByEmail(params.searchId)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe(
-          res => {
-            this.policyDetailsService.policyResponse = res;
-            this.policyDetailsService.isFailedSubject.next(false);
-            this.isPolicyLoading = false;
-          },
-          error => {
-            this.policyDetailsService.isFailedSubject.next(true);
-          }
-        );
+      // TODO: check why if is necessary when loading credit card
+      if (params?.searchId)
+        this.dataService
+          .getPolicyByEmail(params.searchId)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            res => {
+              this.policyDetailsService.policyResponse = res;
+              this.policyDetailsService.isFailedSubject.next(false);
+              this.isPolicyLoading = false;
+            },
+            error => {
+              this.policyDetailsService.isFailedSubject.next(true);
+            }
+          );
     });
   }
 }
