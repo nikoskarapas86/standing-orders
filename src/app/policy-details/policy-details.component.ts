@@ -22,21 +22,21 @@ export class PolicyDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {
-    //   this.dataService.status = params.status;
-    //   this.dataService
-    //     .getPolicyByEmail(params.searchId)
-    //     .pipe(takeUntil(this.destroy$))
-    //     .subscribe(
-    //       res => {
-    //         this.policyDetailService.policyResponse = res;
-    //         this.policyDetailService.isFailedSubject.next(false);
-    //         this.isPolicyLoading = false;
-    //       },
-    //       error => {
-    //         this.policyDetailService.isFailedSubject.next(true);
-    //       }
-    //     );
-    // });
+    this.route.queryParams.subscribe(params => {
+      this.dataService.status = params.status;
+      this.dataService
+        .getPolicyByEmail(params.searchId)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          res => {
+            this.policyDetailService.policyResponse = res;
+            this.policyDetailService.isFailedSubject.next(false);
+            this.isPolicyLoading = false;
+          },
+          error => {
+            this.policyDetailService.isFailedSubject.next(true);
+          }
+        );
+    });
   }
 }

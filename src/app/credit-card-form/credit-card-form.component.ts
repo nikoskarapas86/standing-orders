@@ -20,6 +20,7 @@ export class CreditCardFormComponent implements OnInit {
   cardForm: FormGroup;
   ibanForm: FormGroup;
   emailForm: FormGroup;
+  isValid: boolean = false;
   searchId: string;
   _isEmailDisabled: boolean = false;
 
@@ -35,10 +36,6 @@ export class CreditCardFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-  
-
-
     this.getCard();
     this.buildCardFormGroup();
     this.emailFormGroup();
@@ -82,12 +79,14 @@ export class CreditCardFormComponent implements OnInit {
       id: this.activatedRoute.snapshot.params.id,
       iban: this.ibanForm.get('iban').value.toString().trim(),
     };
-
+    console.log(request)
+    console.log(this.searchId)
     this.dataService
       .updateBankAccount(request, this.searchId)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
+          console.log(res)
           this.dialog.open(ModalComponent, {
             data: 'Ο τραπεζικός λογαριασμός ενημερώθηκε επιτυχώς',
           }).afterClosed().subscribe(() => this.router.navigate(['/search']));
@@ -97,6 +96,20 @@ export class CreditCardFormComponent implements OnInit {
         }
       );
   }
+
+  
+  validate(): void {
+    const request = { iban: this.ibanForm.get('iban').value.trim().toString() };
+    this.dataService
+      .validate(request)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(res => {
+        this.isValid = res.isValid;
+        if (!this.isValid)
+          this.dialog.open(ModalComponent, { data: 'Το IBAN που εισάγατε δεν είναι έγκυρο' });
+      });
+  }
+
 
   buildCardFormGroup(): void {
     this.cardForm = this.formBuilder.group({

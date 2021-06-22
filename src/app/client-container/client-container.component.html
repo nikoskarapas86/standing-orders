@@ -1,7 +1,11 @@
 <div id="stepper-wrapper" class="stepper-wrapper">
-  <div  #backgroundImage class="mask-mobile">
-  </div>
+
   <div class="step">
+    <div class="justify-content-center mt-2 mb-15">
+      <img src="./assets/images/ethniki_white.png" />
+    </div>
+    <div *ngIf="!isShowSpinner" #backgroundImage class="mask-mobile">
+    </div>
     <app-policy-details *ngIf="step === 0" [isPolicyLoading]="isPolicyLoading"></app-policy-details>
     <app-credit-card *ngIf="step === 1"></app-credit-card>
     <app-complete *ngIf="step === 2"></app-complete>
@@ -25,4 +29,5 @@
   </div>
   <div *ngIf="!isShowSpinner" #backgroundImage class="mask-desktop">
   </div>
+
 </div>
