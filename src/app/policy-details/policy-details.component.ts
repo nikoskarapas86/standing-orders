@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { ClientContainerService } from '../services/client-container-service';
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
 import { PolicyDetailsService } from './policy-details.service';

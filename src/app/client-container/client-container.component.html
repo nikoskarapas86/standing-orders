@@ -6,7 +6,6 @@
     <div *ngIf="!isShowSpinner" #backgroundImage class="mask-mobile"></div>
     <app-policy-details *ngIf="step === 0" [isPolicyLoading]="isPolicyLoading"></app-policy-details>
     <app-credit-card *ngIf="step === 1"></app-credit-card>
-    <!-- <app-complete *ngIf="step === 2"></app-complete> -->
   </div>
 
   <!-- <div *ngIf="step === 0" class="mask-desktop-spinner-loader">
