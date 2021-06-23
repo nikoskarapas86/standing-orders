@@ -3,7 +3,11 @@
 
 button {
   border-radius: 5px;
+ 
 }
+
+
+
 
 .mat-icon-btn {
   border: none;
@@ -20,6 +24,10 @@ button {
   min-width: 100px !important;
   height: 48px;
   letter-spacing: 0.4px;
+  @include tablet-landscape {
+    border-radius: 4px!important;
+  }
+ 
 }
 
 .common-btn {
@@ -44,6 +52,7 @@ button {
   text-transform: uppercase;
   background-color: $blue-primary-main;
   color: $white-text-primary;
+ 
 }
 
 .payment-btn {
