@@ -3,6 +3,7 @@ import { PolicyDetailsService } from '../policy-details.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientContainerService } from 'src/app/services/client-container-service';
+import { GetPolicyByEmailResponse } from 'src/app/models/get-policy-by-email-response';
 
 @Component({
   selector: 'app-policy-details-form',
@@ -19,32 +20,25 @@ export class PolicyDetailsFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private clientContainerService: ClientContainerService
-  ) {
-    this.policyFormGroup();
-  }
+  ) {}
 
   ngOnInit(): void {
+    this.initPolicyForm();
     this.route.queryParams.subscribe(params => {
       this.searchId = params.searchId;
     });
 
-    this.policyDetailsService.policy$.subscribe(res => {
-      this.fillPolicylForm(res);
-    });
+    this.setPolicylForm(this.policyDetailsService.policyResponse);
   }
 
-  policyFormGroup() {
+  initPolicyForm(): void {
     this.policyForm = this.formBuilder.group({
-      policyNo: [{ value: '', disabled: true }],
+      policyNo: [{ value: null, disabled: true }],
     });
   }
 
-  fillPolicylForm(res) {
-    for (let item in res) {
-      res[item]
-        ? this.policyForm.controls[item]?.setValue(res[item])
-        : this.policyForm.controls[item]?.setValue(null);
-    }
+  setPolicylForm(res: GetPolicyByEmailResponse): void {
+    this.policyForm.patchValue({ policyNo: res.policyNo });
   }
 
   next() {

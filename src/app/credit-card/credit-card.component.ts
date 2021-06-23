@@ -123,8 +123,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   private initMastercardSetUp(): void {
     if (this.mastercard) {
-      console.log('this.mastercard');
-      console.log(this.mastercard);
       const head = this.document.getElementsByTagName('head')[0];
       const script = this.document.createElement('script');
       script.id = 'mastercard-hosted-session';
@@ -290,8 +288,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   private handleOKStatus(response): void {
-    console.log('response');
-    console.log(response);
     this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
     this.isCvv = response.sourceOfFunds.provided.card.securityCode !== undefined;
     this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
@@ -334,8 +330,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   tokenize(): void {
-    console.log(this.isNameOnCard);
-    console.log(this.isCvv);
     if (!this.isNameOnCard || !this.isCvv) return;
     this.isPayPushed = true;
     this.isLoading = true;
