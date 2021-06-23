@@ -13,6 +13,7 @@ export class ClientContainerService {
   private privateIsPolicyLoading = false;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
+  privateIsPaymentInProgress: boolean;
 
   setCreditCardBackground(creditCardImage: CreditCardImage): void {
     this.creditCardBackground.next(creditCardImage);
@@ -28,5 +29,13 @@ export class ClientContainerService {
 
   get isPolicyLoading() {
     return this.privateIsPolicyLoading;
+  }
+
+  get isPaymentInProgress() {
+    return this.privateIsPaymentInProgress;
+  }
+
+  set isPaymentInProgress(val: boolean) {
+    this.privateIsPaymentInProgress = val;
   }
 }

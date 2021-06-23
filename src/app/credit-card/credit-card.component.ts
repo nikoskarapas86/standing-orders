@@ -329,6 +329,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   tokenize(): void {
     if (!this.isNameOnCard || !this.isCvv) return;
+    this.clientContainerService.isPaymentInProgress = true;
     this.isPayPushed = true;
     this.isLoading = true;
 
@@ -341,6 +342,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
       ({ html }) => {
         // this.isLoading = false;
         this.clientContainerService.isFailedSubject.next(false);
+        this.clientContainerService.isPaymentInProgress = false;
         html ? this.redirectToMastercard3ds(html) : this.initialPayment();
       },
       (error: HttpErrorResponse) => {
