@@ -164,42 +164,42 @@ form[name='credit-card'] {
 
   @include mat-list-item-content();
 
-  .pt-40 {
-    padding-top: 40px;
+  // .pt-40 {
+  //   padding-top: 40px;
 
-    .divider-width {
-      width: 99%;
-      position: inherit;
-      color: rgba(0, 0, 0, 0.12);
-    }
+  //   .divider-width {
+  //     width: 99%;
+  //     position: inherit;
+  //     color: rgba(0, 0, 0, 0.12);
+  //   }
 
-    .amount-container {
-      padding: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 50px;
+  //   .amount-container {
+  //     padding: 0;
+  //     display: flex;
+  //     justify-content: space-between;
+  //     align-items: center;
+  //     height: 50px;
 
-      .payment-amount {
-        color: rgb(118, 118, 118);
-      }
+  //     .payment-amount {
+  //       color: rgb(118, 118, 118);
+  //     }
 
-      .amount-literal {
-        display: flex;
-        justify-self: center;
-      }
+  //     .amount-literal {
+  //       display: flex;
+  //       justify-self: center;
+  //     }
 
-      .amount {
-        // @include font-lato-bold-large($font-lato-bold-large);
-        font-family: $font-family;
-        font-size: 20px;
-        font-weight: 700;
-        color: $font-lato-bold-large;
-        letter-spacing: 0.26px;
-        margin-top: 2px;
-      }
-    }
-  }
+  //     .amount {
+  //       // @include font-lato-bold-large($font-lato-bold-large);
+  //       font-family: $font-family;
+  //       font-size: 20px;
+  //       font-weight: 700;
+  //       color: $font-lato-bold-large;
+  //       letter-spacing: 0.26px;
+  //       margin-top: 2px;
+  //     }
+  //   }
+  // }
 }
 
 .mat-raised-button {
