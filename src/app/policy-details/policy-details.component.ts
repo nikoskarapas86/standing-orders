@@ -23,7 +23,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      // TODO: check why if is necessary when loading credit card
+      // TODO: check why is necessary when loading credit card
       if (params?.searchId) {
         this.dataService.status = params.status;
         this.dataService
