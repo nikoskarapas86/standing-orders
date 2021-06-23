@@ -1,0 +1,7 @@
+
+@import '/src/css/responsive-breakpoints.scss';
+.top-distance{
+    @include tablet-landscape {
+    margin-top: 2rem;
+    }
+}
