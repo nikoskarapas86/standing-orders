@@ -1,0 +1,295 @@
+@import 'src/css/mixins';
+@import 'src/css/variables';
+
+mat-spinner {
+  display: inline-block;
+  margin: 16px 0 12px 0;
+}
+
+.mat-spinner-success {
+  ::ng-deep circle {
+    stroke: $success-color;
+  }
+}
+.successContent {
+  @include spinner-at-center();
+  .success-status {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.stepper-wrapper {
+  display: flex;
+  height: 100%;
+  overflow-y: auto;
+}
+
+@include landscape-iPad {
+  div.step {
+    width: 50%;
+  }
+  div.mask-desktop {
+    width: 50%;
+  }
+}
+
+@include landscape-iPad-pro {
+  div.step {
+    width: 50%;
+  }
+  div.mask-desktop {
+    width: 50%;
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  @include viewport-mobile-tablet {
+    width: 100%;
+  }
+
+  @include viewport-laptop-desktop {
+    width: 35%;
+    overflow: auto;
+  }
+
+  .stepper-header {
+    @include viewport-mobile-tablet {
+      height: 80px;
+    }
+    @include viewport-laptop-desktop {
+      height: 112px;
+    }
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include viewport-laptop-desktop {
+      justify-content: center;
+    }
+    .home-container {
+      margin-left: 15px;
+      margin-right: 15px;
+      @include visible-mobile-tablet();
+      button {
+        color: $primary-color;
+        font-size: 14px;
+      }
+    }
+    .logo {
+      height: 100%;
+      img {
+        @include viewport-mobile-tablet {
+          margin: 24px;
+        }
+        @include viewport-laptop-desktop {
+          margin: 40px;
+        }
+      }
+    }
+    .language {
+      @include visible-mobile-tablet();
+      button {
+        color: $primary-color;
+        font-size: 14px;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    }
+    .language-margin {
+      margin-left: 70px;
+    }
+  }
+
+  .step-active {
+    background: $background-active;
+  }
+
+  .step-inactive {
+    background: $background-inactive;
+  }
+
+  .search-criteria-btn-submit,
+  .contract-info-btn-submit,
+  .payment-options-btn-submit {
+    visibility: hidden;
+  }
+
+  a,
+  button {
+    cursor: pointer;
+  }
+
+  button[id='reprint-contract'] {
+    @include font-lato-bold-standard($primary-color);
+    white-space: normal;
+    line-height: 1.6;
+  }
+
+  .mat-stepper-horizontal {
+    background: $background;
+    flex: 1 1 auto;
+    padding: 0 24px;
+  }
+
+  .stepper-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 40px;
+
+    @include viewport-laptop-desktop {
+      margin-right: 15px;
+      margin-left: 15px;
+      flex-direction: column-reverse;
+    }
+    // @include stepper-submit-btn-mobile();
+    .home-progress-language-container {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      @include viewport-mobile-tablet {
+        justify-content: center;
+        padding-bottom: 9px;
+        padding-top: 9px;
+      }
+      .dot-container {
+        text-align: center;
+        align-self: initial;
+        .dot {
+          height: 8px;
+          width: 8px;
+          border-radius: 50%;
+          margin: 0 8px;
+          display: inline-block;
+        }
+      }
+      .home-container,
+      .language {
+        height: 40px;
+        width: 40px;
+        @include visible-laptop-desktop();
+        button {
+          color: $primary-color;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+}
+
+
+
+@include mask-mobile-spinner-loader();
+
+.mask-desktop {
+  position: relative;
+  @include viewport-mobile-tablet {
+    display: none;
+  }
+  @include viewport-laptop-desktop {
+    background-color: $primary-color;
+    p {
+      @include font-lato-light();
+      margin: 155px 123px;
+      text-align: center;
+    }
+    display: block;
+    width: 65%;
+  }
+}
+
+@include mask-desktop-spinner-loader(65%);
+
+
+.mask-mobile {
+  position: relative;
+  @include viewport-mobile-tablet {
+    display: block;
+    position: relative;
+    width:100%;
+    min-height: 160px;
+    background-color: $primary-color;
+   
+  }
+  @include viewport-laptop-desktop {
+    display: none;
+  }
+}
+
+/* Todo
+::ng-deep is planned to be deprecated in future releases, so from angular 2 - 9 it is
+full compatible. As alternative to avoid using this pseudo selector is to apply the
+style from the src/sass folder inside a components folder, so style will be global, however,
+we could not export the stepper component keeping this css rule.
+further info: https://angular.io/guide/component-styles
+*/
+
+@include common-layout-styling();
+
+:host ::ng-deep {
+  .mat-horizontal-stepper-header-container {
+    display: none;
+  }
+  @include viewport-mobile-tablet {
+    .mat-raised-button {
+      border-radius: 0;
+    }
+  }
+  .mat-horizontal-content-container {
+    padding: 0;
+  }
+}
+
+@include exclamation-mark();
+
+
+.first-line,
+.second-line {
+  background-color: white;
+
+    border-radius: $radius-4;
+    width: 10px;
+ 
+  
+  position: absolute;
+}
+
+
+.successContent {
+  position: absolute;
+  // @include viewport-laptop-desktop {
+    .first-line {
+      height: 50px;
+      top: 19px;
+      right: 8px;
+      transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+      stroke-dashoffset: 48;
+      opacity: 1;
+    }
+    .second-line {
+      height: 100px;
+      left: 30px;
+      top: 2px;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      opacity: 1;
+    }
+
+
+  color: white;
+  font-weight: 900;
+}
+
+
+
+
+
+
+

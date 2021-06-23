@@ -48,3 +48,8 @@ input::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.h-content {
+  color: $blue-primary-main;
+  font-size: 1.17em;
+}

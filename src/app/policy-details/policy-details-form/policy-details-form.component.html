@@ -1,0 +1,32 @@
+
+
+
+    <h3 class="justify-content-center mt-2 mb-6 h-content">Στοιχεία συμβολαίου</h3>
+
+
+<form [formGroup]="policyForm" name="policyForm">
+    <div class="justify-content-center">
+        <mat-form-field class="field-width">
+            <mat-label>Αρ. Συμβολαίου </mat-label>
+            <input formControlName="policyNo" matInput />
+        </mat-form-field>
+    </div>
+    <!-- <div class="container">
+                <mat-form-field class="field-width">
+                    <mat-label>Όνομα </mat-label>
+                    <input formControlName="firstName" matInput />
+                </mat-form-field>
+            </div>
+            <div class="container">
+                <mat-form-field class="field-width">
+                    <mat-label>Κλάδος </mat-label>
+                    <input formControlName="lineOfBusiness" matInput />
+                </mat-form-field>
+            </div> -->
+    <mat-dialog-actions class="justify-content-center">
+
+        <button mat-raised-button (click)="next()" class="search-btn" id="searchBtn" type="submit">
+            ΕΠΟΜΕΝΟ
+        </button>
+    </mat-dialog-actions>
+</form>

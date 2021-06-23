@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { InitialPaymentResponse } from '../models/initial-payment-response';
 import { MastercardService } from '../services/mastercard.service';
 
 @Component({
@@ -10,6 +9,7 @@ import { MastercardService } from '../services/mastercard.service';
 })
 export class CompleteComponent implements OnInit {
   res: any;
+  spinnerMode = false;
 
   constructor(
     private router: Router,

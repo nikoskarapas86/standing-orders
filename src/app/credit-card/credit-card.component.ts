@@ -3,6 +3,7 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
   Colors,
+  CreditCardImage,
   HostedFieldsIds,
   HostedFieldsSelectors,
   HostedSessionCallbacks,
@@ -18,7 +19,8 @@ import { CreateSessionResponse } from '../models/create-session-response';
 import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PolicyDetailService } from '../policy-details/policy-details.service';
+import { PolicyDetailsService } from '../policy-details/policy-details.service';
+import { ClientContainerService } from '../services/client-container-service';
 
 @Component({
   selector: 'app-credit-card',
@@ -65,7 +67,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
     private route: ActivatedRoute,
-    private policyDetailsService: PolicyDetailService
+    private policyDetailsService: PolicyDetailsService,
+    private clientContainerService: ClientContainerService
   ) {}
 
   ngOnInit(): void {
@@ -120,8 +123,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   private initMastercardSetUp(): void {
     if (this.mastercard) {
-      console.log('this.mastercard');
-      console.log(this.mastercard);
       const head = this.document.getElementsByTagName('head')[0];
       const script = this.document.createElement('script');
       script.id = 'mastercard-hosted-session';
@@ -180,14 +181,23 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         case HostedFieldsIds.NUMBER:
           this.cardNumber.input.placeholder = '';
           this.cardNumber.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_NUMBER);
           break;
         case HostedFieldsIds.NAME_ON_CARD:
           this.name.input.placeholder = '';
           this.name.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_NAME);
+          break;
+        case HostedFieldsIds.EXPIRY_MONTH:
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_DATE);
+          break;
+        case HostedFieldsIds.EXPIRY_YEAR:
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.FRONT_DATE);
           break;
         case HostedFieldsIds.SECURITY_CODE:
           this.securityCode.input.placeholder = '';
           this.securityCode.label.style.visibility = 'visible';
+          this.clientContainerService.setCreditCardBackground(CreditCardImage.BACK);
           break;
       }
     });
@@ -278,8 +288,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   private handleOKStatus(response): void {
-    console.log('response');
-    console.log(response);
     this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
     this.isCvv = response.sourceOfFunds.provided.card.securityCode !== undefined;
     this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
@@ -322,8 +330,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   tokenize(): void {
-    console.log(this.isNameOnCard);
-    console.log(this.isCvv);
     if (!this.isNameOnCard || !this.isCvv) return;
     this.isPayPushed = true;
     this.isLoading = true;

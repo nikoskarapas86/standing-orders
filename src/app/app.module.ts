@@ -23,9 +23,9 @@ import { ModalComponent } from './modal/modal.component';
 import { HomeButtonComponent } from './home-button/home-button.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { LoaderComponent } from './loader/loader.component';
-import { PolicyDetailFormComponent } from './policy-details/policy-detail-form/policy-detail-form.component';
+import { PolicyDetailsFormComponent } from './policy-details/policy-details-form/policy-details-form.component';
 import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
-
+import { ClientContainerComponent } from './client-container/client-container.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +44,9 @@ import { CreditCardFormComponent } from './credit-card-form/credit-card-form.com
     HomeButtonComponent,
     PolicyDetailsComponent,
     LoaderComponent,
-    PolicyDetailFormComponent,
-    CreditCardFormComponent
+    PolicyDetailsFormComponent,
+    CreditCardFormComponent,
+    ClientContainerComponent,
   ],
   imports: [
     CommonModule,

@@ -1,81 +1,78 @@
-<div class="container-card" *ngIf="!isFailed">
-  <mat-card class="mat-card-outer">
-    <mat-card-header>
-      <div class="card-title">Πληρωμή</div>
-    </mat-card-header>
-    <mat-card-content id="card-content">
-      <form name="credit-card">
-        <p class="header">Εισαγάγετε τα στοιχεία της κάρτας</p>
+<div *ngIf="!isFailed">
 
-        <div class="card-number">
-          <div class="card-number-container">
-            <label id="card-number-label" class="label-focus"> Αριθμός Κάρτας </label>
-            <input
-              type="text"
-              id="card-number"
-              class="label-placeholder"
-              placeholder="Αριθμός Κάρτας"
-              title="card number"
-              aria-label="enter your card number"
-              value=""
-              tabindex="1"
-              readonly
-              [disabled]="isLoading"
-            />
-          </div>
-        </div>
-        <!-- TODO: remove logic from ts -->
-        <div class="card-holder-name">
-          <div class="card-holder-name-container">
-            <label id="cardholder-name-label" class="label-focus"> Όνοματεπώνυμο Δικαιούχου </label>
-            <input
-              id="cardholder-name"
-              type="text"
-              class="label-placeholder"
-              title="cardholder name"
-              aria-label="enter name on card"
-              placeholder="Όνοματεπώνυμο Δικαιούχου"
-              readonly
-              [disabled]="isLoading"
-            />
-          </div>
-        </div>
 
-        <div class="expiry-date">
-          <div class="expiry-month-container">
-            <label for="expiry-month">
-              <select
-                id="expiry-month"
-                required=""
-                class="form-control input-md"
-                readOnly
-                [disabled]="isLoading"
-              >
-                <option value="">Μήνας (MM)</option>
-                <option *ngFor="let month of months" [value]="month">{{ month }}</option>
-              </select>
-            </label>
-          </div>
-          <div class="space-between"></div>
-          <div class="expiry-year-container">
-            <label for="expiry-year">
-              <select
-                id="expiry-year"
-                required=""
-                readOnly
-                class="form-control input-md"
-                [disabled]="isLoading"
-              >
-                <option value="">Έτος (YY)</option>
-                <option *ngFor="let year of years" [value]="year.value">
-                  {{ year.viewValue }}
-                </option>
-              </select>
-            </label>
-          </div>
-        </div>
+  <form name="credit-card" class="align-items-center">
+    <p class="header">Εισαγάγετε τα στοιχεία της κάρτας</p>
 
-        <!-- <div
+    <div class="card-number">
+      <div class="card-number-container">
+        <label id="card-number-label" class="label-focus"> Αριθμός Κάρτας </label>
+        <input
+          type="text"
+          id="card-number"
+          class="label-placeholder"
+          placeholder="Αριθμός Κάρτας"
+          title="card number"
+          aria-label="enter your card number"
+          value=""
+          tabindex="1"
+          readonly
+          [disabled]="isLoading"
+        />
+      </div>
+    </div>
+    <!-- TODO: remove logic from ts -->
+    <div class="card-holder-name">
+      <div class="card-holder-name-container">
+        <label id="cardholder-name-label" class="label-focus"> Όνοματεπώνυμο Δικαιούχου </label>
+        <input
+          id="cardholder-name"
+          type="text"
+          class="label-placeholder"
+          title="cardholder name"
+          aria-label="enter name on card"
+          placeholder="Όνοματεπώνυμο Δικαιούχου"
+          readonly
+          [disabled]="isLoading"
+        />
+      </div>
+    </div>
+
+    <div class="expiry-date">
+      <div class="expiry-month-container">
+        <label for="expiry-month">
+          <select
+            id="expiry-month"
+            required=""
+            class="form-control input-md"
+            readOnly
+            [disabled]="isLoading"
+          >
+            <option value="">Μήνας (MM)</option>
+            <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+          </select>
+        </label>
+      </div>
+      <div class="space-between"></div>
+      <div class="expiry-year-container">
+        <label for="expiry-year">
+          <select
+            id="expiry-year"
+            required=""
+            readOnly
+            class="form-control input-md"
+            [disabled]="isLoading"
+          >
+            <option value="">Έτος (YY)</option>
+            <option *ngFor="let year of years" [value]="year.value">
+              {{ year.viewValue }}
+            </option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- <div
           *ngIf="hasInstallments && mastercard.installments?.length > 0"
           class="installment-number-container"
         >
@@ -91,59 +88,59 @@
           </div>
         </div> -->
 
-        <div class="security-code-container">
-          <label id="security-code-label" class="label-focus"> CVV </label>
-          <input
-            id="security-code"
-            type="text"
-            title="security code"
-            class="label-placeholder"
-            aria-label="three digit CCV security code"
-            placeholder="CVV"
-            readonly
-            [disabled]="isLoading"
-          />
-        </div>
+    <div class="security-code-container">
+      <label id="security-code-label" class="label-focus"> CVV </label>
+      <input
+        id="security-code"
+        type="text"
+        title="security code"
+        class="label-placeholder"
+        aria-label="three digit CCV security code"
+        placeholder="CVV"
+        readonly
+        [disabled]="isLoading"
+      />
+    </div>
 
-        <div class="pt-40">
-          <mat-divider class="divider-width"></mat-divider>
-          <div class="amount-container">
-            <div class="payment-amount">Ποσό Πληρωμής</div>
-            <div class="amount-literal">
-              <span class="amount">0.01</span>
-              <span class="material-icons">euro_symbol</span>
-            </div>
-          </div>
-          <mat-divider class="divider-width"></mat-divider>
+    <div class="pt-40">
+      <mat-divider class="divider-width"></mat-divider>
+      <div class="amount-container">
+        <div class="payment-amount">Ποσό Πληρωμής</div>
+        <div class="amount-literal">
+          <span class="amount">0.01</span>
+          <span class="material-icons">euro_symbol</span>
         </div>
-        <div class="btn-container">
-          <!-- <button mat-raised-button type="button" class="mt-1" (click)="cancel()">ΑΚΥΡΩΣΗ</button> -->
-          <!-- <button mat-raised-button type="button" class="mt-1">ΑΚΥΡΩΣΗ</button> -->
-          <!-- (click)="initialPayment()" -->
-          <button
-            class="mt-1 flex-center"
-            [disabled]="isPaymentCompleted || isLoading"
-            mat-raised-button
-            type="submit"
-            (click)="tokenize()"
-          >
-            <ng-container *ngIf="!isLoading">
-              <!-- {{ isNextPushed ? 'ΠΛΗΡΩΜΗ' : 'ΕΠΟΜΕΝΟ' }} -->
-              ΠΛΗΡΩΜΗ
-            </ng-container>
-            <ng-container *ngIf="isLoading">
-              <mat-spinner
-                diameter="20"
-                strokeWidth="2"
-                mode="indeterminate"
-                value="100"
-              ></mat-spinner>
-            </ng-container>
-          </button>
+      </div>
+      <mat-divider class="divider-width"></mat-divider>
+    </div>
+
+    <!-- <mat-list>
+      <mat-divider class="const-distant"></mat-divider>
+      <mat-list-item>
+        <div>Ποσό Πληρωμής</div>
+        <div class="mat-list-amount">
+          <span class="amount-of-money">0.01</span>
+          <span class="material-icons">euro_symbol</span>
         </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list> -->
+
+    <div class="btn-container">
+      <button
+        class="mt-1 flex-center"
+        [disabled]="isPaymentCompleted || isLoading"
+        mat-raised-button
+        type="submit"
+        (click)="tokenize()"
+      >
+        <ng-container *ngIf="!isLoading"> ΠΛΗΡΩΜΗ </ng-container>
+        <ng-container *ngIf="isLoading">
+          <mat-spinner diameter="20" strokeWidth="2" mode="indeterminate" value="100"></mat-spinner>
+        </ng-container>
+      </button>
+    </div>
+  </form>
 </div>
 <!-- <app-home-button *ngIf="!isFailed"></app-home-button> -->
 <app-loader *ngIf="isFailed"></app-loader>

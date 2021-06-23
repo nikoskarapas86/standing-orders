@@ -1,30 +1,35 @@
-import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { PolicyResponse } from '../models/policy-response';
+import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 @Injectable({
   providedIn: 'root',
 })
-export class PolicyDetailService {
+export class PolicyDetailsService {
   // private url = environment.baseUrl;
   // private httpClient: HttpClient;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
 
-    constructor(handler: HttpBackend) {
-        // this.httpClient = new HttpClient(handler);
-    }
+  private privatePolicyResponse: GetPolicyByEmailResponse;
 
-    private policyResponseSubject = new BehaviorSubject<PolicyResponse>(undefined);
-    
-    policy$ : Observable<PolicyResponse> = this.policyResponseSubject.asObservable();
-    
-    setPolicySubject(response: PolicyResponse) {
-      this.policyResponseSubject.next(response);
-    }
+  constructor() {}
 
-    // getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
-    //   return this.http.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
-    // }
+  get policyResponse() {
+    return this.privatePolicyResponse;
+  }
+
+  set policyResponse(val: GetPolicyByEmailResponse) {
+    this.privatePolicyResponse = val;
+  }
+
+  // private policyResponseSubject = new BehaviorSubject<GetPolicyByEmailResponse>(undefined);
+  // policy$: Observable<GetPolicyByEmailResponse> = this.policyResponseSubject.asObservable();
+
+  // setPolicySubject(response: PolicyResponse) {
+  //   this.policyResponseSubject.next(response);
+  // }
+
+  // getPolicyByEmail(searchId:string): Observable<PolicyResponse> {
+  //   return this.http.get<PolicyResponse>(`${this.url}/int/policy/${searchId}`);
+  // }
 }
