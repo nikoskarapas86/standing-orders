@@ -30,6 +30,14 @@
       </div>
     </div>
   </div> -->
-  <div #backgroundImage class="mask-desktop"></div>
+  <div
+    #backgroundImage
+    class="mask-desktop"
+    *ngIf="!clientContainerService.isPaymentInProgress"
+  ></div>
+  <app-loader
+    *ngIf="clientContainerService.isPaymentInProgress"
+    class="mask-desktop-spinner-loader"
+  ></app-loader>
 </div>
 <app-loader *ngIf="clientContainerService.isPolicyLoading"></app-loader>
