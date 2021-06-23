@@ -19,7 +19,6 @@ import { CreateSessionResponse } from '../models/create-session-response';
 import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PolicyDetailsService } from '../policy-details/policy-details.service';
 import { ClientContainerService } from '../services/client-container-service';
 
 @Component({
@@ -67,7 +66,6 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
     private route: ActivatedRoute,
-    private policyDetailsService: PolicyDetailsService,
     private clientContainerService: ClientContainerService
   ) {}
 
@@ -342,7 +340,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.mastercardService.tokenize(this.searchId, request).subscribe(
       ({ html }) => {
         // this.isLoading = false;
-        this.policyDetailsService.isFailedSubject.next(false);
+        this.clientContainerService.isFailedSubject.next(false);
         html ? this.redirectToMastercard3ds(html) : this.initialPayment();
       },
       (error: HttpErrorResponse) => {
@@ -368,7 +366,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   private failed(): void {
     this.isLoading = false;
     this.isFailed = true;
-    this.policyDetailsService.isFailedSubject.next(true);
+    this.clientContainerService.isFailedSubject.next(true);
   }
 
   private redirectToMastercard3ds(htmlBody) {

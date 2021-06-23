@@ -23,7 +23,6 @@ import { ModalComponent } from './modal/modal.component';
 import { HomeButtonComponent } from './home-button/home-button.component';
 import { PolicyDetailsComponent } from './policy-details/policy-details.component';
 import { LoaderComponent } from './loader/loader.component';
-import { PolicyDetailsFormComponent } from './policy-details/policy-details-form/policy-details-form.component';
 import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
 import { ClientContainerComponent } from './client-container/client-container.component';
 
@@ -44,7 +43,6 @@ import { ClientContainerComponent } from './client-container/client-container.co
     HomeButtonComponent,
     PolicyDetailsComponent,
     LoaderComponent,
-    PolicyDetailsFormComponent,
     CreditCardFormComponent,
     ClientContainerComponent,
   ],

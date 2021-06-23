@@ -23,7 +23,6 @@ export class ClientContainerComponent implements OnInit {
       date: './assets/images/card_date.png',
       code: './assets/images/card_code.png',
     },
-    2: '',
   };
   isShowSpinner = false;
   isCreditCard = false;
@@ -33,7 +32,7 @@ export class ClientContainerComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private breakpointObserver: BreakpointObserver,
-    private clientContainerService: ClientContainerService,
+    public clientContainerService: ClientContainerService,
     private readonly destroy$: DestroyService
   ) {}
 

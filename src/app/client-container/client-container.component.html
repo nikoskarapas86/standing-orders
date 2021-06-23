@@ -4,7 +4,9 @@
       <img src="./assets/images/ethniki_white.png" />
     </div>
     <div *ngIf="!isShowSpinner" #backgroundImage class="mask-mobile"></div>
-    <app-policy-details *ngIf="step === 0" [isPolicyLoading]="isPolicyLoading"></app-policy-details>
+    <!-- *ngIf="step === 0 && clientContainerService.isPolicyLoading" -->
+    <app-policy-details *ngIf="step === 0"></app-policy-details>
+    <!-- <app-loader *ngIf="clientContainerService.isPolicyLoading"></app-loader> -->
     <app-credit-card *ngIf="step === 1"></app-credit-card>
   </div>
 
