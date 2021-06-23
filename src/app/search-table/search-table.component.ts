@@ -99,6 +99,8 @@ export class SearchTableComponent implements OnInit {
   }
 
   onPaginateChange(pageEvent: PageEvent) {
+    this.dataService.setStandingOrdersSubject(undefined);
+    this.dataService.resultsLoadingSubject.next(true)
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
       .subscribe(
@@ -106,7 +108,10 @@ export class SearchTableComponent implements OnInit {
           this.dataService.setStandingOrdersSubject(res);
           this.searchId = res.searchId;
         },
-        error => console.log(error)
+        error => console.log(error),
+        ()=>{
+          this.dataService.resultsLoadingSubject.next(false)
+        }
       );
     return pageEvent;
   }
