@@ -41,9 +41,9 @@ export class PolicyDetailsComponent implements OnInit {
             res => {
               this.setPolicylForm(res);
               this.clientContainerService.isFailedSubject.next(false);
-              this.clientContainerService.isPolicyLoading = false;
             },
             error => {
+              this.clientContainerService.isPolicyLoading = true;
               this.clientContainerService.isFailedSubject.next(true);
             }
           );

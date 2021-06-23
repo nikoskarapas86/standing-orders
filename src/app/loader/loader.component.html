@@ -21,13 +21,13 @@
           spinnerStatus === 'inRedirect'
             ? 'Ανακατεύθυνση σε εξέλιξη...'
             : spinnerStatus === 'warning'
-            ? 'Κάτι δεν πήγε καλά. Παρακαλώ ξαναπροσπαθήστε'
+            ? 'Κάτι δεν πήγε καλά. Παρακαλώ προσπαθήστε ξανά!'
             : tokenExpired
         }}
       </p>
-      <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
+      <!-- <button *ngIf="spinnerStatus === 'warning'" (click)="goHome()" mat-button>
         ΠΡΟΣΠΑΘΗΣΤΕ ΞΑΝΑ
-      </button>
+      </button> -->
     </div>
   </div>
 </div>

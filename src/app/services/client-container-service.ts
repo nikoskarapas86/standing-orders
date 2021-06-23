@@ -10,7 +10,7 @@ export class ClientContainerService {
   getCreditCardBackground = this.creditCardBackground.asObservable();
   private step = new BehaviorSubject<number>(0);
   getStep$ = this.step.asObservable();
-  private privateIsPolicyLoading = true;
+  private privateIsPolicyLoading = false;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
 
