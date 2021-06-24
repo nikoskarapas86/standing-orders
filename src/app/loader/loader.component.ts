@@ -1,7 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ClientContainerService } from '../services/client-container-service';
+import { MastercardService } from '../services/mastercard.service';
 
 import { MatProgressSpinner, MatSpinnerStatus, MatSpinnerStatusContent } from '../shared/enums';
 
@@ -22,10 +24,14 @@ export class LoaderComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private clientContainerService: ClientContainerService
+    private clientContainerService: ClientContainerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private mastercardService: MastercardService
   ) {}
 
   ngAfterViewInit(): void {
+    this.initialPayment();
     this.clientContainerService.isFailed$.subscribe(isFailed => {
       isFailed ? this.showActionFailed() : this.showActionInProgress();
     });
@@ -45,6 +51,20 @@ export class LoaderComponent implements OnDestroy, AfterViewInit {
         }
       });
     this.subscriptions$.push(screenSize$);
+  }
+
+  private initialPayment(): void {
+    this.route.queryParams.subscribe(params => {
+      this.mastercardService.initialPayment(params.searchId, params.status).subscribe(
+        res => {
+          this.clientContainerService.initialPaymentResponse = res;
+          this.router.navigateByUrl('/complete');
+        },
+        error => {
+          this.clientContainerService.isFailedSubject.next(true);
+        }
+      );
+    });
   }
 
   private showActionInProgress(): void {
