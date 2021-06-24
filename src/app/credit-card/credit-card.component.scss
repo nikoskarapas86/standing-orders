@@ -9,30 +9,6 @@ In order to avoid this, all classes that target only the credit-card.component.t
 form[name='credit-card']
  */
 
-@mixin font-lato-regular-large($color: $font-lato-regular-white-large) {
-  font-family: $font-family;
-  font-size: 20px;
-  font-weight: 400;
-  color: $color;
-  letter-spacing: 0.26px;
-}
-
-@mixin font-lato-regular-small($color: $font-lato-regular-small) {
-  font-family: $font-family;
-  font-size: 12px;
-  font-weight: 400;
-  color: $color;
-  letter-spacing: 0.26px;
-}
-
-@mixin font-lato-regular-medium($color: $font-lato-regular-medium) {
-  font-family: $font-family;
-  font-size: 16px;
-  font-weight: 400;
-  color: $color;
-  letter-spacing: 0.15px;
-}
-
 form[name='credit-card'] {
   .header {
     @include font-lato-regular-large($blue-primary-main);
@@ -162,7 +138,12 @@ form[name='credit-card'] {
     border-color: $border-input-disabled;
   }
 
-  @include mat-list-item-content();
+  // @include mat-list-item-content();
+  .mat-list-base .mat-list-item .mat-list-item-content {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
 
   // .pt-40 {
   //   padding-top: 40px;

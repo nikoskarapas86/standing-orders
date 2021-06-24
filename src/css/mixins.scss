@@ -109,6 +109,22 @@
   letter-spacing: 0.26px;
 }
 
+@mixin font-lato-regular-medium($color: $font-lato-regular-medium) {
+  font-family: $font-family;
+  font-size: 16px;
+  font-weight: 400;
+  color: $color;
+  letter-spacing: 0.15px;
+}
+
+@mixin font-lato-regular-small($color: $font-lato-regular-small) {
+  font-family: $font-family;
+  font-size: 12px;
+  font-weight: 400;
+  color: $color;
+  letter-spacing: 0.26px;
+}
+
 /* Breakpoints for media queries */
 $mobile-tablet-width: 768px;
 $laptop-desktop-width: 769px;
@@ -167,7 +183,6 @@ $small-height: 400px;
   transform: translateX(-50%) translateY(-50%);
 }
 
-
 @mixin mask-desktop-spinner-loader($width: 100%) {
   .mat-spinner-warning,
   .mat-spinner-success {
@@ -221,11 +236,6 @@ $small-height: 400px;
     }
   }
 }
-
-
-
-
-
 
 // @mixin viewport-xlarge-devices {
 //   @media screen and (min-width: #{$extra-large-devices}) {
@@ -317,14 +327,6 @@ $small-height: 400px;
   }
 }
 
-@mixin font-lato-regular-medium($color: $font-lato-regular-medium) {
-  font-family: $font-family;
-  font-size: 16px;
-  font-weight: 400;
-  color: $color;
-  letter-spacing: 0.15px;
-}
-
 @mixin exclamation-mark {
   .first-line {
     @include viewport-mobile-tablet {
@@ -335,18 +337,16 @@ $small-height: 400px;
   .first-line,
   .second-line {
     background-color: white;
-
- 
+    border-radius: 2px;
+    width: 4px;
+    @include viewport-laptop-desktop {
+      border-radius: $radius-4;
+      width: 10px;
+    }
+    @include viewport-mobile-tablet {
       border-radius: 2px;
       width: 4px;
-      @include viewport-laptop-desktop {
-        border-radius: $radius-4;
-        width: 10px;
-      }
-      @include viewport-mobile-tablet {
-        border-radius: 2px;
-        width: 4px;
-      }
+    }
     position: absolute;
   }
 
@@ -430,7 +430,6 @@ $small-height: 400px;
     color: white;
     font-weight: 900;
   }
- 
 }
 
 @mixin mask-mobile-spinner-loader {
@@ -543,19 +542,19 @@ $small-height: 400px;
   }
 }
 
-@mixin mat-list-item-content {
-  .mat-list-base .mat-list-item .mat-list-item-content {
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-  }
+// @mixin mat-list-item-content {
+//   .mat-list-base .mat-list-item .mat-list-item-content {
+//     padding: 0;
+//     display: flex;
+//     justify-content: space-between;
+//   }
 
-  .mat-list-amount {
-    display: flex;
-    justify-self: center;
-  }
+//   .mat-list-amount {
+//     display: flex;
+//     justify-self: center;
+//   }
 
-  .amount-of-money {
-    // @include font-lato-bold-large($font-lato-bold-large);
-  }
-}
+//   .amount-of-money {
+//     // @include font-lato-bold-large($font-lato-bold-large);
+//   }
+// }
