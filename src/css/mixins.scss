@@ -26,32 +26,6 @@
   min-height: $height;
 }
 
-@mixin _flex($direction, $align) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: $align;
-}
-
-@mixin _container_with_font(
-  $width,
-  $height,
-  $color,
-  $line-height,
-  $letter-spacing,
-  $font-size,
-  $margin,
-  $padding
-) {
-  width: $width;
-  height: $height;
-  color: $color;
-  line-height: $line-height;
-  letter-spacing: $letter-spacing;
-  font-size: $font-size;
-  margin: $margin;
-  padding: $padding;
-}
-
 @mixin _font-face($font-name, $path) {
   @font-face {
     font-family: $font-name;
