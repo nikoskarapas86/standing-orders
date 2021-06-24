@@ -339,7 +339,14 @@ $small-height: 400px;
  
       border-radius: 2px;
       width: 4px;
-   
+      @include viewport-laptop-desktop {
+        border-radius: $radius-4;
+        width: 10px;
+      }
+      @include viewport-mobile-tablet {
+        border-radius: 2px;
+        width: 4px;
+      }
     position: absolute;
   }
 
@@ -349,7 +356,7 @@ $small-height: 400px;
 
   .successContent {
     position: absolute;
- 
+    @include viewport-laptop-desktop {
       .first-line {
         height: 50px;
         top: 19px;
@@ -365,13 +372,64 @@ $small-height: 400px;
         transform: translateX(-50%) translateY(-50%) rotate(45deg);
         opacity: 1;
       }
-  
-    
+    }
+    @include viewport-mobile-tablet {
+      .first-line {
+        height: 15px;
+        right: 2px;
+        top: 18px;
+        transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        stroke-dashoffset: 48;
+        opacity: 1;
+      }
+      .second-line {
+        height: 35px;
+        top: 10px;
+        left: 10px;
+        transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        opacity: 1;
+      }
+    }
 
     color: white;
     font-weight: 900;
   }
 
+  .warningContent {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.8s;
+    @include viewport-laptop-desktop {
+      top: calc(70% - 50px / 2);
+
+      .first-line {
+        height: 80px;
+      }
+      .second-line {
+        margin-top: 90px;
+        height: 12px;
+      }
+    }
+    @include viewport-mobile-tablet {
+      top: calc(40% - 16px / 2);
+      left: calc(50% - 5px / 2);
+      .first-Line {
+        height: 30px;
+      }
+      .second-line {
+        margin-top: 35px;
+        height: 5px;
+      }
+    }
+
+    color: white;
+    font-weight: 900;
+  }
  
 }
 
