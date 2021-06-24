@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CreditCardImage } from '../credit-card/enum';
+import { InitialPaymentResponse } from '../models/initial-payment-response';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,8 @@ export class ClientContainerService {
   private privateIsPolicyLoading = false;
   isFailedSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   isFailed$ = this.isFailedSubject.asObservable();
+  privateIsPaymentInProgress: boolean;
+  private privateInitialPaymentResponse: InitialPaymentResponse;
 
   setCreditCardBackground(creditCardImage: CreditCardImage): void {
     this.creditCardBackground.next(creditCardImage);
@@ -28,5 +31,21 @@ export class ClientContainerService {
 
   get isPolicyLoading() {
     return this.privateIsPolicyLoading;
+  }
+
+  get isPaymentInProgress() {
+    return this.privateIsPaymentInProgress;
+  }
+
+  set isPaymentInProgress(val: boolean) {
+    this.privateIsPaymentInProgress = val;
+  }
+
+  get initialPaymentResponse() {
+    return this.privateInitialPaymentResponse;
+  }
+
+  set initialPaymentResponse(val: InitialPaymentResponse) {
+    this.privateInitialPaymentResponse = val;
   }
 }

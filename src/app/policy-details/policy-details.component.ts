@@ -14,7 +14,6 @@ import { DestroyService } from '../services/destroy.service';
   providers: [DestroyService],
 })
 export class PolicyDetailsComponent implements OnInit {
-  // @Input() isPolicyLoading = true;
   policyForm: FormGroup;
   searchId: string;
 
@@ -29,6 +28,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initPolicyForm();
+    // TODO: move to client-container
     this.route.queryParams.subscribe(params => {
       // TODO: check why is necessary when loading credit card
       if (params?.searchId) {

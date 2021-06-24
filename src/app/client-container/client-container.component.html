@@ -4,7 +4,6 @@
       <img src="./assets/images/ethniki_white.png" />
     </div>
     <div *ngIf="!isShowSpinner" #backgroundImage class="mask-mobile"></div>
-    <!-- *ngIf="step === 0 && clientContainerService.isPolicyLoading" -->
     <app-policy-details *ngIf="step === 0"></app-policy-details>
     <app-credit-card *ngIf="step === 1"></app-credit-card>
   </div>
@@ -31,6 +30,14 @@
       </div>
     </div>
   </div> -->
-  <div #backgroundImage class="mask-desktop"></div>
+  <div
+    #backgroundImage
+    class="mask-desktop"
+    *ngIf="!clientContainerService.isPaymentInProgress"
+  ></div>
+  <app-loader
+    *ngIf="clientContainerService.isPaymentInProgress"
+    class="mask-desktop-spinner-loader"
+  ></app-loader>
 </div>
 <app-loader *ngIf="clientContainerService.isPolicyLoading"></app-loader>
