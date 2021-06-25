@@ -52,6 +52,12 @@
   }
 }
 
+@mixin credit-card-display {
+  @media (min-width: 768px) and (max-width: 1351px) {
+    @content;
+  }
+}
+
 @mixin for-big-desktop-up {
   @media (min-width: 1800px) {
     @content;
