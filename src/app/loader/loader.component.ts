@@ -55,15 +55,17 @@ export class LoaderComponent implements OnDestroy, AfterViewInit {
 
   private initialPayment(): void {
     this.route.queryParams.subscribe(params => {
-      this.mastercardService.initialPayment(params.searchId, params.status).subscribe(
-        res => {
-          this.clientContainerService.initialPaymentResponse = res;
-          this.router.navigateByUrl('/complete');
-        },
-        error => {
-          this.clientContainerService.isFailedSubject.next(true);
-        }
-      );
+      if (params.searchId && params.status) {
+        this.mastercardService.initialPayment(params.searchId, params.status).subscribe(
+          res => {
+            this.clientContainerService.initialPaymentResponse = res;
+            this.router.navigateByUrl('/complete');
+          },
+          error => {
+            this.clientContainerService.isFailedSubject.next(true);
+          }
+        );
+      }
     });
   }
 
