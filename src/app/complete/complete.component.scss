@@ -157,56 +157,6 @@ further info: https://angular.io/guide/component-styles
 
 @include exclamation-mark();
 
-.first-line,
-.second-line {
-  background-color: white;
-
-  border-radius: $radius-4;
-  width: 10px;
-
-  position: absolute;
-}
-
-.successContent {
-  position: absolute;
-  // @include viewport-laptop-desktop {
-  .first-line {
-    height: 50px;
-    top: 19px;
-    right: 8px;
-    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-    stroke-dashoffset: 48;
-    opacity: 1;
-  }
-  .second-line {
-    height: 100px;
-    left: 30px;
-    top: 2px;
-    transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    opacity: 1;
-  }
-  // }
-  // @include viewport-mobile-tablet {
-  //   .first-line {
-  //     height: 15px;
-  //     right: 2px;
-  //     top: 18px;
-  //     transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-  //     stroke-dashoffset: 48;
-  //     opacity: 1;
-  //   }
-  //   .second-line {
-  //     height: 35px;
-  //     top: 10px;
-  //     left: 10px;
-  //     transform: translateX(-50%) translateY(-50%) rotate(45deg);
-  //     opacity: 1;
-  //   }
-  // }
-
-  color: white;
-  font-weight: 900;
-}
 
 .column-center {
   display: flex;

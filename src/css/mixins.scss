@@ -311,8 +311,7 @@ $small-height: 400px;
   .first-line,
   .second-line {
     background-color: white;
-    border-radius: 2px;
-    width: 4px;
+
     @include viewport-laptop-desktop {
       border-radius: $radius-4;
       width: 10px;
