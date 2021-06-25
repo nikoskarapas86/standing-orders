@@ -224,5 +224,12 @@ form[name='credit-card'] {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include viewport-mobile-tablet {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width:100%!important;
+    }
   }
 }

@@ -48,7 +48,7 @@ mat-spinner {
   display: flex;
   flex-direction: column;
   height: 100vh;
-
+  position: relative;
   @include viewport-mobile-tablet {
     width: 100%;
   }
@@ -224,6 +224,12 @@ mat-spinner {
   }
 }
 
+
+
+
+.mobile-btn{
+  width: 100%;
+}
 /* Todo
 ::ng-deep is planned to be deprecated in future releases, so from angular 2 - 9 it is
 full compatible. As alternative to avoid using this pseudo selector is to apply the

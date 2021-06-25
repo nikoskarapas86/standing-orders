@@ -71,7 +71,7 @@
 }
 
 @mixin home-page-cards-small-screens {
-  @media (max-width: 699px) {
+  @media (max-width: 768px) {
     @content;
   }
 }

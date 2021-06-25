@@ -11,20 +11,9 @@
         <input formControlName="policyNo" matInput />
       </mat-form-field>
     </div>
-    <!-- <div class="container">
-                <mat-form-field class="field-width">
-                    <mat-label>Όνομα </mat-label>
-                    <input formControlName="firstName" matInput />
-                </mat-form-field>
-            </div>
-            <div class="container">
-                <mat-form-field class="field-width">
-                    <mat-label>Κλάδος </mat-label>
-                    <input formControlName="lineOfBusiness" matInput />
-                </mat-form-field>
-            </div> -->
-    <mat-dialog-actions class="justify-content-center">
-      <button mat-raised-button (click)="next()" class="search-btn" id="searchBtn" type="submit">
+  
+    <mat-dialog-actions class="justify-content-center mobile-btn">
+      <button mat-raised-button [disabled]="!policyForm.controls['policyNo'].value"  (click)="next()" class="search-btn " id="searchBtn" type="submit">
         ΕΠΟΜΕΝΟ
       </button>
     </mat-dialog-actions>

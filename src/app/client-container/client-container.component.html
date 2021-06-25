@@ -6,30 +6,10 @@
     <div *ngIf="!isShowSpinner" #backgroundImage class="mask-mobile"></div>
     <app-policy-details *ngIf="step === 0"></app-policy-details>
     <app-credit-card *ngIf="step === 1"></app-credit-card>
+
   </div>
 
-  <!-- <div *ngIf="step === 0" class="mask-desktop-spinner-loader">
-    <div class="mask-desktop-spinner">
-      <div class="spinner-symbol">
-        <mat-spinner
-          [ngClass]="'mat-spinner-success'"
-          diameter="212"
-          strokeWidth="7"
-          [mode]="spinnerMode"
-          value="100"
-        >
-        </mat-spinner>
-        <div>
-          <div class="successContent">
-            <div class="success-status">
-              <div class="first-line"></div>
-              <div class="second-line"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
   <div
     #backgroundImage
     class="mask-desktop"

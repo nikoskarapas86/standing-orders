@@ -3,6 +3,7 @@
 
 button {
   border-radius: 5px;
+
  
 }
 
@@ -24,10 +25,23 @@ button {
   min-width: 100px !important;
   height: 48px;
   letter-spacing: 0.4px;
-  @include tablet-landscape {
-    border-radius: 4px!important;
+}
+
+
+.mobile-btn{
+  @include viewport-mobile-tablet {
+  position: absolute;
+  bottom:0;
+  width: 100%!important;
   }
- 
+
+}
+
+.mobile-btn .mat-raised-button {
+  @include home-page-cards-small-screens {
+    border-radius: 0px!important;
+    width:100%!important;
+   }
 }
 
 .common-btn {
@@ -40,6 +54,8 @@ button {
   text-transform: uppercase;
   background-color: transparent;
   color: $blue-primary-main;
+
+ 
 }
 
 .search-btn {
@@ -52,7 +68,7 @@ button {
   text-transform: uppercase;
   background-color: $blue-primary-main;
   color: $white-text-primary;
- 
+  
 }
 
 .payment-btn {
