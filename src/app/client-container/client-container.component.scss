@@ -49,6 +49,7 @@ mat-spinner {
   flex-direction: column;
   height: 100vh;
   position: relative;
+  display: inline-table;
   @include viewport-mobile-tablet {
     width: 100%;
   }

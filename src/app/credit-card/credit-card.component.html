@@ -70,21 +70,7 @@
       </div>
     </div>
 
-    <!-- <div
-          *ngIf="hasInstallments && mastercard.installments?.length > 0"
-          class="installment-number-container"
-        >
-          <div class="installment-number">
-            <label for="installment-number"></label>
-            <select id="installment-number" required readOnly [disabled]="isLoading">
-              <option value="">Δόσεις</option>
-              <option *ngFor="let installment of mastercard.installments" [value]="installment">
-                {{ installment }}
-              </option>
-            </select>
-            <p class="form-input-helper-text select-hosted-field-date hidden"></p>
-          </div>
-        </div> -->
+  
 
     <div class="security-code-container">
       <label id="security-code-label" class="label-focus"> CVV </label>
@@ -100,17 +86,7 @@
       />
     </div>
 
-    <!-- <div class="pt-40">
-      <mat-divider class="divider-width"></mat-divider>
-      <div class="amount-container">
-        <div class="payment-amount">Ποσό Πληρωμής</div>
-        <div class="amount-literal">
-          <span class="amount">0.01</span>
-          <span class="material-icons">euro_symbol</span>
-        </div>
-      </div>
-      <mat-divider class="divider-width"></mat-divider>
-    </div> -->
+   
 
     <div class="btn-container">
       <button

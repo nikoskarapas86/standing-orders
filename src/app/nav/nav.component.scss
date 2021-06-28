@@ -1,4 +1,6 @@
 @import '/src/css/variables.scss';
+@import '/src/css/responsive-breakpoints.scss';
+@import '/src/css/mixins.scss';
 
 mat-toolbar {
   display: flex;
@@ -18,11 +20,15 @@ mat-toolbar {
   flex-direction: row;
   align-items: center;
   font-size: 14px;
+
 }
 .item{
   margin-right: 4px;
     color: white;
     margin-bottom: 2px;
+    @include viewport-mobile-tablet {
+      display: none;
+     }
 }
 a {
   color: $white-text-primary;
