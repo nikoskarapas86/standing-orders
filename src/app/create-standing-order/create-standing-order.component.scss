@@ -7,8 +7,7 @@
   justify-content: center;
   margin-top: 10px;
   .btn-container {
-    width: 40%;
-    min-width: 460px;
+
     @include mobile-only {
 display:flex;
 flex-direction:row;
