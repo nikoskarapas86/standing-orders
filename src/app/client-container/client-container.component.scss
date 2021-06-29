@@ -19,7 +19,6 @@ mat-spinner {
   }
 }
 
-
 .stepper-wrapper {
   display: flex;
   height: 100%;
@@ -45,13 +44,13 @@ mat-spinner {
 }
 
 .step {
-  display: flex;
   flex-direction: column;
   height: 100vh;
   position: relative;
   display: inline-table;
   @include viewport-mobile-tablet {
     width: 100%;
+    display: flex;
   }
 
   @include viewport-laptop-desktop {
@@ -183,10 +182,7 @@ mat-spinner {
       }
     }
   }
-
 }
-
-
 
 @include mask-mobile-spinner-loader();
 
@@ -209,26 +205,21 @@ mat-spinner {
 
 @include mask-desktop-spinner-loader(65%);
 
-
 .mask-mobile {
   position: relative;
   @include viewport-mobile-tablet {
     display: block;
     position: relative;
-    width:100%;
+    width: 100%;
     min-height: 160px;
     background-color: $primary-color;
-   
   }
   @include viewport-laptop-desktop {
     display: none;
   }
 }
 
-
-
-
-.mobile-btn{
+.mobile-btn {
   width: 100%;
 }
 /* Todo
@@ -256,11 +247,3 @@ further info: https://angular.io/guide/component-styles
 }
 
 @include exclamation-mark();
-
-
-
-
-
-
-
-
