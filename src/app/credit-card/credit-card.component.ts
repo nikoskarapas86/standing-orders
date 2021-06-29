@@ -71,6 +71,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setYears();
+    this.applyAntiClickJacking();
     this.searchId = this.route.snapshot.params.searchId;
 
     this.mastercardService.createSession(this.searchId).subscribe(mastercard => {
@@ -80,7 +81,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    // this.removeAntiClickJacking();
+    this.removeAntiClickJacking();
     this.setInputsForHostedFields();
   }
 
@@ -316,7 +317,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   private getBorderColor(response, formField: string, fieldId: string): string {
     return response.errors[formField] === HostedSessionStatus.INVALID ||
       (response.errors[formField] === HostedSessionStatus.MISSING &&
-        this.activeFieldValidated === HostedFieldsIds[fieldId])
+        this.activeFieldValidated !== HostedFieldsIds[fieldId])
       ? Colors.redInvalid
       : Colors.blackValid;
   }
@@ -381,6 +382,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   // APPLY CLICK-JACKING STYLING AND HIDE CONTENTS OF THE PAGE
+  // https://test-gateway.mastercard.com/api/documentation/integrationGuidelines/hostedSession/integrationModelHostedSession.html
   private applyAntiClickJacking(): void {
     const head = this.document.getElementsByTagName('head')[0];
     const style = this.document.createElement('style');
