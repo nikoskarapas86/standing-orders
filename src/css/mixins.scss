@@ -1,4 +1,5 @@
 @import 'src/css/variables.scss';
+@import 'src/css/responsive-breakpoints';
 
 @mixin _flex($direction, $align) {
   display: flex;
@@ -97,37 +98,6 @@
   font-weight: 400;
   color: $color;
   letter-spacing: 0.26px;
-}
-
-/* Breakpoints for media queries */
-$mobile-tablet-width: 768px;
-$laptop-desktop-width: 769px;
-$medium-size: 992px;
-$extra-large-devices: 1367px;
-$small-height: 400px;
-
-@mixin viewport-mobile-tablet {
-  @media screen and (max-width: #{$mobile-tablet-width}) {
-    @content;
-  }
-}
-
-@mixin viewport-laptop-desktop {
-  @media screen and (min-width: #{$laptop-desktop-width}) {
-    @content;
-  }
-}
-
-@mixin landscape-iPad {
-  @media only screen and (orientation: landscape) and (height: 768px) and (width: 1024px) {
-    @content;
-  }
-}
-
-@mixin landscape-iPad-pro {
-  @media only screen and (orientation: landscape) and (height: 1024px) and (width: 1366px) {
-    @content;
-  }
 }
 
 @mixin visible-mobile-tablet() {
