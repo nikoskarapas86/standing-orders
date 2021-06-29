@@ -8,6 +8,8 @@ import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { ModalComponent } from '../modal/modal.component';
 import { Card } from '../models/card';
+import { LineOfBusiness } from '../models/line-of-business';
+import { ReceiptRequest } from '../models/receipt-request';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { DataService } from '../services/data.service';
@@ -28,6 +30,7 @@ export class SearchTableComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   pageSize = 10;
   currentPage = 0;
+
   tableItems: TableItem[] = [
     { columnDef: 'id', headerCellDef: 'Αρ. Πάγιας Εντολής' },
     {
@@ -54,6 +57,7 @@ export class SearchTableComponent implements OnInit {
   totalEs: number = 0;
   numberOfElements: number = 0;
   resultsLoading$: Observable<boolean>;
+  linesOfBusinesses: LineOfBusiness[];
   constructor(
     private router: Router,
     private editService: EditService,
@@ -65,9 +69,11 @@ export class SearchTableComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.resultsLoading$ = this.dataService.resultsLoading$
+    this.resultsLoading$ = this.dataService.resultsLoading$
     this.editService.selectedStandingOrder = null;
-
+    this.dataService.searchLinesOfBusiness().subscribe(res => {
+      this.linesOfBusinesses = res
+    })
     this.dataService.standingOrders$.subscribe(res => {
       if (res) {
         this.totalEs = res?.standingOrders?.totalElements;
@@ -91,11 +97,27 @@ export class SearchTableComponent implements OnInit {
   edit(element: SearchItem) {
     this.editService.edit(this.searchId, element.id).subscribe(res => {
       if (res) {
-        res.cardNumber !==""? this.editService.selectedCard = res:null;
+        res.cardNumber !== "" ? this.editService.selectedCard = res : null;
         this.editService.selectedStandingOrder = element;
         this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
       }
     });
+  }
+
+  receipt(row) {
+    let item: any = this.linesOfBusinesses.filter(el => el.title === row.lineOfBusiness)
+
+    let receiptRequest = new ReceiptRequest();
+    receiptRequest.policyNo = row.policyNo;
+    receiptRequest.lineOfBusiness = item[0].lineOfBusiness;
+    this.editService.receiptSearch(receiptRequest).subscribe(res => 
+      { 
+        console.log(res) 
+      },
+error =>{
+  this.matDialog.open(ModalComponent, { data: error });
+}
+    )
   }
 
   onPaginateChange(pageEvent: PageEvent) {
@@ -109,7 +131,7 @@ export class SearchTableComponent implements OnInit {
           this.searchId = res.searchId;
         },
         error => console.log(error),
-        ()=>{
+        () => {
           this.dataService.resultsLoadingSubject.next(false)
         }
       );

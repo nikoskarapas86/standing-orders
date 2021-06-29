@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Card } from '../models/card';
+import { ReceiptRequest } from '../models/receipt-request';
+import { ReceiptResponse } from '../models/receipt-response';
 import { SearchItem } from '../models/search-response';
 
 @Injectable({
@@ -35,4 +37,9 @@ export class EditService {
   edit(searchId: string, identity: number): Observable<any> {
     return this.http.post<any>(`${this.url}/int/update/select/${searchId}`, { id: identity })
   }
+
+  receiptSearch(receiptRequest:ReceiptRequest):Observable<ReceiptResponse>{
+ 
+    return this.http.post<any>(`${this.url}/int/receipt/search`,receiptRequest)
+}
 }
