@@ -19,11 +19,14 @@ export class HomeComponent implements OnInit {
       imgSrc: './assets/images/search.svg',
       onClick: () => this.router.navigate(['/search']),
     },
+    {
+      title: 'ΑΝΑΖΗΤΗΣΗ ΕΝΤΟΛΗΣ ΕΙΣΠΡΑΞΗΣ',
+      imgSrc: './assets/images/largeQuestionnaire.svg',
+      onClick: () => this.router.navigate(['/search']),
+    },
   ];
 
-  constructor(private router: Router, private dataService: DataService) {
- 
-  }
+  constructor(private router: Router, private dataService: DataService) {}
 
   ngOnInit(): void {}
 }
