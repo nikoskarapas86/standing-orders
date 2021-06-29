@@ -1,5 +1,6 @@
 @import 'src/css/mixins';
 @import 'src/css/variables';
+@import 'src/css/responsive-breakpoints';
 
 /* todo IMPORTANT TO READ BEFORE WRITING CSS FOR THIS COMPONENT
 In order to avoid the usage of deprecated ng-deep to override angular material classes and keep on being able to
@@ -13,6 +14,18 @@ form[name='credit-card'] {
   .header {
     @include font-lato-regular-large($blue-primary-main);
     margin: 0px;
+  }
+
+  &.form-display {
+    display: flex;
+    align-items: center;
+    @include small-text {
+      align-items: flex-start;
+    }
+    @include credit-card-display {
+      display: block !important;
+      padding: 0 24px !important;
+    }
   }
 
   .label-focus {
@@ -195,7 +208,8 @@ form[name='credit-card'] {
 
 .btn-container {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: center;
 
   .mt-1 {
     margin-top: 1rem;
@@ -207,10 +221,10 @@ form[name='credit-card'] {
     align-items: center;
 
     @include viewport-mobile-tablet {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width:100%!important;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100% !important;
     }
   }
 }

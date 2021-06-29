@@ -1,4 +1,7 @@
-<div *ngIf="(!dataSource || !dataSource.data.length ) && !(resultsLoading$ | async)" class="no-results mt-5">
+<div
+  *ngIf="(!dataSource || !dataSource.data.length) && !(resultsLoading$ | async)"
+  class="no-results mt-5"
+>
   <div>
     <img src="./assets/images/empty-results.svg" />
   </div>
@@ -9,20 +12,33 @@
 <div *ngIf="resultsLoading$ | async" class="no-results mt-5" fxLayoutAlign="center">
   <mat-spinner color="primary" strokeWidth="1" [diameter]="180"></mat-spinner>
 </div>
-<div [ngClass]="(resultsLoading$ | async) ? 'hidden' : ''" class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
+<div
+  [ngClass]="(resultsLoading$ | async) ? 'hidden' : ''"
+  class="w-90 mt-5"
+  *ngIf="dataSource && dataSource.data.length"
+>
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
     <div *ngFor="let tableItem of tableItems">
       <ng-container [matColumnDef]="tableItem.columnDef">
-        <mat-header-cell class="fs-14" *matHeaderCellDef>{{
-          tableItem.headerCellDef
-        }}</mat-header-cell>
-        <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
+        <mat-header-cell
+          class="fs-14"
+          [ngStyle]="{ 'min-width': tableItem.columnDef === 'iban' ? '220px' : initial }"
+          *matHeaderCellDef
+          >{{ tableItem.headerCellDef }}</mat-header-cell
+        >
+        <mat-cell
+          class="pointer-cell"
+          [ngStyle]="{ 'min-width': tableItem.columnDef === 'iban' ? '220px' : initial }"
+          *matCellDef="let row; let index = index"
+        >
           <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
             {{ tableItem.headerCellDef }}:
           </div>
           <div
             *ngIf="
-              tableItem.columnDef !== 'actions' && tableItem.columnDef !== 'standingOrderStatus'
+              tableItem.columnDef !== 'actions' &&
+              tableItem.columnDef !== 'standingOrderStatus' &&
+              (tableItem.columnDef !== 'iban' || row[tableItem.columnDef] !== '')
             "
           >
             {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
