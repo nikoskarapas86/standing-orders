@@ -15,39 +15,15 @@
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
     <div *ngFor="let tableItem of tableItems">
       <ng-container [matColumnDef]="tableItem.columnDef">
-        <mat-header-cell
-          class="fs-14"
-          [ngStyle]="{ 'min-width': tableItem.columnDef === 'iban' ? '220px' : initial }"
-          *matHeaderCellDef
-          >{{ tableItem.headerCellDef }}</mat-header-cell
-        >
-        <mat-cell
-          class="pointer-cell"
-          [ngStyle]="{ 'min-width': tableItem.columnDef === 'iban' ? '220px' : initial }"
-          *matCellDef="let row; let index = index"
-        >
+        <mat-header-cell class="fs-14" *matHeaderCellDef>{{
+          tableItem.headerCellDef
+        }}</mat-header-cell>
+        <mat-cell class="pointer-cell" *matCellDef="let row; let index = index">
           <div *ngIf="tableItem.columnDef !== 'actions'" class="tablet-label">
             {{ tableItem.headerCellDef }}:
           </div>
-          <div
-            *ngIf="
-              tableItem.columnDef !== 'actions' &&
-              tableItem.columnDef !== 'standingOrderStatus' &&
-              (tableItem.columnDef !== 'iban' || row[tableItem.columnDef] !== '')
-            "
-          >
+          <div>
             {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }}
-          </div>
-          <div
-            *ngIf="tableItem.columnDef === 'standingOrderStatus'"
-            [ngClass]="row.activeStandingOrder ? 'active' : 'non-active'"
-          >
-            {{ row[tableItem.columnDef] }}
-          </div>
-          <div *ngIf="tableItem.columnDef === 'iban' && row[tableItem.columnDef] == ''">
-            <button class="mat-icon-btn" (click)="getCard(row)">
-              <mat-icon>payment</mat-icon>
-            </button>
           </div>
           <div *ngIf="tableItem.columnDef === 'actions'">
             <div class="action-row" *ngIf="row.activeStandingOrder">
@@ -61,11 +37,6 @@
                   <mat-icon class="delete-row">delete</mat-icon>
                 </button>
               </div>
-              <!-- <div (click)="receipt(row)">
-                <button class="btn">
-                  <mat-icon class="receipt-icon">receipt</mat-icon>
-                </button>
-              </div> -->
             </div>
           </div>
         </mat-cell>

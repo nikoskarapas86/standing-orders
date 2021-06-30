@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ReceiptResponse } from 'src/app/models/receipt-response';
 import { TableItem } from 'src/app/models/table-item';
@@ -43,6 +44,11 @@ export class ReceiptsTableComponent implements OnInit {
     { columnDef: 'orderNo', headerCellDef: 'Order No' },
     { columnDef: 'loanNo', headerCellDef: 'Loan No' },
   ];
+  displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
+  pageEvent: PageEvent;
+  pageSizeOptions = [5, 10, 20];
+  totalEs: number = 0;
+  numberOfElements: number = 0;
 
   constructor() {}
 
