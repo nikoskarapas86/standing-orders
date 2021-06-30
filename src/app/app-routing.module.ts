@@ -8,6 +8,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { SearchStandingOrderComponent } from './search-standing-order/search-standing-order.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ClientContainerComponent } from './client-container/client-container.component';
+import { ReceiptComponent } from './nav/receipt/receipt.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchStandingOrderComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'receipt',
+    component: ReceiptComponent,
     canActivate: [AuthGuardService],
   },
   {

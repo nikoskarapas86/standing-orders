@@ -19,6 +19,11 @@ export class HomeComponent implements OnInit {
       imgSrc: './assets/images/search.svg',
       onClick: () => this.router.navigate(['/search']),
     },
+    {
+      title: 'ΕΝΤΟΛΕΣ ΕΙΣΠΡΑΞΗΣ',
+      imgSrc: './assets/images/receipts.svg',
+      onClick: () => this.router.navigate(['/receipt']),
+    },
   ];
 
   constructor(private router: Router, private dataService: DataService) {

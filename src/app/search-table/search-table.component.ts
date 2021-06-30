@@ -104,21 +104,20 @@ export class SearchTableComponent implements OnInit {
     });
   }
 
-  receipt(row) {
-    let item: any = this.linesOfBusinesses.filter(el => el.title === row.lineOfBusiness)
+  // receipt(row) {
+  //   let item: any = this.linesOfBusinesses.filter(el => el.title === row.lineOfBusiness)
 
-    let receiptRequest = new ReceiptRequest();
-    receiptRequest.policyNo = row.policyNo;
-    receiptRequest.lineOfBusiness = item[0].lineOfBusiness;
-    this.editService.receiptSearch(receiptRequest).subscribe(res => 
-      { 
-        console.log(res) 
-      },
-error =>{
-  this.matDialog.open(ModalComponent, { data: error });
-}
-    )
-  }
+  //   let receiptRequest = new ReceiptRequest();
+  //   receiptRequest.policyNo = row.policyNo;
+  //   receiptRequest.lineOfBusiness = item[0].lineOfBusiness;
+  //   this.editService.receiptSearch(receiptRequest).subscribe(res => {
+  //     console.log(res)
+  //   },
+  //     error => {
+  //       this.matDialog.open(ModalComponent, { data: error });
+  //     }
+  //   )
+  // }
 
   onPaginateChange(pageEvent: PageEvent) {
     this.dataService.setStandingOrdersSubject(undefined);
