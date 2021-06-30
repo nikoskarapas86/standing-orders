@@ -26,6 +26,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { CreditCardFormComponent } from './credit-card-form/credit-card-form.component';
 import { ClientContainerComponent } from './client-container/client-container.component';
 import { ReceiptComponent } from './nav/receipt/receipt.component';
+import { ReceiptsTableComponent } from './nav/receipts-table/receipts-table.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ReceiptComponent } from './nav/receipt/receipt.component';
     CreditCardFormComponent,
     ClientContainerComponent,
     ReceiptComponent,
+    ReceiptsTableComponent,
   ],
   imports: [
     CommonModule,
