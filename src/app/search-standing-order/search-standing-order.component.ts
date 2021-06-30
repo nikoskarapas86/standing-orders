@@ -107,7 +107,6 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(4)
     this.dataService.setStandingOrdersSubject(undefined);
     this.dataService.resultsLoadingSubject.next(true)
     this.searchBtnDisabled = true;
