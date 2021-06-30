@@ -1,2 +1,46 @@
-<p>receipt works!</p>
+<form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm" id="receiptForm">
+  <div class="form-row">
+    <div class="form-row-item go-back">
+      <a (click)="backHome()">
+        <mat-icon>chevron_left</mat-icon>
+        <span>ΚΕΝΤΡΙΚΗ</span>
+      </a>
+    </div>
+    <div class="form-row-item">
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Κλάδος</mat-label>
+          <mat-select formControlName="lineOfBusiness" matNativeControl>
+            <mat-option
+              *ngFor="let item of linesOfBusinesses$ | async"
+              [value]="item.lineOfBusiness"
+              ngDefaultControl
+            >
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="mr-10" fxLayout="column">
+      <mat-form-field fxLayout="row" appearance="fill">
+        <mat-label>Αρ. Συμβολαίου</mat-label>
+        <input
+          formControlName="policyNumber"
+          onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
+            !(event.target.value.length == 0 && event.which == 48)"
+          maxlength="9"
+          matInput
+        />
+        <button
+          class="close-icon"
+          type="button"
+          (click)="this.searchForm.get('policyNumber').setValue(null)"
+          tabindex="-1"
+        ></button>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
 <receipts-table></receipts-table>
