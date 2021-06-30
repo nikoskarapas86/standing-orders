@@ -33,14 +33,9 @@
           maxlength="9"
           matInput
         />
-        <button
-          class="close-icon"
-          type="button"
-          (click)="this.searchForm.get('policyNumber').setValue(null)"
-          tabindex="-1"
-        ></button>
+        <button class="close-icon" type="button" tabindex="-1"></button>
       </mat-form-field>
     </div>
   </div>
 </form>
-<receipts-table></receipts-table>
+<app-receipts-table></app-receipts-table>

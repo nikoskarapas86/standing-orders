@@ -8,7 +8,7 @@ import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-receipt',
   templateUrl: './receipt.component.html',
-  styleUrls: ['./receipt.component.scss']
+  styleUrls: ['./receipt.component.scss'],
 })
 export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
@@ -17,7 +17,7 @@ export class ReceiptComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dataService: DataService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
@@ -27,17 +27,18 @@ export class ReceiptComponent implements OnInit {
   private buildFormGroup(): void {
     this.receiptForm = this.formBuilder.group({
       lineOfBusiness: [null, Validators.required],
-      policyNumber: [null, Validators.required]
-
+      policyNumber: [null, Validators.required],
     });
   }
   submit(): void {
-    console.log('submited')
-
+    console.log('submited');
   }
 
   ackHome(): void {
-  
     this.router.navigate(['/home']);
   }
+
+  onSubmit() {}
+
+  backHome() {}
 }

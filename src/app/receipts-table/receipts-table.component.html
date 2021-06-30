@@ -7,9 +7,9 @@
     <p class="empty-message">Δεν υπάρχουν αποτελέσματα. Eπαναπροσδιορίστε την αναζήτησή σας</p>
   </div>
 </div>
-<div *ngIf="resultsLoading$ | async" class="no-results mt-5" fxLayoutAlign="center">
+<!-- <div *ngIf="resultsLoading$ | async" class="no-results mt-5" fxLayoutAlign="center">
   <mat-spinner color="primary" strokeWidth="1" [diameter]="180"></mat-spinner>
-</div>
+</div> -->
 <!-- [ngClass]="(resultsLoading$ | async) ? 'hidden' : ''" -->
 <div class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
