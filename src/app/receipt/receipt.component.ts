@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { DataService } from 'src/app/services/data.service';
   selector: 'app-receipt',
   templateUrl: './receipt.component.html',
   styleUrls: ['./receipt.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
@@ -34,11 +35,10 @@ export class ReceiptComponent implements OnInit {
     console.log('submited');
   }
 
-  ackHome(): void {
+  backHome(): void {
     this.router.navigate(['/home']);
   }
 
   onSubmit() {}
 
-  backHome() {}
 }
