@@ -20,6 +20,7 @@ import { FormGroup } from '@angular/forms';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ReceiptRequest } from '../models/receipt-request';
 import { ReceiptResponse } from '../models/receipt-response';
+import { ReceiptStatus } from '../models/receipt-status';
 
 @Injectable({
   providedIn: 'root',
@@ -103,6 +104,11 @@ export class DataService {
   searchLinesOfBusiness(): Observable<LineOfBusiness[]> {
     return this.http.get<LineOfBusiness[]>(`${this.url}/int/search/linesOfBusiness`);
   }
+
+  searchReceiptStatuses(): Observable<ReceiptStatus[]> {
+    return this.http.get<ReceiptStatus[]>(`${this.url}/int/search/receiptStatuses`);
+  }
+
 
   sendEmail(email: any, searchId: string) {
     const update = this.privateStatus === 'create' ? '' : '/update';

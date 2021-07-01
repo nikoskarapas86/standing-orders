@@ -8,6 +8,7 @@ import { LineOfBusiness } from 'src/app/models/line-of-business';
 import { DataService } from 'src/app/services/data.service';
 import { ModalComponent } from '../modal/modal.component';
 import { ReceiptRequest } from '../models/receipt-request';
+import { ReceiptStatus } from '../models/receipt-status';
 
 @Component({
   selector: 'app-receipt',
@@ -18,6 +19,7 @@ import { ReceiptRequest } from '../models/receipt-request';
 export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
+  receiptStatuses$ :Observable<ReceiptStatus[]>
   paymentTypes = [
     { id: 'BANK_ACCOUNT', name: 'Τρ. Λογαριασμός' },
     { id: 'CREDIT_CARD', name: 'Κάρτα' },
@@ -36,6 +38,8 @@ export class ReceiptComponent implements OnInit {
   ngOnInit(): void {
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
+    this.receiptStatuses$ =  this.dataService.searchReceiptStatuses();
+   
   }
 
   private buildFormGroup(): void {
@@ -47,11 +51,10 @@ export class ReceiptComponent implements OnInit {
       billingEndDate: null,
       issueStartDate: null,
       issueEndDate: null,
-      // status: null, 
+      status: null, 
     });
   }
   onSubmit(): void {
-    console.log('submited');
     let receiptRequest = new ReceiptRequest();
     receiptRequest.billingStartDate = this.receiptForm.value?.billingStartDate ? moment(this.receiptForm.value?.billingStartDate).format('DD/MM/YYYY') : null;
     receiptRequest.billingEndDate = this.receiptForm.value?.billingEndDate ? moment(this.receiptForm.value?.billingEndDate).format('DD/MM/YYYY') : null;

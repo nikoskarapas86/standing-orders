@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ClientContainerService } from '../services/client-container-service';
@@ -21,14 +20,13 @@ export class PolicyDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService,
-    private clientContainerService: ClientContainerService,
+    public clientContainerService: ClientContainerService,
     private readonly destroy$: DestroyService,
     private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    console.log('im here');
     this.initPolicyForm();
     // TODO: move to client-container
     this.route.queryParams.subscribe(params => {

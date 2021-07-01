@@ -33,6 +33,16 @@
       </div>
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" matNativeControl>
+            <mat-option *ngFor="let item of receiptStatuses$ | async" [value]="item.receiptStatus" ngDefaultControl>
+              {{ item.title }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Συμβολαίου</mat-label>
           <input
             formControlName="policyNumber"
