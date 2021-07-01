@@ -11,7 +11,11 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Κλάδος</mat-label>
           <mat-select formControlName="lineOfBusiness" matNativeControl>
-            <mat-option *ngFor="let item of linesOfBusinesses$ | async" [value]="item.lineOfBusiness" ngDefaultControl>
+            <mat-option
+              *ngFor="let item of linesOfBusinesses$ | async"
+              [value]="item.lineOfBusiness"
+              ngDefaultControl
+            >
               {{ item.title }}
             </mat-option>
           </mat-select>
@@ -30,8 +34,13 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Συμβολαίου</mat-label>
-          <input formControlName="policyNumber" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
-              !(event.target.value.length == 0 && event.which == 48)" maxlength="9" matInput />
+          <input
+            formControlName="policyNumber"
+            onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
+              !(event.target.value.length == 0 && event.which == 48)"
+            maxlength="9"
+            matInput
+          />
           <button class="close-icon" type="button" tabindex="-1">
             <mat-icon>close</mat-icon>
           </button>
@@ -40,7 +49,7 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Ημ/νία Χρέωσης Συμβολαίου</mat-label>
-          <mat-date-range-input [rangePicker]="completedDateRange" >
+          <mat-date-range-input [rangePicker]="completedDateRange">
             <input formControlName="billingStartDate" matStartDate placeholder="Από" />
             <input formControlName="billingEndDate" matEndDate placeholder="Εώς" />
           </mat-date-range-input>
@@ -52,7 +61,7 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Ημερομηνία Έκδοσης Συμβολαίου</mat-label>
-          <mat-date-range-input [rangePicker]="completedDateRange1" >
+          <mat-date-range-input [rangePicker]="completedDateRange1">
             <input formControlName="issueStartDate" matStartDate placeholder="Από" />
             <input formControlName="issueEndDate" matEndDate placeholder="Εώς" />
           </mat-date-range-input>
@@ -60,8 +69,8 @@
           <mat-date-range-picker #completedDateRange1></mat-date-range-picker>
         </mat-form-field>
       </div>
-      <div class="form-row-item"></div>
     </div>
+    <div class="form-row-item"></div>
   </div>
   <mat-dialog-actions class="center mt-20">
     <button (click)="clear()" mat-raised-button type="button" class="common-btn mr-10">
@@ -70,4 +79,4 @@
     <button mat-raised-button class="search-btn" id="searchBtn" type="submit">Αναζήτηση</button>
   </mat-dialog-actions>
 </form>
-<app-receipts-table></app-receipts-table>
+<app-receipts-table class="center"></app-receipts-table>

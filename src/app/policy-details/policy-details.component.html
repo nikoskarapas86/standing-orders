@@ -1,7 +1,4 @@
-<!-- <app-policy-details-form></app-policy-details-form> -->
-<!-- <app-loader *ngIf="isPolicyLoading"></app-loader> -->
-
-<div>
+<div *ngIf="!clientContainerService.isPolicyLoading">
   <h3 class="justify-content-center mt-2 mb-6 h-content">Στοιχεία συμβολαίου</h3>
 
   <form [formGroup]="policyForm" name="policyForm">

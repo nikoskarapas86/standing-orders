@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ClientContainerService } from '../services/client-container-service';
@@ -27,6 +28,7 @@ export class PolicyDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('im here');
     this.initPolicyForm();
     // TODO: move to client-container
     this.route.queryParams.subscribe(params => {
@@ -39,12 +41,16 @@ export class PolicyDetailsComponent implements OnInit {
           .pipe(takeUntil(this.destroy$))
           .subscribe(
             res => {
-              this.setPolicylForm(res);
+              this.clientContainerService.policyResponseSubject.next(true);
               this.clientContainerService.isFailedSubject.next(false);
+              this.clientContainerService.isPolicyLoading = false;
             },
             error => {
               this.clientContainerService.isPolicyLoading = true;
               this.clientContainerService.isFailedSubject.next(true);
+            },
+            () => {
+              this.clientContainerService.policyResponseSubject.next(false);
             }
           );
       }

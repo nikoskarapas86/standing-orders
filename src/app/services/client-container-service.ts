@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CreditCardImage } from '../credit-card/enum';
 import { InitialPaymentResponse } from '../models/initial-payment-response';
 
@@ -16,6 +16,9 @@ export class ClientContainerService {
   isFailed$ = this.isFailedSubject.asObservable();
   privateIsPaymentInProgress: boolean;
   private privateInitialPaymentResponse: InitialPaymentResponse;
+
+  policyResponseSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  policyResponse$: Observable<boolean> = this.policyResponseSubject.asObservable();
 
   setCreditCardBackground(creditCardImage: CreditCardImage): void {
     this.creditCardBackground.next(creditCardImage);
