@@ -4,12 +4,9 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { DeleteListComponent } from '../delete-list/delete-list.component';
 import { ModalComponent } from '../modal/modal.component';
-import { Card } from '../models/card';
 import { LineOfBusiness } from '../models/line-of-business';
-import { ReceiptRequest } from '../models/receipt-request';
 import { SearchItem } from '../models/search-response';
 import { TableItem } from '../models/table-item';
 import { DataService } from '../services/data.service';
@@ -61,7 +58,6 @@ export class SearchTableComponent implements OnInit {
   constructor(
     private router: Router,
     private editService: EditService,
-    private matDialog: MatDialog,
     private dataService: DataService,
     public dialog: MatDialog,
     private modalService: ModalService,
@@ -128,7 +124,7 @@ export class SearchTableComponent implements OnInit {
   }
 
   private openModal(searchItemId: number, searchId: string) {
-    const modalDialog = this.matDialog.open(DeleteListComponent, {
+    const modalDialog = this.dialog.open(DeleteListComponent, {
       height: '220px',
       width: '500px',
       data: {
