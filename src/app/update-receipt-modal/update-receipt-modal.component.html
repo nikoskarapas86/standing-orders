@@ -1,0 +1,25 @@
+<div>
+  <div class="action">
+    <span><h3>Ενημέρωση Εντολής Πληρωμής</h3></span>
+    <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
+  </div>
+
+  <mat-dialog-content>
+    <form [formGroup]="amountForm" (ngSubmit)="onSubmit()" name="receiptForm" id="receiptForm">
+      <div class="form-row">
+        <div class="form-row-item">
+          <div class="mr-10" fxLayout="column">
+            <mat-form-field fxLayout="row" appearance="fill">
+              <mat-label>Ποσό Πληρωμής</mat-label>
+              <input formControlName="amount" matInput />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <div class="action-row">
+    <button mat-raised-button type="submit">Submit</button>
+  </div>
+</div>

@@ -27,6 +27,7 @@ import { CreditCardFormComponent } from './credit-card-form/credit-card-form.com
 import { ClientContainerComponent } from './client-container/client-container.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptsTableComponent } from './receipts-table/receipts-table.component';
+import { UpdateReceiptModalComponent } from './update-receipt-modal/update-receipt-modal.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ReceiptsTableComponent } from './receipts-table/receipts-table.componen
     ClientContainerComponent,
     ReceiptComponent,
     ReceiptsTableComponent,
+    UpdateReceiptModalComponent,
   ],
   imports: [
     CommonModule,

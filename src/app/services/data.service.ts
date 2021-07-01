@@ -20,8 +20,9 @@ import { FormGroup } from '@angular/forms';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ReceiptRequest } from '../models/receipt-request';
 import { ReceiptStatus } from '../models/receipt-status';
-import { ReceiptSearchResponse } from '../models/receipt-search-response';
+import { Receipt, ReceiptSearchResponse } from '../models/receipt-search-response';
 import { PaymentType } from '../models/payment-type';
+import { ReceiptUpdateRequest } from '../models/receipt-update-request';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +30,7 @@ import { PaymentType } from '../models/payment-type';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   public resultsLoadingSubject = new BehaviorSubject<boolean>(false);
   resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
@@ -151,5 +152,9 @@ export class DataService {
 
   receiptSearch(receiptRequest: ReceiptRequest): Observable<ReceiptSearchResponse> {
     return this.http.post<any>(`${this.url}/int/receipt/search`, receiptRequest);
+  }
+
+  receiptUpdate(request: ReceiptUpdateRequest): Observable<Receipt> {
+    return this.http.post<any>(`${this.url}/int/receipt/update`, request);
   }
 }

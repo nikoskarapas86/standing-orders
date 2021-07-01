@@ -1,4 +1,4 @@
-class Receipt {
+export class Receipt {
   status: string;
   lineOfBusiness: string;
   policyNo: number;

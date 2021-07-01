@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableItem } from 'src/app/models/table-item';
 import { DataService } from '../services/data.service';
+import { UpdateReceiptModalComponent } from '../update-receipt-modal/update-receipt-modal.component';
 
 @Component({
   selector: 'app-receipts-table',
@@ -51,7 +53,7 @@ export class ReceiptsTableComponent implements OnInit {
   totalEs: number = 0;
   numberOfElements: number = 0;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.dataService.receipts$.subscribe(res => {
@@ -61,5 +63,7 @@ export class ReceiptsTableComponent implements OnInit {
     });
   }
 
-  edit(row: number): void {}
+  edit(row: number): void {
+    this.matDialog.open(UpdateReceiptModalComponent, { data: row });
+  }
 }
