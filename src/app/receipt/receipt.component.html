@@ -48,6 +48,18 @@
           <mat-date-range-picker #completedDateRange></mat-date-range-picker>
         </mat-form-field>
       </div>
+
+      <div class="mr-10" fxLayout="column">
+        <mat-form-field fxLayout="row" appearance="fill">
+          <mat-label>Ημερομηνία Έκδοσης Συμβολαίου</mat-label>
+          <mat-date-range-input [rangePicker]="completedDateRange1" >
+            <input formControlName="issueStartDate" matStartDate placeholder="Από" />
+            <input formControlName="issueEndDate" matEndDate placeholder="Εώς" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="completedDateRange1"></mat-datepicker-toggle>
+          <mat-date-range-picker #completedDateRange1></mat-date-range-picker>
+        </mat-form-field>
+      </div>
       <div class="form-row-item"></div>
     </div>
   </div>

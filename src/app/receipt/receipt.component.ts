@@ -48,8 +48,8 @@ export class ReceiptComponent implements OnInit {
       paymentType: null,
       billingStartDate: null,
       billingEndDate: null,
-      // issueStartDate: null,
-      // issueEndDate: null,
+      issueStartDate: null,
+      issueEndDate: null,
       // status: null, 
     });
   }
