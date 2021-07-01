@@ -43,6 +43,7 @@ export class ReceiptsTableComponent implements OnInit {
     { columnDef: 'collectionTries', headerCellDef: 'Collection Tries' },
     { columnDef: 'orderNo', headerCellDef: 'Order No' },
     { columnDef: 'loanNo', headerCellDef: 'Loan No' },
+    { columnDef: 'actions', headerCellDef: 'Ενέργειες' },
   ];
   displayedColumns: string[] = this.tableItems.map(item => item.columnDef);
   pageEvent: PageEvent;
@@ -59,4 +60,6 @@ export class ReceiptsTableComponent implements OnInit {
       }
     });
   }
+
+  edit(row: number): void {}
 }
