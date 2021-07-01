@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ReceiptResponse } from 'src/app/models/receipt-response';
 import { TableItem } from 'src/app/models/table-item';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-receipts-table',
@@ -50,37 +50,13 @@ export class ReceiptsTableComponent implements OnInit {
   totalEs: number = 0;
   numberOfElements: number = 0;
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource([
-      {
-        status: 'string',
-        lineOfBusiness: 'string',
-        policyNo: 1,
-        checkDigit: 1,
-        endorsement: 1,
-        receipt: 1,
-        paymentType: 1,
-        installments: 1,
-        branchStore: 'string',
-        collectionAgency: 'string',
-        agent: 1,
-        amount: 1,
-        endorsementAmount: 1,
-        installmentAmount: 1,
-        installment2Amount: 1,
-        billingDate: 'string',
-        issueDate: 'string',
-        paymentDate: 'string',
-        bankResponseDate: 'string',
-        registerDate: 'string',
-        reversalNo: 1,
-        reversalNo2: 1,
-        collectionTries: 1,
-        orderNo: 1,
-        loanNo: 'string',
-      },
-    ]);
+    this.dataService.receipts$.subscribe(res => {
+      if (res) {
+        this.dataSource = new MatTableDataSource(res.receipts);
+      }
+    });
   }
 }

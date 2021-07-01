@@ -19,7 +19,7 @@ import { UpdateBankAccountRequest } from '../models/update-bank-account-request'
 import { FormGroup } from '@angular/forms';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ReceiptRequest } from '../models/receipt-request';
-import { ReceiptResponse } from '../models/receipt-response';
+import { ReceiptSearchResponse } from '../models/receipt-search-response';
 
 @Injectable({
   providedIn: 'root',
@@ -32,10 +32,17 @@ export class DataService {
   resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
   private privateSearchForm: FormGroup;
+
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
   standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
   setStandingOrdersSubject(response: any) {
     this.standingOrdersResponseSubject.next(response);
+  }
+
+  private receiptsSearchSubject = new BehaviorSubject<any>(undefined);
+  receipts$: Observable<any> = this.receiptsSearchSubject.asObservable();
+  setReceiptsSearchSubject(response: ReceiptSearchResponse) {
+    this.receiptsSearchSubject.next(response);
   }
 
   private privateStatus: string;
@@ -132,8 +139,7 @@ export class DataService {
     return this.http.post<ValidateResponse>(`${this.url}/int/validate/iban`, validateRequest);
   }
 
-  receiptSearch(receiptRequest:ReceiptRequest):Observable<ReceiptResponse>{
- 
-    return this.http.post<any>(`${this.url}/int/receipt/search`,receiptRequest)
-}
+  receiptSearch(receiptRequest: ReceiptRequest): Observable<ReceiptSearchResponse> {
+    return this.http.post<any>(`${this.url}/int/receipt/search`, receiptRequest);
+  }
 }

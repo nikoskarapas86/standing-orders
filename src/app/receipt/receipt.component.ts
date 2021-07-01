@@ -23,15 +23,12 @@ export class ReceiptComponent implements OnInit {
     { id: 'CREDIT_CARD', name: 'Κάρτα' },
   ];
 
-
-
-
   constructor(
     private formBuilder: FormBuilder,
     public dataService: DataService,
     private router: Router,
     private matDialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.buildFormGroup();
@@ -47,37 +44,55 @@ export class ReceiptComponent implements OnInit {
       billingEndDate: null,
       issueStartDate: null,
       issueEndDate: null,
-      // status: null, 
+      // status: null,
     });
   }
   onSubmit(): void {
     console.log('submited');
     let receiptRequest = new ReceiptRequest();
-    receiptRequest.billingStartDate = this.receiptForm.value?.billingStartDate ? moment(this.receiptForm.value?.billingStartDate).format('DD/MM/YYYY') : null;
-    receiptRequest.billingEndDate = this.receiptForm.value?.billingEndDate ? moment(this.receiptForm.value?.billingEndDate).format('DD/MM/YYYY') : null;
-    receiptRequest.issueStartDate = this.receiptForm.value?.issueStartDate ? moment(this.receiptForm.value?.issueStartDate).format('DD/MM/YYYY') : null;
-    receiptRequest.issueEndDate = this.receiptForm.value?.issueEndDate ? moment(this.receiptForm.value?.issueEndDate).format('DD/MM/YYYY') : null;
+    receiptRequest.billingStartDate = this.receiptForm.value?.billingStartDate
+      ? moment(this.receiptForm.value?.billingStartDate).format('DD/MM/YYYY')
+      : null;
+    receiptRequest.billingEndDate = this.receiptForm.value?.billingEndDate
+      ? moment(this.receiptForm.value?.billingEndDate).format('DD/MM/YYYY')
+      : null;
+    receiptRequest.issueStartDate = this.receiptForm.value?.issueStartDate
+      ? moment(this.receiptForm.value?.issueStartDate).format('DD/MM/YYYY')
+      : null;
+    receiptRequest.issueEndDate = this.receiptForm.value?.issueEndDate
+      ? moment(this.receiptForm.value?.issueEndDate).format('DD/MM/YYYY')
+      : null;
     receiptRequest.paymentType = this.receiptForm.value.paymentType;
     receiptRequest.lineOfBusiness = this.receiptForm.value.lineOfBusiness;
     receiptRequest.policyNo = this.receiptForm.value.policyNumber;
-    receiptRequest.status = "PAY"
+    receiptRequest.status = 'PAY';
 
-    this.dataService.receiptSearch(receiptRequest).subscribe(res => {
-      console.log(res)
-    },
+    receiptRequest = {
+      policyNo: 52617933,
+      lineOfBusiness: 'AUTO',
+      billingStartDate: '27/12/2012',
+      billingEndDate: '27/12/2012',
+      issueStartDate: '05/07/2013',
+      issueEndDate: '05/07/2013',
+      status: 'PAY',
+      paymentType: 'BANK_ACCOUNT',
+    };
+
+    this.dataService.receiptSearch(receiptRequest).subscribe(
+      res => {
+        this.dataService.setReceiptsSearchSubject(res);
+      },
       error => {
         this.matDialog.open(ModalComponent, { data: error });
       }
-    )
+    );
+  }
 
-  }
   clear() {
-    console.log('works')
+    console.log('works');
   }
+
   backHome(): void {
     this.router.navigate(['/home']);
   }
-
-
-
 }
