@@ -21,6 +21,7 @@ import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response
 import { ReceiptRequest } from '../models/receipt-request';
 import { ReceiptStatus } from '../models/receipt-status';
 import { ReceiptSearchResponse } from '../models/receipt-search-response';
+import { PaymentType } from '../models/payment-type';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ import { ReceiptSearchResponse } from '../models/receipt-search-response';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   public resultsLoadingSubject = new BehaviorSubject<boolean>(false);
   resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
@@ -116,6 +117,9 @@ export class DataService {
     return this.http.get<ReceiptStatus[]>(`${this.url}/int/search/receiptStatuses`);
   }
 
+  getPaymentTypes(): Observable<PaymentType[]> {
+    return this.http.get<PaymentType[]>(`${this.url}/int/search/paymentTypes`);
+  }
 
   sendEmail(email: any, searchId: string) {
     const update = this.privateStatus === 'create' ? '' : '/update';

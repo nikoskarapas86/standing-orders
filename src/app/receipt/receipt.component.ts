@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { LineOfBusiness } from 'src/app/models/line-of-business';
 import { DataService } from 'src/app/services/data.service';
 import { ModalComponent } from '../modal/modal.component';
+import { PaymentType } from '../models/payment-type';
 import { ReceiptRequest } from '../models/receipt-request';
 import { ReceiptStatus } from '../models/receipt-status';
 
@@ -19,11 +20,9 @@ import { ReceiptStatus } from '../models/receipt-status';
 export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
-  receiptStatuses$ :Observable<ReceiptStatus[]>
-  paymentTypes = [
-    { id: 'BANK_ACCOUNT', name: 'Τρ. Λογαριασμός' },
-    { id: 'CREDIT_CARD', name: 'Κάρτα' },
-  ];
+  receiptStatuses$ :Observable<ReceiptStatus[]>;
+  paymentTypes$: Observable<PaymentType[]>;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,7 +35,7 @@ export class ReceiptComponent implements OnInit {
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
     this.receiptStatuses$ =  this.dataService.searchReceiptStatuses();
-   
+    this.paymentTypes$ = this.dataService.getPaymentTypes();
   }
 
   private buildFormGroup(): void {

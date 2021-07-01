@@ -14,6 +14,7 @@ import { DestroyService } from '../services/destroy.service';
 import { SearchService } from '../services/search.service';
 import { DateAdapter } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { PaymentType } from '../models/payment-type';
 
 @Component({
   selector: 'app-search-standing-order',
@@ -25,17 +26,13 @@ import { Router } from '@angular/router';
 export class SearchStandingOrderComponent implements OnInit {
   searchForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
+  paymentTypes$: Observable<PaymentType[]>;
   standingOrders: SearchItem[];
   searchBtnDisabled: boolean = false;
   searchId: string;
-  standingOrders$: Observable<any[]>;
-  
+  standingOrders$: Observable<any[]>;  
   minDate = moment().subtract(3, 'months').toDate();
-  paymentTypes = [
-    { id: 'BANK_ACCOUNT', name: 'Τρ. Λογαριασμός' },
-    { id: 'CREDIT_CARD', name: 'Κάρτα' },
-  ];
-
+ 
   constructor(
     private formBuilder: FormBuilder,
     public dataService: DataService,
@@ -50,6 +47,7 @@ export class SearchStandingOrderComponent implements OnInit {
   
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
+    this.paymentTypes$ = this.dataService.getPaymentTypes();
     this.searchService.getIsDeleteCalled.subscribe(res => {
       if (res) {
       

@@ -89,8 +89,8 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τύπος Πληρωμής</mat-label>
           <mat-select formControlName="paymentType" matNativeControl>
-            <mat-option *ngFor="let item of paymentTypes" [value]="item.id" ngDefaultControl>
-              {{ item.name }}
+            <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType" ngDefaultControl>
+              {{ item.title }}
             </mat-option>
           </mat-select>
         </mat-form-field>
