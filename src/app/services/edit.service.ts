@@ -38,8 +38,5 @@ export class EditService {
     return this.http.post<any>(`${this.url}/int/update/select/${searchId}`, { id: identity })
   }
 
-  receiptSearch(receiptRequest:ReceiptRequest):Observable<ReceiptResponse>{
- 
-    return this.http.post<any>(`${this.url}/int/receipt/search`,receiptRequest)
-}
+
 }
