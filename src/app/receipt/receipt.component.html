@@ -1,5 +1,4 @@
-<!-- <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm" id="receiptForm"> -->
-<form (ngSubmit)="onSubmit()" name="receiptForm" id="receiptForm">
+<form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm" id="receiptForm">
   <div class="form-row">
     <div class="form-row-item go-back">
       <a (click)="backHome()">
@@ -11,8 +10,7 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Κλάδος</mat-label>
-          <!-- <mat-select formControlName="lineOfBusiness" matNativeControl> -->
-          <mat-select matNativeControl>
+          <mat-select formControlName="lineOfBusiness" matNativeControl>
             <mat-option
               *ngFor="let item of linesOfBusinesses$ | async"
               [value]="item.lineOfBusiness"
@@ -26,8 +24,7 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Τύπος Πληρωμής</mat-label>
-          <!-- <mat-select formControlName="paymentType" matNativeControl> -->
-          <mat-select matNativeControl>
+          <mat-select formControlName="paymentType" matNativeControl>
             <mat-option *ngFor="let item of paymentTypes" [value]="item.id" ngDefaultControl>
               {{ item.name }}
             </mat-option>
@@ -37,8 +34,8 @@
       <div class="mr-10" fxLayout="column">
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Αρ. Συμβολαίου</mat-label>
-          <!-- formControlName="policyNumber" -->
           <input
+            formControlName="policyNumber"
             onkeypress="return (event.charCode >= 48 && event.charCode <= 57)  &&
               !(event.target.value.length == 0 && event.which == 48)"
             maxlength="9"
@@ -53,10 +50,8 @@
         <mat-form-field fxLayout="row" appearance="fill">
           <mat-label>Ημ/νία Χρέωσης Συμβολαίου</mat-label>
           <mat-date-range-input [rangePicker]="completedDateRange">
-            <!-- formControlName="billingStartDate" -->
-            <input matStartDate placeholder="Από" />
-            <!-- formControlName="billingEndDate" -->
-            <input matEndDate placeholder="Εώς" />
+            <input formControlName="billingStartDate" matStartDate placeholder="Από" />
+            <input formControlName="billingEndDate" matEndDate placeholder="Εώς" />
           </mat-date-range-input>
           <mat-datepicker-toggle matSuffix [for]="completedDateRange"></mat-datepicker-toggle>
           <mat-date-range-picker #completedDateRange></mat-date-range-picker>
@@ -74,7 +69,6 @@
           <mat-date-range-picker #completedDateRange1></mat-date-range-picker>
         </mat-form-field>
       </div>
-      <div class="form-row-item"></div>
     </div>
     <div class="form-row-item"></div>
   </div>
