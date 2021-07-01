@@ -19,12 +19,8 @@ import { UpdateBankAccountRequest } from '../models/update-bank-account-request'
 import { FormGroup } from '@angular/forms';
 import { GetPolicyByEmailResponse } from '../models/get-policy-by-email-response';
 import { ReceiptRequest } from '../models/receipt-request';
-<<<<<<< HEAD
-import { ReceiptResponse } from '../models/receipt-response';
 import { ReceiptStatus } from '../models/receipt-status';
-=======
 import { ReceiptSearchResponse } from '../models/receipt-search-response';
->>>>>>> 687470e75a76f75d2c54a58bb41513391339822e
 
 @Injectable({
   providedIn: 'root',
