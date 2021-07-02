@@ -1,4 +1,11 @@
-import { Component, Inject, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
@@ -12,7 +19,6 @@ import { DataService } from '../services/data.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class UpdateReceiptModalComponent implements OnInit {
-  @ViewChild('modalContent', { read: ViewContainerRef })
   amountForm: FormGroup;
 
   constructor(
@@ -24,12 +30,11 @@ export class UpdateReceiptModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data.amount)
     this.initForm();
   }
 
   private initForm(): void {
-  this.amountForm =  this.formBuilder.group({
+    this.amountForm = this.formBuilder.group({
       amount: this.data.amount,
     });
   }
@@ -51,8 +56,7 @@ export class UpdateReceiptModalComponent implements OnInit {
     });
   }
 
-  dismiss(){
-    this.dialogRef.close(false); 
+  dismiss() {
+    this.dialogRef.close(false);
   }
-
 }
