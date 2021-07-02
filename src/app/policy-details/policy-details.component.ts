@@ -28,9 +28,7 @@ export class PolicyDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initPolicyForm();
-    // TODO: move to client-container
     this.route.queryParams.subscribe(params => {
-      // TODO: check why is necessary when loading credit card
       if (params?.searchId) {
         this.searchId = params.searchId;
         this.dataService.status = params.status;
@@ -39,6 +37,7 @@ export class PolicyDetailsComponent implements OnInit {
           .pipe(takeUntil(this.destroy$))
           .subscribe(
             res => {
+              this.setPolicylForm(res);
               this.clientContainerService.policyResponseSubject.next(true);
               this.clientContainerService.isFailedSubject.next(false);
               this.clientContainerService.isPolicyLoading = false;
