@@ -276,8 +276,9 @@ export class CreditCardComponent implements OnInit, OnDestroy {
         '3DSecureChallengeWindowSize': 'FULL_SCREEN',
         acceptHeaders: 'application/json',
         colorDepth: screen.colorDepth,
-        // javaEnabled: navigator.javaEnabled(),
-        javaEnabled: true,
+        // TODO: check javaEnabled
+        javaEnabled: navigator.javaEnabled(),
+        // javaEnabled: true,
         language: 'en-US',
         screenHeight: screen.height,
         screenWidth: screen.width,
@@ -290,7 +291,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     this.isNameOnCard = response.sourceOfFunds.provided.card.nameOnCard !== undefined;
     this.isCvv = response.sourceOfFunds.provided.card.securityCode !== undefined;
     this.name.input.style.borderColor = !this.isNameOnCard ? Colors.redInvalid : Colors.blackValid;
-    this.securityCode.input.style.borderColor = !this.isNameOnCard
+    this.securityCode.input.style.borderColor = !this.securityCode
       ? Colors.redInvalid
       : Colors.blackValid;
   }
@@ -330,6 +331,7 @@ export class CreditCardComponent implements OnInit, OnDestroy {
 
   tokenize(): void {
     if (!this.isNameOnCard || !this.isCvv) return;
+    // TODO: check if isPaymentInProgress and isLoading flags are necessary
     this.clientContainerService.isPaymentInProgress = true;
     this.isPayPushed = true;
     this.isLoading = true;
