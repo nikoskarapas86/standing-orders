@@ -28,7 +28,7 @@ export class UpdateReceiptModalComponent implements OnInit {
     });
   }
 
-  submit(): void {
+  onSubmit(): void {
     const { lineOfBusiness, policyNo, receipt, installments, amount } = this.data;
     const request = {
       key: {
@@ -44,4 +44,7 @@ export class UpdateReceiptModalComponent implements OnInit {
       console.log(res);
     });
   }
+
+  dismiss(){}
+  
 }
