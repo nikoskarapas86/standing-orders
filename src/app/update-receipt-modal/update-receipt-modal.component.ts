@@ -1,7 +1,13 @@
-import { Component, Inject, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Inject,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ModalComponent } from '../modal/modal.component';
 import { Receipt } from '../models/receipt-search-response';
 import { DataService } from '../services/data.service';
 
@@ -12,7 +18,6 @@ import { DataService } from '../services/data.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class UpdateReceiptModalComponent implements OnInit {
-  @ViewChild('modalContent', { read: ViewContainerRef })
   amountForm: FormGroup;
 
   constructor(
@@ -22,16 +27,15 @@ export class UpdateReceiptModalComponent implements OnInit {
 
     private dataService: DataService
   ) {
-    this.initForm();
+
   }
 
   ngOnInit(): void {
-    console.log(this.data.amount)
-    
+    this.initForm();
   }
 
   private initForm(): void {
-  this.amountForm =  this.formBuilder.group({
+    this.amountForm = this.formBuilder.group({
       amount: this.data.amount,
     });
   }
@@ -47,14 +51,13 @@ export class UpdateReceiptModalComponent implements OnInit {
       },
       amount,
     };
-console.log(request)
+    console.log(request)
     this.dataService.receiptUpdate(request).subscribe(res => {
       console.log(res);
     });
   }
 
-  dismiss(){
-    this.dialogRef.close(false); 
+  dismiss() {
+    this.dialogRef.close(false);
   }
-
 }

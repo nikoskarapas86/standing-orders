@@ -4,23 +4,19 @@
     <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
   </div>
 
-  <mat-dialog-content>
-   
-    <form [formGroup]="amountForm" (ngSubmit)="onSubmit()" name="amountForm" id="amountForm">
-      <div class="form-row">
-        <div class="form-row-item">
-          <div class="mr-10 distance" fxLayout="column">
-            <mat-form-field fxLayout="row" appearance="fill">
-              <mat-label>Ποσό Πληρωμής</mat-label>
-              <input formControlName="amount" matInput />
-            </mat-form-field>
-          </div>
+  <form [formGroup]="amountForm" (ngSubmit)="onSubmit()" name="amountForm">
+    <div class="form-row">
+      <div class="form-row-item">
+        <div class="mr-10 distance" fxLayout="column">
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ποσό Πληρωμής</mat-label>
+            <input formControlName="amount" matInput />
+          </mat-form-field>
         </div>
       </div>
-    </form>
-  </mat-dialog-content>
-
-  <div class="action-row">
-    <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>
-  </div>
+    </div>
+    <div class="action-row">
+      <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>
+    </div>
+  </form>
 </div>
