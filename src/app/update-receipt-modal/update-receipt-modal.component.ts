@@ -8,6 +8,8 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { LineOfBusiness } from '../models/line-of-business';
 import { Receipt } from '../models/receipt-search-response';
 import { DataService } from '../services/data.service';
 
@@ -19,7 +21,7 @@ import { DataService } from '../services/data.service';
 })
 export class UpdateReceiptModalComponent implements OnInit {
   amountForm: FormGroup;
-
+  lineOfBussinesses$: Observable<LineOfBusiness[]>
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Receipt,
@@ -31,7 +33,9 @@ export class UpdateReceiptModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.data)
     this.initForm();
+    this.lineOfBussinesses$ = this.dataService.searchLinesOfBusiness()
   }
 
   private initForm(): void {
@@ -41,20 +45,28 @@ export class UpdateReceiptModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { lineOfBusiness, policyNo, receipt, installments, amount } = this.data;
-    const request = {
-      key: {
-        lineOfBusiness,
-        policyNo,
-        receipt,
-        installments,
-      },
-      amount,
-    };
-    console.log(request)
-    this.dataService.receiptUpdate(request).subscribe(res => {
-      console.log(res);
-    });
+    const { policyNo, receipt, installments, amount } = this.data;
+    this.lineOfBussinesses$.subscribe(res => {
+      let item: any = res.filter(item => item.title == this.data.lineOfBusiness)
+      let lineOfBusiness = item[0].lineOfBusiness
+
+      const request = {
+        key: {
+          lineOfBusiness,
+          policyNo,
+          receipt,
+          installments,
+        },
+        amount,
+      };
+      console.log(request)
+      this.dataService.receiptRepay(request).subscribe(res => {
+        console.log(res);
+        this.dismiss();
+      });
+    })
+
+
   }
 
   dismiss() {

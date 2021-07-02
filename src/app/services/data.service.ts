@@ -154,7 +154,7 @@ export class DataService {
     return this.http.post<any>(`${this.url}/int/receipt/search`, receiptRequest);
   }
 
-  receiptUpdate(request: ReceiptUpdateRequest): Observable<Receipt> {
-    return this.http.post<any>(`${this.url}/int/receipt/update`, request);
+  receiptRepay(request: ReceiptUpdateRequest): Observable<Receipt> {
+    return this.http.post<any>(`${this.url}/int/receipt/repay`, request);
   }
 }
