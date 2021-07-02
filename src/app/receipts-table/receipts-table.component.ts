@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableItem } from 'src/app/models/table-item';
+import { Receipt } from '../models/receipt-search-response';
 import { DataService } from '../services/data.service';
 import { UpdateReceiptModalComponent } from '../update-receipt-modal/update-receipt-modal.component';
 
@@ -63,7 +64,24 @@ export class ReceiptsTableComponent implements OnInit {
     });
   }
 
-  edit(row: number): void {
+  edit(row: Receipt): void {
     this.matDialog.open(UpdateReceiptModalComponent, { data: row });
+  }
+
+  cancel(row: Receipt): void {
+    const { lineOfBusiness, policyNo, receipt, installments, amount } = row;
+    const request = {
+      key: {
+        // TODO: remove hardcoded lineOfBusiness
+        lineOfBusiness: 'AUTO',
+        policyNo,
+        receipt,
+        installments,
+      },
+    };
+
+    this.dataService.receiptCancel(request).subscribe(res => {
+      console.log(res);
+    });
   }
 }
