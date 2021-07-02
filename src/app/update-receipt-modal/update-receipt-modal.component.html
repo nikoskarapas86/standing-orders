@@ -9,7 +9,7 @@
     <form [formGroup]="amountForm" (ngSubmit)="onSubmit()" name="amountForm" id="amountForm">
       <div class="form-row">
         <div class="form-row-item">
-          <div class="mr-10" fxLayout="column">
+          <div class="mr-10 distance" fxLayout="column">
             <mat-form-field fxLayout="row" appearance="fill">
               <mat-label>Ποσό Πληρωμής</mat-label>
               <input formControlName="amount" matInput />
@@ -21,6 +21,6 @@
   </mat-dialog-content>
 
   <div class="action-row">
-    <button mat-raised-button type="submit">Submit</button>
+    <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>
   </div>
 </div>

@@ -21,11 +21,13 @@ export class UpdateReceiptModalComponent implements OnInit {
     public dialogRef: MatDialogRef<UpdateReceiptModalComponent>,
 
     private dataService: DataService
-  ) {}
+  ) {
+    this.initForm();
+  }
 
   ngOnInit(): void {
     console.log(this.data.amount)
-    this.initForm();
+    
   }
 
   private initForm(): void {
@@ -45,7 +47,7 @@ export class UpdateReceiptModalComponent implements OnInit {
       },
       amount,
     };
-
+console.log(request)
     this.dataService.receiptUpdate(request).subscribe(res => {
       console.log(res);
     });
