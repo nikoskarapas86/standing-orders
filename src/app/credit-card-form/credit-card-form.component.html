@@ -11,12 +11,8 @@
             <input formControlName="policyNo" readonly matInput />
           </mat-form-field>
           <mat-form-field class="field-width">
-            <mat-label>Όνομα</mat-label>
-            <input formControlName="firstName" readonly matInput />
-          </mat-form-field>
-          <mat-form-field class="field-width">
-            <mat-label>Επίθετο</mat-label>
-            <input formControlName="lastName" readonly matInput />
+            <mat-label>Ονομ/μο</mat-label>
+            <input formControlName="name" readonly matInput />
           </mat-form-field>
           <mat-form-field class="field-width">
             <mat-label>Αριθμός Κάρτας</mat-label>
@@ -53,12 +49,12 @@
         <div class="row">
           <div class="container">
             <mat-form-field class="field-width">
-              <mat-label>νέο ΙΒΑΝ</mat-label>
+              <mat-label>Νέο ΙΒΑΝ</mat-label>
               <input
                 formControlName="iban"
                 type="string"
                 matInput
-                placeholder="Συμπληρώστε το Νούμερο του Agent"
+                placeholder="Συμπληρώστε το IBAN"
               />
             </mat-form-field>
           </div>
@@ -74,7 +70,7 @@
       <form [formGroup]="emailForm" name="emailForm">
         <div class="container">
           <mat-form-field class="field-width">
-            <mat-label> email </mat-label>
+            <mat-label> Email </mat-label>
             <input formControlName="email" matInput />
           </mat-form-field>
         </div>
