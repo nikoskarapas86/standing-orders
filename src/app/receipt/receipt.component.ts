@@ -31,7 +31,7 @@ export class ReceiptComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildFormGroup();
-    this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
+    this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
     this.receiptStatuses$ = this.dataService.searchReceiptStatuses();
     this.paymentTypes$ = this.dataService.getPaymentTypes();
   }

@@ -31,7 +31,7 @@ export class SearchPolicyComponent implements OnInit {
     public dialog: MatDialog,
     private readonly destroy$: DestroyService
   ) {
-    this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
+    this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
   }
 
   ngOnInit(): void {
