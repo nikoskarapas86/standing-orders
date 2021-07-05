@@ -1,15 +1,17 @@
 <div>
-  <div [ngClass]="termsContent ?  'action-1':'action' ">
-    <span *ngIf="!termsContent"><h3>{{data.error?'Σφάλμα':'Πληροφορίες Κάρτας'}}</h3></span>
+  <div [ngClass]="termsContent ? 'action-1' : 'action'">
+    <span *ngIf="!termsContent"
+      ><h3>{{ data.error ? 'Σφάλμα' : 'Πληροφορίες Κάρτας' }}</h3></span
+    >
     <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
   </div>
-  <mat-dialog-content *ngIf="!cardNumber" >
+  <mat-dialog-content *ngIf="!cardNumber">
     <p class="distance">{{ message }}</p>
   </mat-dialog-content>
 
-  <mat-dialog-content *ngIf="cardNumber" >
-    <p > Αρ. κάρτας : {{ cardNumber }}</p>
-    <p >Ημ/νια λήξης : {{ expiryDate }}</p>
+  <mat-dialog-content *ngIf="cardNumber" class="card-content-height">
+    <p>Αρ. κάρτας : {{ cardNumber }}</p>
+    <p>Ημ/νια λήξης : {{ expiryDate }}</p>
   </mat-dialog-content>
 
   <div class="action-row">
