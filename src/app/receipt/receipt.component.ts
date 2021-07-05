@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { LineOfBusiness } from 'src/app/models/line-of-business';
 import { DataService } from 'src/app/services/data.service';
@@ -20,9 +19,8 @@ import { ReceiptStatus } from '../models/receipt-status';
 export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
-  receiptStatuses$ :Observable<ReceiptStatus[]>;
+  receiptStatuses$: Observable<ReceiptStatus[]>;
   paymentTypes$: Observable<PaymentType[]>;
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,7 +32,7 @@ export class ReceiptComponent implements OnInit {
   ngOnInit(): void {
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
-    this.receiptStatuses$ =  this.dataService.searchReceiptStatuses();
+    this.receiptStatuses$ = this.dataService.searchReceiptStatuses();
     this.paymentTypes$ = this.dataService.getPaymentTypes();
   }
 
@@ -47,7 +45,7 @@ export class ReceiptComponent implements OnInit {
       billingEndDate: null,
       issueStartDate: null,
       issueEndDate: null,
-      status: null, 
+      status: null,
     });
   }
   onSubmit(): void {
@@ -72,10 +70,10 @@ export class ReceiptComponent implements OnInit {
     receiptRequest = {
       policyNo: 61000022,
       lineOfBusiness: 'AUTO',
-      billingStartDate:  "27/05/2020",
-      billingEndDate: "27/05/2020",
-      issueStartDate:  "10/06/2020",
-      issueEndDate: "10/06/2020",
+      billingStartDate: '27/05/2020',
+      billingEndDate: '27/05/2020',
+      issueStartDate: '10/06/2020',
+      issueEndDate: '10/06/2020',
       status: 'PAY',
       paymentType: 'BANK_ACCOUNT',
     };
@@ -91,7 +89,7 @@ export class ReceiptComponent implements OnInit {
   }
 
   clear() {
-    console.log('works');
+    this.receiptForm.reset();
   }
 
   backHome(): void {
