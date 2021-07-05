@@ -35,7 +35,7 @@ export class UpdateReceiptModalComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.data)
     this.initForm();
-    this.lineOfBussinesses$ = this.dataService.searchLinesOfBusiness()
+    this.lineOfBussinesses$ = this.dataService.lineOfbusinesses$;
   }
 
   private initForm(): void {

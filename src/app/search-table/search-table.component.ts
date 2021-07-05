@@ -67,7 +67,7 @@ export class SearchTableComponent implements OnInit {
   ngOnInit(): void {
     this.resultsLoading$ = this.dataService.resultsLoading$
     this.editService.selectedStandingOrder = null;
-    this.dataService.searchLinesOfBusiness().subscribe(res => {
+    this.dataService.lineOfbusinesses$.subscribe(res => {
       this.linesOfBusinesses = res
     })
     this.dataService.standingOrders$.subscribe(res => {

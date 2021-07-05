@@ -46,7 +46,7 @@ export class SearchStandingOrderComponent implements OnInit {
   ngOnInit(): void {
   
     this.buildFormGroup();
-    this.linesOfBusinesses$ = this.dataService.searchLinesOfBusiness();
+    this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
     this.paymentTypes$ = this.dataService.getPaymentTypes();
     this.searchService.getIsDeleteCalled.subscribe(res => {
       if (res) {
