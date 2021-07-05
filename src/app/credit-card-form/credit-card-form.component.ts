@@ -114,11 +114,11 @@ export class CreditCardFormComponent implements OnInit {
 
   buildCardFormGroup(): void {
     this.cardForm = this.formBuilder.group({
-      cardExpiry: [{ value: '', disabled: true }],
-      cardNumber: [{ value: '', disabled: true }],
-      firstName: [{ value: '', disabled: true }],
-      lastName: [{ value: '', disabled: true }],
-      policyNo: [{ value: '', disabled: true }],
+      cardExpiry: [{ value: '' }],
+      cardNumber: [{ value: '' }],
+      firstName: [{ value: '' }],
+      lastName: [{ value: '' }],
+      policyNo: [{ value: '' }],
       paymentTypeSelect: '',
     });
   }
