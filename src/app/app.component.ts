@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { LineOfBusiness } from './models/line-of-business';
 import { DataService } from './services/data.service';
 @Component({
   selector: 'app-root',
@@ -12,14 +10,5 @@ export class AppComponent implements OnInit {
 
   constructor(public dataService: DataService) {}
 
-  ngOnInit(): void {
-    this.dataService.searchLinesOfBusiness().subscribe(
-      (res: LineOfBusiness[]) => {
-        this.dataService.setLineOfbusinessesSubject(res)
-      }
-    )
-  }
-
-
-
+  ngOnInit(): void {}
 }

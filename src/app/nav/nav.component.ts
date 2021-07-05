@@ -38,5 +38,6 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
   logout(): void {
     this.router.navigate(['']);
     this.authenticationService.logout();
+    this.dataService.setLineOfbusinessesSubject(undefined);
   }
 }

@@ -40,7 +40,7 @@ export class DataService {
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
   standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
 
-  private lineOfbusinessesSubject = new BehaviorSubject<LineOfBusiness[]>(undefined);
+  lineOfbusinessesSubject = new BehaviorSubject<LineOfBusiness[]>(undefined);
   lineOfbusinesses$: Observable<LineOfBusiness[]> = this.lineOfbusinessesSubject.asObservable();
   setLineOfbusinessesSubject(lines) {
     this.lineOfbusinessesSubject.next(lines);

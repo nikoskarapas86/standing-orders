@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LineOfBusiness } from '../models/line-of-business';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -28,5 +29,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private dataService: DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.dataService.lineOfbusinessesSubject.value) {
+      this.dataService.searchLinesOfBusiness().subscribe((res: LineOfBusiness[]) => {
+        this.dataService.setLineOfbusinessesSubject(res);
+      });
+    }
+  }
 }
