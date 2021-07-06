@@ -214,9 +214,6 @@ mat-footer-row {
     display: block;
     background: transparent;
   }
-}
-
-@include tablet-landscape {
   mat-form-field.mat-form-field.mat-paginator-page-size-select {
     background: transparent !important;
   }
