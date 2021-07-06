@@ -1,11 +1,4 @@
-import {
-  Component,
-  Inject,
-  OnInit,
-  ViewChild,
-  ViewContainerRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -21,19 +14,16 @@ import { DataService } from '../services/data.service';
 })
 export class UpdateReceiptModalComponent implements OnInit {
   amountForm: FormGroup;
-  lineOfBussinesses$: Observable<LineOfBusiness[]>
+  lineOfBussinesses$: Observable<LineOfBusiness[]>;
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Receipt,
     public dialogRef: MatDialogRef<UpdateReceiptModalComponent>,
 
     private dataService: DataService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.data)
     this.initForm();
     this.lineOfBussinesses$ = this.dataService.lineOfbusinesses$;
   }
@@ -47,8 +37,8 @@ export class UpdateReceiptModalComponent implements OnInit {
   onSubmit(): void {
     const { policyNo, receipt, installments, amount } = this.data;
     this.lineOfBussinesses$.subscribe(res => {
-      let item: any = res.filter(item => item.title == this.data.lineOfBusiness)
-      let lineOfBusiness = item[0].lineOfBusiness
+      let item: any = res.filter(item => item.title == this.data.lineOfBusiness);
+      let lineOfBusiness = item[0].lineOfBusiness;
 
       const request = {
         key: {
@@ -59,14 +49,10 @@ export class UpdateReceiptModalComponent implements OnInit {
         },
         amount,
       };
-      console.log(request)
       this.dataService.receiptRepay(request).subscribe(res => {
-        console.log(res);
         this.dismiss();
       });
-    })
-
-
+    });
   }
 
   dismiss() {
