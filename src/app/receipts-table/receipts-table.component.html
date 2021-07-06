@@ -26,34 +26,16 @@
             <!-- {{ row[tableItem.columnDef] ? row[tableItem.columnDef] : 'N/A' }} -->
             {{ row[tableItem.columnDef] }}
           </div>
-          <div *ngIf="tableItem.columnDef === 'actions'">
-            <div class="action-row" *ngIf="row.activeStandingOrder">
-              <div (click)="edit(row)">
-                <button class="btn">
-                  <mat-icon class="edit-row">edit</mat-icon>
-                </button>
-              </div>
-              <div (click)="delete(index, row)">
-                <button class="btn">
-                  <mat-icon class="delete-row">delete</mat-icon>
-                </button>
-              </div>
+          <div class="action-row" *ngIf="tableItem.columnDef === 'actions'">
+            <div (click)="edit(row)">
+              <button class="btn">
+                <mat-icon class="edit-row">edit</mat-icon>
+              </button>
             </div>
-          </div>
-          <div *ngIf="tableItem.columnDef === 'actions'">
-            <div class="action-row">
-              <div (click)="edit(row)">
-                <button class="btn">
-                  <mat-icon class="edit-row">edit</mat-icon>
-                </button>
-              </div>
-            </div>
-            <div class="action-row">
-              <div (click)="cancel(row)">
-                <button class="btn">
-                  <mat-icon class="delete-row">delete</mat-icon>
-                </button>
-              </div>
+            <div (click)="cancel(row)">
+              <button class="btn">
+                <mat-icon class="delete-row">delete</mat-icon>
+              </button>
             </div>
           </div>
         </mat-cell>
