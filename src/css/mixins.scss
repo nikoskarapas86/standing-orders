@@ -181,48 +181,6 @@
   }
 }
 
-// @mixin viewport-xlarge-devices {
-//   @media screen and (min-width: #{$extra-large-devices}) {
-//     @content;
-//   }
-// }
-
-// @mixin viewport-small-to-medium {
-//   @media (min-width: #{$laptop-desktop-width}) and (max-width: #{$medium-size}) {
-//     @content;
-//   }
-// }
-
-// @mixin viewport-medium-to-medium {
-//   @media (min-width: #{$laptop-desktop-width}) and (max-width: #{$medium-size}) {
-//     @content;
-//   }
-// }
-
-// @mixin viewport-medium-to-extra-large {
-//   @media screen and (min-width: #{$medium-size}) {
-//     @content;
-//   }
-// }
-
-// @mixin viewport-small-height {
-//   @media screen and (max-height: #{$small-height}) {
-//     @content;
-//   }
-// }
-
-// @mixin landscape-iPad {
-//   @media only screen and (orientation: landscape) and (height: 768px) and (width: 1024px) {
-//     @content;
-//   }
-// }
-
-// @mixin landscape-iPad-pro {
-//   @media only screen and (orientation: landscape) and (height: 1024px) and (width: 1366px) {
-//     @content;
-//   }
-// }
-
 @mixin font-lato-bold-standard($color: $font-lato-bold) {
   font-family: $font-family;
   font-size: 14px;
