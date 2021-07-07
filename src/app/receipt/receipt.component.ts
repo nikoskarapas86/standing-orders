@@ -70,8 +70,8 @@ export class ReceiptComponent implements OnInit {
     receiptRequest = {
       policyNo: 61000022,
       lineOfBusiness: 'AUTO',
-      billingStartDate: '27/05/2020',
-      billingEndDate: '27/05/2020',
+      billingStartDate: '26/05/2020',
+      billingEndDate: '26/05/2020',
       issueStartDate: '10/06/2020',
       issueEndDate: '10/06/2020',
       status: 'PAY',
