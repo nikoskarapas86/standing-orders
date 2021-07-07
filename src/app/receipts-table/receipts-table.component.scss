@@ -68,7 +68,7 @@ button {
 
 .action-row {
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
 }
 
 .mat-row {
@@ -155,6 +155,7 @@ button {
     display: grid;
     margin-left: 1rem;
     background: transparent;
+    overflow-x: auto;
   }
 }
 
@@ -175,12 +176,17 @@ button {
 
   @include tablet-landscape {
     display: none;
-  }
 
-  .mat-header-cell {
-    @include _font-init('Roboto', $bold, 13px);
-    @include _font-conf(0.09px, unset, unset, #000000de);
-    padding-left: 0 !important;
+    .mat-header-cell {
+      @include _font-init('Roboto', $bold, 13px);
+      @include _font-conf(0.09px, unset, unset, #000000de);
+      padding-left: 0 !important;
+    }
+    mat-cell:first-of-type,
+    mat-header-cell:first-of-type,
+    mat-footer-cell:first-of-type {
+      padding-left: 0px;
+    }
   }
 
   .mat-header-cell:last-of-type {
@@ -204,20 +210,11 @@ mat-footer-row {
   min-height: initial;
 }
 
-mat-cell:first-of-type,
-mat-header-cell:first-of-type,
-mat-footer-cell:first-of-type {
-  padding-left: 0px;
-}
-
 @include tablet-landscape {
   .mat-paginator {
     display: block;
     background: transparent;
   }
-}
-
-@include tablet-landscape {
   mat-form-field.mat-form-field.mat-paginator-page-size-select {
     background: transparent !important;
   }

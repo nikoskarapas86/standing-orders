@@ -66,6 +66,9 @@ export class CreditCardFormComponent implements OnInit {
         ? this.cardForm.controls[item]?.setValue(res[item])
         : this.cardForm.controls[item]?.setValue(null);
     }
+    if ('firstName' in res) {
+      this.cardForm.controls.name.setValue(`${res.firstName} ${res.lastName}`);
+    }
   }
 
   getCard() {
@@ -114,11 +117,10 @@ export class CreditCardFormComponent implements OnInit {
 
   buildCardFormGroup(): void {
     this.cardForm = this.formBuilder.group({
-      cardExpiry: [{ value: '', disabled: true }],
-      cardNumber: [{ value: '', disabled: true }],
-      firstName: [{ value: '', disabled: true }],
-      lastName: [{ value: '', disabled: true }],
-      policyNo: [{ value: '', disabled: true }],
+      cardExpiry: [{ value: '' }],
+      cardNumber: [{ value: '' }],
+      name: [{ value: '' }],
+      policyNo: [{ value: '' }],
       paymentTypeSelect: '',
     });
   }

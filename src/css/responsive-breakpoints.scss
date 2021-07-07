@@ -1,40 +1,3 @@
-/* Breakpoints for media queries */
-$mobile-tablet-width: 768px;
-$laptop-desktop-width: 769px;
-$medium-size: 992px;
-$extra-large-devices: 1367px;
-$small-height: 400px;
-
-@mixin viewport-mobile-tablet {
-  @media screen and (max-width: #{$mobile-tablet-width}) {
-    @content;
-  }
-}
-
-@mixin viewport-laptop-desktop {
-  @media screen and (min-width: #{$laptop-desktop-width}) {
-    @content;
-  }
-}
-
-@mixin landscape-iPad {
-  @media only screen and (orientation: landscape) and (height: 768px) and (width: 1024px) {
-    @content;
-  }
-}
-
-@mixin landscape-iPad-pro {
-  @media only screen and (orientation: landscape) and (height: 1024px) and (width: 1366px) {
-    @content;
-  }
-}
-
-@mixin very-small-screen {
-  @media (max-width: 331px) {
-    @content;
-  }
-}
-
 @mixin small-screen {
   @media (max-width: 369px) {
     @content;
@@ -53,32 +16,14 @@ $small-height: 400px;
   }
 }
 
-@mixin tablet-portrait {
-  @media (min-width: 608px) {
+@mixin home-page-cards {
+  @media (min-width: 700px) and (max-width: 1080px) {
     @content;
   }
 }
 
-@mixin tablet-landscape {
-  @media (max-width: 960px) {
-    @content;
-  }
-}
-
-@mixin from-tablet-landscape {
-  @media (min-width: 960px) {
-    @content;
-  }
-}
-
-@mixin medium-desktop {
-  @media (min-width: 1080px) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: 1200px) {
+@mixin viewport-mobile-tablet {
+  @media screen and (max-width: 768px) {
     @content;
   }
 }
@@ -89,26 +34,26 @@ $small-height: 400px;
   }
 }
 
-@mixin for-big-desktop-up {
-  @media (min-width: 1800px) {
+@mixin viewport-laptop-desktop {
+  @media screen and (min-width: 769px) {
     @content;
   }
 }
 
-@mixin font-size-tablet {
-  @media (min-width: 609px) and (max-width: 688px) {
+@mixin tablet-landscape {
+  @media (max-width: 960px) {
     @content;
   }
 }
 
-@mixin home-page-cards {
-  @media (min-width: 700px) and (max-width: 1080px) {
+@mixin landscape-iPad {
+  @media only screen and (orientation: landscape) and (height: 768px) and (width: 1024px) {
     @content;
   }
 }
 
-@mixin home-page-cards-small-screens {
-  @media (max-width: 768px) {
+@mixin landscape-iPad-pro {
+  @media only screen and (orientation: landscape) and (height: 1024px) and (width: 1366px) {
     @content;
   }
 }

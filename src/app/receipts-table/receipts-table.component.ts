@@ -65,7 +65,11 @@ export class ReceiptsTableComponent implements OnInit {
   }
 
   edit(row: Receipt): void {
-    this.matDialog.open(UpdateReceiptModalComponent, { data: row });
+    this.matDialog.open(UpdateReceiptModalComponent, { data: row }).afterClosed().subscribe(
+      ()=>{
+        console.log('lololo')
+      }
+    );
   }
 
   cancel(row: Receipt): void {

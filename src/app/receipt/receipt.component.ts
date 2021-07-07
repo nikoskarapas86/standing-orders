@@ -68,16 +68,16 @@ export class ReceiptComponent implements OnInit {
     // receiptRequest.status = 'PAY';
 
     receiptRequest = {
-      policyNo: 61000022,
-      lineOfBusiness: 'AUTO',
-      billingStartDate: '26/05/2020',
-      billingEndDate: '26/05/2020',
-      issueStartDate: '10/06/2020',
+      billingEndDate: '02/07/2021',
+      billingStartDate: '02/07/2021',
       issueEndDate: '10/06/2020',
-      status: 'PAY',
+      issueStartDate: '10/06/2020',
+      lineOfBusiness: 'AUTO',
       paymentType: 'BANK_ACCOUNT',
+      policyNo: 61000022,
+      status: 'PAY',
     };
-
+    this.dataService.receiptRequest = receiptRequest
     this.dataService.receiptSearch(receiptRequest).subscribe(
       res => {
         this.dataService.setReceiptsSearchSubject(res);

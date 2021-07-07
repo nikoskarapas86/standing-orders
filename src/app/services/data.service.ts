@@ -31,16 +31,17 @@ import { ReceiptCancelRequest } from 'receipt-cancel-request';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   public resultsLoadingSubject = new BehaviorSubject<boolean>(false);
   resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
+  _receiptRequest: ReceiptRequest;
   private privateSearchForm: FormGroup;
 
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
   standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
 
-  private lineOfbusinessesSubject = new BehaviorSubject<LineOfBusiness[]>(undefined);
+  lineOfbusinessesSubject = new BehaviorSubject<LineOfBusiness[]>(undefined);
   lineOfbusinesses$: Observable<LineOfBusiness[]> = this.lineOfbusinessesSubject.asObservable();
   setLineOfbusinessesSubject(lines) {
     this.lineOfbusinessesSubject.next(lines);
@@ -69,6 +70,13 @@ export class DataService {
   set searchRequest(request) {
     this._searchRequest = request;
   }
+
+  set receiptRequest(req: ReceiptRequest) {
+    this._receiptRequest = req
+  }
+get receiptRequest(){
+  return this._receiptRequest;
+}
 
   get searchRequest() {
     return this._searchRequest;
