@@ -1,0 +1,142 @@
+<div>
+  <div class="action">
+    <span><h3>Ενημέρωση Εντολής Πληρωμής</h3></span>
+    <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
+  </div>
+
+  <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm">
+    <div class="form-row">
+      <div class="form-row-item">
+        <div class="mr-10 distance" fxLayout="column">
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Κατάσταση</mat-label>
+            <input formControlName="status" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Κλάδος</mat-label>
+            <input formControlName="lineOfBusiness" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Αρ. Συμβολαίου</mat-label>
+            <input formControlName="policyNo" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Έλεγχος ψηφίου</mat-label>
+            <input formControlName="checkDigit" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Αίτηση</mat-label>
+            <input formControlName="endorsement" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Απόδειξη</mat-label>
+            <input formControlName="receipt" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Τύπος Πληρωμής</mat-label>
+            <input formControlName="paymentType" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Δόσεις</mat-label>
+            <input formControlName="installments" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Κατάστημα</mat-label>
+            <input formControlName="branchStore" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Collection Agency</mat-label>
+            <input formControlName="collectionAgency" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Πράκτορας</mat-label>
+            <input formControlName="agent" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ποσό</mat-label>
+            <input formControlName="amount" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ποσό Αίτησης</mat-label>
+            <input formControlName="endorsementAmount" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ποσό Δόσης</mat-label>
+            <input formControlName="installmentAmount" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ποσό Δόσης 2</mat-label>
+            <input formControlName="installment2Amount" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημ/νία Τιμολόγησης</mat-label>
+            <input formControlName="billingDate" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημ/νία Έκδοσης</mat-label>
+            <input formControlName="issueDate" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημ/νία Πληρωμής</mat-label>
+            <input formControlName="paymentDate" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημ/νία Απάντησης Τράπεζας</mat-label>
+            <input formControlName="bankResponseDate" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημ/νία Εγγραφής</mat-label>
+            <input formControlName="registerDate" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Reversal No</mat-label>
+            <input formControlName="reversalNo" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Reversal No 2</mat-label>
+            <input formControlName="reversalNo2" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Collection Tries</mat-label>
+            <input formControlName="collectionTries" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Order No</mat-label>
+            <input formControlName="orderNo" matInput />
+          </mat-form-field>
+
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Loan No</mat-label>
+            <input formControlName="loanNo" matInput />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="action-row">
+      <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>
+    </div>
+  </form>
+</div>

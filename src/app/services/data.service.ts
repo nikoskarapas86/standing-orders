@@ -23,7 +23,7 @@ import { ReceiptStatus } from '../models/receipt-status';
 import { Receipt, ReceiptSearchResponse } from '../models/receipt-search-response';
 import { PaymentType } from '../models/payment-type';
 import { ReceiptUpdateRequest } from '../models/receipt-update-request';
-import { ReceiptCancelRequest } from 'receipt-cancel-request';
+import { ReceiptCancelRequest } from 'src/app/models/receipt-cancel-request';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,7 @@ import { ReceiptCancelRequest } from 'receipt-cancel-request';
 export class DataService {
   private url = environment.baseUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   public resultsLoadingSubject = new BehaviorSubject<boolean>(false);
   resultsLoading$ = this.resultsLoadingSubject.asObservable();
   _searchRequest: SearchRequest;
@@ -72,11 +72,11 @@ export class DataService {
   }
 
   set receiptRequest(req: ReceiptRequest) {
-    this._receiptRequest = req
+    this._receiptRequest = req;
   }
-get receiptRequest(){
-  return this._receiptRequest;
-}
+  get receiptRequest() {
+    return this._receiptRequest;
+  }
 
   get searchRequest() {
     return this._searchRequest;
@@ -176,5 +176,9 @@ get receiptRequest(){
 
   receiptCancel(request: ReceiptCancelRequest): Observable<Receipt> {
     return this.http.post<any>(`${this.url}/int/receipt/cancel`, request);
+  }
+
+  receiptCreate(request: Receipt): Observable<Receipt> {
+    return this.http.post<any>(`${this.url}/int/receipt/create`, request);
   }
 }

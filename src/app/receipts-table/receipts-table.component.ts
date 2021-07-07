@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableItem } from 'src/app/models/table-item';
+import { CreateReceiptModalComponent } from '../create-receipt-modal/create-receipt-modal.component';
 import { Receipt } from '../models/receipt-search-response';
 import { DataService } from '../services/data.service';
 import { UpdateReceiptModalComponent } from '../update-receipt-modal/update-receipt-modal.component';
@@ -65,11 +66,7 @@ export class ReceiptsTableComponent implements OnInit {
   }
 
   edit(row: Receipt): void {
-    this.matDialog.open(UpdateReceiptModalComponent, { data: row }).afterClosed().subscribe(
-      ()=>{
-        console.log('lololo')
-      }
-    );
+    this.matDialog.open(UpdateReceiptModalComponent, { data: row }).afterClosed().subscribe();
   }
 
   cancel(row: Receipt): void {
@@ -87,5 +84,9 @@ export class ReceiptsTableComponent implements OnInit {
     this.dataService.receiptCancel(request).subscribe(res => {
       console.log(res);
     });
+  }
+
+  create(row: Receipt) {
+    this.matDialog.open(CreateReceiptModalComponent, { data: row }).afterClosed().subscribe();
   }
 }

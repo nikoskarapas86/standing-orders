@@ -28,6 +28,7 @@ import { ClientContainerComponent } from './client-container/client-container.co
 import { ReceiptComponent } from './receipt/receipt.component';
 import { ReceiptsTableComponent } from './receipts-table/receipts-table.component';
 import { UpdateReceiptModalComponent } from './update-receipt-modal/update-receipt-modal.component';
+import { CreateReceiptModalComponent } from './create-receipt-modal/create-receipt-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { UpdateReceiptModalComponent } from './update-receipt-modal/update-recei
     ReceiptComponent,
     ReceiptsTableComponent,
     UpdateReceiptModalComponent,
+    CreateReceiptModalComponent,
   ],
   imports: [
     CommonModule,
