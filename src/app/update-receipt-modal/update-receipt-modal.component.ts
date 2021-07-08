@@ -40,7 +40,7 @@ this.dismiss()
   }
 
   onSubmit(): void {
-    const { policyNo, receipt, installments, amount } = this.data;
+    const { policyNo, receipt, installments } = this.data;
     this.lineOfBussinesses$.subscribe(res => {
       console.log(res)
       let item: any = res.filter(item => item.title == this.data.lineOfBusiness);
@@ -52,7 +52,7 @@ this.dismiss()
           receipt,
           installments,
         },
-        amount,
+        ...this.amountForm.value
       };
       this.dataService.receiptRepay(request).subscribe(res => {
 
