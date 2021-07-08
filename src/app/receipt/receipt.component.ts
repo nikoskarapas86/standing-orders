@@ -20,7 +20,7 @@ export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   receiptStatuses$: Observable<ReceiptStatus[]>;
-  paymentTypes$: Observable<PaymentType[]>;
+  paymentTypes: PaymentType[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +33,13 @@ export class ReceiptComponent implements OnInit {
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
     this.receiptStatuses$ = this.dataService.searchReceiptStatuses();
-    this.paymentTypes$ = this.dataService.getPaymentTypes();
+    this.receiptStatuses$.subscribe(res => {
+      this.dataService.receiptStatuses = res;
+    });
+    this.dataService.getPaymentTypes().subscribe(res => {
+      this.paymentTypes = res;
+      this.dataService.paymentTypes = res;
+    });
   }
 
   private buildFormGroup(): void {

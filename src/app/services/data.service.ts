@@ -37,6 +37,8 @@ export class DataService {
   _searchRequest: SearchRequest;
   _receiptRequest: ReceiptRequest;
   private privateSearchForm: FormGroup;
+  private privateReceiptStatuses: ReceiptStatus[];
+  private privatePaymentTypes: PaymentType[];
 
   private standingOrdersResponseSubject = new BehaviorSubject<any>(undefined);
   standingOrders$: Observable<any> = this.standingOrdersResponseSubject.asObservable();
@@ -88,6 +90,22 @@ export class DataService {
 
   get searchForm() {
     return this.privateSearchForm;
+  }
+
+  get receiptStatuses(): ReceiptStatus[] {
+    return this.privateReceiptStatuses;
+  }
+
+  set receiptStatuses(val: ReceiptStatus[]) {
+    this.privateReceiptStatuses = val;
+  }
+
+  get paymentTypes(): PaymentType[] {
+    return this.privatePaymentTypes;
+  }
+
+  set paymentTypes(val: PaymentType[]) {
+    this.privatePaymentTypes = val;
   }
 
   private searchPolicyResponseSubject = new BehaviorSubject<SearchPolicyResponse>(undefined);
@@ -142,9 +160,6 @@ export class DataService {
     const update = this.privateStatus === 'create' ? '' : '/update';
     return this.http.post(`${this.url}/int${update}/sendEmail/${searchId}`, email);
   }
-  // sendUpdateEmail(email: any, searchId: string) {
-  //   return this.http.post(`${this.url}/int/update/sendEmail/${searchId}`, email);
-  // }
 
   getPolicyByEmail(searchId: string): Observable<GetPolicyByEmailResponse> {
     const update = this.privateStatus === 'create' ? '' : '/update';

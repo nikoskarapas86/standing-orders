@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { LineOfBusiness } from '../models/line-of-business';
 import { Receipt } from '../models/receipt-search-response';
 import { DataService } from '../services/data.service';
 
@@ -12,17 +13,22 @@ import { DataService } from '../services/data.service';
 })
 export class CreateReceiptModalComponent implements OnInit {
   receiptForm: FormGroup;
+  linesOfBusiness: LineOfBusiness[];
 
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Receipt,
     private dialogRef: MatDialogRef<CreateReceiptModalComponent>,
-    private dataService: DataService,
+    public dataService: DataService,
     private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+
+    this.dataService.lineOfbusinesses$.subscribe(res => {
+      this.linesOfBusiness = res;
+    });
   }
 
   dismiss() {
@@ -31,7 +37,7 @@ export class CreateReceiptModalComponent implements OnInit {
 
   private initForm(): void {
     this.receiptForm = this.formBuilder.group({
-      status: this.data.status,
+      status: this.dataService.receiptStatuses.find(s => s.title === this.data.status),
       lineOfBusiness: this.data.lineOfBusiness,
       policyNo: this.data.policyNo,
       checkDigit: this.data.checkDigit,
