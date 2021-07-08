@@ -1,4 +1,4 @@
 export class DeleteReason {
-  'lineOfBusiness': string;
+  'deleteReason': string;
   'title': string;
 }
