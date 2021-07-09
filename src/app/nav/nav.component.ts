@@ -44,7 +44,6 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
    
     this.dataService.logout().subscribe(
       (res) => {
-        console.log(res)
         this.authenticationService.logout();
         this.dataService.setLineOfbusinessesSubject(undefined);
         this.router.navigate(['']);
