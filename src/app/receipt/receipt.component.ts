@@ -48,6 +48,7 @@ export class ReceiptComponent implements OnInit {
       status: null,
     });
   }
+  
   onSubmit(): void {
     let receiptRequest = new ReceiptRequest();
     // receiptRequest.billingStartDate = this.receiptForm.value?.billingStartDate
