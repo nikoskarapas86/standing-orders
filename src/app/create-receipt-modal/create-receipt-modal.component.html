@@ -1,9 +1,9 @@
-<div>
-  <div class="action">
-    <span><h3>Δημιουργία Εντολής Πληρωμής</h3></span>
-    <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
-  </div>
+<div class="action flex" mat-dialog-title>
+  <h3>Δημιουργία Εντολής Πληρωμής</h3>
+  <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
+</div>
 
+<mat-dialog-content>
   <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm">
     <!-- <div class="form-row"> -->
     <div>
@@ -164,4 +164,4 @@
       <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>
     </div>
   </form>
-</div>
+</mat-dialog-content>
