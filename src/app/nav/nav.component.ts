@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, AfterContentChecked, AfterViewChecked } from '@angular/core';
+import { Component, ChangeDetectorRef, AfterContentChecked, AfterViewChecked, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { DataService } from '../services/data.service';
@@ -8,7 +8,7 @@ import { DataService } from '../services/data.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements AfterViewChecked, AfterContentChecked {
+export class NavComponent implements OnInit, AfterViewChecked, AfterContentChecked {
   public isVisible = false;
   public insertClicked = true;
   public searchClicked = false;
@@ -20,7 +20,9 @@ export class NavComponent implements AfterViewChecked, AfterContentChecked {
     private changeDetectorRef: ChangeDetectorRef,
     private dataService: DataService
   ) {}
-
+ngOnInit(){
+  
+}
   ngAfterContentChecked(): void {
     this.isVisible = localStorage.getItem('role') !== 'read-write' ? false : true;
   }
