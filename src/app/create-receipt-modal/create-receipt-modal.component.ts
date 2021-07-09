@@ -72,30 +72,22 @@ export class CreateReceiptModalComponent implements OnInit {
     });
   }
 
+  transformDate(field: string): string {
+    return this.datePipe.transform(this.receiptForm.controls[field].value, 'dd/MM/yyyy');
+  }
+
   onSubmit(): void {
     const request = {
       ...this.receiptForm.value,
-      billingDate: this.datePipe.transform(
-        this.receiptForm.controls.billingDate.value,
-        'dd/MM/yyyy'
-      ),
+      billingDate: this.transformDate('billingDate'),
       // TODO: install moment and substitute
       // billingDate: moment(this.receiptForm.controls.billingDate.value)
       //   .add(3, 'hours')
       //   .format('MM/DD/YYYY'),
-      issueDate: this.datePipe.transform(this.receiptForm.controls.issueDate.value, 'dd/MM/yyyy'),
-      paymentDate: this.datePipe.transform(
-        this.receiptForm.controls.paymentDate.value,
-        'dd/MM/yyyy'
-      ),
-      bankResponseDate: this.datePipe.transform(
-        this.receiptForm.controls.bankResponseDate.value,
-        'dd/MM/yyyy'
-      ),
-      registerDate: this.datePipe.transform(
-        this.receiptForm.controls.registerDate.value,
-        'dd/MM/yyyy'
-      ),
+      issueDate: this.transformDate('issueDate'),
+      paymentDate: this.transformDate('paymentDate'),
+      bankResponseDate: this.transformDate('bankResponseDate'),
+      registerDate: this.transformDate('registerDate'),
     };
     this.dataService.receiptCreate(request).subscribe(res => {
       this.dismiss();
