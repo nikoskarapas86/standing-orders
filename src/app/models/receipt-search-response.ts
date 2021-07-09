@@ -5,7 +5,7 @@ export class Receipt {
   checkDigit: number;
   endorsement: number;
   receipt: number;
-  paymentType: number;
+  paymentType: string;
   installments: number;
   branchStore: string;
   collectionAgency: string;

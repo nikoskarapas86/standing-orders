@@ -37,13 +37,17 @@ export class CreateReceiptModalComponent implements OnInit {
 
   private initForm(): void {
     this.receiptForm = this.formBuilder.group({
-      status: this.dataService.receiptStatuses.find(s => s.title === this.data.status),
-      lineOfBusiness: this.data.lineOfBusiness,
+      status: this.dataService.receiptStatuses.find(s => s.title === this.data.status)
+        .receiptStatus,
+      lineOfBusiness: this.dataService.lineOfbusinessesSubject.value.find(
+        b => b.title === this.data.lineOfBusiness
+      ).lineOfBusiness,
       policyNo: this.data.policyNo,
       checkDigit: this.data.checkDigit,
       endorsement: this.data.endorsement,
       receipt: this.data.receipt,
-      paymentType: this.data.paymentType,
+      paymentType: this.dataService.paymentTypes.find(t => t.title === this.data.paymentType)
+        .paymentType,
       installments: this.data.installments,
       branchStore: this.data.branchStore,
       collectionAgency: this.data.collectionAgency,
