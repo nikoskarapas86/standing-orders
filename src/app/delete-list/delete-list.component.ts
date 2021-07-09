@@ -42,7 +42,7 @@ export class DeleteListComponent implements OnInit {
   submit(): void {
     const request: DeleteRequest = {
       id: this.data.searchItemId,
-      deleteReason: this.deleteReason.lineOfBusiness,
+      deleteReason: this.deleteReason.deleteReason,
     };
     this.dataService
       .delete(request, this.data.searchId)

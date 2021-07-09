@@ -20,7 +20,7 @@ export class ReceiptComponent implements OnInit {
   receiptForm: FormGroup;
   linesOfBusinesses$: Observable<LineOfBusiness[]>;
   receiptStatuses$: Observable<ReceiptStatus[]>;
-  paymentTypes$: Observable<PaymentType[]>;
+  paymentTypes: PaymentType[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +33,13 @@ export class ReceiptComponent implements OnInit {
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
     this.receiptStatuses$ = this.dataService.searchReceiptStatuses();
-    this.paymentTypes$ = this.dataService.getPaymentTypes();
+    this.receiptStatuses$.subscribe(res => {
+      this.dataService.receiptStatuses = res;
+    });
+    this.dataService.getPaymentTypes().subscribe(res => {
+      this.paymentTypes = res;
+      this.dataService.paymentTypes = res;
+    });
   }
 
   private buildFormGroup(): void {
@@ -69,8 +75,8 @@ export class ReceiptComponent implements OnInit {
     // receiptRequest.status = 'PAY';
 
     receiptRequest = {
-      billingEndDate: '02/07/2021',
-      billingStartDate: '02/07/2021',
+      billingEndDate: '12/12/2021',
+      billingStartDate: '01/07/2021',
       issueEndDate: '10/06/2020',
       issueStartDate: '10/06/2020',
       lineOfBusiness: 'AUTO',
@@ -78,7 +84,7 @@ export class ReceiptComponent implements OnInit {
       policyNo: 61000022,
       status: 'PAY',
     };
-    this.dataService.receiptRequest = receiptRequest
+    this.dataService.receiptRequest = receiptRequest;
     this.dataService.receiptSearch(receiptRequest).subscribe(
       res => {
         this.dataService.setReceiptsSearchSubject(res);

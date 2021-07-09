@@ -5,17 +5,34 @@
   </div>
 
   <form [formGroup]="receiptForm" (ngSubmit)="onSubmit()" name="receiptForm">
-    <div class="form-row">
+    <!-- <div class="form-row"> -->
+    <div>
       <div class="form-row-item">
         <div class="mr-10 distance" fxLayout="column">
           <mat-form-field fxLayout="row" appearance="fill">
             <mat-label>Κατάσταση</mat-label>
-            <input formControlName="status" matInput />
+            <mat-select formControlName="status" matNativeControl>
+              <mat-option
+                *ngFor="let item of dataService.receiptStatuses"
+                [value]="item.receiptStatus"
+                ngDefaultControl
+              >
+                {{ item.title }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field fxLayout="row" appearance="fill">
             <mat-label>Κλάδος</mat-label>
-            <input formControlName="lineOfBusiness" matInput />
+            <mat-select formControlName="lineOfBusiness" matNativeControl>
+              <mat-option
+                *ngFor="let item of linesOfBusiness"
+                [value]="item.lineOfBusiness"
+                ngDefaultControl
+              >
+                {{ item.title }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field fxLayout="row" appearance="fill">
@@ -40,7 +57,15 @@
 
           <mat-form-field fxLayout="row" appearance="fill">
             <mat-label>Τύπος Πληρωμής</mat-label>
-            <input formControlName="paymentType" matInput />
+            <mat-select formControlName="paymentType" matNativeControl>
+              <mat-option
+                *ngFor="let item of dataService.paymentTypes"
+                [value]="item.paymentType"
+                ngDefaultControl
+              >
+                {{ item.title }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field fxLayout="row" appearance="fill">
