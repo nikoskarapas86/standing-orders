@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -10,6 +11,7 @@ import { DataService } from '../services/data.service';
   selector: 'app-create-receipt-modal',
   templateUrl: './create-receipt-modal.component.html',
   styleUrls: ['./create-receipt-modal.component.scss'],
+  providers: [DatePipe],
 })
 export class CreateReceiptModalComponent implements OnInit {
   receiptForm: FormGroup;
@@ -20,7 +22,8 @@ export class CreateReceiptModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Receipt,
     private dialogRef: MatDialogRef<CreateReceiptModalComponent>,
     public dataService: DataService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private datePipe: DatePipe
   ) {}
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class CreateReceiptModalComponent implements OnInit {
       installment2Amount: this.data.installment2Amount,
       billingDate: this.data.billingDate,
       issueDate: this.data.issueDate,
-      paymentDate: this.data.issueDate,
+      paymentDate: this.data.paymentDate,
       bankResponseDate: this.data.bankResponseDate,
       registerDate: this.data.registerDate,
       reversalNo: this.data.reversalNo,
@@ -70,7 +73,31 @@ export class CreateReceiptModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.dataService.receiptCreate(this.receiptForm.value).subscribe(res => {
+    const request = {
+      ...this.receiptForm.value,
+      billingDate: this.datePipe.transform(
+        this.receiptForm.controls.billingDate.value,
+        'dd/MM/yyyy'
+      ),
+      // TODO: install moment and substitute
+      // billingDate: moment(this.receiptForm.controls.billingDate.value)
+      //   .add(3, 'hours')
+      //   .format('MM/DD/YYYY'),
+      issueDate: this.datePipe.transform(this.receiptForm.controls.issueDate.value, 'dd/MM/yyyy'),
+      paymentDate: this.datePipe.transform(
+        this.receiptForm.controls.paymentDate.value,
+        'dd/MM/yyyy'
+      ),
+      bankResponseDate: this.datePipe.transform(
+        this.receiptForm.controls.bankResponseDate.value,
+        'dd/MM/yyyy'
+      ),
+      registerDate: this.datePipe.transform(
+        this.receiptForm.controls.registerDate.value,
+        'dd/MM/yyyy'
+      ),
+    };
+    this.dataService.receiptCreate(request).subscribe(res => {
       this.dismiss();
 
       this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(

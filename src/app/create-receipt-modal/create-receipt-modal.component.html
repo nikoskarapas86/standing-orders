@@ -110,27 +110,42 @@
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
             <mat-label>Ημ/νία Τιμολόγησης</mat-label>
-            <input formControlName="billingDate" matInput />
+            <input matInput [matDatepicker]="billingDatePicker" formControlName="billingDate" />
+            <mat-datepicker-toggle matSuffix [for]="billingDatePicker"> </mat-datepicker-toggle>
+            <mat-datepicker #billingDatePicker> </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
             <mat-label>Ημ/νία Έκδοσης</mat-label>
-            <input formControlName="issueDate" matInput />
+            <input matInput [matDatepicker]="issueDatePicker" formControlName="issueDate" />
+            <mat-datepicker-toggle matSuffix [for]="issueDatePicker"> </mat-datepicker-toggle>
+            <mat-datepicker #issueDatePicker> </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
             <mat-label>Ημ/νία Πληρωμής</mat-label>
-            <input formControlName="paymentDate" matInput />
+            <input matInput [matDatepicker]="paymentDatePicker" formControlName="paymentDate" />
+            <mat-datepicker-toggle matSuffix [for]="paymentDatePicker"> </mat-datepicker-toggle>
+            <mat-datepicker #paymentDatePicker> </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
             <mat-label>Ημ/νία Απάντησης Τράπεζας</mat-label>
-            <input formControlName="bankResponseDate" matInput />
+            <input
+              matInput
+              [matDatepicker]="bankResponseDatePicker"
+              formControlName="bankResponseDate"
+            />
+            <mat-datepicker-toggle matSuffix [for]="bankResponseDatePicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #bankResponseDatePicker> </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
             <mat-label>Ημ/νία Εγγραφής</mat-label>
-            <input formControlName="registerDate" matInput />
+            <input matInput [matDatepicker]="registerDatePicker" formControlName="registerDate" />
+            <mat-datepicker-toggle matSuffix [for]="registerDatePicker"> </mat-datepicker-toggle>
+            <mat-datepicker #registerDatePicker> </mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="mr-2" fxLayout="row" appearance="fill">
