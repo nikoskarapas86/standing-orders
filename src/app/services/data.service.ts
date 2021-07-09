@@ -196,4 +196,8 @@ export class DataService {
   receiptCreate(request: Receipt): Observable<Receipt> {
     return this.http.post<any>(`${this.url}/int/receipt/create`, request);
   }
+
+  logout(): Observable<any>{
+    return this.http.get<any>(`${this.url}/int/logout`);
+  }
 }
