@@ -1,5 +1,7 @@
 import { Component, ChangeDetectorRef, AfterContentChecked, AfterViewChecked, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ModalComponent } from '../modal/modal.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { DataService } from '../services/data.service';
 
@@ -17,12 +19,13 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
   constructor(
     public authenticationService: AuthenticationService,
     private router: Router,
+    private matDialog: MatDialog,
     private changeDetectorRef: ChangeDetectorRef,
     private dataService: DataService
-  ) {}
-ngOnInit(){
-  
-}
+  ) { }
+  ngOnInit() {
+
+  }
   ngAfterContentChecked(): void {
     this.isVisible = localStorage.getItem('role') !== 'read-write' ? false : true;
   }
@@ -38,8 +41,19 @@ ngOnInit(){
   }
 
   logout(): void {
-    this.router.navigate(['']);
-    this.authenticationService.logout();
-    this.dataService.setLineOfbusinessesSubject(undefined);
+   
+    this.dataService.logout().subscribe(
+      (res) => {
+        this.authenticationService.logout();
+        this.dataService.setLineOfbusinessesSubject(undefined);
+        this.router.navigate(['']);
+      },
+      error => {
+        this.matDialog.open(ModalComponent, { data: error });
+      }
+    )
+   
+
+
   }
 }

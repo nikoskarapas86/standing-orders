@@ -26,9 +26,9 @@ export class UpdateReceiptModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.dataService.receiptRequest) {
-this.dismiss()
+      this.dismiss()
     }
-    this.dataService.lineOfbusinesses$.subscribe(res =>{console.log(res)})
+
     this.initForm();
     this.lineOfBussinesses$ = this.dataService.lineOfbusinesses$;
   }
@@ -57,7 +57,7 @@ this.dismiss()
       this.dataService.receiptRepay(request).subscribe(res => {
 
         this.dismiss();
-        
+
         this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(
           res => {
             this.dataService.setReceiptsSearchSubject(res);
