@@ -39,6 +39,9 @@ export class CreateReceiptModalComponent implements OnInit {
   }
 
   private initForm(): void {
+    console.log('this.data');
+    console.log(this.data);
+    console.log(this.changeMonthDayPosition(this.data.bankResponseDate));
     this.receiptForm = this.formBuilder.group({
       status: this.dataService.receiptStatuses.find(s => s.title === this.data.status)
         .receiptStatus,
@@ -59,17 +62,25 @@ export class CreateReceiptModalComponent implements OnInit {
       endorsementAmount: this.data.endorsementAmount,
       installmentAmount: this.data.installmentAmount,
       installment2Amount: this.data.installment2Amount,
-      billingDate: this.data.billingDate,
-      issueDate: this.data.issueDate,
-      paymentDate: this.data.paymentDate,
-      bankResponseDate: this.data.bankResponseDate,
-      registerDate: this.data.registerDate,
+      billingDate: new Date(this.changeMonthDayPosition(this.data.billingDate)),
+      issueDate: new Date(this.changeMonthDayPosition(this.data.issueDate)),
+      paymentDate: new Date(this.changeMonthDayPosition(this.data.paymentDate)),
+      bankResponseDate: new Date(this.changeMonthDayPosition(this.data.bankResponseDate)),
+      registerDate: new Date(this.changeMonthDayPosition(this.data.registerDate)),
       reversalNo: this.data.reversalNo,
       reversalNo2: this.data.reversalNo2,
       collectionTries: this.data.collectionTries,
       orderNo: this.data.orderNo,
       loanNo: this.data.loanNo,
     });
+    console.log(this.receiptForm);
+  }
+
+  private changeMonthDayPosition(date: string): string {
+    const day = date.substring(0, 2);
+    const month = date.substring(3, 5);
+    const year = date.substring(6, 10);
+    return [month, day, year].join('/');
   }
 
   transformDate(field: string): string {
@@ -80,10 +91,6 @@ export class CreateReceiptModalComponent implements OnInit {
     const request = {
       ...this.receiptForm.value,
       billingDate: this.transformDate('billingDate'),
-      // TODO: install moment and substitute
-      // billingDate: moment(this.receiptForm.controls.billingDate.value)
-      //   .add(3, 'hours')
-      //   .format('MM/DD/YYYY'),
       issueDate: this.transformDate('issueDate'),
       paymentDate: this.transformDate('paymentDate'),
       bankResponseDate: this.transformDate('bankResponseDate'),
