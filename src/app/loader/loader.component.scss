@@ -41,16 +41,10 @@
       align-self: center;
       position: relative;
     }
-    // @include viewport-mobile-tablet {
-    //   height: 270px;
-    // }
   }
   p {
     @include font-lato-light();
     margin-bottom: 30px;
-    // @include viewport-mobile-tablet {
-    //   font-size: 20px;
-    // }
   }
 }
 

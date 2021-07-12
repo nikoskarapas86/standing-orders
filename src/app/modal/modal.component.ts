@@ -21,24 +21,27 @@ export class ModalComponent implements OnInit {
   modalDynamicContent: ViewContainerRef;
   message: string;
   termsContent: boolean = false;
-  cardNumber:string;
-  expiryDate:string;
+  cardNumber: string;
+  expiryDate: string;
   buttonText: string;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ModalComponent>,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const error = this.data.error;
-    this.message = error ? this.getMessagefromJSON(error.message) : (typeof (this.data) == "object" && !error) ? this.getMessage(this.data) : this.getTermsContent(this.data);
+    this.message = error
+      ? this.getMessagefromJSON(error.message)
+      : typeof this.data == 'object' && !error
+      ? this.getMessage(this.data)
+      : this.getTermsContent(this.data);
   }
 
   getMessage(card: Card) {
-    this.cardNumber=card.cardNumber ;
+    this.cardNumber = card.cardNumber;
     this.expiryDate = card.cardExpiry;
-    // return "Η κάρτα έχει αριθμό : " + card.cardNumber + " και ημ/νια λήξης : " + card.cardExpiry
   }
 
   getTermsContent(msg) {

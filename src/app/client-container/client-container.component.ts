@@ -77,29 +77,6 @@ export class ClientContainerComponent implements OnInit {
     });
   }
 
-  // private getIsShowSpinner(): void {
-  //   const isShowLoader$ = this.webpayWizardService.getIsShowSpinner.subscribe(spinnerEvent => {
-  //     if (spinnerEvent.state === SpinnerEventState.INITIAL) {
-  //       return;
-  //     }
-  //     this.isShowSpinner = spinnerEvent.isShowSpinnerLoader;
-  //     switch (spinnerEvent.status) {
-  //       case WebpayPaymentStatus.APPROVED:
-  //         this.showActionSucceeded();
-  //         break;
-  //       case WebpayPaymentStatus.DECLINED:
-  //         this.showActionFailed();
-  //         break;
-  //       case WebpayPaymentStatus.TOKEN_EXPIRED:
-  //         this.showTokenExpired(spinnerEvent.message);
-  //         break;
-  //       default:
-  //         this.showActionInProgress();
-  //     }
-  //   });
-  //   this.subscriptions$.push(isShowLoader$);
-  // }
-
   private observeCreditCardBackground(): void {
     this.changeBackgroundImages();
     this.clientContainerService.getCreditCardBackground

@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private authenticationService: AuthenticationService,
-    // private userService: UserService,
     private fb: FormBuilder,
     private dataService: DataService
   ) {

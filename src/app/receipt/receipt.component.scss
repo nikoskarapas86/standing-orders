@@ -12,7 +12,6 @@ form {
     .form-row-item {
       width: 80%;
 
-      // @include _flex(row, space-around);
       @include _flex(row, flex-start);
       margin-right: 20px;
 
@@ -20,7 +19,6 @@ form {
 
       .mat-form-field {
         @include _box(1px solid #0000001f, 4px, unset, 0 0 1rem 1rem, unset, 0px 3px 6px #00000029);
-        // @include _container(30%, 53px);
         @include _container(100%, 53px);
         @include _font-conf(0.15px, 1.125, left, inherit);
         min-height: unset;
@@ -132,10 +130,6 @@ form {
   mat-icon {
     font-size: 20px !important;
     margin-right: 8px;
-
-    // @include font-size-tablet {
-    //   margin-bottom: 6px;
-    // }
   }
 }
 

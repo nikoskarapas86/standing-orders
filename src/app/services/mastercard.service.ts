@@ -45,11 +45,4 @@ export class MastercardService {
       null
     );
   }
-
-  // pay = (request: PayRequest): Observable<PayResponse> => {
-  //   const update = this.dataService.status === 'create' ? '' : '/update';
-  //   return this.httpClient.post<PayResponse>('posweb/payment/pay', request, {
-  //     headers: { PolicyDetails: this.policyDetailsToken },
-  //   });
-  // };
 }
