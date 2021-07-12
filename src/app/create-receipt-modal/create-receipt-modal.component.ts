@@ -96,17 +96,22 @@ export class CreateReceiptModalComponent implements OnInit {
       bankResponseDate: this.transformDate('bankResponseDate'),
       registerDate: this.transformDate('registerDate'),
     };
-    this.dataService.receiptCreate(request).subscribe(res => {
-      this.dismiss();
+    this.dataService.receiptCreate(request).subscribe(
+      res => {
+        this.dismiss();
 
-      this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(
-        res => {
-          this.dataService.setReceiptsSearchSubject(res);
-        },
-        error => {
-          this.matDialog.open(ModalComponent, { data: error });
-        }
-      );
-    });
+        this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(
+          res => {
+            this.dataService.setReceiptsSearchSubject(res);
+          },
+          error => {
+            this.matDialog.open(ModalComponent, { data: error });
+          }
+        );
+      },
+      error => {
+        this.matDialog.open(ModalComponent, { data: error });
+      }
+    );
   }
 }
