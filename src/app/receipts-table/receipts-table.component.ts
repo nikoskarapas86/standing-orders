@@ -70,7 +70,7 @@ export class ReceiptsTableComponent implements OnInit {
   }
 
   cancel(row: Receipt): void {
-    const { lineOfBusiness, policyNo, receipt, installments, amount } = row;
+    const { lineOfBusiness, policyNo, receipt, installments } = row;
     const request = {
       key: {
         // TODO: remove hardcoded lineOfBusiness
