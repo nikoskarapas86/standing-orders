@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateSessionResponse } from '../models/create-session-response';
 import { InitialPaymentResponse } from '../models/initial-payment-response';
-import { PayRequest } from '../models/pay-request';
-import { PayResponse } from '../models/pay-response';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { TokenizeResponse } from '../models/tokenize-response';
 import { DataService } from './data.service';
