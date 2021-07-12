@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { CreateOrderRersponse } from 'src/app/models/create-order-response';
-import { SearchPolicyResponse } from 'src/app/models/search-policy-response';
-import { DataService } from 'src/app/services/data.service';
 import { CreateStandingService } from '../create-standing.service';
 
 @Component({
