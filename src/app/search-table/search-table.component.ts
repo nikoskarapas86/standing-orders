@@ -60,16 +60,15 @@ export class SearchTableComponent implements OnInit {
     private editService: EditService,
     private dataService: DataService,
     public dialog: MatDialog,
-    private modalService: ModalService,
-    private renderer: Renderer2
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.resultsLoading$ = this.dataService.resultsLoading$
+    this.resultsLoading$ = this.dataService.resultsLoading$;
     this.editService.selectedStandingOrder = null;
     this.dataService.lineOfbusinesses$.subscribe(res => {
-      this.linesOfBusinesses = res
-    })
+      this.linesOfBusinesses = res;
+    });
     this.dataService.standingOrders$.subscribe(res => {
       if (res) {
         this.totalEs = res?.standingOrders?.totalElements;
@@ -93,17 +92,16 @@ export class SearchTableComponent implements OnInit {
   edit(element: SearchItem) {
     this.editService.edit(this.searchId, element.id).subscribe(res => {
       if (res) {
-        res.cardNumber !== "" ? this.editService.selectedCard = res : null;
+        res.cardNumber !== '' ? (this.editService.selectedCard = res) : null;
         this.editService.selectedStandingOrder = element;
         this.router.navigate(['edit', element.id], { state: { searchId: this.searchId } });
       }
     });
   }
 
-
   onPaginateChange(pageEvent: PageEvent) {
     this.dataService.setStandingOrdersSubject(undefined);
-    this.dataService.resultsLoadingSubject.next(true)
+    this.dataService.resultsLoadingSubject.next(true);
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest, pageEvent.pageIndex, pageEvent.pageSize)
       .subscribe(
@@ -113,7 +111,7 @@ export class SearchTableComponent implements OnInit {
         },
         error => console.log(error),
         () => {
-          this.dataService.resultsLoadingSubject.next(false)
+          this.dataService.resultsLoadingSubject.next(false);
         }
       );
     return pageEvent;

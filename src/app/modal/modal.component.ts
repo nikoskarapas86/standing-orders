@@ -26,8 +26,7 @@ export class ModalComponent implements OnInit {
   buttonText: string;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<ModalComponent>,
-    private router: Router
+    public dialogRef: MatDialogRef<ModalComponent>
   ) {}
 
   ngOnInit(): void {
