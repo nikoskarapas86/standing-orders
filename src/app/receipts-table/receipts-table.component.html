@@ -22,9 +22,9 @@
             {{ row[tableItem.columnDef] }}
           </div>
           <div class="action-row" *ngIf="tableItem.columnDef === 'actions'">
-            <div (click)="repay(row)">
+            <div (click)="update(row)">
               <button class="btn">
-                <mat-icon class="edit-row">refresh</mat-icon>
+                <mat-icon class="update-row">refresh</mat-icon>
               </button>
             </div>
             <div (click)="edit(row)">

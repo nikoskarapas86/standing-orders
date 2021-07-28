@@ -1,8 +1,9 @@
-export class ReceiptUpdateRequest {
+export class ReceiptRepayRequest {
   'key': {
     lineOfBusiness: string;
     policyNo: number;
     receipt: number;
     installments: number;
   };
+  'amount': number;
 }
