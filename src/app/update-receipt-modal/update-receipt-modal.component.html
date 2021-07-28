@@ -1,7 +1,11 @@
 <div>
   <div class="action">
-    <span><h3>Ενημέρωση Εντολής Πληρωμής</h3></span>
-    <button (click)="dismiss()" class="action__close-btn"><mat-icon>close</mat-icon></button>
+    <span>
+      <h3>Ενημέρωση Εντολής Πληρωμής</h3>
+    </span>
+    <button (click)="dismiss()" class="action__close-btn">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
 
   <form [formGroup]="amountForm" (ngSubmit)="onSubmit()" name="amountForm">
@@ -14,6 +18,25 @@
           </mat-form-field>
         </div>
       </div>
+
+    </div>
+
+    <div class="form-row">
+      <!-- ds -->
+
+      <div class="form-row-item">
+        <div  class="mr-10 distance maximum-width" fxLayout="column">
+          <mat-form-field fxLayout="row" appearance="fill">
+            <mat-label>Ημερομηνία Έκδοσης</mat-label>
+            <input matInput [matDatepicker]="billingDatePicker" formControlName="billingDate" [min]="today" readonly />
+            <mat-datepicker-toggle readonly matSuffix [for]="billingDatePicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #billingDatePicker> </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!--  -->
     </div>
     <div class="action-row">
       <button mat-raised-button type="submit">ΑΠΟΘΗΚΕΥΣΗ</button>

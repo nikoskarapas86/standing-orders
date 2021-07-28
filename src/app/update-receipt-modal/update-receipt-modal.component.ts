@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { ModalComponent } from '../modal/modal.component';
 import { LineOfBusiness } from '../models/line-of-business';
@@ -15,6 +16,7 @@ import { DataService } from '../services/data.service';
 })
 export class UpdateReceiptModalComponent implements OnInit {
   amountForm: FormGroup;
+  public today:Date = new Date();
   lineOfBussinesses$: Observable<LineOfBusiness[]>;
   constructor(
     private formBuilder: FormBuilder,
@@ -25,8 +27,10 @@ export class UpdateReceiptModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.data)
     if (!this.dataService.receiptRequest) {
       this.dismiss();
+     
     }
 
     this.initForm();
@@ -36,10 +40,12 @@ export class UpdateReceiptModalComponent implements OnInit {
   private initForm(): void {
     this.amountForm = this.formBuilder.group({
       amount: this.data.amount,
+      billingDate:null,
     });
   }
 
   onSubmit(): void {
+    console.log('update')
     const { policyNo, receipt, installments, endorsement } = this.data;
     this.lineOfBussinesses$.subscribe(res => {
       let item: any = res.filter(item => item.title == this.data.lineOfBusiness);
@@ -52,8 +58,11 @@ export class UpdateReceiptModalComponent implements OnInit {
           installments,
           endorsement,
         },
-        ...this.amountForm.value,
+        amount: this.amountForm.get('amount').value,
+        billingDate:  moment(this.amountForm.get('billingDate').value).format('DD/MM/YYYY'),
       };
+      console.log(request)
+    
       this.dataService.receiptRepay(request).subscribe(res => {
         this.dismiss();
 
