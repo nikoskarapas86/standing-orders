@@ -70,7 +70,7 @@ export class ReceiptsTableComponent implements OnInit {
   }
 
   edit(row: Receipt): void {
-    this.matDialog.open(CreateReceiptModalComponent, { data: row }).afterClosed().subscribe();
+    this.matDialog.open(UpdateReceiptModalComponent, { data: row }).afterClosed().subscribe();
   }
 
   cancel(row: Receipt): void {
