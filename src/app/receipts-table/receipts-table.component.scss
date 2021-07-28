@@ -249,9 +249,15 @@ mat-footer-row {
 .edit-row {
   color: $blue-primary-main;
 }
+
 .delete-row {
   color: darkred;
 }
+
+.update-row {
+  color: orange;
+}
+
 .empty-message {
   color: rgba(0, 0, 0, 0.6);
 }

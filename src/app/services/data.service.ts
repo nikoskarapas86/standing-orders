@@ -24,6 +24,7 @@ import { Receipt, ReceiptSearchResponse } from '../models/receipt-search-respons
 import { PaymentType } from '../models/payment-type';
 import { ReceiptUpdateRequest } from '../models/receipt-update-request';
 import { ReceiptCancelRequest } from 'src/app/models/receipt-cancel-request';
+import { ReceiptRepayRequest } from '../models/receipt-repay-request';
 
 @Injectable({
   providedIn: 'root',
@@ -185,7 +186,7 @@ export class DataService {
     return this.http.post<any>(`${this.url}/int/receipt/search`, receiptRequest);
   }
 
-  receiptRepay(request: ReceiptUpdateRequest): Observable<Receipt> {
+  receiptRepay(request: ReceiptRepayRequest): Observable<Receipt> {
     return this.http.post<any>(`${this.url}/int/receipt/repay`, request);
   }
 

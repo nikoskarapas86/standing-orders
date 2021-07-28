@@ -65,8 +65,19 @@ export class ReceiptsTableComponent implements OnInit {
     });
   }
 
-  repay(row: Receipt): void {
-    this.matDialog.open(UpdateReceiptModalComponent, { data: row }).afterClosed().subscribe();
+  update(row: Receipt): void {
+    const { lineOfBusiness, policyNo, receipt, installments, endorsement } = row;
+    const request = {
+      key: {
+        // lineOfBusiness,
+        lineOfBusiness: 'AUTO',
+        policyNo,
+        receipt,
+        installments,
+        endorsement,
+      },
+    };
+    this.dataService.receiptUpdate(request).subscribe();
   }
 
   edit(row: Receipt): void {
