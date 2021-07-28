@@ -39,9 +39,6 @@ export class CreateReceiptModalComponent implements OnInit {
   }
 
   private initForm(): void {
-    console.log('this.data');
-    console.log(this.data);
-    console.log(this.changeMonthDayPosition(this.data.bankResponseDate));
     this.receiptForm = this.formBuilder.group({
       status: this.dataService.receiptStatuses.find(s => s.title === this.data.status)
         .receiptStatus,
@@ -73,7 +70,6 @@ export class CreateReceiptModalComponent implements OnInit {
       orderNo: this.data.orderNo,
       loanNo: this.data.loanNo,
     });
-    console.log(this.receiptForm);
   }
 
   private changeMonthDayPosition(date: string): string {

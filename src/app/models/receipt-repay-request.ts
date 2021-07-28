@@ -6,4 +6,5 @@ export class ReceiptRepayRequest {
     installments: number;
   };
   'amount': number;
+  'billingDate': string;
 }

@@ -16,8 +16,9 @@ import { DataService } from '../services/data.service';
 })
 export class UpdateReceiptModalComponent implements OnInit {
   amountForm: FormGroup;
-  public today:Date = new Date();
+  public today: Date = new Date();
   lineOfBussinesses$: Observable<LineOfBusiness[]>;
+
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: Receipt,
@@ -27,10 +28,8 @@ export class UpdateReceiptModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data)
     if (!this.dataService.receiptRequest) {
       this.dismiss();
-     
     }
 
     this.initForm();
@@ -40,12 +39,11 @@ export class UpdateReceiptModalComponent implements OnInit {
   private initForm(): void {
     this.amountForm = this.formBuilder.group({
       amount: this.data.amount,
-      billingDate:null,
+      billingDate: null,
     });
   }
 
   onSubmit(): void {
-    console.log('update')
     const { policyNo, receipt, installments, endorsement } = this.data;
     this.lineOfBussinesses$.subscribe(res => {
       let item: any = res.filter(item => item.title == this.data.lineOfBusiness);
@@ -59,27 +57,27 @@ export class UpdateReceiptModalComponent implements OnInit {
           endorsement,
         },
         amount: this.amountForm.get('amount').value,
-        billingDate:  moment(this.amountForm.get('billingDate').value).format('DD/MM/YYYY'),
+        billingDate: moment(this.amountForm.get('billingDate').value).format('DD/MM/YYYY'),
       };
-    
-      this.dataService.receiptRepay(request).subscribe(res => {
-        this.dismiss();
 
-        this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(
-          res => {
-            this.dataService.setReceiptsSearchSubject(res);
-          },
-          error => {
-            this.matDialog.open(ModalComponent, { data: error });
-            this.dismiss();
-          }
-        );
-      },
-      error => {
-        this.matDialog.open(ModalComponent, { data: error });
-        this.dismiss();
-      }
-      
+      this.dataService.receiptRepay(request).subscribe(
+        res => {
+          this.dismiss();
+
+          this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(
+            res => {
+              this.dataService.setReceiptsSearchSubject(res);
+            },
+            error => {
+              this.matDialog.open(ModalComponent, { data: error });
+              this.dismiss();
+            }
+          );
+        },
+        error => {
+          this.matDialog.open(ModalComponent, { data: error });
+          this.dismiss();
+        }
       );
     });
   }
