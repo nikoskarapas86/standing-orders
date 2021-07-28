@@ -61,7 +61,6 @@ export class UpdateReceiptModalComponent implements OnInit {
         amount: this.amountForm.get('amount').value,
         billingDate:  moment(this.amountForm.get('billingDate').value).format('DD/MM/YYYY'),
       };
-      console.log(request)
     
       this.dataService.receiptRepay(request).subscribe(res => {
         this.dismiss();
@@ -72,9 +71,16 @@ export class UpdateReceiptModalComponent implements OnInit {
           },
           error => {
             this.matDialog.open(ModalComponent, { data: error });
+            this.dismiss();
           }
         );
-      });
+      },
+      error => {
+        this.matDialog.open(ModalComponent, { data: error });
+        this.dismiss();
+      }
+      
+      );
     });
   }
 
