@@ -59,7 +59,12 @@
             maxlength="9"
             matInput
           />
-          <button class="close-icon" type="button" tabindex="-1">
+          <button
+            class="close-icon"
+            type="button"
+            tabindex="-1"
+            (click)="this.receiptForm.get('policyNumber').setValue(null)"
+          >
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
