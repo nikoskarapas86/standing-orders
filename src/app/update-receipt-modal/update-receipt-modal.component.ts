@@ -22,11 +22,11 @@ export class UpdateReceiptModalComponent implements OnInit {
     public dialogRef: MatDialogRef<UpdateReceiptModalComponent>,
     private matDialog: MatDialog,
     private dataService: DataService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (!this.dataService.receiptRequest) {
-      this.dismiss()
+      this.dismiss();
     }
 
     this.initForm();
@@ -40,9 +40,8 @@ export class UpdateReceiptModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { policyNo, receipt, installments } = this.data;
+    const { policyNo, receipt, installments, endorsement } = this.data;
     this.lineOfBussinesses$.subscribe(res => {
-      console.log(res)
       let item: any = res.filter(item => item.title == this.data.lineOfBusiness);
       let lineOfBusiness = item[0].lineOfBusiness;
       const request = {
@@ -51,11 +50,11 @@ export class UpdateReceiptModalComponent implements OnInit {
           policyNo,
           receipt,
           installments,
+          endorsement,
         },
-        ...this.amountForm.value
+        ...this.amountForm.value,
       };
       this.dataService.receiptRepay(request).subscribe(res => {
-
         this.dismiss();
 
         this.dataService.receiptSearch(this.dataService.receiptRequest).subscribe(

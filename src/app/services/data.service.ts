@@ -189,6 +189,10 @@ export class DataService {
     return this.http.post<any>(`${this.url}/int/receipt/repay`, request);
   }
 
+  receiptUpdate(request: ReceiptUpdateRequest): Observable<Receipt> {
+    return this.http.post<any>(`${this.url}/int/receipt/update`, request);
+  }
+
   receiptCancel(request: ReceiptCancelRequest): Observable<Receipt> {
     return this.http.post<any>(`${this.url}/int/receipt/cancel`, request);
   }
@@ -197,7 +201,7 @@ export class DataService {
     return this.http.post<any>(`${this.url}/int/receipt/create`, request);
   }
 
-  logout(): Observable<any>{
+  logout(): Observable<any> {
     return this.http.get<any>(`${this.url}/int/logout`);
   }
 }
