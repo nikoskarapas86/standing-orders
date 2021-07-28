@@ -1,20 +1,36 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import * as moment from 'moment';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import 'moment/locale/el';
 
-import { ModalComponent } from '../modal/modal.component';
-import { LineOfBusiness } from '../models/line-of-business';
-import { SearchRequest } from '../models/search-request';
+import * as moment from 'moment';
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SearchItem, SearchResponse } from '../models/search-response';
+
 import { DataService } from '../services/data.service';
 import { DestroyService } from '../services/destroy.service';
-import { SearchService } from '../services/search.service';
-import { DateAdapter } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { LineOfBusiness } from '../models/line-of-business';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+import { Observable } from 'rxjs';
 import { PaymentType } from '../models/payment-type';
+import { Router } from '@angular/router';
+import { SearchRequest } from '../models/search-request';
+import { SearchService } from '../services/search.service';
+import { takeUntil } from 'rxjs/operators';
+
+// import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+// import {
+//   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+//   MAT_MOMENT_DATE_FORMATS,
+//   MomentDateAdapter,
+// } from '@angular/material-moment-adapter';
+// { provide: MAT_DATE_LOCALE, useValue: 'el-EL' },
+// {
+//   provide: DateAdapter,
+//   useClass: MomentDateAdapter,
+//   deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+// },
+// { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
 
 @Component({
   selector: 'app-search-standing-order',
@@ -30,35 +46,31 @@ export class SearchStandingOrderComponent implements OnInit {
   standingOrders: SearchItem[];
   searchBtnDisabled: boolean = false;
   searchId: string;
-  standingOrders$: Observable<any[]>;  
+  standingOrders$: Observable<any[]>;
   minDate = moment().subtract(3, 'months').toDate();
- 
+
   constructor(
     private formBuilder: FormBuilder,
     public dataService: DataService,
     private searchService: SearchService,
     public dialog: MatDialog,
     private readonly destroy$: DestroyService,
-    private _adapter: DateAdapter<any>,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-  
+    moment.locale('el');
     this.buildFormGroup();
     this.linesOfBusinesses$ = this.dataService.lineOfbusinesses$;
     this.paymentTypes$ = this.dataService.getPaymentTypes();
     this.searchService.getIsDeleteCalled.subscribe(res => {
       if (res) {
-      
         this.submit();
         this.searchService.isDeleteCalled = false;
       }
     });
-    this._adapter.setLocale('el');
 
     if (this.dataService.searchRequest) {
-     
       this.fetchSearchResults();
       this.searchForm = this.dataService.searchForm;
     }
@@ -81,7 +93,6 @@ export class SearchStandingOrderComponent implements OnInit {
   }
 
   private createSubmitRequest(): void {
-  
     const tempStartDate = this.searchForm.get('payDateFrom').value;
     const tempEndDate = this.searchForm.get('payDateTo').value;
     const startDate = tempStartDate ? moment(tempStartDate).format('DD/MM/YYYY') : null;
@@ -106,30 +117,28 @@ export class SearchStandingOrderComponent implements OnInit {
 
   submit(): void {
     this.dataService.setStandingOrdersSubject(undefined);
-    this.dataService.resultsLoadingSubject.next(true)
+    this.dataService.resultsLoadingSubject.next(true);
     this.searchBtnDisabled = true;
     this.dataService
       .searchStandingOrder(this.dataService.searchRequest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(
         (res: SearchResponse) => {
-         
           this.searchId = res.searchId;
           this.dataService.setStandingOrdersSubject(res);
           this.standingOrders$ = this.dataService.standingOrders$;
         },
         error => {
-        this.errorHandler(error)
+          this.errorHandler(error);
         },
         () => {
           this.searchBtnDisabled = false;
-          this.dataService.resultsLoadingSubject.next(false)
+          this.dataService.resultsLoadingSubject.next(false);
         }
       );
   }
 
-
-  errorHandler(error){
+  errorHandler(error) {
     this.dataService.setStandingOrdersSubject(undefined);
     this.searchBtnDisabled = false;
     this.standingOrders$ = this.dataService.standingOrders$;
