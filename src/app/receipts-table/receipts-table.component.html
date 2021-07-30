@@ -24,22 +24,28 @@
           <div class="action-row" *ngIf="tableItem.columnDef === 'actions'">
             <div (click)="update(row)">
               <button class="btn">
-                <mat-icon class="update-row">refresh</mat-icon>
+                <mat-icon class="update-row" matTooltip="Ενημέρωση Εντολής Πληρωμής"
+                  >refresh</mat-icon
+                >
               </button>
             </div>
             <div (click)="edit(row)">
               <button class="btn">
-                <mat-icon class="edit-row">edit</mat-icon>
+                <mat-icon class="edit-row" matTooltip="Επανάληψη Αποτυχημένης Πληρωμής"
+                  >edit</mat-icon
+                >
               </button>
             </div>
             <div (click)="cancel(row)">
               <button class="btn">
-                <mat-icon class="delete-row">delete</mat-icon>
+                <mat-icon class="delete-row" matTooltip="Ακύρωση Εντολής Πληρωμής">delete</mat-icon>
               </button>
             </div>
             <div (click)="create(row)">
               <button class="btn">
-                <mat-icon class="active">add</mat-icon>
+                <mat-icon class="active" matTooltip="Δημιουργία νέας Εντολής Πληρωμής"
+                  >add</mat-icon
+                >
               </button>
             </div>
           </div>
