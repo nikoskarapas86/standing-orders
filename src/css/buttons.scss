@@ -47,6 +47,12 @@ button {
   text-transform: uppercase;
   background-color: transparent;
   color: $blue-primary-main;
+
+  .home-icon {
+    display: inline-block !important;
+    line-height: 18px;
+    margin-right: 8px;
+  }
 }
 
 .search-btn {

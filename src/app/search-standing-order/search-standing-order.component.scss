@@ -7,14 +7,18 @@ form {
   width: 100%;
 
   .form-row {
+    padding: 1rem;
     @include _flex(row, flex-start);
 
     .form-row-item {
       width: 80%;
 
+      .form-field {
+        width: 30%;
+      }
+
       @include _flex(row, flex-start);
       margin-right: 20px;
-
       flex-wrap: wrap;
 
       .mat-form-field {
@@ -155,6 +159,7 @@ form {
 
 .go-back {
   margin-top: 0.83rem;
+
   @include tablet-landscape {
     visibility: hidden;
   }
@@ -165,7 +170,6 @@ form {
     text-decoration: none;
     height: 20px;
     cursor: pointer;
-    margin-left: 3rem;
 
     span {
       margin-top: 3px;

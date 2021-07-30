@@ -6,7 +6,7 @@
     <p class="empty-message">Δεν υπάρχουν αποτελέσματα. Eπαναπροσδιορίστε την αναζήτησή σας</p>
   </div>
 </div>
-<div class="w-90 mt-5" *ngIf="dataSource && dataSource.data.length">
+<div class="table-container my-2" *ngIf="dataSource && dataSource.data.length">
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
     <div *ngFor="let tableItem of tableItems">
       <ng-container [matColumnDef]="tableItem.columnDef">

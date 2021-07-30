@@ -1,7 +1,11 @@
 <div class="flex-row">
   <div class="btn-container">
-    <button mat-raised-button class="common-btn" (click)="atSearchScreen? navigateToSearch():navigateToHome()">
-      
+    <button
+      mat-raised-button
+      class="common-btn"
+      (click)="atSearchScreen ? navigateToSearch() : navigateToHome()"
+    >
+      <span *ngIf="!atSearchScreen" class="home-icon"><mat-icon>home</mat-icon></span>
       {{ atSearchScreen ? 'Επιστροφη στην αναζήτηση' : 'Επιστροφη στη κεντρικη' }}
     </button>
   </div>

@@ -85,3 +85,8 @@ input[type='number'] {
     background-color: inherit;
   }
 }
+
+app-search-table,
+app-receipts-table {
+  margin: 1rem;
+}

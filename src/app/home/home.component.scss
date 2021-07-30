@@ -14,8 +14,9 @@
 .mat-card {
   min-width: unset !important;
   max-width: fit-content;
-  margin: 2% !important;
+  margin: 0.35rem !important;
   border-radius: 4px !important;
+
   @include mobile-only {
     margin: 1% 0% 5% 0%;
     max-width: none;
