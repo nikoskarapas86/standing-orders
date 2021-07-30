@@ -56,15 +56,10 @@
                 </mat-error>
               </mat-form-field>
               <div class="form-group">
-                <button
-                  mat-raised-button
-                  class="center-btn"
-                  type="submit"
-                  [disabled]="!loginForm.valid"
+                <button mat-raised-button class="center-btn" type="submit">Σύνδεση</button>
+                <span *ngIf="errorMsg" class="error-msg"
+                  ><p>{{ errorMsg }}</p></span
                 >
-                  Σύνδεση
-                </button>
-                <span *ngIf="errorMsg" class="error-msg"><p>{{ errorMsg }}</p></span>
               </div>
             </div>
           </form>

@@ -46,6 +46,12 @@
   }
 }
 
+@mixin from-tablet-landscape {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
+
 @mixin landscape-iPad {
   @media only screen and (orientation: landscape) and (height: 768px) and (width: 1024px) {
     @content;

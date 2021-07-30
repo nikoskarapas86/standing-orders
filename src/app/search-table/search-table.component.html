@@ -14,7 +14,7 @@
 </div>
 <div
   [ngClass]="(resultsLoading$ | async) ? 'hidden' : ''"
-  class="w-90 mt-5"
+  class="my-2"
   *ngIf="dataSource && dataSource.data.length"
 >
   <mat-table mat-table [dataSource]="dataSource" class="justify-items-center">
