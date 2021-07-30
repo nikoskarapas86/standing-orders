@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,6 +12,7 @@ import { UpdateReceiptModalComponent } from '../update-receipt-modal/update-rece
   selector: 'app-receipts-table',
   templateUrl: './receipts-table.component.html',
   styleUrls: ['./receipts-table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ReceiptsTableComponent implements OnInit {
   dataSource: MatTableDataSource<any>;

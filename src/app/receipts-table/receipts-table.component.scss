@@ -125,6 +125,11 @@ button {
         justify-content: center;
       }
 
+      button {
+        background-color: transparent;
+        color: white;
+      }
+
       @include small-text {
         justify-content: flex-start;
       }
