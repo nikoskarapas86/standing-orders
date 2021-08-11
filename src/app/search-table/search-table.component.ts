@@ -90,6 +90,7 @@ export class SearchTableComponent implements OnInit {
   }
 
   edit(element: SearchItem) {
+   
     this.editService.edit(this.searchId, element.id).subscribe(res => {
       if (res) {
         res.cardNumber !== '' ? (this.editService.selectedCard = res) : null;

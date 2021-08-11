@@ -22,14 +22,14 @@ export class MastercardService {
   };
 
   createSession(searchId: string): Observable<CreateSessionResponse> {
-    const update = this.dataService.status === 'create' ? '' : '/update';
+    const update = this.dataService.status == 'create' ? '' : '/update';
     return this.httpClient.get<CreateSessionResponse>(
       `${this.url}/int${update}/create/session/${searchId}`
     );
   }
 
   tokenize(searchId: string, request: TokenizeRequest): Observable<TokenizeResponse> {
-    const update = this.dataService.status === 'create' ? '' : '/update';
+    const update = this.dataService.status == 'create' ? '' : '/update';
     return this.httpClient.post<TokenizeResponse>(
       `${this.url}/int${update}/tokenize/${searchId}`,
       request
@@ -37,7 +37,9 @@ export class MastercardService {
   }
 
   initialPayment(searchId: string, status: string = null): Observable<InitialPaymentResponse> {
-    let update = status === 'create' ? '' : '/update';
+    let update = (status == 'create') ? '' : '/update';
+ 
+    console.log( `${this.url}/int${update}/initialPayment/${searchId}`)
     return this.httpClient.post<InitialPaymentResponse>(
       `${this.url}/int${update}/initialPayment/${searchId}`,
       null

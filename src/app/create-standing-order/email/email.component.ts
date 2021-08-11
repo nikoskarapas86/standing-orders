@@ -24,6 +24,7 @@ export class EmailComponent implements OnInit {
   get isEmailDisabled() {
     return this._isEmailDisabled;
   }
+  
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private dataService: DataService,

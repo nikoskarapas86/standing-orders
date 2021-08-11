@@ -100,7 +100,7 @@ export class ClientContainerComponent implements OnInit {
 
   private resizeCreditCard(div: ElementRef): void {
     const screenSize$ = this.breakpointObserver
-      .observe('(max-width: 768px)')
+      .observe('max-width: 768px')
       .subscribe(({ matches }) => {
         matches
           ? this.renderer.setStyle(div.nativeElement, 'background-size', '277px 160px')

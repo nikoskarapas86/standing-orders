@@ -20,6 +20,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TokenizeRequest } from '../models/tokenize-request';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ClientContainerService } from '../services/client-container-service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-credit-card',
@@ -66,10 +67,12 @@ export class CreditCardComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: Document,
     private windowRefService: WindowRefService,
     private route: ActivatedRoute,
-    private clientContainerService: ClientContainerService
+    private clientContainerService: ClientContainerService,
+   private dataService:DataService
   ) {}
 
   ngOnInit(): void {
+    console.log(this.dataService.status )
     this.setYears();
     this.applyAntiClickJacking();
     this.searchId = this.route.snapshot.params.searchId;
@@ -357,7 +360,8 @@ export class CreditCardComponent implements OnInit, OnDestroy {
   }
 
   private initialPayment(): void {
-    this.mastercardService.initialPayment(this.searchId, status).subscribe(
+    console.log(status)
+    this.mastercardService.initialPayment(this.searchId, this.dataService.status).subscribe(
       res => {
         this.isPaymentCompleted = true;
         this.isLoading = false;
