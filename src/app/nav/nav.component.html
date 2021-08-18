@@ -3,9 +3,13 @@
     <mat-toolbar-row>
       <div class="nav-img">
         <img (click)="navigateToHome()"  src="./assets/images/logo.png" />
+        
       </div>
-
+      <div class="environment large" *ngIf="environment !== 'Production'">
+        {{ environment }}
+      </div>
       <div class="user">
+       
         <mat-icon class="item">  person</mat-icon> <span class="item">{{authenticationService.username}}</span>
         <button class="mat-icon-btn" (click)="logout()">
           <mat-icon>power_settings_new</mat-icon>
@@ -13,6 +17,7 @@
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
+
 </div>
 
 <router-outlet></router-outlet>

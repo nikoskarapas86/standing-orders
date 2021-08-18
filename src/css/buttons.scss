@@ -66,7 +66,17 @@ button {
   background-color: $blue-primary-main;
   color: $white-text-primary;
 }
-
+.sucess-btn {
+  border: none;
+  border-radius: 9px;
+  padding: inherit;
+  margin: inherit;
+  min-width: 100px;
+  box-shadow: unset;
+  text-transform: uppercase;
+  background-color: $success-color-secondary;
+  color: $white-text-primary;
+}
 .payment-btn {
   border: none;
   border-radius: 9px;

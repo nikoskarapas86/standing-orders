@@ -37,3 +37,26 @@ a {
 .nav-img{
   cursor: pointer;
 }
+
+
+.environment {
+  @include environment-info(1rem);
+  &.large {
+    padding-top: 4px;
+    display: flex !important;
+  }
+  &.small {
+    display: none !important;
+  }
+
+  @include mobile-only {
+    @include environment-info-small($blue-primary-main);
+
+    &.large {
+      display: none !important;
+    }
+    &.small {
+      display: flex !important;
+    }
+  }
+}

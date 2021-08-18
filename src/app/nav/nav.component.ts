@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { AuthenticationService } from '../services/authentication.service';
 import { DataService } from '../services/data.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +16,7 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
   public insertClicked = true;
   public searchClicked = false;
   public isDisabled = false;
-
+  public environment = '';
   constructor(
     public authenticationService: AuthenticationService,
     private router: Router,
@@ -24,7 +25,7 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
     private dataService: DataService
   ) { }
   ngOnInit() {
-
+    this.environment = environment.environment;
   }
   ngAfterContentChecked(): void {
     this.isVisible = localStorage.getItem('role') !== 'read-write' ? false : true;
@@ -41,7 +42,7 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
   }
 
   logout(): void {
-   
+
     this.dataService.logout().subscribe(
       (res) => {
         this.authenticationService.logout();
@@ -52,7 +53,7 @@ export class NavComponent implements OnInit, AfterViewChecked, AfterContentCheck
         this.matDialog.open(ModalComponent, { data: error });
       }
     )
-   
+
 
 
   }

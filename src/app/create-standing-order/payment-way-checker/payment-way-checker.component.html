@@ -27,7 +27,7 @@
                         <input formControlName="phone" matInput />
                     </mat-form-field>
                     <mat-form-field class="field-width">
-                        <mat-label>Επιλογή Τρόπου Πληρωμής</mat-label>
+                        <mat-label id="payment-way">Επιλογή Τρόπου Πληρωμής</mat-label>
                         <mat-select (selectionChange)="paymentWayChoise($event)" [disabled]="isIbanValid"
                             matNativeControl>
                             <mat-option *ngFor="let item of paymentTypes$ | async" [value]="item.paymentType"

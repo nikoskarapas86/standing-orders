@@ -19,6 +19,7 @@
         <button
           mat-raised-button
           (click)="isValid ? createOrder() : checkIban()"
+          [ngClass]="[isValid ? 'sucess-btn' : 'search-btn']"
           class="search-btn"
           id="searchBtn"
           type="submit"

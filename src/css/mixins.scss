@@ -442,3 +442,21 @@
     }
   }
 }
+@mixin environment-info($padding-left) {
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: white;
+  text-transform: uppercase;
+  padding-left: $padding-left;
+}
+
+@mixin environment-info-small($color) {
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: $color;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+}

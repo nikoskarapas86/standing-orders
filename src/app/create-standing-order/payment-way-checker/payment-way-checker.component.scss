@@ -1,23 +1,27 @@
-.field-width {
-    box-sizing: border-box;
-    max-width: 80%;
-  }
-  
-  .date-field-width {
-    max-width: 40%;
-  }
-  
-  
-  
-  .column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-  }
+@import '/src/css/mixins.scss';
 
-  mat-select-placeholder {
-    color:black!important;
+.field-width {
+  box-sizing: border-box;
+  max-width: 80%;
+}
+
+.date-field-width {
+  max-width: 40%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+mat-select-placeholder {
+  color: black !important;
+}
+
+#payment-way {
+  @include mobile-only {
+    font-size: 11px;
   }
- 
-  
+}
