@@ -14,7 +14,7 @@ form {
       width: 80%;
 
       .form-field {
-        width: 30%;
+        width: fit-content;
       }
 
       @include _flex(row, flex-start);
@@ -191,7 +191,7 @@ form {
     background-color: rgba(0, 0, 0, 0.04) !important;
 
     @include mobile-only {
-      font-size: 14px;
+      font-size: 12px;
       width: 196px;
     }
   }
