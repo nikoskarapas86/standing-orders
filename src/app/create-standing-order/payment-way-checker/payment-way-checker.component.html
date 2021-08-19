@@ -37,6 +37,11 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <mat-dialog-actions class="space-between">
+                    <button mat-raised-button class="common-btn" (click)="back()" type="button">ΠΙΣΩ</button>
+            
+                    <button mat-raised-button  class="search-btn" [disabled]="!!!paymentWay" (click)="next()" type="button">ΕΠΟΜΕΝΟ</button>
+                  </mat-dialog-actions>
             </form>
         </div>
     </mat-card-content>

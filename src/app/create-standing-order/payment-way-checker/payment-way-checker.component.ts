@@ -19,6 +19,7 @@ export class PaymentWayCheckerComponent implements OnInit {
   items: FormArray;
   paymentTypes$: Observable<PaymentType[]>;
   paymentType: string;
+  paymentWay:string;
   policyResponseForm: FormGroup;
   displayEndorsment: boolean = true;
   dispalyFieldsOfPolicy: boolean = true;
@@ -75,8 +76,8 @@ export class PaymentWayCheckerComponent implements OnInit {
     })
   }
   paymentWayChoise(event) {
-    event.value === 'BANK_ACCOUNT' ?this.router.navigate(['create/iban']) :this.router.navigate(['create/email'])
-    this.dispalyFieldsOfPolicy = false
+    this.paymentWay =  event.value 
+    
   }
 
 
@@ -87,6 +88,15 @@ export class PaymentWayCheckerComponent implements OnInit {
       cardExpiryMonth: '',
       cardExpiryYear: ''
     });
+  }
+
+  back() {
+    this.router.navigate(['create/search-policy'])
+  }
+  next(){
+   
+    this.paymentWay === 'BANK_ACCOUNT' ?this.router.navigate(['create/iban']) :this.router.navigate(['create/email'])
+    this.dispalyFieldsOfPolicy = false
   }
 }
 
